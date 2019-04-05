@@ -1,9 +1,0 @@
-package.json
-*.snap
-*.json
-*.md
-icons
-documentation
-coverage
-dist
-target
