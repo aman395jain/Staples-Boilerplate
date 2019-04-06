@@ -1,4 +1,19 @@
 .log-list-table {
   margin-top: 2%;
   border-radius: 6px;
+  .launch-icon {
+    margin-left: 30px;
+    .mat-icon {
+      color: #007bff;
+    }
+  }
+  .mat-footer-row {
+    .mat-footer-cell {
+      justify-content: center;
+      font-style: italic;
+    }
+  }
+  .hide {
+    display: none;
+  }
 }

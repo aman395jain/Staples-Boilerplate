@@ -17,8 +17,27 @@
         <mat-header-cell *matHeaderCellDef> Company </mat-header-cell>
         <mat-cell *matCellDef="let user"> {{ user.company.name }} </mat-cell>
       </ng-container>
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <a class="launch-icon" mat-icon-button><mat-icon>launch</mat-icon></a>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="noData">
+        <mat-footer-cell *matFooterCellDef colspan="6"
+          >No Data.</mat-footer-cell
+        >
+      </ng-container>
+
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+      <mat-footer-row
+        *matFooterRowDef="['noData']"
+        [ngClass]="{
+          hide: !(dataFromAPI != null && dataFromAPI.data.length === 0)
+        }"
+      ></mat-footer-row>
     </mat-table>
   </div>
   <mat-paginator> </mat-paginator>
