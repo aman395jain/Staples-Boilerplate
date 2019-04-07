@@ -1,72 +1,70 @@
-<div class="container">
-  <div class="container mat-elevation-z8 log-list">
-    <div class="row">
-      <div class="col-md-12 list-search">
-        <mat-form-field>
-          <input
-            matInput
-            (keyup)="applyFilter($event.target.value)"
-            placeholder="Search"
-          />
-        </mat-form-field>
-      </div>
-      <div class="col-md-12 log-list-table">
-        <mat-table [dataSource]="dataFromAPI" matSort>
-          <ng-container matColumnDef="name">
-            <mat-header-cell *matHeaderCellDef mat-sort-header>
-              Name
-            </mat-header-cell>
-            <mat-cell *matCellDef="let user"> {{ user.name }} </mat-cell>
-          </ng-container>
-          <ng-container matColumnDef="email">
-            <mat-header-cell *matHeaderCellDef mat-sort-header>
-              E-Mail
-            </mat-header-cell>
-            <mat-cell *matCellDef="let user"> {{ user.email }} </mat-cell>
-          </ng-container>
-          <ng-container matColumnDef="phone">
-            <mat-header-cell *matHeaderCellDef mat-sort-header>
-              Phone
-            </mat-header-cell>
-            <mat-cell *matCellDef="let user"> {{ user.phone }} </mat-cell>
-          </ng-container>
-          <ng-container matColumnDef="company">
-            <mat-header-cell *matHeaderCellDef mat-sort-header>
-              Company
-            </mat-header-cell>
-            <mat-cell *matCellDef="let user">
-              {{ user.company.name }}
-            </mat-cell>
-          </ng-container>
-          <ng-container matColumnDef="actions">
-            <mat-header-cell *matHeaderCellDef> </mat-header-cell>
-            <mat-cell *matCellDef="let row">
-              <a class="launch-icon" mat-icon-button
-                ><mat-icon>launch</mat-icon></a
-              >
-            </mat-cell>
-          </ng-container>
-
-          <ng-container matColumnDef="noData">
-            <mat-footer-cell *matFooterCellDef colspan="6"
-              >No Data.</mat-footer-cell
+<div class="container mat-elevation-z8 log-list">
+  <div class="row">
+    <div class="col-md-12 list-search">
+      <mat-form-field>
+        <input
+          matInput
+          (keyup)="applyFilter($event.target.value)"
+          placeholder="Search"
+        />
+      </mat-form-field>
+    </div>
+    <div class="col-md-12 log-list-table">
+      <mat-table [dataSource]="dataFromAPI" matSort>
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            Name
+          </mat-header-cell>
+          <mat-cell *matCellDef="let user"> {{ user.name }} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="email">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            E-Mail
+          </mat-header-cell>
+          <mat-cell *matCellDef="let user"> {{ user.email }} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="phone">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            Phone
+          </mat-header-cell>
+          <mat-cell *matCellDef="let user"> {{ user.phone }} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="company">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            Company
+          </mat-header-cell>
+          <mat-cell *matCellDef="let user">
+            {{ user.company.name }}
+          </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="actions">
+          <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+          <mat-cell *matCellDef="let row">
+            <a class="launch-icon" mat-icon-button
+              ><mat-icon>launch</mat-icon></a
             >
-          </ng-container>
+          </mat-cell>
+        </ng-container>
 
-          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-          <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
-          <mat-footer-row
-            *matFooterRowDef="['noData']"
-            [ngClass]="{
-              hide: !(dataFromAPI != null && dataFromAPI.data.length == 0)
-            }"
-          ></mat-footer-row>
-        </mat-table>
-      </div>
-      <div class="col-md-12">
-        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="5">
-        </mat-paginator>
-      </div>
+        <ng-container matColumnDef="noData">
+          <mat-footer-cell *matFooterCellDef colspan="6"
+            >No Data.</mat-footer-cell
+          >
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+        <mat-footer-row
+          *matFooterRowDef="['noData']"
+          [ngClass]="{
+            hide: !(dataFromAPI != null && dataFromAPI.data.length == 0)
+          }"
+        ></mat-footer-row>
+      </mat-table>
+    </div>
+    <div class="col-md-12">
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="5">
+      </mat-paginator>
     </div>
   </div>
 </div>
