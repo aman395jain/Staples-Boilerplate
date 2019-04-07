@@ -1,19 +1,31 @@
-.log-list-table {
+.log-list {
   margin-top: 2%;
   border-radius: 6px;
-  .launch-icon {
-    margin-left: 30px;
-    .mat-icon {
-      color: #007bff;
+  display: inline-block;
+  .list-search {
+    .mat-form-field {
+      float: right;
     }
   }
-  .mat-footer-row {
-    .mat-footer-cell {
-      justify-content: center;
-      font-style: italic;
+  .log-list-table {
+    .example-header {
+      background-color: white;
+      max-height: 40px;
     }
-  }
-  .hide {
-    display: none;
+    .launch-icon {
+      margin-left: 30px;
+      .mat-icon {
+        color: #007bff;
+      }
+    }
+    .mat-footer-row {
+      .mat-footer-cell {
+        justify-content: center;
+        font-style: italic;
+      }
+    }
+    .hide {
+      display: none;
+    }
   }
 }

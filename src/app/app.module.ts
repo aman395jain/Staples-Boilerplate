@@ -1,7 +1,11 @@
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { HttpClientModule } from "@angular/common/http";
-import { MatTableModule } from "@angular/material";
+import {
+  MatTableModule,
+  MatFormFieldModule,
+  MatInputModule
+} from "@angular/material";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatSortModule } from "@angular/material/sort";
 import { MatIconModule } from "@angular/material/icon";
@@ -33,7 +37,9 @@ import { HeaderComponent } from "./shared/header/header.component";
     MatPaginatorModule,
     MatIconModule,
     BrowserAnimationsModule,
-    MatSortModule
+    MatSortModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [LoglistingService, CdkColumnDef],
   bootstrap: [AppComponent]

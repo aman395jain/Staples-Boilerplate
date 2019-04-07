@@ -29,4 +29,9 @@ export class LogsListingComponent implements OnInit {
       console.log("data", e);
     }
   }
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
+    this.dataFromAPI.filter = filterValue;
+  }
 }
