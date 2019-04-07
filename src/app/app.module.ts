@@ -3,8 +3,10 @@ import { BrowserModule } from "@angular/platform-browser";
 import { HttpClientModule } from "@angular/common/http";
 import { MatTableModule } from "@angular/material";
 import { MatPaginatorModule } from "@angular/material/paginator";
+import { MatSortModule } from "@angular/material/sort";
 import { MatIconModule } from "@angular/material/icon";
 import { CdkColumnDef } from "@angular/cdk/table";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -29,7 +31,9 @@ import { HeaderComponent } from "./shared/header/header.component";
     AppRoutingModule,
     MatTableModule,
     MatPaginatorModule,
-    MatIconModule
+    MatIconModule,
+    BrowserAnimationsModule,
+    MatSortModule
   ],
   providers: [LoglistingService, CdkColumnDef],
   bootstrap: [AppComponent]

@@ -1,6 +1,6 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import "rxjs/add/observable/of";
-import { MatTableDataSource } from "@angular/material";
+import { MatTableDataSource, MatSort } from "@angular/material";
 
 import { LoglistingService } from "../../services/log-listing/loglisting.service";
 
@@ -12,11 +12,17 @@ import { LoglistingService } from "../../services/log-listing/loglisting.service
 export class LogsListingComponent implements OnInit {
   dataFromAPI: MatTableDataSource<any>;
   displayedColumns = ["name", "email", "phone", "company", "actions"];
+  @ViewChild(MatSort) sort: MatSort;
   constructor(private loglistingService: LoglistingService) {}
 
   ngOnInit() {
-    this.loglistingService.getLogList().subscribe(data => {
-      this.dataFromAPI = new MatTableDataSource(data);
-    });
+    try {
+      this.loglistingService.getLogList().subscribe(data => {
+        this.dataFromAPI = new MatTableDataSource(data);
+        this.dataFromAPI.sort = this.sort;
+      });
+    } catch (e) {
+      console.log("data", e);
+    }
   }
 }
