@@ -5,6 +5,7 @@ import { HomeComponent } from "./components/home/home.component";
 import { LogsListingComponent } from "./components/logs-listing/logs-listing.component";
 import { PageNotFoundComponent } from "./components/page-not-found/page-not-found.component";
 import { HeaderComponent } from "./shared/header/header.component";
+import { FooterComponent } from "./shared/footer/footer.component";
 
 @NgModule({
   imports: [
@@ -13,6 +14,7 @@ import { HeaderComponent } from "./shared/header/header.component";
         { path: "", component: HomeComponent },
         { path: "logListing", component: LogsListingComponent },
         { path: "header", component: HeaderComponent },
+        { path: "footer", component: FooterComponent },
         { path: "**", component: PageNotFoundComponent }
       ],
       {

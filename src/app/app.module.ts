@@ -20,6 +20,7 @@ import { LogsListingComponent } from "./components/logs-listing/logs-listing.com
 
 import { LoglistingService } from "./services/log-listing/loglisting.service";
 import { HeaderComponent } from "./shared/header/header.component";
+import { FooterComponent } from "./shared/footer/footer.component";
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { HeaderComponent } from "./shared/header/header.component";
     HomeComponent,
     PageNotFoundComponent,
     LogsListingComponent,
-    HeaderComponent
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
