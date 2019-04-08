@@ -10,6 +10,7 @@ import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatSortModule } from "@angular/material/sort";
 import { MatIconModule } from "@angular/material/icon";
 import { CdkColumnDef } from "@angular/cdk/table";
+import { NgxBarcodeModule } from "ngx-barcode";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 import { AppRoutingModule } from "./app-routing.module";
@@ -41,7 +42,8 @@ import { FooterComponent } from "./shared/footer/footer.component";
     BrowserAnimationsModule,
     MatSortModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    NgxBarcodeModule
   ],
   providers: [LoglistingService, CdkColumnDef],
   bootstrap: [AppComponent]

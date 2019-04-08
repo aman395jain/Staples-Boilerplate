@@ -6,7 +6,7 @@ import { Loglist } from "../../models/loglist.model";
 
 @Injectable()
 export class LoglistingService {
-  private serviceUrl = "https://jsonplaceholder.typicode.com/users";
+  private serviceUrl = "http://www.mocky.io/v2/5cab70ef300000441d904ba7";
 
   constructor(private http: HttpClient) {}
 

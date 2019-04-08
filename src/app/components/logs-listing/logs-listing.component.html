@@ -11,30 +11,41 @@
     </div>
     <div class="col-md-12 log-list-table">
       <mat-table [dataSource]="dataFromAPI" matSort>
-        <ng-container matColumnDef="name">
+        <ng-container matColumnDef="SKU">
           <mat-header-cell *matHeaderCellDef mat-sort-header>
-            Name
+            SKU
           </mat-header-cell>
-          <mat-cell *matCellDef="let user"> {{ user.name }} </mat-cell>
+          <mat-cell *matCellDef="let user"> {{ user.sku }} </mat-cell>
         </ng-container>
-        <ng-container matColumnDef="email">
+        <ng-container matColumnDef="Item Desc">
           <mat-header-cell *matHeaderCellDef mat-sort-header>
-            E-Mail
+            Item Desc
           </mat-header-cell>
-          <mat-cell *matCellDef="let user"> {{ user.email }} </mat-cell>
+          <mat-cell *matCellDef="let user"> {{ user.itemDesc }} </mat-cell>
         </ng-container>
-        <ng-container matColumnDef="phone">
+        <ng-container matColumnDef="Price">
           <mat-header-cell *matHeaderCellDef mat-sort-header>
-            Phone
+            Price
           </mat-header-cell>
-          <mat-cell *matCellDef="let user"> {{ user.phone }} </mat-cell>
+          <mat-cell *matCellDef="let user"> {{ user.permPrice }} </mat-cell>
         </ng-container>
-        <ng-container matColumnDef="company">
+        <ng-container matColumnDef="UPC code">
           <mat-header-cell *matHeaderCellDef mat-sort-header>
-            Company
+            UPC code
           </mat-header-cell>
           <mat-cell *matCellDef="let user">
-            {{ user.company.name }}
+            {{ user.upcCode }}
+          </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="Bar Code">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            Bar Code
+          </mat-header-cell>
+          <mat-cell *matCellDef="let user">
+            <ngx-barcode
+              [bc-value]="user.barCode"
+              [bc-display-value]="false"
+            ></ngx-barcode>
           </mat-cell>
         </ng-container>
         <ng-container matColumnDef="actions">

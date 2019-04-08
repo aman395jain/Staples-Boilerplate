@@ -11,7 +11,14 @@ import { LoglistingService } from "../../services/log-listing/loglisting.service
 })
 export class LogsListingComponent implements OnInit {
   dataFromAPI: MatTableDataSource<any>;
-  displayedColumns = ["name", "email", "phone", "company", "actions"];
+  displayedColumns = [
+    "SKU",
+    "Item Desc",
+    "Price",
+    "UPC code",
+    "Bar Code",
+    "actions"
+  ];
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
