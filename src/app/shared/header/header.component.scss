@@ -3,6 +3,14 @@
   margin-left: 0px !important;
 }
 .main-header {
-  background-color: white;
+  background-color: #ffffff;
   min-height: 70px;
+  .header-logo {
+    margin-left: 5%;
+  }
+  .search-Box {
+    border-radius: 30px;
+    width: 250px;
+    height: auto;
+  }
 }
