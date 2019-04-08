@@ -11,25 +11,25 @@
     </div>
     <div class="col-md-12 log-list-table">
       <mat-table [dataSource]="dataFromAPI" matSort>
-        <ng-container matColumnDef="SKU">
+        <ng-container matColumnDef="sku">
           <mat-header-cell *matHeaderCellDef mat-sort-header>
             SKU
           </mat-header-cell>
           <mat-cell *matCellDef="let user"> {{ user.sku }} </mat-cell>
         </ng-container>
-        <ng-container matColumnDef="Item Desc">
+        <ng-container matColumnDef="itemDesc">
           <mat-header-cell *matHeaderCellDef mat-sort-header>
             Item Desc
           </mat-header-cell>
           <mat-cell *matCellDef="let user"> {{ user.itemDesc }} </mat-cell>
         </ng-container>
-        <ng-container matColumnDef="Price">
+        <ng-container matColumnDef="permPrice">
           <mat-header-cell *matHeaderCellDef mat-sort-header>
             Price
           </mat-header-cell>
           <mat-cell *matCellDef="let user"> {{ user.permPrice }} </mat-cell>
         </ng-container>
-        <ng-container matColumnDef="UPC code">
+        <ng-container matColumnDef="upcCode">
           <mat-header-cell *matHeaderCellDef mat-sort-header>
             UPC code
           </mat-header-cell>
@@ -37,8 +37,8 @@
             {{ user.upcCode }}
           </mat-cell>
         </ng-container>
-        <ng-container matColumnDef="Bar Code">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>
+        <ng-container matColumnDef="barCode">
+          <mat-header-cell *matHeaderCellDef>
             Bar Code
           </mat-header-cell>
           <mat-cell *matCellDef="let user">

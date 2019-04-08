@@ -12,11 +12,11 @@ import { LoglistingService } from "../../services/log-listing/loglisting.service
 export class LogsListingComponent implements OnInit {
   dataFromAPI: MatTableDataSource<any>;
   displayedColumns = [
-    "SKU",
-    "Item Desc",
-    "Price",
-    "UPC code",
-    "Bar Code",
+    "sku",
+    "itemDesc",
+    "permPrice",
+    "upcCode",
+    "barCode",
     "actions"
   ];
   @ViewChild(MatSort) sort: MatSort;

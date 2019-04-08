@@ -37,13 +37,13 @@ import { FooterComponent } from "./shared/footer/footer.component";
     HttpClientModule,
     AppRoutingModule,
     MatTableModule,
+    MatSortModule,
     MatPaginatorModule,
     MatIconModule,
-    BrowserAnimationsModule,
-    MatSortModule,
     MatFormFieldModule,
     MatInputModule,
-    NgxBarcodeModule
+    NgxBarcodeModule,
+    BrowserAnimationsModule
   ],
   providers: [LoglistingService, CdkColumnDef],
   bootstrap: [AppComponent]
