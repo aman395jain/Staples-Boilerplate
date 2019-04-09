@@ -29,12 +29,12 @@
           </mat-header-cell>
           <mat-cell *matCellDef="let user"> {{ user.permPrice }} </mat-cell>
         </ng-container>
-        <ng-container matColumnDef="upcCode">
+        <ng-container matColumnDef="posId">
           <mat-header-cell *matHeaderCellDef mat-sort-header>
             UPC code
           </mat-header-cell>
           <mat-cell *matCellDef="let user">
-            {{ user.upcCode }}
+            {{ user.posId }}
           </mat-cell>
         </ng-container>
         <ng-container matColumnDef="barCode">

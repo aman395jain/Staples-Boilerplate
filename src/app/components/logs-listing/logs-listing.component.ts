@@ -22,7 +22,7 @@ export class LogsListingComponent implements OnInit {
     "sku",
     "itemDesc",
     "permPrice",
-    "upcCode",
+    "posId",
     "barCode",
     "actions"
   ];
