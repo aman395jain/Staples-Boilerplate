@@ -4,11 +4,12 @@ import { HttpClientModule } from "@angular/common/http";
 import {
   MatTableModule,
   MatFormFieldModule,
-  MatInputModule
+  MatInputModule,
+  MatPaginatorModule,
+  MatSortModule,
+  MatIconModule,
+  MatDialogModule
 } from "@angular/material";
-import { MatPaginatorModule } from "@angular/material/paginator";
-import { MatSortModule } from "@angular/material/sort";
-import { MatIconModule } from "@angular/material/icon";
 import { CdkColumnDef } from "@angular/cdk/table";
 import { NgxBarcodeModule } from "ngx-barcode";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -22,6 +23,7 @@ import { LogsListingComponent } from "./components/logs-listing/logs-listing.com
 import { LoglistingService } from "./services/log-listing/loglisting.service";
 import { HeaderComponent } from "./shared/header/header.component";
 import { FooterComponent } from "./shared/footer/footer.component";
+import { LogDiscriptionComponent } from "./components/log-discription/log-discription.component";
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import { FooterComponent } from "./shared/footer/footer.component";
     PageNotFoundComponent,
     LogsListingComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    LogDiscriptionComponent
   ],
   imports: [
     BrowserModule,
@@ -42,9 +45,11 @@ import { FooterComponent } from "./shared/footer/footer.component";
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,
+    MatDialogModule,
     NgxBarcodeModule,
     BrowserAnimationsModule
   ],
+  entryComponents: [LogDiscriptionComponent],
   providers: [LoglistingService, CdkColumnDef],
   bootstrap: [AppComponent]
 })

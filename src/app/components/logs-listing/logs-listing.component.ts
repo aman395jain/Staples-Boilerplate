@@ -1,8 +1,15 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import "rxjs/add/observable/of";
-import { MatTableDataSource, MatSort, MatPaginator } from "@angular/material";
+import {
+  MatTableDataSource,
+  MatSort,
+  MatPaginator,
+  MatDialogConfig,
+  MatDialog
+} from "@angular/material";
 
 import { LoglistingService } from "../../services/log-listing/loglisting.service";
+import { LogDiscriptionComponent } from "../log-discription/log-discription.component";
 
 @Component({
   selector: "app-logs-listing",
@@ -22,7 +29,10 @@ export class LogsListingComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private loglistingService: LoglistingService) {}
+  constructor(
+    private loglistingService: LoglistingService,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit() {
     try {
@@ -36,9 +46,26 @@ export class LogsListingComponent implements OnInit {
       console.log("data", e);
     }
   }
+
+  /*
+  * applyFilter to apply search on table
+  * filterValue: accept string
+  */
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
     this.dataFromAPI.filter = filterValue;
+  }
+
+  /*
+  * discriptionLog to populate the data in a Modal
+  */
+  discriptionLog(row) {
+    console.log("in the row", row);
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = false;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "60%";
+    this.dialog.open(LogDiscriptionComponent, dialogConfig);
   }
 }
