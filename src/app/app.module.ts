@@ -8,11 +8,16 @@ import {
   MatPaginatorModule,
   MatSortModule,
   MatIconModule,
-  MatDialogModule
+  MatDialogModule,
+  MatMenuModule,
+  MatSidenavModule,
+  MatExpansionModule,
+  MatListModule
 } from "@angular/material";
 import { CdkColumnDef } from "@angular/cdk/table";
 import { NgxBarcodeModule } from "ngx-barcode";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { FlexLayoutModule } from "@angular/flex-layout";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -24,6 +29,8 @@ import { LoglistingService } from "./services/log-listing/loglisting.service";
 import { HeaderComponent } from "./shared/header/header.component";
 import { FooterComponent } from "./shared/footer/footer.component";
 import { LogDiscriptionComponent } from "./components/log-discription/log-discription.component";
+import { SideNavBarComponent } from "./shared/side-nav-bar/side-nav-bar.component";
+import { DisplayLogTableComponent } from "./components/display-log-table/display-log-table.component";
 
 @NgModule({
   declarations: [
@@ -33,7 +40,9 @@ import { LogDiscriptionComponent } from "./components/log-discription/log-discri
     LogsListingComponent,
     HeaderComponent,
     FooterComponent,
-    LogDiscriptionComponent
+    LogDiscriptionComponent,
+    SideNavBarComponent,
+    DisplayLogTableComponent
   ],
   imports: [
     BrowserModule,
@@ -46,8 +55,13 @@ import { LogDiscriptionComponent } from "./components/log-discription/log-discri
     MatFormFieldModule,
     MatInputModule,
     MatDialogModule,
+    MatMenuModule,
+    MatExpansionModule,
+    MatListModule,
+    MatSidenavModule,
     NgxBarcodeModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FlexLayoutModule
   ],
   entryComponents: [LogDiscriptionComponent],
   providers: [LoglistingService, CdkColumnDef],
