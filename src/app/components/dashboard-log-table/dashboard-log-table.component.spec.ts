@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { DisplayLogTableComponent } from "./display-log-table.component";
+import { DisplayLogTableComponent } from "./dashboard-log-table.component";
 
 describe("DisplayLogTableComponent", () => {
   let component: DisplayLogTableComponent;

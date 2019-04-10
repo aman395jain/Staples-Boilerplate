@@ -30,7 +30,7 @@ import { HeaderComponent } from "./shared/header/header.component";
 import { FooterComponent } from "./shared/footer/footer.component";
 import { LogDiscriptionComponent } from "./components/log-discription/log-discription.component";
 import { SideNavBarComponent } from "./shared/side-nav-bar/side-nav-bar.component";
-import { DisplayLogTableComponent } from "./components/display-log-table/display-log-table.component";
+import { DisplayLogTableComponent } from "./components/dashboard-log-table/dashboard-log-table.component";
 
 @NgModule({
   declarations: [
