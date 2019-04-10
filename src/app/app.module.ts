@@ -31,6 +31,7 @@ import { FooterComponent } from "./shared/footer/footer.component";
 import { LogDiscriptionComponent } from "./components/log-discription/log-discription.component";
 import { SideNavBarComponent } from "./shared/side-nav-bar/side-nav-bar.component";
 import { DisplayLogTableComponent } from "./components/dashboard-log-table/dashboard-log-table.component";
+import { NavBarService } from "./services/nav-bar/nav-bar.service";
 
 @NgModule({
   declarations: [
@@ -64,7 +65,7 @@ import { DisplayLogTableComponent } from "./components/dashboard-log-table/dashb
     FlexLayoutModule
   ],
   entryComponents: [LogDiscriptionComponent],
-  providers: [LoglistingService, CdkColumnDef],
+  providers: [LoglistingService, CdkColumnDef, NavBarService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

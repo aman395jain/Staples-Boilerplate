@@ -6,11 +6,18 @@ import { Loglist } from "../../models/loglist.model";
 
 @Injectable()
 export class LoglistingService {
-  private serviceUrl = "http://www.mocky.io/v2/5cac66ee300000b723103596";
+  private _serviceUrl = "";
 
   constructor(private http: HttpClient) {}
 
   getLogList(): Observable<Loglist[]> {
-    return this.http.get<Loglist[]>(this.serviceUrl);
+    this._serviceUrl = "http://www.mocky.io/v2/5cac66ee300000b723103596";
+    return this.http.get<Loglist[]>(this._serviceUrl);
+  }
+
+  getLogListForEntity(entity): Observable<Loglist[]> {
+    console.log("in the loglist service", entity);
+    this._serviceUrl = "http://www.mocky.io/v2/5cadb0fb2f00003d203a96ed";
+    return this.http.get<Loglist[]>(this._serviceUrl);
   }
 }

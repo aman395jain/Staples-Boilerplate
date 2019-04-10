@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { Subscription } from "rxjs";
 
+import { NavBarService } from "src/app/services/nav-bar/nav-bar.service";
+
 @Component({
   selector: "app-side-nav-bar",
   templateUrl: "./side-nav-bar.component.html",
@@ -15,7 +17,7 @@ export class SideNavBarComponent implements OnInit {
 
   watcher: Subscription;
 
-  constructor() {
+  constructor(private navBarService: NavBarService) {
     this.opened = true;
     this.over = "side";
     // this.watcher = media.media$.subscribe((change: MediaChange) => {
@@ -30,4 +32,8 @@ export class SideNavBarComponent implements OnInit {
   }
 
   ngOnInit() {}
+
+  getElementName(eleName) {
+    this.navBarService.setElementNameFromSideBar(eleName);
+  }
 }

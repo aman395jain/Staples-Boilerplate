@@ -10,6 +10,7 @@ import {
 
 import { LoglistingService } from "../../services/log-listing/loglisting.service";
 import { LogDiscriptionComponent } from "../log-discription/log-discription.component";
+import { NavBarService } from "src/app/services/nav-bar/nav-bar.service";
 
 @Component({
   selector: "app-logs-listing",
@@ -31,7 +32,8 @@ export class LogsListingComponent implements OnInit {
 
   constructor(
     private loglistingService: LoglistingService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private navBarService: NavBarService
   ) {}
 
   ngOnInit() {
@@ -40,11 +42,17 @@ export class LogsListingComponent implements OnInit {
         this.dataFromAPI = new MatTableDataSource(data);
         this.dataFromAPI.sort = this.sort;
         this.dataFromAPI.paginator = this.paginator;
-        console.log("data", this.dataFromAPI);
       });
     } catch (e) {
       console.log("data", e);
     }
+    this.navBarService.getElementName().subscribe(tableName => {
+      this.loglistingService.getLogListForEntity(tableName).subscribe(data => {
+        this.dataFromAPI = new MatTableDataSource(data);
+        this.dataFromAPI.sort = this.sort;
+        this.dataFromAPI.paginator = this.paginator;
+      });
+    });
   }
 
   /*
