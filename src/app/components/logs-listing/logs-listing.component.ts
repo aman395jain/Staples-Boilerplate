@@ -31,14 +31,14 @@ export class LogsListingComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(
-    private loglistingService: LoglistingService,
-    private dialog: MatDialog,
-    private navBarService: NavBarService
+    private _loglistingService: LoglistingService,
+    private _dialog: MatDialog,
+    private _navBarService: NavBarService
   ) {}
 
   ngOnInit() {
     try {
-      this.loglistingService.getLogList().subscribe(data => {
+      this._loglistingService.getLogList().subscribe(data => {
         this.dataFromAPI = new MatTableDataSource(data);
         this.dataFromAPI.sort = this.sort;
         this.dataFromAPI.paginator = this.paginator;
@@ -46,8 +46,8 @@ export class LogsListingComponent implements OnInit {
     } catch (e) {
       console.log("data", e);
     }
-    this.navBarService.getElementName().subscribe(tableName => {
-      this.loglistingService.getLogListForEntity(tableName).subscribe(data => {
+    this._navBarService.getElementName().subscribe(tableName => {
+      this._loglistingService.getLogListForEntity(tableName).subscribe(data => {
         this.dataFromAPI = new MatTableDataSource(data);
         this.dataFromAPI.sort = this.sort;
         this.dataFromAPI.paginator = this.paginator;
@@ -70,10 +70,10 @@ export class LogsListingComponent implements OnInit {
   */
   discriptionLog(row) {
     console.log("in the row", row);
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = false;
-    dialogConfig.autoFocus = true;
-    dialogConfig.width = "60%";
-    this.dialog.open(LogDiscriptionComponent, dialogConfig);
+    const _dialogConfig = new MatDialogConfig();
+    _dialogConfig.disableClose = false;
+    _dialogConfig.autoFocus = true;
+    _dialogConfig.width = "60%";
+    this._dialog.open(LogDiscriptionComponent, _dialogConfig);
   }
 }
