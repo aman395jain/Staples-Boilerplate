@@ -16,37 +16,39 @@ export class TestDataTableComponent implements OnInit {
 
   columns = [
     {
-      columnDef: "position",
-      header: "No.",
-      cell: (element: any) => `${element.position}`
+      columnDef: "sku",
+      header: "SKU",
+      cell: (element: any) => `${element.sku}`
     },
     {
-      columnDef: "name",
-      header: "Name",
-      cell: (element: any) => `${element.name}`
+      columnDef: "itemDesc",
+      header: "Item Description",
+      cell: (element: any) => `${element.itemDesc}`
     },
     {
-      columnDef: "weight",
-      header: "Weight",
-      cell: (element: any) => `${element.weight}`
+      columnDef: "permPrice",
+      header: "Perm Price",
+      cell: (element: any) => `${element.permPrice}`
     },
     {
-      columnDef: "symbol",
-      header: "Symbol",
-      cell: (element: any) => `${element.symbol}`
+      columnDef: "posId",
+      header: "Position ID",
+      cell: (element: any) => `${element.posId}`
     }
   ];
 
   displayedColumns = this.columns.map(c => c.columnDef);
-  dataSource = new ExampleDataSource();
+  // dataSource = new ExampleDataSource();
   dataSource1: MatTableDataSource<any>;
   constructor(private _loglistingService: LoglistingService) {}
 
   ngOnInit() {
     try {
       this._loglistingService.getLogList().subscribe(data => {
-        console.log("in the test data table", this.displayedColumns);
         this.dataSource1 = new MatTableDataSource(data);
+        console.log("in the test data table", this.dataSource1.data);
+        this.dataSource1.sort = this.sort;
+        this.dataSource1.paginator = this.paginator;
       });
     } catch (e) {
       console.log("in the test error", e);
@@ -54,18 +56,18 @@ export class TestDataTableComponent implements OnInit {
   }
 }
 
-const ELEMENT_DATA: any[] = [
-  { position: 1, name: "Hydrogen", weight: 1.0079, symbol: "H" },
-  { position: 2, name: "Helium", weight: 4.0026, symbol: "He" },
-  { position: 3, name: "Lithium", weight: 6.941, symbol: "Li" },
-  { position: 4, name: "Beryllium", weight: 9.0122, symbol: "Be" },
-  { position: 5, name: "Boron", weight: 10.811, symbol: "B" }
-];
+// const ELEMENT_DATA: any[] = [
+//   { position: 1, name: "Hydrogen", weight: 1.0079, symbol: "H" },
+//   { position: 2, name: "Helium", weight: 4.0026, symbol: "He" },
+//   { position: 3, name: "Lithium", weight: 6.941, symbol: "Li" },
+//   { position: 4, name: "Beryllium", weight: 9.0122, symbol: "Be" },
+//   { position: 5, name: "Boron", weight: 10.811, symbol: "B" }
+// ];
 
-export class ExampleDataSource extends DataSource<any> {
-  connect(): Observable<Element[]> {
-    return Observable.of(ELEMENT_DATA);
-  }
+// export class ExampleDataSource extends DataSource<any> {
+//   connect(): Observable<Element[]> {
+//     return Observable.of(ELEMENT_DATA);
+//   }
 
-  disconnect() {}
-}
+//   disconnect() {}
+// }
