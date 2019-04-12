@@ -1,6 +1,8 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
+import { Response } from "@angular/http";
 import { Observable } from "rxjs/Observable";
+import { map, catchError } from "rxjs/operators";
 
 import { Loglist } from "../../models/loglist.model";
 
@@ -12,7 +14,16 @@ export class LoglistingService {
 
   getLogList(): Observable<Loglist[]> {
     this._serviceUrl = "http://www.mocky.io/v2/5cac66ee300000b723103596";
-    return this.http.get<Loglist[]>(this._serviceUrl);
+    return this.http.get<Loglist[]>(this._serviceUrl).pipe(
+      map((response: Response) => {
+        console.log("in the service", response);
+        return response;
+      }),
+      catchError((err: Response) => {
+        console.log("in the error", err.status);
+        return null;
+      })
+    );
   }
 
   getLogListForEntity(entity): Observable<Loglist[]> {

@@ -39,6 +39,7 @@ export class LogsListingComponent implements OnInit {
   ngOnInit() {
     try {
       this._loglistingService.getLogList().subscribe(data => {
+        console.log("in the log listing component", data);
         this.dataFromAPI = new MatTableDataSource(data);
         this.dataFromAPI.sort = this.sort;
         this.dataFromAPI.paginator = this.paginator;
