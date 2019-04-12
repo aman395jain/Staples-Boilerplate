@@ -14,7 +14,7 @@ import {
   MatExpansionModule,
   MatListModule
 } from "@angular/material";
-import { CdkColumnDef } from "@angular/cdk/table";
+import { CdkColumnDef, CdkTableModule } from "@angular/cdk/table";
 import { NgxBarcodeModule } from "ngx-barcode";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { FlexLayoutModule } from "@angular/flex-layout";
@@ -32,6 +32,8 @@ import { LogDiscriptionComponent } from "./components/log-discription/log-discri
 import { SideNavBarComponent } from "./shared/side-nav-bar/side-nav-bar.component";
 import { DisplayLogTableComponent } from "./components/dashboard-log-table/dashboard-log-table.component";
 import { NavBarService } from "./services/nav-bar/nav-bar.service";
+import { TestDataTableComponent } from "./components/test-data-table/test-data-table.component";
+import { CommonModule } from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -43,7 +45,8 @@ import { NavBarService } from "./services/nav-bar/nav-bar.service";
     FooterComponent,
     LogDiscriptionComponent,
     SideNavBarComponent,
-    DisplayLogTableComponent
+    DisplayLogTableComponent,
+    TestDataTableComponent
   ],
   imports: [
     BrowserModule,
@@ -62,7 +65,9 @@ import { NavBarService } from "./services/nav-bar/nav-bar.service";
     MatSidenavModule,
     NgxBarcodeModule,
     BrowserAnimationsModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    CdkTableModule,
+    CommonModule
   ],
   entryComponents: [LogDiscriptionComponent],
   providers: [LoglistingService, CdkColumnDef, NavBarService],
