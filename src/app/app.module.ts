@@ -34,6 +34,7 @@ import { DisplayLogTableComponent } from "./components/dashboard-log-table/dashb
 import { NavBarService } from "./services/nav-bar/nav-bar.service";
 import { TestDataTableComponent } from "./components/test-data-table/test-data-table.component";
 import { CommonModule } from "@angular/common";
+import { TestNavBarComponent } from "./shared/test-nav-bar/test-nav-bar.component";
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { CommonModule } from "@angular/common";
     LogDiscriptionComponent,
     SideNavBarComponent,
     DisplayLogTableComponent,
-    TestDataTableComponent
+    TestDataTableComponent,
+    TestNavBarComponent
   ],
   imports: [
     BrowserModule,
