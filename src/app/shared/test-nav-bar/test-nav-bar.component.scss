@@ -1,7 +1,7 @@
 .example-container {
   height: 500px;
   .nav-bar-expandable {
-    background-color: aqua;
+    // background-color: aqua;
     .toggle-icon {
       margin: 10px;
       cursor: pointer;
@@ -10,4 +10,12 @@
 }
 .mat-list-item {
   height: 100% !important;
+  margin: 10px 0;
+}
+// .mat-expansion-panel-header {
+//   height: 40px !important;
+// }
+
+.mat-expansion-header-adjust {
+  height: 40px !important;
 }

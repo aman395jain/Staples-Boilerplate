@@ -5,8 +5,11 @@
 .main-header {
   background-color: #ffffff;
   min-height: 70px;
-  .toggle-icon-cursor {
-    cursor: pointer;
+  .toggle-icon-main {
+    max-width: 5.333333% !important;
+    .toggle-icon-cursor {
+      cursor: pointer;
+    }
   }
   .header-logo {
     margin-left: 5%;
