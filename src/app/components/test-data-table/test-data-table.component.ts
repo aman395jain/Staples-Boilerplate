@@ -1,8 +1,14 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
-import { MatPaginator, MatTableDataSource, MatSort } from "@angular/material";
-import { DataSource } from "@angular/cdk/collections";
-import { Observable } from "rxjs/Observable";
+import {
+  MatPaginator,
+  MatTableDataSource,
+  MatSort,
+  MatDialogConfig,
+  MatDialog
+} from "@angular/material";
 import "rxjs/add/observable/of";
+
+import { LogDiscriptionComponent } from "../log-discription/log-discription.component";
 import { LoglistingService } from "src/app/services/log-listing/loglisting.service";
 
 @Component({
@@ -34,40 +40,52 @@ export class TestDataTableComponent implements OnInit {
       columnDef: "posId",
       header: "Position ID",
       cell: (element: any) => `${element.posId}`
+    },
+    {
+      columnDef: "barCode",
+      header: "Bar Code",
+      cell: (element: any) => `${element.posId}`
     }
   ];
 
   displayedColumns = this.columns.map(c => c.columnDef);
-  // dataSource = new ExampleDataSource();
-  dataSource1: MatTableDataSource<any>;
-  constructor(private _loglistingService: LoglistingService) {}
+  dataByAPI: MatTableDataSource<any>;
+  constructor(
+    private _loglistingService: LoglistingService,
+    private _dialog: MatDialog
+  ) {}
 
   ngOnInit() {
     try {
       this._loglistingService.getLogList().subscribe(data => {
-        this.dataSource1 = new MatTableDataSource(data);
-        console.log("in the test data table", this.dataSource1.data);
-        this.dataSource1.sort = this.sort;
-        this.dataSource1.paginator = this.paginator;
+        this.dataByAPI = new MatTableDataSource(data);
+        this.dataByAPI.sort = this.sort;
+        this.dataByAPI.paginator = this.paginator;
       });
     } catch (e) {
       console.log("in the test error", e);
     }
   }
+
+  /*
+  * applyFilter to apply search on table
+  * filterValue: accept string
+  */
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
+    this.dataByAPI.filter = filterValue;
+  }
+
+  /*
+  * discriptionLog to populate the data in a Modal
+  */
+  discriptionLog(row) {
+    console.log("in the row", row);
+    const _dialogConfig = new MatDialogConfig();
+    _dialogConfig.disableClose = false;
+    _dialogConfig.autoFocus = true;
+    _dialogConfig.width = "60%";
+    this._dialog.open(LogDiscriptionComponent, _dialogConfig);
+  }
 }
-
-// const ELEMENT_DATA: any[] = [
-//   { position: 1, name: "Hydrogen", weight: 1.0079, symbol: "H" },
-//   { position: 2, name: "Helium", weight: 4.0026, symbol: "He" },
-//   { position: 3, name: "Lithium", weight: 6.941, symbol: "Li" },
-//   { position: 4, name: "Beryllium", weight: 9.0122, symbol: "Be" },
-//   { position: 5, name: "Boron", weight: 10.811, symbol: "B" }
-// ];
-
-// export class ExampleDataSource extends DataSource<any> {
-//   connect(): Observable<Element[]> {
-//     return Observable.of(ELEMENT_DATA);
-//   }
-
-//   disconnect() {}
-// }
