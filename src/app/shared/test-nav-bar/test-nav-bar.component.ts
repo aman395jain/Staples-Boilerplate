@@ -16,4 +16,8 @@ export class TestNavBarComponent implements OnInit {
       this._toggleIsExpend = toggleStatus;
     });
   }
+
+  getElementNameTest(eleName) {
+    this._navBarService.setElementNameFromSideBar(eleName);
+  }
 }
