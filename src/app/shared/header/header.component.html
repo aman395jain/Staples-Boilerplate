@@ -1,5 +1,17 @@
 <header class="row align-items-center main-header">
-  <div class="col-sm-4">
+  <div class="col-sm-1">
+    <a
+      mat-mini-fab
+      color="warn"
+      style="margin: 10px;"
+      (click)="onToolbarMenuToggle()"
+    >
+      <mat-icon aria-label="Menu" class="toggle-icon toggle-icon-cursor"
+        >menu</mat-icon
+      >
+    </a>
+  </div>
+  <div class="col-sm-3">
     <img
       class="header-logo"
       src="../../../app/assets/images/staples_logo_transparent.svg"

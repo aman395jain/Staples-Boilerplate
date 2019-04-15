@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { NavBarService } from "src/app/services/nav-bar/nav-bar.service";
 
 @Component({
   selector: "app-header",
@@ -6,7 +7,20 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./header.component.scss"]
 })
 export class HeaderComponent implements OnInit {
-  constructor() {}
+  isMenuOpen = true;
+  constructor(private navBarService: NavBarService) {}
 
   ngOnInit() {}
+
+  onToolbarMenuToggle() {
+    this.isMenuOpen = !this.isMenuOpen;
+    console.log("On toolbar toggled", this.isMenuOpen);
+    this.navBarService.setToggleStatus(this.isMenuOpen);
+
+    // if(!this.isMenuOpen) {
+    //   this.contentMargin = 70;
+    // } else {
+    //   this.contentMargin = 240;
+    // }
+  }
 }
