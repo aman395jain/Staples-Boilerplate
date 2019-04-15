@@ -19,9 +19,13 @@
             column.header
           }}</mat-header-cell>
           <mat-cell *cdkCellDef="let row"
-            ><span *ngIf="!(column.header === 'Bar Code')">{{
-              column.cell(row)
-            }}</span>
+            ><span
+              class="vvvv"
+              *ngIf="
+                !(column.header === 'Bar Code' || column.columnDef === 'action')
+              "
+              >{{ column.cell(row) }}</span
+            >
             <span *ngIf="column.header === 'Bar Code'">
               <ngx-barcode
                 [bc-value]="column.cell(row)"
@@ -30,6 +34,14 @@
                 [bc-width]="1"
               ></ngx-barcode>
               <div>{{ column.cell(row) }}</div></span
+            >
+            <span *ngIf="column.columnDef === 'action'"
+              ><a
+                class="launch-icon"
+                (click)="discriptionLog(row)"
+                mat-icon-button
+                ><mat-icon>launch</mat-icon></a
+              ></span
             >
           </mat-cell>
         </ng-container>

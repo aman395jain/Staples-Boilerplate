@@ -45,6 +45,11 @@ export class TestDataTableComponent implements OnInit {
       columnDef: "barCode",
       header: "Bar Code",
       cell: (element: any) => `${element.posId}`
+    },
+    {
+      columnDef: "action",
+      header: "",
+      cell: (element: any) => null
     }
   ];
 
