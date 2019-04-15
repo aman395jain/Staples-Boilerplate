@@ -26,15 +26,15 @@
               "
               >{{ column.cell(row) }}</span
             >
-            <span *ngIf="column.header === 'Bar Code'">
+            <div *ngIf="column.header === 'Bar Code'">
               <ngx-barcode
                 [bc-value]="column.cell(row)"
                 [bc-display-value]="false"
                 [bc-height]="30"
                 [bc-width]="1"
               ></ngx-barcode>
-              <div>{{ column.cell(row) }}</div></span
-            >
+              <div class="bar-code-value">{{ column.cell(row) }}</div>
+            </div>
             <span *ngIf="column.columnDef === 'action'"
               ><a
                 class="launch-icon"
