@@ -15,12 +15,14 @@
           *ngFor="let column of columns"
           [cdkColumnDef]="column.columnDef"
         >
-          <mat-header-cell *cdkHeaderCellDef mat-sort-header>{{
-            column.header
-          }}</mat-header-cell>
+          <mat-header-cell
+            *cdkHeaderCellDef
+            [disabled]="isSortingDisabled(column.header)"
+            mat-sort-header
+            >{{ column.header }}</mat-header-cell
+          >
           <mat-cell *cdkCellDef="let row"
             ><span
-              class="vvvv"
               *ngIf="
                 !(column.header === 'Bar Code' || column.columnDef === 'action')
               "
@@ -51,7 +53,7 @@
       </mat-table>
     </div>
     <div class="col-md-12">
-      <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]" [pageSize]="10">
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="5">
       </mat-paginator>
     </div>
   </div>

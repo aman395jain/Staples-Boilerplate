@@ -42,10 +42,8 @@
   font-family: sans-serif;
 }
 
-.mat-expansion-indicator {
-  &:after {
-    color: #ffffff !important;
-  }
+.nav-bar-accordian > .mat-expansion-indicator:after {
+  color: #ffffff !important;
 }
 
 // .mat-expansion-panel-header {
