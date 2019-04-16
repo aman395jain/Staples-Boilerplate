@@ -7,7 +7,7 @@ import { NavBarService } from "src/app/services/nav-bar/nav-bar.service";
   styleUrls: ["./header.component.scss"]
 })
 export class HeaderComponent implements OnInit {
-  isMenuOpen = true;
+  isMenuOpen = false;
   constructor(private navBarService: NavBarService) {}
 
   ngOnInit() {}

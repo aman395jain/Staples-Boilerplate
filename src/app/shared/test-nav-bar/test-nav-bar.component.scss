@@ -12,6 +12,8 @@
 .mat-list-item {
   height: 100% !important;
   margin: 10px 0;
+  color: white;
+  font-family: sans-serif;
   .mat-list-item-content {
     padding-left: 8px !important;
   }
@@ -20,6 +22,31 @@
 //   height: 40px !important;
 // }
 
-.mat-expansion-header-adjust {
-  height: 40px !important;
+// .mat-expansion-header-adjust {
+// height: 40px !important;
+// }
+
+.nav-bar-expandable.mat-drawer {
+  background: rgba(204, 0, 0, 0.6784313725490196);
+  opacity: 0.9;
+}
+.mat-expansion-panel {
+  background: rgba(204, 0, 0, 0);
+}
+
+.mat-expansion-panel-header-title {
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 16px;
+  font-family: sans-serif;
+}
+
+.mat-expansion-indicator {
+  &:after {
+    color: #ffffff !important;
+  }
+}
+
+.mat-expansion-panel-header {
+  height: 20px !important;
 }

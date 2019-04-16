@@ -7,7 +7,7 @@ import { NavBarService } from "src/app/services/nav-bar/nav-bar.service";
   styleUrls: ["./test-nav-bar.component.scss"]
 })
 export class TestNavBarComponent implements OnInit {
-  private _toggleIsExpend: boolean = true;
+  private _toggleIsExpend: boolean = false;
   constructor(private _navBarService: NavBarService) {}
 
   ngOnInit() {
