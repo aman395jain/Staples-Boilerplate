@@ -14,7 +14,7 @@ export class HeaderComponent implements OnInit {
 
   onToolbarMenuToggle() {
     this.isMenuOpen = !this.isMenuOpen;
-    console.log("On toolbar toggled", this.isMenuOpen);
+    // console.log("On toolbar toggled", this.isMenuOpen);
     this.navBarService.setToggleStatus(this.isMenuOpen);
 
     // if(!this.isMenuOpen) {

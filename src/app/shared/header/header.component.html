@@ -6,12 +6,21 @@
       style="margin: 10px;"
       (click)="onToolbarMenuToggle()"
     >
-      <mat-icon aria-label="Menu" class="toggle-icon toggle-icon-cursor"
+      <mat-icon
+        *ngIf="!isMenuOpen"
+        aria-label="Menu"
+        class="toggle-icon toggle-icon-cursor"
         >menu</mat-icon
+      >
+      <mat-icon
+        *ngIf="isMenuOpen"
+        aria-label="Close"
+        class="toggle-icon toggle-icon-cursor"
+        >close</mat-icon
       >
     </a>
   </div>
-  <div class="col-sm-3">
+  <div class="col-sm-2">
     <img
       class="header-logo"
       src="../../../app/assets/images/staples_logo_transparent.svg"
@@ -19,20 +28,23 @@
       height="30px"
     />
   </div>
-  <div class="col-sm-8">
+  <div class="col-sm-9">
     <div class="d-flex align-items-center justify-content-end">
-      <input
+      <!-- <input
         type="text"
         class="form-control mr-4 search-Box"
         placeholder="search"
-      />
-      <img
+      /> -->
+      <!-- <img
         class="rounded-circle mr-2"
         src="https://www.w3schools.com/howto/img_avatar.png"
         width="30"
         height="30"
         alt="Profile"
-      />
+      /> -->
+      <mat-icon mat-list-icon class="account-profile-icon"
+        >account_circle</mat-icon
+      >
     </div>
   </div>
 </header>

@@ -16,7 +16,7 @@ export class NavBarService {
   }
 
   setToggleStatus(toggleStatus) {
-    console.log("in the nav bar service toggle", toggleStatus);
+    // console.log("in the nav bar service toggle", toggleStatus);
     this._toggleStatusSubject.next(toggleStatus);
   }
 

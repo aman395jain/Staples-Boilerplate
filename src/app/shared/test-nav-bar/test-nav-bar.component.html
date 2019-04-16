@@ -17,7 +17,9 @@
 
     <mat-nav-list>
       <mat-list-item>
-        <mat-icon *ngIf="!_toggleIsExpend" mat-list-icon>person</mat-icon>
+        <mat-icon *ngIf="!_toggleIsExpend" mat-list-icon
+          >assignment_turned_in</mat-icon
+        >
         <h4 mat-line *ngIf="_toggleIsExpend">
           <mat-accordion multi="true" [displayMode]="displayMode">
             <mat-expansion-panel class="no-shadow">

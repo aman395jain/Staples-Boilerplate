@@ -12,7 +12,7 @@ export class TestNavBarComponent implements OnInit {
 
   ngOnInit() {
     this._navBarService.getToggleStatus().subscribe(toggleStatus => {
-      console.log("in the test nav bar component", toggleStatus);
+      // console.log("in the test nav bar component", toggleStatus);
       this._toggleIsExpend = toggleStatus;
     });
   }
