@@ -24,11 +24,11 @@
           <mat-cell *cdkCellDef="let row"
             ><span
               *ngIf="
-                !(column.header === 'Bar Code' || column.columnDef === 'action')
+                !(column.header === 'BAR CODE' || column.columnDef === 'action')
               "
               >{{ column.cell(row) }}</span
             >
-            <div *ngIf="column.header === 'Bar Code'">
+            <div *ngIf="column.header === 'BAR CODE'">
               <ngx-barcode
                 [bc-value]="column.cell(row)"
                 [bc-display-value]="false"

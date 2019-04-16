@@ -40,22 +40,22 @@ export class TestDataTableComponent implements OnInit {
       },
       {
         columnDef: "itemDesc",
-        header: "Item Description",
+        header: "ITEM DESCRIPTION",
         cell: (element: any) => `${element.itemDesc}`
       },
       {
         columnDef: "permPrice",
-        header: "Perm Price",
+        header: "PERM PRICE",
         cell: (element: any) => `${element.permPrice}`
       },
       {
         columnDef: "posId",
-        header: "Position ID",
+        header: "POSITION ID",
         cell: (element: any) => `${element.posId}`
       },
       {
         columnDef: "barCode",
-        header: "Bar Code",
+        header: "BAR CODE",
         cell: (element: any) => `${element.posId}`
       },
       {
@@ -109,7 +109,7 @@ export class TestDataTableComponent implements OnInit {
   }
 
   isSortingDisabled(columnHeader) {
-    if (columnHeader === "Bar Code") {
+    if (columnHeader === "BAR CODE") {
       return true;
     }
     return false;
