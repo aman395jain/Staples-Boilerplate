@@ -78,6 +78,75 @@ export class TestDataTableComponent implements OnInit {
     }
     this._navBarService.getElementName().subscribe(tableName => {
       console.log("in the test data table", tableName);
+      if (tableName === "Master") {
+        console.log("in the test data table", tableName);
+        this.columns = [
+          {
+            columnDef: "sku",
+            header: "SKU",
+            cell: (element: any) => `${element.sku}`
+          },
+          {
+            columnDef: "itemDesc",
+            header: "ITEM DESCRIPTION",
+            cell: (element: any) => `${element.itemDesc}`
+          },
+          {
+            columnDef: "permPrice",
+            header: "PERM PRICE",
+            cell: (element: any) => `${element.permPrice}`
+          },
+          {
+            columnDef: "posId",
+            header: "POSITION ID",
+            cell: (element: any) => `${element.posId}`
+          },
+          {
+            columnDef: "barCode",
+            header: "BAR CODE",
+            cell: (element: any) => `${element.posId}`
+          },
+          {
+            columnDef: "action",
+            header: "",
+            cell: (element: any) => null
+          }
+        ];
+
+        this.displayedColumns = this.columns.map(c => c.columnDef);
+      } else if (tableName === "SKU/UPC") {
+        console.log("in the test data table", tableName);
+        this.columns = [
+          {
+            columnDef: "sku",
+            header: "SKU",
+            cell: (element: any) => `${element.sku}`
+          },
+          {
+            columnDef: "itemDesc",
+            header: "ITEM DESCRIPTION",
+            cell: (element: any) => `${element.itemDesc}`
+          },
+          {
+            columnDef: "permPrice",
+            header: "PERM PRICE",
+            cell: (element: any) => `${element.permPrice}`
+          },
+          {
+            columnDef: "barCode",
+            header: "BAR CODE",
+            cell: (element: any) => `${element.posId}`
+          },
+          {
+            columnDef: "action",
+            header: "",
+            cell: (element: any) => null
+          }
+        ];
+
+        this.displayedColumns = this.columns.map(c => c.columnDef);
+      }
+
       this._loglistingService.getLogListForEntity(tableName).subscribe(data => {
         this.dataByAPI = new MatTableDataSource(data);
         this.dataByAPI.sort = this.sort;

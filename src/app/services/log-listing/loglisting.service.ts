@@ -27,7 +27,7 @@ export class LoglistingService {
   }
 
   getLogListForEntity(entity): Observable<Loglist[]> {
-    console.log("in the loglist service", entity);
+    // console.log("in the loglist service", entity);
     if (entity === "Master") {
       this._serviceUrl = "http://www.mocky.io/v2/5cac66ee300000b723103596";
     } else {
