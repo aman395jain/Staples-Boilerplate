@@ -59,6 +59,5 @@ export class LogDiscriptionComponent implements OnInit {
     });
 
     this.dataDisplayOnModal = this.dataDisplay[0];
-    console.log("in the log component", this.dataDisplay[0]);
   }
 }
