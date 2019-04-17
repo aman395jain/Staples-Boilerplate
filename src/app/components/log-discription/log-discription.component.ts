@@ -7,9 +7,9 @@ import { MAT_DIALOG_DATA } from "@angular/material";
   styleUrls: ["./log-discription.component.scss"]
 })
 export class LogDiscriptionComponent implements OnInit {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any) {}
+  constructor(@Inject(MAT_DIALOG_DATA) public dataDiscription: any) {}
 
   ngOnInit() {
-    console.log("in the LogDiscriptionComponent", this.data);
+    console.log("in the LogDiscriptionComponent", this.dataDiscription);
   }
 }
