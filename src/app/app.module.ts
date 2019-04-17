@@ -34,7 +34,6 @@ import { SideNavBarComponent } from "./shared/side-nav-bar/side-nav-bar.componen
 import { DisplayLogTableComponent } from "./components/dashboard-log-table/dashboard-log-table.component";
 
 import { NavBarService } from "./services/nav-bar/nav-bar.service";
-import { LogDescriptionService } from "./services/log-description/log-description.service";
 import { LoglistingService } from "./services/log-listing/loglisting.service";
 
 @NgModule({
@@ -73,12 +72,7 @@ import { LoglistingService } from "./services/log-listing/loglisting.service";
     CommonModule
   ],
   entryComponents: [LogDiscriptionComponent],
-  providers: [
-    LoglistingService,
-    CdkColumnDef,
-    NavBarService,
-    LogDescriptionService
-  ],
+  providers: [LoglistingService, CdkColumnDef, NavBarService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

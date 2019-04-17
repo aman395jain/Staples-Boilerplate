@@ -11,7 +11,6 @@ import "rxjs/add/observable/of";
 import { LogDiscriptionComponent } from "../log-discription/log-discription.component";
 import { LoglistingService } from "src/app/services/log-listing/loglisting.service";
 import { NavBarService } from "src/app/services/nav-bar/nav-bar.service";
-import { LogDescriptionService } from "src/app/services/log-description/log-description.service";
 
 @Component({
   selector: "app-test-data-table",
@@ -29,8 +28,7 @@ export class TestDataTableComponent implements OnInit {
   constructor(
     private _loglistingService: LoglistingService,
     private _dialog: MatDialog,
-    private _navBarService: NavBarService,
-    private _logDescriptionService: LogDescriptionService
+    private _navBarService: NavBarService
   ) {}
 
   ngOnInit() {
@@ -173,11 +171,11 @@ export class TestDataTableComponent implements OnInit {
   discriptionLog(row) {
     console.log("in the row test", row);
     const _dialogConfig = new MatDialogConfig();
+    _dialogConfig.data = row;
     _dialogConfig.disableClose = false;
     _dialogConfig.autoFocus = true;
     _dialogConfig.width = "60%";
     this._dialog.open(LogDiscriptionComponent, _dialogConfig);
-    this._logDescriptionService.setDescription(row);
   }
 
   isSortingDisabled(columnHeader) {

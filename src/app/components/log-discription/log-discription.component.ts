@@ -1,4 +1,5 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Inject } from "@angular/core";
+import { MAT_DIALOG_DATA } from "@angular/material";
 
 @Component({
   selector: "app-log-discription",
@@ -6,7 +7,9 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./log-discription.component.scss"]
 })
 export class LogDiscriptionComponent implements OnInit {
-  constructor() {}
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log("in the LogDiscriptionComponent", this.data);
+  }
 }
