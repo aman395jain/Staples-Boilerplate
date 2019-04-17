@@ -8,14 +8,16 @@ import { MAT_DIALOG_DATA } from "@angular/material";
 })
 export class LogDiscriptionComponent implements OnInit {
   dataDiscriptionKeysToDisplay = [];
-  dataDisplayOnModal = [];
+  dataDisplay = [];
   keyMap = {};
+  dataDisplayOnModal = [];
+
   constructor(@Inject(MAT_DIALOG_DATA) public dataDiscription: any) {}
 
   ngOnInit() {
     this.dataDiscriptionKeysToDisplay.push(this.dataDiscription);
 
-    // this.dataDisplayOnModal = this.dataDiscriptionKeysToDisplay.map(data => ({
+    // this.dataDisplay = this.dataDiscriptionKeysToDisplay.map(data => ({
     //   STORE: data.store,
     //   SKU: data.sku,
     //   "ITEM DESCRIPTION": data.itemDesc,
@@ -27,16 +29,16 @@ export class LogDiscriptionComponent implements OnInit {
     //   STATE: data.state
     // }));
 
-    // this.dataDisplayOnModal.map(data => {
+    // this.dataDisplay.map(data => {
     //   console.log("in the map", Object.keys(data));
     // });
 
     // console.log("in the log component", this.dataDiscription);
 
     this.keyMap = {
-      barCode: "Bar Code",
-      itemDesc: "Item Description",
-      permPrice: "Prem Price",
+      barCode: "BAR CODE",
+      itemDesc: "ITEM DESCRIPION",
+      permPrice: "PREM PRICE",
       posId: "POSITION ID",
       profit: "PROFIT",
       sellPrice: "SELL PRICE",
@@ -45,7 +47,7 @@ export class LogDiscriptionComponent implements OnInit {
       store: "STORE"
     };
 
-    this.dataDisplayOnModal = this.dataDiscriptionKeysToDisplay.map(data => {
+    this.dataDisplay = this.dataDiscriptionKeysToDisplay.map(data => {
       return Object.keys(data).reduce((prev, next) => {
         if (next in this.keyMap) {
           prev[this.keyMap[next]] = data[next];
@@ -56,6 +58,7 @@ export class LogDiscriptionComponent implements OnInit {
       }, {});
     });
 
-    console.log("in the log component", this.dataDisplayOnModal);
+    this.dataDisplayOnModal = this.dataDisplay[0];
+    console.log("in the log component", this.dataDisplay[0]);
   }
 }

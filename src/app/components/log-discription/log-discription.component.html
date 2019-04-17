@@ -1,10 +1,4 @@
-<p>
-  {{ dataDiscription.sku }}
-</p>
-<!-- <div *ngFor="let data of (dataDiscriptionKeysToDisplay | keyvalue)">
-  <span>{{ data.key }}</span>
-  <span>{{ data.value }}</span>
-</div> -->
-<div *ngFor="let data of dataDisplayOnModal">
-  <span>{{ data.STORE }}</span>
+<div *ngFor="let data of (dataDisplayOnModal | keyvalue)">
+  <span>{{ data.key }}</span
+  >:<span>{{ data.value }}</span>
 </div>
