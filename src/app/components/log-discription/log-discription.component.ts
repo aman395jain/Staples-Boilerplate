@@ -7,64 +7,26 @@ import { MAT_DIALOG_DATA } from "@angular/material";
   styleUrls: ["./log-discription.component.scss"]
 })
 export class LogDiscriptionComponent implements OnInit {
-  dataDiscriptionKeys = [];
   dataDiscriptionKeysToDisplay = [];
-
+  testArray1 = [];
   constructor(@Inject(MAT_DIALOG_DATA) public dataDiscription: any) {}
 
   ngOnInit() {
-    this.dataDiscriptionKeys = Object.keys(this.dataDiscription);
-    this.dataDiscriptionKeys.map(ele => {
-      if (ele === "store") {
-        this.dataDiscriptionKeysToDisplay.push({
-          STORE: this.dataDiscription.store
-        });
-      }
-      if (ele === "sku") {
-        this.dataDiscriptionKeysToDisplay.push({
-          SKU: this.dataDiscription.sku
-        });
-      }
-      if (ele === "itemDesc") {
-        this.dataDiscriptionKeysToDisplay.push({
-          "ITEM DESCRIPTION": this.dataDiscription.itemDesc
-        });
-      }
-      if (ele === "permPrice") {
-        this.dataDiscriptionKeysToDisplay.push({
-          "PERM PRICE": this.dataDiscription.permPrice
-        });
-      }
-      if (ele === "posId") {
-        this.dataDiscriptionKeysToDisplay.push({
-          "POSITION ID": this.dataDiscription.posId
-        });
-      }
-      if (ele === "barCode") {
-        this.dataDiscriptionKeysToDisplay.push({
-          "BAR CODE": this.dataDiscription.barCode
-        });
-      }
-      if (ele === "sellPrice") {
-        this.dataDiscriptionKeysToDisplay.push({
-          "SELL PRICE": this.dataDiscription.sellPrice
-        });
-      }
-      if (ele === "profit") {
-        this.dataDiscriptionKeysToDisplay.push({
-          PROFIT: this.dataDiscription.profit
-        });
-      }
-      if (ele === "state") {
-        this.dataDiscriptionKeysToDisplay.push({
-          STATE: this.dataDiscription.state
-        });
-      }
-    });
+    this.dataDiscriptionKeysToDisplay.push(this.dataDiscription);
+    let testData = this.dataDiscriptionKeysToDisplay.map(data => ({
+      STORE: data.store,
+      SKU: data.sku,
+      "ITEM DESCRIPTION": data.itemDesc,
+      "PERM PRICE": data.permPrice,
+      "POSITION ID": data.posId,
+      "BAR CODE": data.barCode,
+      "SELL PRICE": data.sellPrice,
+      PROFIT: data.profit,
+      STATE: data.state
+    }));
 
-    console.log(
-      "in the LogDiscriptionComponent",
-      this.dataDiscriptionKeysToDisplay
-    );
+    this.testArray1.push(testData[0]);
+
+    console.log("in the LogDiscriptionComponent", testData[0]);
   }
 }
