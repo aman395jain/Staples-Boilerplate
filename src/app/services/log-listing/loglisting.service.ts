@@ -6,6 +6,14 @@ import { map, catchError } from "rxjs/operators";
 
 import { Loglist } from "../../models/loglist.model";
 
+/**
+ * @ngdoc service
+ * @name LoglistingService
+ *
+ * @description
+ * Service for API call to populate data in data tables.
+ **/
+
 @Injectable()
 export class LoglistingService {
   private _serviceUrl = "";
@@ -13,7 +21,7 @@ export class LoglistingService {
   constructor(private http: HttpClient) {}
 
   getLogList(): Observable<Loglist[]> {
-    this._serviceUrl = "http://www.mocky.io/v2/5cac66ee300000b723103596";
+    this._serviceUrl = "http://www.mocky.io/v2/5cb6bba3320000510ecd4563";
     return this.http.get<Loglist[]>(this._serviceUrl).pipe(
       map((response: Response) => {
         console.log("in the service", response);
