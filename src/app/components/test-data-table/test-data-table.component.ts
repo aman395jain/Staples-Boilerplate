@@ -78,7 +78,7 @@ export class TestDataTableComponent implements OnInit {
     }
     this._navBarService.getElementName().subscribe(tableName => {
       console.log("in the test data table", tableName);
-      if (tableName === "Master") {
+      if (tableName === "Price Prompt SKUs") {
         console.log("in the test data table", tableName);
         this.columns = [
           {
@@ -114,7 +114,7 @@ export class TestDataTableComponent implements OnInit {
         ];
 
         this.displayedColumns = this.columns.map(c => c.columnDef);
-      } else if (tableName === "SKU/UPC") {
+      } else if (tableName === "Hardware SKUs") {
         console.log("in the test data table", tableName);
         this.columns = [
           {

@@ -30,19 +30,31 @@
                 [collapsedHeight]="collapseHeight"
               >
                 <mat-panel-title>
-                  Items
+                  Items Master
                 </mat-panel-title>
               </mat-expansion-panel-header>
               <mat-nav-list class="ml-0" dense>
                 <mat-list-item>
-                  <a (click)="getElementNameTest('Master')">Master</a>
+                  <a (click)="getElementNameTest('Price Prompt SKUs')"
+                    >Price Prompt SKUs</a
+                  >
                 </mat-list-item>
                 <mat-list-item>
-                  <a (click)="getElementNameTest('SKU/UPC')">SKU/UPC</a>
+                  <a (click)="getElementNameTest('Hardware SKUs')"
+                    >Hardware SKUs</a
+                  >
                 </mat-list-item>
                 <mat-list-item>
                   <a (click)="getElementNameTest('Group/Header')"
-                    >Group/Header</a
+                    >Linked SKUs</a
+                  >
+                </mat-list-item>
+                <mat-list-item>
+                  <a (click)="getElementNameTest('Group/Header')">Free SKUs</a>
+                </mat-list-item>
+                <mat-list-item>
+                  <a (click)="getElementNameTest('Group/Header')"
+                    >Age Restricted, Special rest</a
                   >
                 </mat-list-item>
               </mat-nav-list>

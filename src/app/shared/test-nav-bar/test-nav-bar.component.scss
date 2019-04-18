@@ -3,7 +3,7 @@
   height: 100%;
   .nav-bar-expandable {
     // background-color: aqua;
-    max-width: 150px;
+    max-width: 160px;
     .toggle-icon {
       margin: 10px;
       cursor: pointer;
@@ -36,6 +36,9 @@
 }
 .mat-expansion-panel {
   background: rgba(204, 0, 0, 0);
+  ::ng-deep .mat-expansion-panel-content .mat-expansion-panel-body {
+    padding: 0 6px 16px !important;
+  }
 }
 
 .mat-expansion-panel-header-title {
@@ -49,6 +52,6 @@
   color: #ffffff !important;
 }
 
-// .mat-expansion-panel-header {
-//   height: 20px !important;
-// }
+.mat-expansion-panel-header {
+  padding: 0 6px !important;
+}
