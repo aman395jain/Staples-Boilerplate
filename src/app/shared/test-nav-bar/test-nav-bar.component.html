@@ -6,15 +6,6 @@
     opened="true"
     class="nav-bar-expandable"
   >
-    <!-- <a
-      mat-mini-fab
-      (click)="isExpanded = !isExpanded"
-      color="warn"
-      style="margin: 10px;"
-    >
-      <mat-icon aria-label="Menu" class="toggle-icon">menu</mat-icon>
-    </a> -->
-
     <mat-nav-list>
       <mat-list-item>
         <mat-icon *ngIf="!_toggleIsExpend" mat-list-icon
@@ -62,23 +53,6 @@
           </mat-accordion>
         </h4>
       </mat-list-item>
-      <!-- <mat-list-item>
-        <mat-icon mat-list-icon>assignment</mat-icon>
-        <h4 mat-line *ngIf="_toggleIsExpend">Management B</h4>
-      </mat-list-item>
-      <mat-list-item>
-        <mat-icon mat-list-icon>domain</mat-icon>
-        <h4 mat-line *ngIf="_toggleIsExpend">Management C</h4>
-      </mat-list-item>
-      <mat-list-item>
-        <mat-icon mat-list-icon>folder_shared</mat-icon>
-        <h4 mat-line *ngIf="_toggleIsExpend">Management X</h4>
-      </mat-list-item> -->
     </mat-nav-list>
   </mat-drawer>
-
-  <!-- <div class="example-sidenav-content">
-    You cards and screen Contents goes here.. Will be pushed towards right on
-    expanding side navbar.
-  </div> -->
 </mat-drawer-container>
