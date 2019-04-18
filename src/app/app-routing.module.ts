@@ -13,7 +13,7 @@ import { TestNavBarComponent } from "./shared/test-nav-bar/test-nav-bar.componen
     RouterModule.forRoot(
       [
         { path: "", component: HomeComponent },
-        { path: "displayLogListing", component: DisplayLogTableComponent },
+        { path: "testDataManagement", component: DisplayLogTableComponent },
         { path: "testDataTable", component: TestDataTableComponent },
         { path: "testHeader", component: HeaderComponent },
         { path: "testNavBar", component: TestNavBarComponent },
