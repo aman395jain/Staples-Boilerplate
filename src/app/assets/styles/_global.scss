@@ -8,3 +8,15 @@ body {
   // background-color: #e9ebee !important;
   text-transform: capitalize;
 }
+
+// data table modal changes
+.mat-dialog-container {
+  border-radius: 10px !important;
+}
+
+.cdk-overlay-pane {
+  ::-webkit-scrollbar {
+    width: 13px;
+    height: 13px;
+  }
+}
