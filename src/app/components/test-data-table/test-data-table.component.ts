@@ -174,7 +174,8 @@ export class TestDataTableComponent implements OnInit {
     _dialogConfig.data = row;
     _dialogConfig.disableClose = false;
     _dialogConfig.autoFocus = true;
-    _dialogConfig.width = "60%";
+    _dialogConfig.width = "50%";
+    _dialogConfig.height = "50%";
     this._dialog.open(LogDiscriptionComponent, _dialogConfig);
   }
 

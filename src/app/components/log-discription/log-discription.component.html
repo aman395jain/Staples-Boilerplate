@@ -1,4 +1,28 @@
-<div *ngFor="let data of (dataDisplayOnModal | keyvalue)">
-  <span>{{ data.key }}</span
-  >:<span>{{ data.value }}</span>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4" *ngFor="let data of (dataDisplayOnModal | keyvalue)">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th class="table-header">
+              {{ data.key }}
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td *ngIf="!(data.key === 'BAR CODE')">{{ data.value }}</td>
+            <td *ngIf="data.key === 'BAR CODE'">
+              <ngx-barcode
+                [bc-value]="data.value"
+                [bc-display-value]="false"
+                [bc-height]="25"
+                [bc-width]="1"
+              ></ngx-barcode>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
