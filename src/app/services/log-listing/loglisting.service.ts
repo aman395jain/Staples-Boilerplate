@@ -21,6 +21,7 @@ export class LoglistingService {
   constructor(private http: HttpClient) {}
 
   getLogList(): Observable<Loglist[]> {
+    console.log("in the table service");
     this._serviceUrl = "http://www.mocky.io/v2/5cb6bba3320000510ecd4563";
     return this.http.get<Loglist[]>(this._serviceUrl).pipe(
       map((response: Response) => {

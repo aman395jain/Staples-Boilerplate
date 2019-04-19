@@ -11,6 +11,7 @@ import "rxjs/add/observable/of";
 import { LogDiscriptionComponent } from "../log-discription/log-discription.component";
 import { LoglistingService } from "src/app/services/log-listing/loglisting.service";
 import { NavBarService } from "src/app/services/nav-bar/nav-bar.service";
+import { PrintDocumentService } from "src/app/services/print-document/print-document.service";
 
 @Component({
   selector: "app-test-data-table",
@@ -28,7 +29,8 @@ export class TestDataTableComponent implements OnInit {
   constructor(
     private _loglistingService: LoglistingService,
     private _dialog: MatDialog,
-    private _navBarService: NavBarService
+    private _navBarService: NavBarService,
+    private _printDocumentService: PrintDocumentService
   ) {}
 
   ngOnInit() {
@@ -69,6 +71,7 @@ export class TestDataTableComponent implements OnInit {
 
     try {
       this._loglistingService.getLogList().subscribe(data => {
+        console.log("in the log component");
         this.dataByAPI = new MatTableDataSource(data);
         this.dataByAPI.sort = this.sort;
         this.dataByAPI.paginator = this.paginator;
@@ -77,9 +80,7 @@ export class TestDataTableComponent implements OnInit {
       console.log("in the test error", e);
     }
     this._navBarService.getElementName().subscribe(tableName => {
-      console.log("in the test data table", tableName);
       if (tableName === "Price Prompt SKUs") {
-        console.log("in the test data table", tableName);
         this.columns = [
           {
             columnDef: "sku",
@@ -184,5 +185,13 @@ export class TestDataTableComponent implements OnInit {
       return true;
     }
     return false;
+  }
+
+  /**
+   * print the documents
+   */
+
+  onPrintInvoice() {
+    this._printDocumentService.printDocument("invoice");
   }
 }

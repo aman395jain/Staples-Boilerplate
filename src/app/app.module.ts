@@ -32,9 +32,12 @@ import { FooterComponent } from "./shared/footer/footer.component";
 import { LogDiscriptionComponent } from "./components/log-discription/log-discription.component";
 import { SideNavBarComponent } from "./shared/side-nav-bar/side-nav-bar.component";
 import { DisplayLogTableComponent } from "./components/dashboard-log-table/dashboard-log-table.component";
+import { PrintDocumentComponent } from "./shared/print-document/print-document.component";
+import { PrintDocumentLayoutComponent } from "./shared/print-document-layout/print-document-layout.component";
 
 import { NavBarService } from "./services/nav-bar/nav-bar.service";
 import { LoglistingService } from "./services/log-listing/loglisting.service";
+import { PrintDocumentService } from "./services/print-document/print-document.service";
 
 @NgModule({
   declarations: [
@@ -48,7 +51,9 @@ import { LoglistingService } from "./services/log-listing/loglisting.service";
     SideNavBarComponent,
     DisplayLogTableComponent,
     TestDataTableComponent,
-    TestNavBarComponent
+    TestNavBarComponent,
+    PrintDocumentLayoutComponent,
+    PrintDocumentComponent
   ],
   imports: [
     BrowserModule,
@@ -72,7 +77,12 @@ import { LoglistingService } from "./services/log-listing/loglisting.service";
     CommonModule
   ],
   entryComponents: [LogDiscriptionComponent],
-  providers: [LoglistingService, CdkColumnDef, NavBarService],
+  providers: [
+    LoglistingService,
+    CdkColumnDef,
+    NavBarService,
+    PrintDocumentService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
