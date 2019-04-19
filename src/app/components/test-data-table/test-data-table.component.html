@@ -1,13 +1,28 @@
 <div class="container mat-elevation-z8 log-list">
   <div class="row">
     <div class="col-md-12 list-search">
-      <mat-form-field>
-        <input
-          matInput
-          (keyup)="applyFilter($event.target.value)"
-          placeholder="Search"
-        />
-      </mat-form-field>
+      <div class="row">
+        <div class="col-md-9"></div>
+        <div class="col-md-3">
+          <mat-icon
+            _ngcontent-c1=""
+            class="print-document mat-icon mat-list-icon material-icons"
+            mat-list-icon=""
+            role="img"
+            aria-hidden="true"
+            data-toggle="tooltip"
+            title="print"
+            >print</mat-icon
+          >
+          <mat-form-field>
+            <input
+              matInput
+              (keyup)="applyFilter($event.target.value)"
+              placeholder="Search"
+            />
+          </mat-form-field>
+        </div>
+      </div>
     </div>
     <div class="col-md-12 log-list-table">
       <mat-table #table [dataSource]="dataByAPI" matSort>

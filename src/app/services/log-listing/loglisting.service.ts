@@ -39,7 +39,7 @@ export class LoglistingService {
     if (entity === "Price Prompt SKUs") {
       this._serviceUrl = "http://www.mocky.io/v2/5cac66ee300000b723103596";
     } else {
-      this._serviceUrl = "http://www.mocky.io/v2/5cadb0fb2f00003d203a96ed";
+      this._serviceUrl = "http://www.mocky.io/v2/5cb860794c0000c51ad3d50d";
     }
     return this.http.get<Loglist[]>(this._serviceUrl);
   }
