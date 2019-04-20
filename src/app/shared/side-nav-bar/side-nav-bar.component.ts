@@ -1,6 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { Subscription } from "rxjs";
-
 import { NavBarService } from "src/app/services/nav-bar/nav-bar.service";
 
 @Component({
@@ -9,31 +7,17 @@ import { NavBarService } from "src/app/services/nav-bar/nav-bar.service";
   styleUrls: ["./side-nav-bar.component.scss"]
 })
 export class SideNavBarComponent implements OnInit {
-  opened = true;
-  over = "side";
-  expandHeight = "42px";
-  collapseHeight = "42px";
-  displayMode = "flat";
+  private _toggleIsExpend: boolean = false;
+  constructor(private _navBarService: NavBarService) {}
 
-  watcher: Subscription;
-
-  constructor(private navBarService: NavBarService) {
-    this.opened = true;
-    this.over = "side";
-    // this.watcher = media.media$.subscribe((change: MediaChange) => {
-    //   if (change.mqAlias === "sm" || change.mqAlias === "xs") {
-    //     this.opened = false;
-    //     this.over = "over";
-    //   } else {
-    //     this.opened = true;
-    //     this.over = "side";
-    //   }
-    // });
+  ngOnInit() {
+    this._navBarService.getToggleStatus().subscribe(toggleStatus => {
+      // console.log("in the test nav bar component", toggleStatus);
+      this._toggleIsExpend = toggleStatus;
+    });
   }
 
-  ngOnInit() {}
-
-  getElementName(eleName) {
-    this.navBarService.setElementNameFromSideBar(eleName);
+  getElementNameTest(eleName) {
+    this._navBarService.setElementNameFromSideBar(eleName);
   }
 }

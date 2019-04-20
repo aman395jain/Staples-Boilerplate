@@ -24,13 +24,11 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { HomeComponent } from "./components/home/home.component";
 import { PageNotFoundComponent } from "./components/page-not-found/page-not-found.component";
-import { LogsListingComponent } from "./components/logs-listing/logs-listing.component";
-import { TestDataTableComponent } from "./components/test-data-table/test-data-table.component";
-import { TestNavBarComponent } from "./shared/test-nav-bar/test-nav-bar.component";
+import { LogDataTableComponent } from "./components/log-data-table/log-data-table.component";
+import { SideNavBarComponent } from "./shared/side-nav-bar/side-nav-bar.component";
 import { HeaderComponent } from "./shared/header/header.component";
 import { FooterComponent } from "./shared/footer/footer.component";
 import { LogDiscriptionComponent } from "./components/log-discription/log-discription.component";
-import { SideNavBarComponent } from "./shared/side-nav-bar/side-nav-bar.component";
 import { DisplayLogTableComponent } from "./components/dashboard-log-table/dashboard-log-table.component";
 import { PrintDocumentComponent } from "./shared/print-document/print-document.component";
 import { PrintDocumentLayoutComponent } from "./shared/print-document-layout/print-document-layout.component";
@@ -44,14 +42,12 @@ import { PrintDocumentService } from "./services/print-document/print-document.s
     AppComponent,
     HomeComponent,
     PageNotFoundComponent,
-    LogsListingComponent,
     HeaderComponent,
     FooterComponent,
     LogDiscriptionComponent,
-    SideNavBarComponent,
     DisplayLogTableComponent,
-    TestDataTableComponent,
-    TestNavBarComponent,
+    LogDataTableComponent,
+    SideNavBarComponent,
     PrintDocumentLayoutComponent,
     PrintDocumentComponent
   ],

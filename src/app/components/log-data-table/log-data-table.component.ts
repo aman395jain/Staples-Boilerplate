@@ -14,11 +14,11 @@ import { NavBarService } from "src/app/services/nav-bar/nav-bar.service";
 import { PrintDocumentService } from "src/app/services/print-document/print-document.service";
 
 @Component({
-  selector: "app-test-data-table",
-  templateUrl: "./test-data-table.component.html",
-  styleUrls: ["./test-data-table.component.scss"]
+  selector: "app-log-data-table",
+  templateUrl: "./log-data-table.component.html",
+  styleUrls: ["./log-data-table.component.scss"]
 })
-export class TestDataTableComponent implements OnInit {
+export class LogDataTableComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
