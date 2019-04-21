@@ -12,7 +12,8 @@ import {
   MatMenuModule,
   MatSidenavModule,
   MatExpansionModule,
-  MatListModule
+  MatListModule,
+  MatCheckboxModule
 } from "@angular/material";
 import { CdkColumnDef, CdkTableModule } from "@angular/cdk/table";
 import { NgxBarcodeModule } from "ngx-barcode";
@@ -63,6 +64,7 @@ import { PrintDocumentService } from "./services/print-document/print-document.s
     MatInputModule,
     MatDialogModule,
     MatMenuModule,
+    MatCheckboxModule,
     MatExpansionModule,
     MatListModule,
     MatSidenavModule,

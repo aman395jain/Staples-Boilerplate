@@ -37,6 +37,11 @@ export class LogDataTableComponent implements OnInit {
   ngOnInit() {
     this.columns = [
       {
+        columnDef: "select",
+        header: null,
+        cell: (element: any) => null
+      },
+      {
         columnDef: "sku",
         header: "SKU",
         cell: (element: any) => `${element.sku}`
@@ -182,8 +187,8 @@ export class LogDataTableComponent implements OnInit {
     this._dialog.open(LogDiscriptionComponent, _dialogConfig);
   }
 
-  isSortingDisabled(columnHeader) {
-    if (columnHeader === "BAR CODE") {
+  isSortingDisabled(columnDef) {
+    if (columnDef === "barCode" || columnDef === "select") {
       return true;
     }
     return false;

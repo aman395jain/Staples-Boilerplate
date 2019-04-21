@@ -33,17 +33,27 @@
         >
           <mat-header-cell
             *cdkHeaderCellDef
-            [disabled]="isSortingDisabled(column.header)"
+            [disabled]="isSortingDisabled(column.columnDef)"
             mat-sort-header
-            >{{ column.header }}</mat-header-cell
-          >
+            ><span *ngIf="!(column.columnDef === 'select')">{{
+              column.header
+            }}</span
+            ><span *ngIf="column.columnDef === 'select'">
+              <mat-checkbox></mat-checkbox></span
+          ></mat-header-cell>
           <mat-cell *cdkCellDef="let row"
             ><span
               *ngIf="
-                !(column.header === 'BAR CODE' || column.columnDef === 'action')
+                !(
+                  column.header === 'BAR CODE' ||
+                  column.columnDef === 'action' ||
+                  column.columnDef === 'select'
+                )
               "
               >{{ column.cell(row) }}</span
-            >
+            ><span *ngIf="column.columnDef === 'select'"
+              ><mat-checkbox></mat-checkbox
+            ></span>
             <div *ngIf="column.header === 'BAR CODE'">
               <ngx-barcode
                 [bc-value]="column.cell(row)"
