@@ -13,13 +13,13 @@ export class PrintDocumentService {
   isPrinting = false;
   constructor(private router: Router) {}
 
-  printDocument(documentName: string) {
+  printDocument(documentName: string, documentData: any) {
     this.isPrinting = true;
     this.router.navigate([
       "/",
       {
         outlets: {
-          print: ["print", documentName]
+          print: ["print", documentName, documentData.join()]
         }
       }
     ]);

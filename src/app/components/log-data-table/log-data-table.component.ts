@@ -23,6 +23,7 @@ export class LogDataTableComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   columns = [];
+  printedData = [];
 
   displayedColumns = {};
   dataByAPI: MatTableDataSource<any>;
@@ -71,7 +72,7 @@ export class LogDataTableComponent implements OnInit {
 
     try {
       this._loglistingService.getLogList().subscribe(data => {
-        console.log("in the log component");
+        this.printedData = data;
         this.dataByAPI = new MatTableDataSource(data);
         this.dataByAPI.sort = this.sort;
         this.dataByAPI.paginator = this.paginator;
@@ -149,6 +150,7 @@ export class LogDataTableComponent implements OnInit {
       }
 
       this._loglistingService.getLogListForEntity(tableName).subscribe(data => {
+        this.printedData = data;
         this.dataByAPI = new MatTableDataSource(data);
         this.dataByAPI.sort = this.sort;
         this.dataByAPI.paginator = this.paginator;
@@ -192,6 +194,6 @@ export class LogDataTableComponent implements OnInit {
    */
 
   onPrintInvoice() {
-    this._printDocumentService.printDocument("invoice");
+    this._printDocumentService.printDocument("invoice", this.printedData);
   }
 }

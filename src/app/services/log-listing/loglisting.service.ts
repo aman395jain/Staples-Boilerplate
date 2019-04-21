@@ -1,10 +1,10 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Response } from "@angular/http";
-import { Observable } from "rxjs/Observable";
 import { map, catchError } from "rxjs/operators";
 
 import { Loglist } from "../../models/loglist.model";
+import { Subject, Observable } from "rxjs";
 
 /**
  * @ngdoc service
@@ -17,15 +17,14 @@ import { Loglist } from "../../models/loglist.model";
 @Injectable()
 export class LoglistingService {
   private _serviceUrl = "";
+  private testDataToPrintDoc = new Subject();
 
   constructor(private http: HttpClient) {}
 
   getLogList(): Observable<Loglist[]> {
-    console.log("in the table service");
     this._serviceUrl = "http://www.mocky.io/v2/5cb6bba3320000510ecd4563";
     return this.http.get<Loglist[]>(this._serviceUrl).pipe(
       map((response: Response) => {
-        console.log("in the service", response);
         return response;
       }),
       catchError((err: Response) => {
