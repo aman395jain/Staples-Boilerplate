@@ -39,7 +39,10 @@
               column.header
             }}</span
             ><span *ngIf="column.columnDef === 'select'">
-              <mat-checkbox></mat-checkbox></span
+              <mat-checkbox
+                (click)="$event.stopPropagation()"
+                [checked]="isHeaderSelection()"
+              ></mat-checkbox></span
           ></mat-header-cell>
 
           <mat-cell *cdkCellDef="let row; let i = index"

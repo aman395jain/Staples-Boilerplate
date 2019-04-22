@@ -27,13 +27,6 @@ export class LogDataTableComponent implements OnInit {
   printedData = [];
   checkBoxStatus: boolean = false;
   selectedDataForPrint = [];
-  // selection: SelectionModel<Element> = new SelectionModel<Element>(true, []);
-  initialSelection: string[] = [];
-  allowMultiSelect: boolean = true;
-  selection = new SelectionModel<string>(
-    this.allowMultiSelect,
-    this.initialSelection
-  );
 
   displayedColumns = {};
   dataByAPI: MatTableDataSource<any>;
@@ -45,7 +38,6 @@ export class LogDataTableComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.selection.isSelected = this.isSelected.bind(this);
     this.columns = [
       {
         columnDef: "select",
@@ -215,6 +207,7 @@ export class LogDataTableComponent implements OnInit {
    */
 
   onPrintInvoice() {
+    console.log("printed data", this.selectedDataForPrint);
     this._printDocumentService.printDocument("invoice", this.printedData);
   }
 
@@ -235,14 +228,21 @@ export class LogDataTableComponent implements OnInit {
         1
       );
     }
-    console.log("selectedDataForPrint", this.selectedDataForPrint);
+    // console.log("selectedDataForPrint", this.selectedDataForPrint);
   }
 
+  /**
+   * Maintain the status of checkbox in data table.
+   * @param row: get the row and check it's checked status.
+   * return boolean
+   */
+
   isSelected(row) {
-    // console.log("isSelected", row.checked);
     if (row.checked) {
       return true;
     }
     return false;
   }
+
+  isHeaderSelection() {}
 }
