@@ -9,5 +9,9 @@ import { LoglistingService } from "src/app/services/log-listing/loglisting.servi
 export class PrintDocumentLayoutComponent implements OnInit {
   constructor(private loglistingService: LoglistingService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.loglistingService.setTestDataToPrint().subscribe(data => {
+      console.log("in the print document", data);
+    });
+  }
 }

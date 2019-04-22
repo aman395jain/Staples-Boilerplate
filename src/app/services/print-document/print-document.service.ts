@@ -11,9 +11,11 @@ import { Router } from "@angular/router";
 @Injectable()
 export class PrintDocumentService {
   isPrinting = false;
+
   constructor(private router: Router) {}
 
   printDocument(documentName: string, documentData: any) {
+    // console.log("in the documentData", documentData);
     this.isPrinting = true;
     this.router.navigate([
       "/",
@@ -30,6 +32,6 @@ export class PrintDocumentService {
       window.print();
       this.isPrinting = false;
       this.router.navigate([{ outlets: { print: null } }]);
-    });
+    }, 1000);
   }
 }

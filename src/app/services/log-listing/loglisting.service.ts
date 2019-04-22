@@ -17,7 +17,7 @@ import { Subject, Observable } from "rxjs";
 @Injectable()
 export class LoglistingService {
   private _serviceUrl = "";
-  private testDataToPrintDoc = new Subject();
+  private testDataToPrintDoc = new Subject<any>();
 
   constructor(private http: HttpClient) {}
 
@@ -42,5 +42,13 @@ export class LoglistingService {
       this._serviceUrl = "http://www.mocky.io/v2/5cb860794c0000c51ad3d50d";
     }
     return this.http.get<Loglist[]>(this._serviceUrl);
+  }
+
+  getTestDataToPrint(printedData) {
+    this.testDataToPrintDoc.next(printedData);
+  }
+
+  setTestDataToPrint(): Observable<any> {
+    return this.testDataToPrintDoc.asObservable();
   }
 }
