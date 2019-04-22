@@ -41,7 +41,8 @@
             ><span *ngIf="column.columnDef === 'select'">
               <mat-checkbox
                 (click)="$event.stopPropagation()"
-                [checked]="isHeaderSelection()"
+                [(ngModel)]="selectAll"
+                (change)="updateCheck()"
               ></mat-checkbox></span
           ></mat-header-cell>
 

@@ -12,7 +12,6 @@ import { LogDiscriptionComponent } from "../log-discription/log-discription.comp
 import { LoglistingService } from "src/app/services/log-listing/loglisting.service";
 import { NavBarService } from "src/app/services/nav-bar/nav-bar.service";
 import { PrintDocumentService } from "src/app/services/print-document/print-document.service";
-import { SelectionModel } from "@angular/cdk/collections";
 
 @Component({
   selector: "app-log-data-table",
@@ -27,9 +26,11 @@ export class LogDataTableComponent implements OnInit {
   printedData = [];
   checkBoxStatus: boolean = false;
   selectedDataForPrint = [];
+  selectAll = false;
 
   displayedColumns = {};
   dataByAPI: MatTableDataSource<any>;
+
   constructor(
     private _loglistingService: LoglistingService,
     private _dialog: MatDialog,
@@ -207,19 +208,24 @@ export class LogDataTableComponent implements OnInit {
    */
 
   onPrintInvoice() {
-    console.log("printed data", this.selectedDataForPrint);
-    this._printDocumentService.printDocument("invoice", this.printedData);
+    console.log("selectedDataForPrint data", this.selectedDataForPrint);
+    this._printDocumentService.printDocument(
+      "invoice",
+      this.selectedDataForPrint
+    );
   }
 
   // checkbox status
   checkedRowForPrint(selectedRows, index, event) {
     if (event.checked) {
+      // console.log("the printed data", this.printedData);
       selectedRows.checked = true;
       selectedRows.index = index;
 
       this.selectedDataForPrint.push(selectedRows);
     } else {
       // uncheck case
+      // console.log("the printed data", this.printedData);
       selectedRows.checked = false;
       this.selectedDataForPrint.splice(
         this.selectedDataForPrint.findIndex(function(i) {
@@ -228,6 +234,12 @@ export class LogDataTableComponent implements OnInit {
         1
       );
     }
+    if (this.printedData.every(dataRow => dataRow.checked)) {
+      this.selectAll = true;
+    } else {
+      this.selectAll = false;
+    }
+
     // console.log("selectedDataForPrint", this.selectedDataForPrint);
   }
 
@@ -244,5 +256,18 @@ export class LogDataTableComponent implements OnInit {
     return false;
   }
 
-  isHeaderSelection() {}
+  updateCheck() {
+    this.selectedDataForPrint = [];
+    if (this.selectAll === true) {
+      this.printedData.map(dataRow => {
+        dataRow.checked = true;
+        this.selectedDataForPrint.push(dataRow);
+      });
+    } else {
+      this.printedData.map(dataRow => {
+        this.selectedDataForPrint = [];
+        dataRow.checked = false;
+      });
+    }
+  }
 }
