@@ -41,7 +41,8 @@
             ><span *ngIf="column.columnDef === 'select'">
               <mat-checkbox></mat-checkbox></span
           ></mat-header-cell>
-          <mat-cell *cdkCellDef="let row"
+
+          <mat-cell *cdkCellDef="let row; let i = index"
             ><span
               *ngIf="
                 !(
@@ -52,7 +53,11 @@
               "
               >{{ column.cell(row) }}</span
             ><span *ngIf="column.columnDef === 'select'"
-              ><mat-checkbox></mat-checkbox
+              ><mat-checkbox
+                (click)="$event.stopPropagation()"
+                (change)="checkedRowForPrint(row, i, $event)"
+                [checked]="isSelected(row)"
+              ></mat-checkbox
             ></span>
             <div *ngIf="column.header === 'BAR CODE'">
               <ngx-barcode
@@ -61,7 +66,9 @@
                 [bc-height]="30"
                 [bc-width]="1"
               ></ngx-barcode>
-              <div class="bar-code-value">{{ column.cell(row) }}</div>
+              <div class="bar-code-value">
+                {{ column.cell(row) }}
+              </div>
             </div>
             <span *ngIf="column.columnDef === 'action'"
               ><a

@@ -20,6 +20,7 @@ import { NgxBarcodeModule } from "ngx-barcode";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { CommonModule } from "@angular/common";
+import { FormsModule } from "@angular/forms";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -72,7 +73,8 @@ import { PrintDocumentService } from "./services/print-document/print-document.s
     BrowserAnimationsModule,
     FlexLayoutModule,
     CdkTableModule,
-    CommonModule
+    CommonModule,
+    FormsModule
   ],
   entryComponents: [LogDiscriptionComponent],
   providers: [

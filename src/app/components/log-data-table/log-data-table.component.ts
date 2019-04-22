@@ -12,6 +12,7 @@ import { LogDiscriptionComponent } from "../log-discription/log-discription.comp
 import { LoglistingService } from "src/app/services/log-listing/loglisting.service";
 import { NavBarService } from "src/app/services/nav-bar/nav-bar.service";
 import { PrintDocumentService } from "src/app/services/print-document/print-document.service";
+import { SelectionModel } from "@angular/cdk/collections";
 
 @Component({
   selector: "app-log-data-table",
@@ -24,6 +25,15 @@ export class LogDataTableComponent implements OnInit {
 
   columns = [];
   printedData = [];
+  checkBoxStatus: boolean = false;
+  selectedDataForPrint = [];
+  // selection: SelectionModel<Element> = new SelectionModel<Element>(true, []);
+  initialSelection: string[] = [];
+  allowMultiSelect: boolean = true;
+  selection = new SelectionModel<string>(
+    this.allowMultiSelect,
+    this.initialSelection
+  );
 
   displayedColumns = {};
   dataByAPI: MatTableDataSource<any>;
@@ -35,11 +45,12 @@ export class LogDataTableComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.selection.isSelected = this.isSelected.bind(this);
     this.columns = [
       {
         columnDef: "select",
         header: null,
-        cell: (element: any) => null
+        cell: null
       },
       {
         columnDef: "sku",
@@ -78,6 +89,11 @@ export class LogDataTableComponent implements OnInit {
     try {
       this._loglistingService.getLogList().subscribe(data => {
         this.printedData = data;
+
+        data.map(dataValue => {
+          dataValue["checked"] = false;
+        });
+        // console.log("data value", data);
         this.dataByAPI = new MatTableDataSource(data);
         this.dataByAPI.sort = this.sort;
         this.dataByAPI.paginator = this.paginator;
@@ -200,5 +216,33 @@ export class LogDataTableComponent implements OnInit {
 
   onPrintInvoice() {
     this._printDocumentService.printDocument("invoice", this.printedData);
+  }
+
+  // checkbox status
+  checkedRowForPrint(selectedRows, index, event) {
+    if (event.checked) {
+      selectedRows.checked = true;
+      selectedRows.index = index;
+
+      this.selectedDataForPrint.push(selectedRows);
+    } else {
+      // uncheck case
+      selectedRows.checked = false;
+      this.selectedDataForPrint.splice(
+        this.selectedDataForPrint.findIndex(function(i) {
+          return i.index === index;
+        }),
+        1
+      );
+    }
+    console.log("selectedDataForPrint", this.selectedDataForPrint);
+  }
+
+  isSelected(row) {
+    // console.log("isSelected", row.checked);
+    if (row.checked) {
+      return true;
+    }
+    return false;
   }
 }
