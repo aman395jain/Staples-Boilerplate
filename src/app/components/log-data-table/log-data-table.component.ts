@@ -266,6 +266,52 @@ export class LogDataTableComponent implements OnInit {
         ];
 
         this.displayedColumns = this.columns.map(c => c.columnDef);
+      } else if (tableName === "Free_SKUs") {
+        console.log("in the test data table", tableName);
+        this.columns = [
+          {
+            columnDef: "select",
+            header: null,
+            cell: null
+          },
+          {
+            columnDef: "sku",
+            header: "SKU No.",
+            cell: (element: any) => `${element.sku}`
+          },
+          {
+            columnDef: "itemDesc",
+            header: "ITEM DESCRIPTION",
+            cell: (element: any) => `${element.itemDesc}`
+          },
+          {
+            columnDef: "permPrice",
+            header: "RETAIL PRICE",
+            cell: (element: any) => `${element.permPrice}`
+          },
+          {
+            columnDef: "barCode",
+            header: "UPC",
+            cell: (element: any) => `${element.posId}`
+          },
+          {
+            columnDef: "freeSku",
+            header: "FREE SKUs",
+            cell: (element: any) => `${element.freeSku}`
+          },
+          {
+            columnDef: "freeSkuPrice",
+            header: "FREE SKU PRICE",
+            cell: (element: any) => `${element.freeSkuPrice}`
+          },
+          {
+            columnDef: "action",
+            header: null,
+            cell: null
+          }
+        ];
+
+        this.displayedColumns = this.columns.map(c => c.columnDef);
       }
 
       this._loglistingService.getLogListForEntity(tableName).subscribe(data => {
