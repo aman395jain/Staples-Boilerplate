@@ -2,6 +2,34 @@
   <h1>Invoice Num. {{ invoice }}</h1>
   Amount: {{ (invoiceDetails[i] | async)?.amount }}
 </div> -->
-<div class="printed-document" *ngFor="let printedData of _dataForPrint">
+<!-- <div class="printed-document" *ngFor="let printedData of _dataForPrint">
   {{ printedData.barCode }}
+</div> -->
+<div class="printed-document">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">barCode</th>
+        <th scope="col">itemDesc</th>
+        <th scope="col">permPrice</th>
+        <th scope="col">posId</th>
+        <th scope="col">profit</th>
+        <th scope="col">sellPrice</th>
+        <th scope="col">sku</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let printedData of _dataForPrint">
+        <td>
+          {{ printedData.barCode }}
+        </td>
+        <td>{{ printedData.itemDesc }}</td>
+        <td>{{ printedData.permPrice }}</td>
+        <td>{{ printedData.posId }}</td>
+        <td>{{ printedData.profit }}</td>
+        <td>{{ printedData.sellPrice }}</td>
+        <td>{{ printedData.sku }}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
