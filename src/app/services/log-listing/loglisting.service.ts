@@ -45,7 +45,7 @@ export class LoglistingService {
     } else if (entity === "Hardware_SKUs") {
       this._serviceUrl = "http://www.mocky.io/v2/5cb860794c0000c51ad3d50d";
     } else if (entity === "Linked_SKUs") {
-      this._serviceUrl = "http://www.mocky.io/v2/5cb860794c0000c51ad3d50d";
+      this._serviceUrl = "http://www.mocky.io/v2/5cbef6d530000053059ce413";
     } else if (entity === "Free_SKUs") {
       this._serviceUrl = "http://www.mocky.io/v2/5cb860794c0000c51ad3d50d";
     } else if (entity === "Age_Restricted_Special_rest") {

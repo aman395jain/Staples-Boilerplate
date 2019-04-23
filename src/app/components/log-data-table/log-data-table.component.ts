@@ -165,6 +165,46 @@ export class LogDataTableComponent implements OnInit {
         ];
 
         this.displayedColumns = this.columns.map(c => c.columnDef);
+      } else if (tableName === "Linked_SKUs") {
+        this.columns = [
+          {
+            columnDef: "select",
+            header: null,
+            cell: null
+          },
+          {
+            columnDef: "sku",
+            header: "SKU NO.",
+            cell: (element: any) => `${element.sku}`
+          },
+          {
+            columnDef: "permPrice",
+            header: "RETAIL PRICE",
+            cell: (element: any) => `${element.permPrice}`
+          },
+          {
+            columnDef: "barCode",
+            header: "UPC",
+            cell: (element: any) => `${element.posId}`
+          },
+          {
+            columnDef: "warranty",
+            header: "WARRANTY",
+            cell: (element: any) => `${element.warranty}`
+          },
+          {
+            columnDef: "itemGroupID",
+            header: "ITEM GROUP ID",
+            cell: (element: any) => `${element.itemGroupID}`
+          },
+          {
+            columnDef: "action",
+            header: null,
+            cell: null
+          }
+        ];
+
+        this.displayedColumns = this.columns.map(c => c.columnDef);
       } else if (tableName === "Tax_Rates") {
         this.columns = [
           {
