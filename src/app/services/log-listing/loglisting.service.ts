@@ -36,7 +36,7 @@ export class LoglistingService {
 
   getLogListForEntity(entity): Observable<Loglist[]> {
     // console.log("in the loglist service", entity);
-    if (entity === "Price Prompt SKUs") {
+    if (entity === "Price_Prompt_SKUs") {
       this._serviceUrl = "http://www.mocky.io/v2/5cac66ee300000b723103596";
     } else {
       this._serviceUrl = "http://www.mocky.io/v2/5cb860794c0000c51ad3d50d";

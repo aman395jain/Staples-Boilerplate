@@ -95,7 +95,7 @@ export class LogDataTableComponent implements OnInit {
       console.log("in the test error", e);
     }
     this._navBarService.getElementName().subscribe(tableName => {
-      if (tableName === "Price Prompt SKUs") {
+      if (tableName === "Price_Prompt_SKUs") {
         this.columns = [
           {
             columnDef: "sku",
@@ -130,7 +130,7 @@ export class LogDataTableComponent implements OnInit {
         ];
 
         this.displayedColumns = this.columns.map(c => c.columnDef);
-      } else if (tableName === "Hardware SKUs") {
+      } else if (tableName === "Hardware_SKUs") {
         console.log("in the test data table", tableName);
         this.columns = [
           {
