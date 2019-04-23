@@ -196,6 +196,62 @@
           ></mat-list-item
         ></mat-nav-list
       >
+      <mat-nav-list
+        ><mat-list-item>
+          <img
+            src="../../../app/assets/images/side_navBar_icons/promo_Icon.png"
+            alt="promos"
+            height="30px"
+            data-toggle="tooltip"
+            title="Promos"
+            *ngIf="!_toggleIsExpend"
+          />
+          <span
+            *ngIf="_toggleIsExpend"
+            data-toggle="tooltip"
+            title="Promos"
+            (click)="getElementNameTest('Employee')"
+            >Promos</span
+          ></mat-list-item
+        ></mat-nav-list
+      >
+      <mat-nav-list
+        ><mat-list-item>
+          <img
+            src="../../../app/assets/images/side_navBar_icons/coupon_Icon.png"
+            alt="Coupon"
+            height="30px"
+            data-toggle="tooltip"
+            title="Coupon"
+            *ngIf="!_toggleIsExpend"
+          />
+          <span
+            *ngIf="_toggleIsExpend"
+            data-toggle="tooltip"
+            title="Promos"
+            (click)="getElementNameTest('Employee')"
+            >Coupon</span
+          ></mat-list-item
+        ></mat-nav-list
+      >
+      <mat-nav-list
+        ><mat-list-item>
+          <mat-icon
+            *ngIf="!_toggleIsExpend"
+            data-toggle="tooltip"
+            title="Tax Exempt"
+            mat-list-icon
+            >money_off</mat-icon
+          >
+          <span
+            *ngIf="_toggleIsExpend"
+            data-toggle="tooltip"
+            title="Promos"
+            (click)="getElementNameTest('Employee')"
+            >Tax Exempt</span
+          ></mat-list-item
+        ></mat-nav-list
+      >
     </div>
   </mat-drawer>
 </mat-drawer-container>
