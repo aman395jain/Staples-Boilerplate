@@ -17,7 +17,7 @@ import { Observable, BehaviorSubject } from "rxjs";
 @Injectable()
 export class LoglistingService {
   private _serviceUrl = "";
-  private testDataToPrintDoc = new BehaviorSubject<any>(null);
+  private _dataToBePrinted = new BehaviorSubject<any>(null);
 
   constructor(private http: HttpClient) {}
 
@@ -65,10 +65,10 @@ export class LoglistingService {
   }
 
   getTestDataToPrint(printedData) {
-    this.testDataToPrintDoc.next(printedData);
+    this._dataToBePrinted.next(printedData);
   }
 
   setTestDataToPrint(): Observable<any> {
-    return this.testDataToPrintDoc;
+    return this._dataToBePrinted;
   }
 }

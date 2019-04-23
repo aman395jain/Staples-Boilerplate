@@ -2,6 +2,6 @@
   <h1>Invoice Num. {{ invoice }}</h1>
   Amount: {{ (invoiceDetails[i] | async)?.amount }}
 </div> -->
-<div class="printed-document">
-  Hi in the print and get the table rows...
+<div class="printed-document" *ngFor="let printedData of _dataForPrint">
+  {{ printedData.barCode }}
 </div>
