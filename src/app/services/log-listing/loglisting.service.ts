@@ -39,9 +39,9 @@ export class LoglistingService {
     if (entity === "Price_Prompt_SKUs") {
       this._serviceUrl = "http://www.mocky.io/v2/5cac66ee300000b723103596";
     } else if (entity === "Employee") {
-      this._serviceUrl = "http://www.mocky.io/v2/5cac66ee300000b723103596";
+      this._serviceUrl = "http://www.mocky.io/v2/5cbedebf300000ae069ce330";
     } else if (entity === "Tax_Rates") {
-      this._serviceUrl = "http://www.mocky.io/v2/5cac66ee300000b723103596";
+      this._serviceUrl = "http://www.mocky.io/v2/5cbee306300000f2069ce348";
     } else if (entity === "Hardware_SKUs") {
       this._serviceUrl = "http://www.mocky.io/v2/5cb860794c0000c51ad3d50d";
     } else if (entity === "Linked_SKUs") {

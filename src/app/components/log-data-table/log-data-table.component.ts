@@ -72,8 +72,8 @@ export class LogDataTableComponent implements OnInit {
       },
       {
         columnDef: "action",
-        header: "",
-        cell: (element: any) => null
+        header: null,
+        cell: null
       }
     ];
 
@@ -124,8 +124,73 @@ export class LogDataTableComponent implements OnInit {
           },
           {
             columnDef: "action",
-            header: "",
-            cell: (element: any) => null
+            header: null,
+            cell: null
+          }
+        ];
+
+        this.displayedColumns = this.columns.map(c => c.columnDef);
+      } else if (tableName === "Employee") {
+        this.columns = [
+          {
+            columnDef: "select",
+            header: null,
+            cell: null
+          },
+          {
+            columnDef: "empName ",
+            header: "EMPLOYEE NAME",
+            cell: (element: any) => `${element.empName}`
+          },
+          {
+            columnDef: "empPass",
+            header: "EMPLOYEE PASSOWORD",
+            cell: (element: any) => `${element.empPass}`
+          },
+          {
+            columnDef: "empRole",
+            header: "EMPLOYEE ROLE",
+            cell: (element: any) => `${element.empRole}`
+          },
+          {
+            columnDef: "store",
+            header: "STORE",
+            cell: (element: any) => `${element.store}`
+          },
+          {
+            columnDef: "action",
+            header: null,
+            cell: null
+          }
+        ];
+
+        this.displayedColumns = this.columns.map(c => c.columnDef);
+      } else if (tableName === "Tax_Rates") {
+        this.columns = [
+          {
+            columnDef: "select",
+            header: null,
+            cell: null
+          },
+          {
+            columnDef: "store ",
+            header: "STORE",
+            cell: (element: any) => `${element.store}`
+          },
+          {
+            columnDef: "taxRate",
+            header: "TAX RATE",
+            cell: (element: any) => `${element.taxRate}`
+          },
+          {
+            columnDef: "taxState",
+            header: "STATE",
+            cell: (element: any) => `${element.taxState}`
+          },
+          {
+            columnDef: "action",
+            header: null,
+            cell: null
           }
         ];
 
@@ -133,6 +198,11 @@ export class LogDataTableComponent implements OnInit {
       } else if (tableName === "Hardware_SKUs") {
         console.log("in the test data table", tableName);
         this.columns = [
+          {
+            columnDef: "select",
+            header: null,
+            cell: null
+          },
           {
             columnDef: "sku",
             header: "SKU",
@@ -155,8 +225,8 @@ export class LogDataTableComponent implements OnInit {
           },
           {
             columnDef: "action",
-            header: "",
-            cell: (element: any) => null
+            header: null,
+            cell: null
           }
         ];
 

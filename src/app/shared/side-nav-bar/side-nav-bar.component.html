@@ -9,7 +9,13 @@
     <div style="margin-top: 20px;">
       <mat-nav-list
         ><mat-list-item>
-          <mat-icon *ngIf="!_toggleIsExpend" mat-list-icon>people</mat-icon>
+          <mat-icon
+            *ngIf="!_toggleIsExpend"
+            data-toggle="tooltip"
+            title="Employee"
+            mat-list-icon
+            >people</mat-icon
+          >
           <span
             *ngIf="_toggleIsExpend"
             data-toggle="tooltip"
@@ -21,7 +27,13 @@
       >
       <mat-nav-list
         ><mat-list-item>
-          <mat-icon *ngIf="!_toggleIsExpend" mat-list-icon>money</mat-icon>
+          <mat-icon
+            *ngIf="!_toggleIsExpend"
+            data-toggle="tooltip"
+            title="Tax Rates"
+            mat-list-icon
+            >money</mat-icon
+          >
           <span
             *ngIf="_toggleIsExpend"
             data-toggle="tooltip"
@@ -33,7 +45,11 @@
       >
       <mat-nav-list>
         <mat-list-item>
-          <mat-icon *ngIf="!_toggleIsExpend" mat-list-icon
+          <mat-icon
+            *ngIf="!_toggleIsExpend"
+            data-toggle="tooltip"
+            title="Items Master"
+            mat-list-icon
             >assignment_turned_in</mat-icon
           >
 
@@ -101,7 +117,13 @@
       </mat-nav-list>
       <mat-nav-list>
         <mat-list-item>
-          <mat-icon *ngIf="!_toggleIsExpend" mat-list-icon>device_hub</mat-icon>
+          <mat-icon
+            *ngIf="!_toggleIsExpend"
+            data-toggle="tooltip"
+            title="Item Groups"
+            mat-list-icon
+            >device_hub</mat-icon
+          >
           <h4 mat-line *ngIf="_toggleIsExpend">
             <mat-accordion multi="true" [displayMode]="displayMode">
               <mat-expansion-panel class="no-shadow">
@@ -140,7 +162,13 @@
       </mat-nav-list>
       <mat-nav-list
         ><mat-list-item>
-          <mat-icon *ngIf="!_toggleIsExpend" mat-list-icon>note_add</mat-icon>
+          <mat-icon
+            *ngIf="!_toggleIsExpend"
+            data-toggle="tooltip"
+            title="POSA"
+            mat-list-icon
+            >note_add</mat-icon
+          >
           <span
             *ngIf="_toggleIsExpend"
             data-toggle="tooltip"
@@ -152,7 +180,11 @@
       >
       <mat-nav-list
         ><mat-list-item>
-          <mat-icon *ngIf="!_toggleIsExpend" mat-list-icon
+          <mat-icon
+            *ngIf="!_toggleIsExpend"
+            data-toggle="tooltip"
+            title="Order"
+            mat-list-icon
             >import_export</mat-icon
           >
           <span
