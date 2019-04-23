@@ -208,7 +208,7 @@ export class LogDataTableComponent implements OnInit {
    */
 
   onPrintInvoice() {
-    console.log("selectedDataForPrint data", this.selectedDataForPrint);
+    // console.log("selectedDataForPrint data", this.selectedDataForPrint);
     this._loglistingService.getTestDataToPrint(this.selectedDataForPrint);
     this._printDocumentService.printDocument(
       "invoice",

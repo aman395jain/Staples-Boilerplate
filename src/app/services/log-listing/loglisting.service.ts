@@ -4,7 +4,7 @@ import { Response } from "@angular/http";
 import { map, catchError } from "rxjs/operators";
 
 import { Loglist } from "../../models/loglist.model";
-import { Subject, Observable } from "rxjs";
+import { Observable, BehaviorSubject } from "rxjs";
 
 /**
  * @ngdoc service
@@ -17,7 +17,7 @@ import { Subject, Observable } from "rxjs";
 @Injectable()
 export class LoglistingService {
   private _serviceUrl = "";
-  private testDataToPrintDoc = new Subject<any>();
+  private testDataToPrintDoc = new BehaviorSubject<any>(null);
 
   constructor(private http: HttpClient) {}
 
@@ -69,6 +69,6 @@ export class LoglistingService {
   }
 
   setTestDataToPrint(): Observable<any> {
-    return this.testDataToPrintDoc.asObservable();
+    return this.testDataToPrintDoc;
   }
 }

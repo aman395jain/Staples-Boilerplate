@@ -1,5 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { LoglistingService } from "src/app/services/log-listing/loglisting.service";
 
 @Component({
   selector: "app-print-document-layout",
@@ -7,11 +6,7 @@ import { LoglistingService } from "src/app/services/log-listing/loglisting.servi
   styleUrls: ["./print-document-layout.component.scss"]
 })
 export class PrintDocumentLayoutComponent implements OnInit {
-  constructor(private loglistingService: LoglistingService) {}
+  constructor() {}
 
-  ngOnInit() {
-    this.loglistingService.setTestDataToPrint().subscribe(data => {
-      console.log("in the print document", data);
-    });
-  }
+  ngOnInit() {}
 }
