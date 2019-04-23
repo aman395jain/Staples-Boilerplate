@@ -6,160 +6,164 @@
     opened="true"
     class="nav-bar-expandable"
   >
-    <mat-nav-list
-      ><mat-list-item>
-        <mat-icon *ngIf="!_toggleIsExpend" mat-list-icon>people</mat-icon>
-        <span
-          *ngIf="_toggleIsExpend"
-          data-toggle="tooltip"
-          title="Employee"
-          (click)="getElementNameTest('Employee')"
-          >Employee</span
-        ></mat-list-item
-      ></mat-nav-list
-    >
-    <mat-nav-list
-      ><mat-list-item>
-        <mat-icon *ngIf="!_toggleIsExpend" mat-list-icon>money</mat-icon>
-        <span
-          *ngIf="_toggleIsExpend"
-          data-toggle="tooltip"
-          title="Tax Rates"
-          (click)="getElementNameTest('Tax_Rates')"
-          >Tax Rates</span
-        ></mat-list-item
-      ></mat-nav-list
-    >
-    <mat-nav-list>
-      <mat-list-item>
-        <mat-icon *ngIf="!_toggleIsExpend" mat-list-icon
-          >assignment_turned_in</mat-icon
-        >
+    <div style="margin-top: 20px;">
+      <mat-nav-list
+        ><mat-list-item>
+          <mat-icon *ngIf="!_toggleIsExpend" mat-list-icon>people</mat-icon>
+          <span
+            *ngIf="_toggleIsExpend"
+            data-toggle="tooltip"
+            title="Employee"
+            (click)="getElementNameTest('Employee')"
+            >Employee</span
+          ></mat-list-item
+        ></mat-nav-list
+      >
+      <mat-nav-list
+        ><mat-list-item>
+          <mat-icon *ngIf="!_toggleIsExpend" mat-list-icon>money</mat-icon>
+          <span
+            *ngIf="_toggleIsExpend"
+            data-toggle="tooltip"
+            title="Tax Rates"
+            (click)="getElementNameTest('Tax_Rates')"
+            >Tax Rates</span
+          ></mat-list-item
+        ></mat-nav-list
+      >
+      <mat-nav-list>
+        <mat-list-item>
+          <mat-icon *ngIf="!_toggleIsExpend" mat-list-icon
+            >assignment_turned_in</mat-icon
+          >
 
-        <h4 mat-line *ngIf="_toggleIsExpend">
-          <mat-accordion multi="true" [displayMode]="displayMode">
-            <mat-expansion-panel class="no-shadow">
-              <mat-expansion-panel-header
-                class="mat-expansion-header-adjust nav-bar-accordian"
-                fxLayout="row"
-                [expandedHeight]="'36px'"
-                [collapsedHeight]="collapseHeight"
-              >
-                <mat-panel-title data-toggle="tooltip" title="Items Master">
-                  Items Master
-                </mat-panel-title>
-              </mat-expansion-panel-header>
-              <mat-nav-list class="ml-0" dense>
-                <mat-list-item>
-                  <a
-                    (click)="getElementNameTest('Price_Prompt_SKUs')"
-                    data-toggle="tooltip"
-                    title="Price Prompt SKUs"
-                    >Price Prompt SKUs</a
-                  >
-                </mat-list-item>
-                <mat-list-item>
-                  <a
-                    (click)="getElementNameTest('Hardware_SKUs')"
-                    data-toggle="tooltip"
-                    title="Hardware SKUs"
-                    >Hardware SKUs</a
-                  >
-                </mat-list-item>
-                <mat-list-item>
-                  <a
-                    (click)="getElementNameTest('Linked_SKUs')"
-                    data-toggle="tooltip"
-                    title="Linked SKUs"
-                    >Linked SKUs</a
-                  >
-                </mat-list-item>
-                <mat-list-item>
-                  <a
-                    (click)="getElementNameTest('Free_SKUs')"
-                    data-toggle="tooltip"
-                    title="Free SKUs"
-                    >Free SKUs</a
-                  >
-                </mat-list-item>
-                <mat-list-item>
-                  <a
-                    (click)="getElementNameTest('Age_Restricted_Special_rest')"
-                    data-toggle="tooltip"
-                    title="Age Restricted, Special rest"
-                    >Age Restricted, Special rest</a
-                  >
-                </mat-list-item>
-              </mat-nav-list>
-            </mat-expansion-panel>
-          </mat-accordion>
-        </h4>
-      </mat-list-item>
-    </mat-nav-list>
-    <mat-nav-list>
-      <mat-list-item>
-        <mat-icon *ngIf="!_toggleIsExpend" mat-list-icon>device_hub</mat-icon>
-        <h4 mat-line *ngIf="_toggleIsExpend">
-          <mat-accordion multi="true" [displayMode]="displayMode">
-            <mat-expansion-panel class="no-shadow">
-              <mat-expansion-panel-header
-                class="mat-expansion-header-adjust nav-bar-accordian"
-                fxLayout="row"
-                [expandedHeight]="'36px'"
-                [collapsedHeight]="collapseHeight"
-              >
-                <mat-panel-title data-toggle="tooltip" title="Item Groups">
-                  Item Groups
-                </mat-panel-title>
-              </mat-expansion-panel-header>
-              <mat-nav-list class="ml-0" dense>
-                <mat-list-item>
-                  <a
-                    (click)="getElementNameTest('Return_Driver_License')"
-                    data-toggle="tooltip"
-                    title="Return- Driver's License"
-                    >Return- Driver's License</a
-                  >
-                </mat-list-item>
-                <mat-list-item>
-                  <a
-                    (click)="getElementNameTest('Lowest_Price')"
-                    data-toggle="tooltip"
-                    title="Lowest Price"
-                    >Lowest Price</a
-                  >
-                </mat-list-item>
-              </mat-nav-list>
-            </mat-expansion-panel>
-          </mat-accordion>
-        </h4>
-      </mat-list-item>
-    </mat-nav-list>
-    <mat-nav-list
-      ><mat-list-item>
-        <mat-icon *ngIf="!_toggleIsExpend" mat-list-icon>note_add</mat-icon>
-        <span
-          *ngIf="_toggleIsExpend"
-          data-toggle="tooltip"
-          title="POSA"
-          (click)="getElementNameTest('POSA')"
-          >POSA</span
-        ></mat-list-item
-      ></mat-nav-list
-    >
-    <mat-nav-list
-      ><mat-list-item>
-        <mat-icon *ngIf="!_toggleIsExpend" mat-list-icon
-          >import_export</mat-icon
-        >
-        <span
-          *ngIf="_toggleIsExpend"
-          data-toggle="tooltip"
-          title="Order"
-          (click)="getElementNameTest('Order')"
-          >Order</span
-        ></mat-list-item
-      ></mat-nav-list
-    >
+          <h4 mat-line *ngIf="_toggleIsExpend">
+            <mat-accordion multi="true" [displayMode]="displayMode">
+              <mat-expansion-panel class="no-shadow">
+                <mat-expansion-panel-header
+                  class="mat-expansion-header-adjust nav-bar-accordian"
+                  fxLayout="row"
+                  [expandedHeight]="'36px'"
+                  [collapsedHeight]="collapseHeight"
+                >
+                  <mat-panel-title data-toggle="tooltip" title="Items Master">
+                    Items Master
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <mat-nav-list class="ml-0" dense>
+                  <mat-list-item>
+                    <a
+                      (click)="getElementNameTest('Price_Prompt_SKUs')"
+                      data-toggle="tooltip"
+                      title="Price Prompt SKUs"
+                      >Price Prompt SKUs</a
+                    >
+                  </mat-list-item>
+                  <mat-list-item>
+                    <a
+                      (click)="getElementNameTest('Hardware_SKUs')"
+                      data-toggle="tooltip"
+                      title="Hardware SKUs"
+                      >Hardware SKUs</a
+                    >
+                  </mat-list-item>
+                  <mat-list-item>
+                    <a
+                      (click)="getElementNameTest('Linked_SKUs')"
+                      data-toggle="tooltip"
+                      title="Linked SKUs"
+                      >Linked SKUs</a
+                    >
+                  </mat-list-item>
+                  <mat-list-item>
+                    <a
+                      (click)="getElementNameTest('Free_SKUs')"
+                      data-toggle="tooltip"
+                      title="Free SKUs"
+                      >Free SKUs</a
+                    >
+                  </mat-list-item>
+                  <mat-list-item>
+                    <a
+                      (click)="
+                        getElementNameTest('Age_Restricted_Special_rest')
+                      "
+                      data-toggle="tooltip"
+                      title="Age Restricted, Special rest"
+                      >Age Restricted, Special rest</a
+                    >
+                  </mat-list-item>
+                </mat-nav-list>
+              </mat-expansion-panel>
+            </mat-accordion>
+          </h4>
+        </mat-list-item>
+      </mat-nav-list>
+      <mat-nav-list>
+        <mat-list-item>
+          <mat-icon *ngIf="!_toggleIsExpend" mat-list-icon>device_hub</mat-icon>
+          <h4 mat-line *ngIf="_toggleIsExpend">
+            <mat-accordion multi="true" [displayMode]="displayMode">
+              <mat-expansion-panel class="no-shadow">
+                <mat-expansion-panel-header
+                  class="mat-expansion-header-adjust nav-bar-accordian"
+                  fxLayout="row"
+                  [expandedHeight]="'36px'"
+                  [collapsedHeight]="collapseHeight"
+                >
+                  <mat-panel-title data-toggle="tooltip" title="Item Groups">
+                    Item Groups
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <mat-nav-list class="ml-0" dense>
+                  <mat-list-item>
+                    <a
+                      (click)="getElementNameTest('Return_Driver_License')"
+                      data-toggle="tooltip"
+                      title="Return- Driver's License"
+                      >Return- Driver's License</a
+                    >
+                  </mat-list-item>
+                  <mat-list-item>
+                    <a
+                      (click)="getElementNameTest('Lowest_Price')"
+                      data-toggle="tooltip"
+                      title="Lowest Price"
+                      >Lowest Price</a
+                    >
+                  </mat-list-item>
+                </mat-nav-list>
+              </mat-expansion-panel>
+            </mat-accordion>
+          </h4>
+        </mat-list-item>
+      </mat-nav-list>
+      <mat-nav-list
+        ><mat-list-item>
+          <mat-icon *ngIf="!_toggleIsExpend" mat-list-icon>note_add</mat-icon>
+          <span
+            *ngIf="_toggleIsExpend"
+            data-toggle="tooltip"
+            title="POSA"
+            (click)="getElementNameTest('POSA')"
+            >POSA</span
+          ></mat-list-item
+        ></mat-nav-list
+      >
+      <mat-nav-list
+        ><mat-list-item>
+          <mat-icon *ngIf="!_toggleIsExpend" mat-list-icon
+            >import_export</mat-icon
+          >
+          <span
+            *ngIf="_toggleIsExpend"
+            data-toggle="tooltip"
+            title="Order"
+            (click)="getElementNameTest('Order')"
+            >Order</span
+          ></mat-list-item
+        ></mat-nav-list
+      >
+    </div>
   </mat-drawer>
 </mat-drawer-container>
