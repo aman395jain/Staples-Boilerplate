@@ -44,7 +44,12 @@ export class LogDiscriptionComponent implements OnInit {
       sellPrice: "SELL PRICE",
       sku: "SKU",
       state: "STATE",
-      store: "STORE"
+      store: "STORE",
+      empName: "EMPLOYEE NAME",
+      empPass: "PASSWORD",
+      empRole: "EMPLOYEE ROLE",
+      taxRate: "TAX RATE",
+      taxState: "TAX STATE"
     };
 
     this.dataDisplay = this.dataDiscriptionKeysToDisplay.map(data => {

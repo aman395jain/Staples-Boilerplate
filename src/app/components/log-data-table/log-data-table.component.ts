@@ -61,11 +61,6 @@ export class LogDataTableComponent implements OnInit {
         cell: (element: any) => `${element.permPrice}`
       },
       {
-        columnDef: "posId",
-        header: "POSITION ID",
-        cell: (element: any) => `${element.posId}`
-      },
-      {
         columnDef: "barCode",
         header: "BAR CODE",
         cell: (element: any) => `${element.posId}`
