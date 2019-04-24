@@ -3,14 +3,16 @@
     <thead>
       <tr>
         <th scope="col" *ngFor="let headerRow of _keysForPrintedTable">
-          {{ headerRow }}
+          <span *ngIf="!(headerRow === 'checked')">{{ headerRow }}</span>
         </th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let printedData of _dataForPrint">
         <td *ngFor="let headerRow of _keysForPrintedTable">
-          {{ printedData[headerRow] }}
+          <span *ngIf="!(headerRow === 'checked')">{{
+            printedData[headerRow]
+          }}</span>
         </td>
       </tr>
     </tbody>
