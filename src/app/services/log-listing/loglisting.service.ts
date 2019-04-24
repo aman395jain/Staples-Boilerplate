@@ -55,8 +55,10 @@ export class LoglistingService {
     } else if (entity === "Lowest_Price") {
       this._serviceUrl = "http://www.mocky.io/v2/5cbffef9310000580b035f87";
     } else if (entity === "POSA") {
+      //changes reqired according to service
       this._serviceUrl = "http://www.mocky.io/v2/5cb860794c0000c51ad3d50d";
     } else if (entity === "Order") {
+      //changes reqired according to service
       this._serviceUrl = "http://www.mocky.io/v2/5cb860794c0000c51ad3d50d";
     } else {
       this._serviceUrl = "http://www.mocky.io/v2/5cb860794c0000c51ad3d50d";
