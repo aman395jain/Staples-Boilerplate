@@ -231,7 +231,6 @@ export class LogDataTableComponent implements OnInit {
 
         this.displayedColumns = this.columns.map(c => c.columnDef);
       } else if (tableName === "Hardware_SKUs") {
-        console.log("in the test data table", tableName);
         this.columns = [
           {
             columnDef: "select",
@@ -267,7 +266,6 @@ export class LogDataTableComponent implements OnInit {
 
         this.displayedColumns = this.columns.map(c => c.columnDef);
       } else if (tableName === "Free_SKUs") {
-        console.log("in the test data table", tableName);
         this.columns = [
           {
             columnDef: "select",
@@ -303,6 +301,116 @@ export class LogDataTableComponent implements OnInit {
             columnDef: "freeSkuPrice",
             header: "FREE SKU PRICE",
             cell: (element: any) => `${element.freeSkuPrice}`
+          },
+          {
+            columnDef: "action",
+            header: null,
+            cell: null
+          }
+        ];
+
+        this.displayedColumns = this.columns.map(c => c.columnDef);
+      } else if (tableName === "Age_Restricted_Special_rest") {
+        this.columns = [
+          {
+            columnDef: "select",
+            header: null,
+            cell: null
+          },
+          {
+            columnDef: "sku",
+            header: "SKU No.",
+            cell: (element: any) => `${element.sku}`
+          },
+          {
+            columnDef: "itemDesc",
+            header: "ITEM DESCRIPTION",
+            cell: (element: any) => `${element.itemDesc}`
+          },
+          {
+            columnDef: "retailPrice",
+            header: "RETAIL PRICE",
+            cell: (element: any) => `${element.retailPrice}`
+          },
+          {
+            columnDef: "barCode",
+            header: "UPC",
+            cell: (element: any) => `${element.barCode}`
+          },
+          {
+            columnDef: "itemGroupID",
+            header: "ITEM GROUP ID",
+            cell: (element: any) => `${element.itemGroupID}`
+          },
+          {
+            columnDef: "alertCode",
+            header: "ALERT CODE",
+            cell: (element: any) => `${element.alertCode}`
+          },
+          {
+            columnDef: "action",
+            header: null,
+            cell: null
+          }
+        ];
+
+        this.displayedColumns = this.columns.map(c => c.columnDef);
+      } else if (tableName === "Return_Driver_License") {
+        this.columns = [
+          {
+            columnDef: "select",
+            header: null,
+            cell: null
+          },
+          {
+            columnDef: "licenseNo",
+            header: "LICENSE No.",
+            cell: (element: any) => `${element.licenseNo}`
+          },
+          {
+            columnDef: "licenseFrontPage",
+            header: "LICENSE FRONT IMAGE",
+            cell: (element: any) => `${element.licenseFrontPage}`
+          },
+          {
+            columnDef: "licenseBackPage",
+            header: "LICENSE BACK IMAGE",
+            cell: (element: any) => `${element.licenseBackPage}`
+          },
+          {
+            columnDef: "action",
+            header: null,
+            cell: null
+          }
+        ];
+
+        this.displayedColumns = this.columns.map(c => c.columnDef);
+      } else if (tableName === "Lowest_Price") {
+        this.columns = [
+          {
+            columnDef: "select",
+            header: null,
+            cell: null
+          },
+          {
+            columnDef: "skuNo",
+            header: "SKU No.",
+            cell: (element: any) => `${element.skuNo}`
+          },
+          {
+            columnDef: "lastTransation",
+            header: "LAST TRANSTION DATE",
+            cell: (element: any) => `${element.lastTransation}`
+          },
+          {
+            columnDef: "lowPrice",
+            header: "LOWEST PRICE",
+            cell: (element: any) => `${element.lowPrice}`
+          },
+          {
+            columnDef: "reason",
+            header: "REASON",
+            cell: (element: any) => `${element.reason}`
           },
           {
             columnDef: "action",

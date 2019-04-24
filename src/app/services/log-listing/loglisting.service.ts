@@ -49,11 +49,11 @@ export class LoglistingService {
     } else if (entity === "Free_SKUs") {
       this._serviceUrl = "http://www.mocky.io/v2/5cbeff80300000bb069ce463";
     } else if (entity === "Age_Restricted_Special_rest") {
-      this._serviceUrl = "http://www.mocky.io/v2/5cb860794c0000c51ad3d50d";
+      this._serviceUrl = "http://www.mocky.io/v2/5cbff17f310000090a035f48";
     } else if (entity === "Return_Driver_License") {
-      this._serviceUrl = "http://www.mocky.io/v2/5cb860794c0000c51ad3d50d";
+      this._serviceUrl = "http://www.mocky.io/v2/5cbff4ce310000170e035f4e";
     } else if (entity === "Lowest_Price") {
-      this._serviceUrl = "http://www.mocky.io/v2/5cb860794c0000c51ad3d50d";
+      this._serviceUrl = "http://www.mocky.io/v2/5cbffef9310000580b035f87";
     } else if (entity === "POSA") {
       this._serviceUrl = "http://www.mocky.io/v2/5cb860794c0000c51ad3d50d";
     } else if (entity === "Order") {
