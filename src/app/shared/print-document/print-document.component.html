@@ -2,26 +2,16 @@
   <table class="table">
     <thead>
       <tr>
-        <th scope="col">barCode</th>
-        <th scope="col">itemDesc</th>
-        <th scope="col">permPrice</th>
-        <th scope="col">posId</th>
-        <th scope="col">profit</th>
-        <th scope="col">sellPrice</th>
-        <th scope="col">sku</th>
+        <th scope="col" *ngFor="let headerRow of _keysForPrintedTable">
+          {{ headerRow }}
+        </th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let printedData of _dataForPrint">
-        <td>
-          {{ printedData.barCode }}
+        <td *ngFor="let headerRow of _keysForPrintedTable">
+          {{ printedData[headerRow] }}
         </td>
-        <td>{{ printedData.itemDesc }}</td>
-        <td>{{ printedData.permPrice }}</td>
-        <td>{{ printedData.posId }}</td>
-        <td>{{ printedData.profit }}</td>
-        <td>{{ printedData.sellPrice }}</td>
-        <td>{{ printedData.sku }}</td>
       </tr>
     </tbody>
   </table>

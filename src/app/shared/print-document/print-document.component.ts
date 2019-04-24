@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 
 import { PrintDocumentService } from "src/app/services/print-document/print-document.service";
 import { LoglistingService } from "src/app/services/log-listing/loglisting.service";
+import { Observable } from "rxjs";
 
 @Component({
   selector: "app-print-document",
@@ -10,6 +11,8 @@ import { LoglistingService } from "src/app/services/log-listing/loglisting.servi
 })
 export class PrintDocumentComponent implements OnInit {
   _dataForPrint: {};
+  _keysForPrintedTable = [];
+  _rowsForPrint = {};
   constructor(
     private printService: PrintDocumentService,
     private loglistingService: LoglistingService
@@ -19,8 +22,12 @@ export class PrintDocumentComponent implements OnInit {
     this.printService.onDataReady();
     // debugger;
     this.loglistingService.setTestDataToPrint().subscribe(printedData => {
-      this._dataForPrint = printedData;
-      console.log("in the print document", this._dataForPrint);
+      if (printedData.length > 0) {
+        this._dataForPrint = printedData;
+        this._keysForPrintedTable = Object.keys(printedData[0]);
+      } else {
+        console.log("in the print component", printedData.length);
+      }
     });
   }
 }

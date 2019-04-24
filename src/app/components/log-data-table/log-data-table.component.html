@@ -43,10 +43,11 @@
                 (click)="$event.stopPropagation()"
                 [(ngModel)]="selectAll"
                 (change)="updateCheck()"
+                [checked]="checkBoxStatusForHeader()"
               ></mat-checkbox></span
           ></mat-header-cell>
 
-          <mat-cell *cdkCellDef="let row; let i = index"
+          <mat-cell *cdkCellDef="let row"
             ><span
               *ngIf="
                 !(
@@ -60,7 +61,7 @@
             ><span *ngIf="column.columnDef === 'select'"
               ><mat-checkbox
                 (click)="$event.stopPropagation()"
-                (change)="checkedRowForPrint(row, i, $event)"
+                (change)="checkedRowForPrint(row, $event)"
                 [checked]="isSelected(row)"
               ></mat-checkbox
             ></span>

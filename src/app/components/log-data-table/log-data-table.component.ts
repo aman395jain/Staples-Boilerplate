@@ -467,37 +467,43 @@ export class LogDataTableComponent implements OnInit {
    */
 
   onPrintInvoice() {
-    // console.log("selectedDataForPrint data", this.selectedDataForPrint);
+    console.log("selectedDataForPrint data", this.selectedDataForPrint);
     this._loglistingService.getTestDataToPrint(this.selectedDataForPrint);
     this._printDocumentService.printDocument("invoice");
   }
 
   // checkbox status
-  checkedRowForPrint(selectedRows, index, event) {
+  checkedRowForPrint(selectedRows, event) {
     if (event.checked) {
       // console.log("the printed data", this.printedData);
       selectedRows.checked = true;
-      selectedRows.index = index;
-
+      // selectedRows.index = index;
       this.selectedDataForPrint.push(selectedRows);
     } else {
       // uncheck case
-      // console.log("the printed data", this.printedData);
-      selectedRows.checked = false;
+      // console.log("the printed data", selectedRows);
+      // debugger;
+      let sku = selectedRows.sku;
       this.selectedDataForPrint.splice(
         this.selectedDataForPrint.findIndex(function(i) {
-          return i.index === index;
+          // debugger;
+          return i.sku === sku;
         }),
         1
       );
+
+      selectedRows.checked = false;
     }
+
+    // console.log("selectedDataForPrint", this.selectedDataForPrint);
+  }
+
+  checkBoxStatusForHeader() {
     if (this.printedData.every(dataRow => dataRow.checked)) {
       this.selectAll = true;
     } else {
       this.selectAll = false;
     }
-
-    // console.log("selectedDataForPrint", this.selectedDataForPrint);
   }
 
   /**
