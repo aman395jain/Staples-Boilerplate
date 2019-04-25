@@ -11,6 +11,9 @@
 .footer {
   position: fixed;
   bottom: 0;
+  .footer-message {
+    color: #009900;
+  }
 }
 
 @media screen {
