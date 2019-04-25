@@ -8,19 +8,12 @@ import { NavBarService } from "src/app/services/nav-bar/nav-bar.service";
 })
 export class HeaderComponent implements OnInit {
   isMenuOpen = false;
-  constructor(private navBarService: NavBarService) {}
+  constructor(private _navBarService: NavBarService) {}
 
   ngOnInit() {}
 
   onToolbarMenuToggle() {
     this.isMenuOpen = !this.isMenuOpen;
-    // console.log("On toolbar toggled", this.isMenuOpen);
-    this.navBarService.setToggleStatus(this.isMenuOpen);
-
-    // if(!this.isMenuOpen) {
-    //   this.contentMargin = 70;
-    // } else {
-    //   this.contentMargin = 240;
-    // }
+    this._navBarService.setToggleStatus(this.isMenuOpen);
   }
 }

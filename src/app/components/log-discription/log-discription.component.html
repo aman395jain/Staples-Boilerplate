@@ -3,15 +3,17 @@
     <div class="col-md-4" *ngFor="let data of (dataDisplayOnModal | keyvalue)">
       <table class="table table-bordered">
         <thead>
-          <tr>
+          <tr *ngIf="!(data.key === 'checked' || data.key === 'index')">
             <th class="table-header">
-              {{ data.key }}
+              <span>{{ data.key }}</span>
             </th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td *ngIf="!(data.key === 'BAR CODE')">{{ data.value }}</td>
+          <tr *ngIf="!(data.key === 'checked' || data.key === 'index')">
+            <td *ngIf="!(data.key === 'BAR CODE')">
+              {{ data.value }}
+            </td>
             <td *ngIf="data.key === 'BAR CODE'">
               <ngx-barcode
                 [bc-value]="data.value"
