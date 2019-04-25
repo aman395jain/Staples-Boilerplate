@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 
 import { PrintDocumentService } from "src/app/services/print-document/print-document.service";
 import { LoglistingService } from "src/app/services/log-listing/loglisting.service";
+import { DashboardHeaderNameConverstionService } from "src/app/services/dashboard-header-name-converstion.service";
 
 @Component({
   selector: "app-print-document",
@@ -12,6 +13,7 @@ export class PrintDocumentComponent implements OnInit {
   _dataForPrint: {};
   _keysForPrintedTable = [];
   _rowsForPrint = {};
+  printedDataNew = {};
   keyMap = {
     barCode: "BAR CODE",
     itemDesc: "ITEM DESCRIPION",
@@ -32,11 +34,12 @@ export class PrintDocumentComponent implements OnInit {
     itemGroupID: "ITEM GROUP ID",
     warranty: "WARRANTY"
   };
-  printedDataNew = {};
+  _rowTableData = [];
 
   constructor(
     private printService: PrintDocumentService,
-    private loglistingService: LoglistingService
+    private loglistingService: LoglistingService,
+    private _dashboardHeaderNameConverstionService: DashboardHeaderNameConverstionService
   ) {}
 
   ngOnInit() {
@@ -45,19 +48,11 @@ export class PrintDocumentComponent implements OnInit {
     this.loglistingService.setTestDataToPrint().subscribe(printedData => {
       if (printedData.length > 0) {
         this._dataForPrint = printedData;
-        this._keysForPrintedTable = Object.keys(printedData[0]);
-        this.printedDataNew = printedData.map(data => {
-          return Object.keys(data).reduce((prev, next) => {
-            if (next in this.keyMap) {
-              prev[this.keyMap[next]] = data[next];
-            } else {
-              prev[next] = data[next];
-            }
-            return prev;
-          }, {});
-        });
-
-        console.log("printed data", this.printedDataNew);
+        this._rowTableData = Object.keys(printedData[0]);
+        this.printedDataNew = this._dashboardHeaderNameConverstionService.headerNameConvert(
+          printedData
+        );
+        this._keysForPrintedTable = Object.keys(this.printedDataNew[0]);
       } else {
         console.log("in the print component", printedData.length);
       }

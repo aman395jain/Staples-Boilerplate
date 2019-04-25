@@ -78,8 +78,9 @@ export class LogDataTableComponent implements OnInit {
       this._loglistingService.getLogList().subscribe(data => {
         this.printedData = data;
 
-        data.map(dataValue => {
+        data.map((dataValue, i) => {
           dataValue["checked"] = false;
+          dataValue["index"] = i;
         });
         // console.log("data value", data);
         this.dataByAPI = new MatTableDataSource(data);
@@ -424,6 +425,10 @@ export class LogDataTableComponent implements OnInit {
 
       this._loglistingService.getLogListForEntity(tableName).subscribe(data => {
         this.printedData = data;
+        data.map((dataValue, i) => {
+          dataValue["checked"] = false;
+          dataValue["index"] = i;
+        });
         this.dataByAPI = new MatTableDataSource(data);
         this.dataByAPI.sort = this.sort;
         this.dataByAPI.paginator = this.paginator;
@@ -475,27 +480,20 @@ export class LogDataTableComponent implements OnInit {
   // checkbox status
   checkedRowForPrint(selectedRows, event) {
     if (event.checked) {
-      // console.log("the printed data", this.printedData);
       selectedRows.checked = true;
-      // selectedRows.index = index;
       this.selectedDataForPrint.push(selectedRows);
     } else {
       // uncheck case
-      // console.log("the printed data", selectedRows);
-      // debugger;
-      let sku = selectedRows.sku;
+      let index = selectedRows.index;
       this.selectedDataForPrint.splice(
         this.selectedDataForPrint.findIndex(function(i) {
-          // debugger;
-          return i.sku === sku;
+          return i.index === index;
         }),
         1
       );
 
       selectedRows.checked = false;
     }
-
-    // console.log("selectedDataForPrint", this.selectedDataForPrint);
   }
 
   checkBoxStatusForHeader() {
@@ -519,6 +517,10 @@ export class LogDataTableComponent implements OnInit {
     return false;
   }
 
+  /**
+   * updateCheck: Check the status of header check-box.
+   * Also push the data in case of selecting all rows.
+   */
   updateCheck() {
     this.selectedDataForPrint = [];
     if (this.selectAll === true) {
