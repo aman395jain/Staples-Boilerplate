@@ -30,10 +30,7 @@ export class LogDataTableComponent implements OnInit {
 
   displayedColumns = {};
   dataByAPI: MatTableDataSource<any>;
-
-  storeData = [];
   storeUniqueData = [];
-
   constructor(
     private _loglistingService: LoglistingService,
     private _dialog: MatDialog,
@@ -82,14 +79,13 @@ export class LogDataTableComponent implements OnInit {
         this.printedData = data;
 
         let storeData = [];
-        let storeUniqueData = [];
         data.map((dataValue, i) => {
           dataValue["checked"] = false;
           dataValue["index"] = i;
           storeData.push(dataValue.store);
         });
-        storeUniqueData = this.uniqueStore(storeData);
-        console.log("data value", storeUniqueData);
+        this.storeUniqueData = this.uniqueStore(storeData);
+        console.log("data value", this.storeUniqueData);
 
         this.dataByAPI = new MatTableDataSource(data);
         this.dataByAPI.sort = this.sort;
@@ -433,7 +429,6 @@ export class LogDataTableComponent implements OnInit {
 
       this._loglistingService.getLogListForEntity(tableName).subscribe(data => {
         let storeData = [];
-        let storeUniqueData = [];
         this.printedData = data;
         data.map((dataValue, i) => {
           dataValue["checked"] = false;
@@ -441,8 +436,8 @@ export class LogDataTableComponent implements OnInit {
           storeData.push(dataValue.store);
         });
 
-        storeUniqueData = this.uniqueStore(storeData);
-        console.log("unique store value", storeUniqueData);
+        this.storeUniqueData = this.uniqueStore(storeData);
+        console.log("unique store value", this.storeUniqueData);
         this.dataByAPI = new MatTableDataSource(data);
         this.dataByAPI.sort = this.sort;
         this.dataByAPI.paginator = this.paginator;

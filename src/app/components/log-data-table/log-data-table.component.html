@@ -9,9 +9,7 @@
             data-show-subtext="true"
             data-live-search="true"
           >
-            <option>store1</option>
-            <option>store2</option>
-            <option>store3</option>
+            <option *ngFor="let store of storeUniqueData">{{ store }}</option>
           </select>
         </div>
         <div class="col-md-6"></div>
