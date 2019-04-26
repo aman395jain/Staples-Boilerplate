@@ -22,15 +22,16 @@ export class LogDataTableComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  columns = [];
-  printedData = [];
+  columns: any = [];
+  printedData: any = [];
   checkBoxStatus: boolean = false;
-  selectedDataForPrint = [];
-  selectAll = false;
+  selectedDataForPrint: any = [];
+  selectAll: boolean = false;
+  selectedOption: string;
 
-  displayedColumns = {};
+  displayedColumns: object = {};
   dataByAPI: MatTableDataSource<any>;
-  storeUniqueData = [];
+  storeUniqueData: any = [];
   constructor(
     private _loglistingService: LoglistingService,
     private _dialog: MatDialog,
