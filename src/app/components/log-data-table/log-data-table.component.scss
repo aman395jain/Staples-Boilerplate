@@ -2,6 +2,16 @@
   margin-top: 2%;
   border-radius: 6px;
   display: inline-block;
+  .store-name {
+    font-size: medium;
+    margin-right: 10px;
+    font-weight: bold;
+    color: #cc0000;
+  }
+  .store-dropdown {
+    height: 25px;
+    padding: 0 10px;
+  }
   .print-document {
     margin: 8% auto;
     color: #cc0000;

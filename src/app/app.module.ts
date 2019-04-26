@@ -38,6 +38,7 @@ import { PrintDocumentLayoutComponent } from "./shared/print-document-layout/pri
 import { NavBarService } from "./services/nav-bar/nav-bar.service";
 import { LoglistingService } from "./services/log-listing/loglisting.service";
 import { PrintDocumentService } from "./services/print-document/print-document.service";
+import { TableForStorePipe } from "./pipes/tableForStoreNumber/table-for-store.pipe";
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { PrintDocumentService } from "./services/print-document/print-document.s
     LogDataTableComponent,
     SideNavBarComponent,
     PrintDocumentLayoutComponent,
-    PrintDocumentComponent
+    PrintDocumentComponent,
+    TableForStorePipe
   ],
   imports: [
     BrowserModule,
