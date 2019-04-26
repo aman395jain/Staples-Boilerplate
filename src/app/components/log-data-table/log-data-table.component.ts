@@ -31,6 +31,9 @@ export class LogDataTableComponent implements OnInit {
   displayedColumns = {};
   dataByAPI: MatTableDataSource<any>;
 
+  storeData = [];
+  storeUniqueData = [];
+
   constructor(
     private _loglistingService: LoglistingService,
     private _dialog: MatDialog,
@@ -78,11 +81,16 @@ export class LogDataTableComponent implements OnInit {
       this._loglistingService.getLogList().subscribe(data => {
         this.printedData = data;
 
+        let storeData = [];
+        let storeUniqueData = [];
         data.map((dataValue, i) => {
           dataValue["checked"] = false;
           dataValue["index"] = i;
+          storeData.push(dataValue.store);
         });
-        // console.log("data value", data);
+        storeUniqueData = this.uniqueStore(storeData);
+        console.log("data value", storeUniqueData);
+
         this.dataByAPI = new MatTableDataSource(data);
         this.dataByAPI.sort = this.sort;
         this.dataByAPI.paginator = this.paginator;
@@ -424,17 +432,39 @@ export class LogDataTableComponent implements OnInit {
       }
 
       this._loglistingService.getLogListForEntity(tableName).subscribe(data => {
+        let storeData = [];
+        let storeUniqueData = [];
         this.printedData = data;
         data.map((dataValue, i) => {
           dataValue["checked"] = false;
           dataValue["index"] = i;
+          storeData.push(dataValue.store);
         });
+
+        storeUniqueData = this.uniqueStore(storeData);
+        console.log("unique store value", storeUniqueData);
         this.dataByAPI = new MatTableDataSource(data);
         this.dataByAPI.sort = this.sort;
         this.dataByAPI.paginator = this.paginator;
       });
     });
   }
+
+  /**
+   * uniqueStore: find out the unique store values.
+   */
+
+  uniqueStore = storeData => {
+    let aux = {};
+    return storeData.reduce((tot, curr) => {
+      console.log("in the unique store", aux[curr]);
+      if (!aux[curr]) {
+        aux[curr] = 1;
+        tot.push(curr);
+      }
+      return tot;
+    }, []);
+  };
 
   /*
   * applyFilter to apply search on table

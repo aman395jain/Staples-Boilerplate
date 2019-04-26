@@ -21,9 +21,9 @@ export class LoglistingService {
 
   constructor(private http: HttpClient) {}
 
-  getLogList(): Observable<Loglist[]> {
+  getLogList(): Observable<any> {
     this._serviceUrl = "http://www.mocky.io/v2/5cb6bba3320000510ecd4563";
-    return this.http.get<Loglist[]>(this._serviceUrl).pipe(
+    return this.http.get<any>(this._serviceUrl).pipe(
       map((response: Response) => {
         return response;
       }),
@@ -34,7 +34,7 @@ export class LoglistingService {
     );
   }
 
-  getLogListForEntity(entity): Observable<Loglist[]> {
+  getLogListForEntity(entity): Observable<any> {
     // console.log("in the loglist service", entity);
     if (entity === "Price_Prompt_SKUs") {
       this._serviceUrl = "http://www.mocky.io/v2/5cac66ee300000b723103596";
@@ -63,7 +63,7 @@ export class LoglistingService {
     } else {
       this._serviceUrl = "http://www.mocky.io/v2/5cb860794c0000c51ad3d50d";
     }
-    return this.http.get<Loglist[]>(this._serviceUrl);
+    return this.http.get<any>(this._serviceUrl);
   }
 
   getTestDataToPrint(printedData) {
