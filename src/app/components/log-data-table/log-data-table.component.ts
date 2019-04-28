@@ -12,6 +12,7 @@ import { LogDiscriptionComponent } from "../log-discription/log-discription.comp
 import { LoglistingService } from "src/app/services/log-listing/loglisting.service";
 import { NavBarService } from "src/app/services/nav-bar/nav-bar.service";
 import { PrintDocumentService } from "src/app/services/print-document/print-document.service";
+import { element } from "@angular/core/src/render3/instructions";
 
 @Component({
   selector: "app-log-data-table",
@@ -430,6 +431,7 @@ export class LogDataTableComponent implements OnInit {
 
       this._loglistingService.getLogListForEntity(tableName).subscribe(data => {
         let storeData = [];
+        this.storeUniqueData = [];
         this.printedData = data;
         data.map((dataValue, i) => {
           dataValue["checked"] = false;
@@ -453,7 +455,6 @@ export class LogDataTableComponent implements OnInit {
   uniqueStore = storeData => {
     let aux = {};
     return storeData.reduce((tot, curr) => {
-      console.log("in the unique store", aux[curr]);
       if (!aux[curr]) {
         aux[curr] = 1;
         tot.push(curr);
@@ -484,6 +485,11 @@ export class LogDataTableComponent implements OnInit {
     _dialogConfig.width = "50%";
     _dialogConfig.height = "50%";
     this._dialog.open(LogDiscriptionComponent, _dialogConfig);
+  }
+
+  onSelectStore(event): void {
+    // event will give you full breif of action
+    console.log(event.target.value);
   }
 
   isSortingDisabled(columnDef) {

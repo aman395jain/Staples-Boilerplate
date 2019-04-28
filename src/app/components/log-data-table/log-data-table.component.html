@@ -8,7 +8,9 @@
             class="form-control store-dropdown"
             data-show-subtext="true"
             data-live-search="true"
+            (change)="onSelectStore($event)"
           >
+            <option disabled>choose a store</option>
             <option *ngFor="let store of storeUniqueData" [value]="store">{{
               store
             }}</option>
