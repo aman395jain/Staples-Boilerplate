@@ -6,7 +6,10 @@
           <span class="store-name">Store</span>
           <mat-form-field>
             <!-- <mat-label>Choose a store</mat-label> -->
-            <mat-select (selectionChange)="onSelectStore($event)">
+            <mat-select
+              (selectionChange)="onSelectStore($event)"
+              [(value)]="selectedOption"
+            >
               <mat-option
                 *ngFor="let store of storeUniqueData"
                 [value]="store"
@@ -39,11 +42,7 @@
       </div>
     </div>
     <div class="col-md-12 log-list-table">
-      <mat-table
-        #table
-        [dataSource]="dataByAPI | tableForStore: selectedStoreValue"
-        matSort
-      >
+      <mat-table #table [dataSource]="dataByAPI" matSort>
         <ng-container
           *ngFor="let column of columns"
           [cdkColumnDef]="column.columnDef"

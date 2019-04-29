@@ -27,7 +27,7 @@ export class LogDataTableComponent implements OnInit {
   checkBoxStatus: boolean = false;
   selectedDataForPrint: any = [];
   selectAll: boolean = false;
-  selectedOption: string;
+  selectedOption: string = "All";
   selectedStoreValue: string = "8501";
 
   displayedColumns: object = {};
@@ -81,6 +81,7 @@ export class LogDataTableComponent implements OnInit {
         this.printedData = data;
 
         let storeData = [];
+        storeData.push("All");
         data.map((dataValue, i) => {
           dataValue["checked"] = false;
           dataValue["index"] = i;
@@ -430,7 +431,7 @@ export class LogDataTableComponent implements OnInit {
       }
 
       this._loglistingService.getLogListForEntity(tableName).subscribe(data => {
-        let storeData = [];
+        let storeData = ["All"];
         this.storeUniqueData = [];
         this.printedData = data;
         data.map((dataValue, i) => {
@@ -438,6 +439,7 @@ export class LogDataTableComponent implements OnInit {
           dataValue["index"] = i;
           storeData.push(dataValue.store);
         });
+        this.selectedOption = "All";
 
         this.storeUniqueData = this.uniqueStore(storeData);
         console.log("unique store value", this.storeUniqueData);
@@ -466,7 +468,12 @@ export class LogDataTableComponent implements OnInit {
   applyFilterOnStore(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
-    this.dataByAPI.filter = filterValue;
+    console.log("in the search filter", this.dataByAPI);
+    if (filterValue === "all") {
+      this.dataByAPI.filter = null;
+    } else {
+      this.dataByAPI.filter = filterValue;
+    }
   }
 
   /*
