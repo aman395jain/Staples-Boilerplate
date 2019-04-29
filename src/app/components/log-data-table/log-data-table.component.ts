@@ -12,7 +12,6 @@ import { LogDiscriptionComponent } from "../log-discription/log-discription.comp
 import { LoglistingService } from "src/app/services/log-listing/loglisting.service";
 import { NavBarService } from "src/app/services/nav-bar/nav-bar.service";
 import { PrintDocumentService } from "src/app/services/print-document/print-document.service";
-import { element } from "@angular/core/src/render3/instructions";
 
 @Component({
   selector: "app-log-data-table",
@@ -29,6 +28,7 @@ export class LogDataTableComponent implements OnInit {
   selectedDataForPrint: any = [];
   selectAll: boolean = false;
   selectedOption: string;
+  selectedDropDownValue: string;
 
   displayedColumns: object = {};
   dataByAPI: MatTableDataSource<any>;
@@ -38,7 +38,9 @@ export class LogDataTableComponent implements OnInit {
     private _dialog: MatDialog,
     private _navBarService: NavBarService,
     private _printDocumentService: PrintDocumentService
-  ) {}
+  ) {
+    this.selectedDropDownValue = "";
+  }
 
   ngOnInit() {
     this.columns = [
@@ -438,6 +440,7 @@ export class LogDataTableComponent implements OnInit {
           dataValue["index"] = i;
           storeData.push(dataValue.store);
         });
+        this.selectedDropDownValue = "";
 
         this.storeUniqueData = this.uniqueStore(storeData);
         console.log("unique store value", this.storeUniqueData);
@@ -462,6 +465,15 @@ export class LogDataTableComponent implements OnInit {
       return tot;
     }, []);
   };
+
+  applyFilterOnStore(filterValue: string) {
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
+    this.dataByAPI.filter = filterValue;
+    console.log("data after filter in store", this.dataByAPI);
+    // this.dataByAPI.data = this.dataByAPI.filteredData;
+    console.log("data after filter in store------", this.dataByAPI);
+  }
 
   /*
   * applyFilter to apply search on table
@@ -489,7 +501,7 @@ export class LogDataTableComponent implements OnInit {
 
   onSelectStore(event): void {
     // event will give you full breif of action
-    console.log(event.target.value);
+    this.applyFilterOnStore(event.value);
   }
 
   isSortingDisabled(columnDef) {

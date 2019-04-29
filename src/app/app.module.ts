@@ -13,7 +13,8 @@ import {
   MatSidenavModule,
   MatExpansionModule,
   MatListModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MatSelectModule
 } from "@angular/material";
 import { CdkColumnDef, CdkTableModule } from "@angular/cdk/table";
 import { NgxBarcodeModule } from "ngx-barcode";
@@ -76,7 +77,8 @@ import { TableForStorePipe } from "./pipes/tableForStoreNumber/table-for-store.p
     FlexLayoutModule,
     CdkTableModule,
     CommonModule,
-    FormsModule
+    FormsModule,
+    MatSelectModule
   ],
   entryComponents: [LogDiscriptionComponent],
   providers: [
