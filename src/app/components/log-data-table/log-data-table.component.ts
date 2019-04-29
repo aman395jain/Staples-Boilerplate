@@ -28,7 +28,7 @@ export class LogDataTableComponent implements OnInit {
   selectedDataForPrint: any = [];
   selectAll: boolean = false;
   selectedOption: string;
-  selectedDropDownValue: string;
+  selectedStoreValue: string = "8501";
 
   displayedColumns: object = {};
   dataByAPI: MatTableDataSource<any>;
@@ -38,9 +38,7 @@ export class LogDataTableComponent implements OnInit {
     private _dialog: MatDialog,
     private _navBarService: NavBarService,
     private _printDocumentService: PrintDocumentService
-  ) {
-    this.selectedDropDownValue = "";
-  }
+  ) {}
 
   ngOnInit() {
     this.columns = [
@@ -89,7 +87,7 @@ export class LogDataTableComponent implements OnInit {
           storeData.push(dataValue.store);
         });
         this.storeUniqueData = this.uniqueStore(storeData);
-        console.log("data value", this.storeUniqueData);
+        // console.log("data value", this.storeUniqueData);
 
         this.dataByAPI = new MatTableDataSource(data);
         this.dataByAPI.sort = this.sort;
@@ -440,7 +438,6 @@ export class LogDataTableComponent implements OnInit {
           dataValue["index"] = i;
           storeData.push(dataValue.store);
         });
-        this.selectedDropDownValue = "";
 
         this.storeUniqueData = this.uniqueStore(storeData);
         console.log("unique store value", this.storeUniqueData);
@@ -470,9 +467,6 @@ export class LogDataTableComponent implements OnInit {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
     this.dataByAPI.filter = filterValue;
-    console.log("data after filter in store", this.dataByAPI);
-    // this.dataByAPI.data = this.dataByAPI.filteredData;
-    console.log("data after filter in store------", this.dataByAPI);
   }
 
   /*
@@ -482,6 +476,7 @@ export class LogDataTableComponent implements OnInit {
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
+    console.log("in the search filter", this.dataByAPI);
     this.dataByAPI.filter = filterValue;
   }
 
@@ -501,6 +496,8 @@ export class LogDataTableComponent implements OnInit {
 
   onSelectStore(event): void {
     // event will give you full breif of action
+    console.log("store value", event.value);
+    this.selectedStoreValue = event.value;
     this.applyFilterOnStore(event.value);
   }
 

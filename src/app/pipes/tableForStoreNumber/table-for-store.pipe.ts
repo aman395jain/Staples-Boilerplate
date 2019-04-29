@@ -5,14 +5,18 @@ import { Pipe, PipeTransform } from "@angular/core";
 })
 export class TableForStorePipe implements PipeTransform {
   transform(displayedData: any, store: any): any {
-    if (displayedData && store) {
-      displayedData.data.map(data => {
-        console.log("in the filter displayed values:", data);
-
-        console.log("in the filter store values:", store);
+    if (displayedData) {
+      console.log("in the filter displayed values:", displayedData);
+      console.log("in the filter store values:", store);
+      displayedData.data.filter(function(dataValue) {
+        return dataValue.store.includes(store);
       });
+
+      console.log(
+        "in the filter displayed values after filter:",
+        displayedData
+      );
     }
-    console.log("in the filter displayed values:", displayedData);
     if (store === undefined) {
       return displayedData;
     }
