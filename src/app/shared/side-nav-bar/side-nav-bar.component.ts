@@ -1,4 +1,10 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
+import {
+  PerfectScrollbarConfigInterface,
+  PerfectScrollbarComponent,
+  PerfectScrollbarDirective
+} from "ngx-perfect-scrollbar";
+
 import { NavBarService } from "src/app/services/nav-bar/nav-bar.service";
 
 @Component({
@@ -8,6 +14,14 @@ import { NavBarService } from "src/app/services/nav-bar/nav-bar.service";
 })
 export class SideNavBarComponent implements OnInit {
   private _toggleIsExpend: boolean = false;
+
+  public config: PerfectScrollbarConfigInterface = {};
+
+  @ViewChild(PerfectScrollbarComponent)
+  componentRef?: PerfectScrollbarComponent;
+  @ViewChild(PerfectScrollbarDirective)
+  directiveRef?: PerfectScrollbarDirective;
+
   constructor(private _navBarService: NavBarService) {}
 
   ngOnInit() {

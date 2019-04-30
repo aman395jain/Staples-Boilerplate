@@ -23,6 +23,12 @@
       padding: 0 6px;
     }
   }
+  a {
+    white-space: nowrap;
+    width: 90px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
 
 // .mat-expansion-panel-header {

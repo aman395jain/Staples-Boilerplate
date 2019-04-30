@@ -21,7 +21,7 @@ import { NgxBarcodeModule } from "ngx-barcode";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { CommonModule } from "@angular/common";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -35,12 +35,18 @@ import { LogDiscriptionComponent } from "./components/log-discription/log-discri
 import { DisplayLogTableComponent } from "./components/dashboard-log-table/dashboard-log-table.component";
 import { PrintDocumentComponent } from "./shared/print-document/print-document.component";
 import { PrintDocumentLayoutComponent } from "./shared/print-document-layout/print-document-layout.component";
+import { PerfectScrollbarModule } from "ngx-perfect-scrollbar";
+import { PERFECT_SCROLLBAR_CONFIG } from "ngx-perfect-scrollbar";
+import { PerfectScrollbarConfigInterface } from "ngx-perfect-scrollbar";
 
 import { NavBarService } from "./services/nav-bar/nav-bar.service";
 import { LoglistingService } from "./services/log-listing/loglisting.service";
 import { PrintDocumentService } from "./services/print-document/print-document.service";
 import { TableForStorePipe } from "./pipes/tableForStoreNumber/table-for-store.pipe";
 
+const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+  suppressScrollX: true
+};
 @NgModule({
   declarations: [
     AppComponent,
@@ -78,14 +84,20 @@ import { TableForStorePipe } from "./pipes/tableForStoreNumber/table-for-store.p
     CdkTableModule,
     CommonModule,
     FormsModule,
-    MatSelectModule
+    MatSelectModule,
+    ReactiveFormsModule,
+    PerfectScrollbarModule
   ],
   entryComponents: [LogDiscriptionComponent],
   providers: [
     LoglistingService,
     CdkColumnDef,
     NavBarService,
-    PrintDocumentService
+    PrintDocumentService,
+    {
+      provide: PERFECT_SCROLLBAR_CONFIG,
+      useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
+    }
   ],
   bootstrap: [AppComponent]
 })
