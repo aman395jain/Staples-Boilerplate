@@ -98,6 +98,7 @@ export class LogDataTableComponent implements OnInit {
       console.log("in the test error", e);
     }
     this._navBarService.getElementName().subscribe(tableName => {
+      this.selectedDataForPrint = [];
       if (tableName === "Price_Prompt_SKUs") {
         this.columns = [
           {
