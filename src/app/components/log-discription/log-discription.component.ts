@@ -1,6 +1,8 @@
 import { Component, OnInit, Inject } from "@angular/core";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material";
-import { DashboardHeaderNameConverstionService } from "src/app/services/dashboard-header-name-converstion.service";
+
+import { DashboardHeaderNameConverstionService } from "src/app/services/dashboard-header-name-conversion/dashboard-header-name-converstion.service";
+import { PrintDocumentService } from "src/app/services/print-document/print-document.service";
 
 @Component({
   selector: "app-log-discription",
@@ -15,7 +17,8 @@ export class LogDiscriptionComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public dataDiscription: any,
     private _dashboardHeaderNameConverstionService: DashboardHeaderNameConverstionService,
-    private dialogRef: MatDialogRef<LogDiscriptionComponent>
+    private dialogRef: MatDialogRef<LogDiscriptionComponent>,
+    private _printDocumentService: PrintDocumentService
   ) {}
 
   ngOnInit() {
@@ -27,7 +30,12 @@ export class LogDiscriptionComponent implements OnInit {
 
     this.dataDisplayOnModal = this.dataDisplay[0];
   }
-  closeDialog() {
+
+  printDialogData(): void {
+    this._printDocumentService.printDocument("logInvoice");
+  }
+
+  closeDialog(): void {
     this.dialogRef.close(true);
   }
 }

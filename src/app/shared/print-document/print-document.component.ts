@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 
 import { PrintDocumentService } from "src/app/services/print-document/print-document.service";
 import { LoglistingService } from "src/app/services/log-listing/loglisting.service";
-import { DashboardHeaderNameConverstionService } from "src/app/services/dashboard-header-name-converstion.service";
+import { DashboardHeaderNameConverstionService } from "src/app/services/dashboard-header-name-conversion/dashboard-header-name-converstion.service";
 
 @Component({
   selector: "app-print-document",

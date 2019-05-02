@@ -16,7 +16,10 @@ import { PrintDocumentComponent } from "./shared/print-document/print-document.c
           path: "print",
           outlet: "print",
           component: PrintDocumentLayoutComponent,
-          children: [{ path: "invoice", component: PrintDocumentComponent }]
+          children: [
+            { path: "invoice", component: PrintDocumentComponent },
+            { path: "logInvoice", component: PrintDocumentComponent }
+          ]
         },
         { path: "**", component: PageNotFoundComponent }
       ],
