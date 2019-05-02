@@ -12,6 +12,7 @@ import { LogDiscriptionComponent } from "../log-discription/log-discription.comp
 import { LoglistingService } from "src/app/services/log-listing/loglisting.service";
 import { NavBarService } from "src/app/services/nav-bar/nav-bar.service";
 import { PrintDocumentService } from "src/app/services/print-document/print-document.service";
+import { LogModalDataService } from "src/app/services/log-modal-data/log-modal-data.service";
 
 @Component({
   selector: "app-log-data-table",
@@ -37,7 +38,8 @@ export class LogDataTableComponent implements OnInit {
     private _loglistingService: LoglistingService,
     private _dialog: MatDialog,
     private _navBarService: NavBarService,
-    private _printDocumentService: PrintDocumentService
+    private _printDocumentService: PrintDocumentService,
+    private _logModalDataService: LogModalDataService
   ) {}
 
   ngOnInit() {
@@ -493,6 +495,7 @@ export class LogDataTableComponent implements OnInit {
   */
   discriptionLog(row) {
     console.log("in the row test", row);
+    this._logModalDataService.getLogModalData(row);
     const _dialogConfig = new MatDialogConfig();
     _dialogConfig.data = row;
     _dialogConfig.disableClose = false;

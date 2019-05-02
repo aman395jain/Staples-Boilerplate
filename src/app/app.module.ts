@@ -44,6 +44,7 @@ import { NavBarService } from "./services/nav-bar/nav-bar.service";
 import { LoglistingService } from "./services/log-listing/loglisting.service";
 import { PrintDocumentService } from "./services/print-document/print-document.service";
 import { TableForStorePipe } from "./pipes/tableForStoreNumber/table-for-store.pipe";
+import { LogModalDataService } from "./services/log-modal-data/log-modal-data.service";
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -96,6 +97,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     CdkColumnDef,
     NavBarService,
     PrintDocumentService,
+    LogModalDataService,
     {
       provide: PERFECT_SCROLLBAR_CONFIG,
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
