@@ -1,5 +1,33 @@
 <perfect-scrollbar [config]="config" [scrollIndicators]="true">
   <div class="container">
+    <div
+      class="row d-flex align-items-center justify-content-end print-close-row"
+    >
+      <div class="print-close-icon">
+        <mat-icon
+          _ngcontent-c1=""
+          class="print-document mat-icon mat-list-icon material-icons"
+          mat-list-icon=""
+          role="img"
+          aria-hidden="true"
+          data-toggle="tooltip"
+          title="print"
+          >print</mat-icon
+        >
+      </div>
+      <div class="print-close-icon">
+        <mat-icon
+          _ngcontent-c1=""
+          class="close-icon mat-icon mat-list-icon material-icons"
+          mat-list-icon=""
+          role="img"
+          aria-hidden="true"
+          data-toggle="tooltip"
+          title="close"
+          >close</mat-icon
+        >
+      </div>
+    </div>
     <div class="row">
       <div class="col-md-4" *ngFor="let data of dataDisplayOnModal | keyvalue">
         <table class="table table-bordered">
