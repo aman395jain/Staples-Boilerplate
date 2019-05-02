@@ -8,6 +8,7 @@ import { LogModalDataService } from "src/app/services/log-modal-data/log-modal-d
   styleUrls: ["./print-document-single-log-data.component.scss"]
 })
 export class PrintDocumentSingleLogDataComponent implements OnInit {
+  dataPrintedDataForModal = [];
   constructor(
     private _printService: PrintDocumentService,
     private _logModalDataService: LogModalDataService
@@ -17,6 +18,7 @@ export class PrintDocumentSingleLogDataComponent implements OnInit {
     this._printService.onDataReady();
     this._logModalDataService.setLogModalData().subscribe(printData => {
       console.log("in the print log data", printData);
+      this.dataPrintedDataForModal = printData;
     });
   }
 }

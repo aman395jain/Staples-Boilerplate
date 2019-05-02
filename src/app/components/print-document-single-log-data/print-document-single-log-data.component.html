@@ -1,3 +1,47 @@
-<p>
-  print-document-single-log-data works!
-</p>
+<div class="container">
+  <div class="row">
+    <div
+      class="col-md-4"
+      *ngFor="let printedLogData of dataPrintedDataForModal | keyvalue"
+    >
+      <table class="table table-bordered">
+        <thead>
+          <tr
+            *ngIf="
+              !(
+                printedLogData.key === 'checked' ||
+                printedLogData.key === 'index'
+              )
+            "
+          >
+            <th class="table-header">
+              <span>{{ printedLogData.key }}</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngIf="
+              !(
+                printedLogData.key === 'checked' ||
+                printedLogData.key === 'index'
+              )
+            "
+          >
+            <td *ngIf="!(printedLogData.key === 'BAR CODE')">
+              {{ printedLogData.value }}
+            </td>
+            <td *ngIf="printedLogData.key === 'BAR CODE'">
+              <ngx-barcode
+                [bc-value]="printedLogData.value"
+                [bc-display-value]="false"
+                [bc-height]="25"
+                [bc-width]="1"
+              ></ngx-barcode>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
