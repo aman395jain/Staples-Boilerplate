@@ -31,4 +31,7 @@ body {
   .isPrinting app-print-layout {
     display: block;
   }
+  .cdk-overlay-container {
+    display: none;
+  }
 }

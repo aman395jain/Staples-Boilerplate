@@ -15,7 +15,6 @@ export class PrintDocumentService {
   constructor(private router: Router) {}
 
   printDocument(documentName: string) {
-    // console.log("in the documentData", documentData);
     this.isPrinting = true;
     this.router.navigate([
       "/",

@@ -6,6 +6,8 @@ import { PageNotFoundComponent } from "./components/page-not-found/page-not-foun
 import { DisplayLogTableComponent } from "./components/dashboard-log-table/dashboard-log-table.component";
 import { PrintDocumentLayoutComponent } from "./shared/print-document-layout/print-document-layout.component";
 import { PrintDocumentComponent } from "./shared/print-document/print-document.component";
+import { PrintDocumentSingleLogDataComponent } from "./components/print-document-single-log-data/print-document-single-log-data.component";
+
 @NgModule({
   imports: [
     RouterModule.forRoot(
@@ -18,7 +20,10 @@ import { PrintDocumentComponent } from "./shared/print-document/print-document.c
           component: PrintDocumentLayoutComponent,
           children: [
             { path: "invoice", component: PrintDocumentComponent },
-            { path: "logInvoice", component: PrintDocumentComponent }
+            {
+              path: "logInvoice",
+              component: PrintDocumentSingleLogDataComponent
+            }
           ]
         },
         { path: "**", component: PageNotFoundComponent }
