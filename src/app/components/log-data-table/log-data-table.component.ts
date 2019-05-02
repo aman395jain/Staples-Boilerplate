@@ -498,7 +498,7 @@ export class LogDataTableComponent implements OnInit {
     _dialogConfig.disableClose = false;
     _dialogConfig.autoFocus = true;
     _dialogConfig.width = "50%";
-    _dialogConfig.height = "50%";
+    _dialogConfig.height = "52%";
     this._dialog.open(LogDiscriptionComponent, _dialogConfig);
   }
 
