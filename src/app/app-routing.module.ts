@@ -5,8 +5,8 @@ import { HomeComponent } from "./components/home/home.component";
 import { PageNotFoundComponent } from "./components/page-not-found/page-not-found.component";
 import { DisplayLogTableComponent } from "./components/dashboard-log-table/dashboard-log-table.component";
 import { PrintDocumentLayoutComponent } from "./shared/print-document-layout/print-document-layout.component";
-import { PrintDocumentComponent } from "./shared/print-document/print-document.component";
 import { PrintDocumentSingleLogDataComponent } from "./components/print-document-single-log-data/print-document-single-log-data.component";
+import { PrintDocumentComponent } from "./components/print-document/print-document.component";
 
 @NgModule({
   imports: [

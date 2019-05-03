@@ -33,7 +33,6 @@ import { HeaderComponent } from "./shared/header/header.component";
 import { FooterComponent } from "./shared/footer/footer.component";
 import { LogDiscriptionComponent } from "./components/log-discription/log-discription.component";
 import { DisplayLogTableComponent } from "./components/dashboard-log-table/dashboard-log-table.component";
-import { PrintDocumentComponent } from "./shared/print-document/print-document.component";
 import { PrintDocumentSingleLogDataComponent } from "./components/print-document-single-log-data/print-document-single-log-data.component";
 import { PrintDocumentLayoutComponent } from "./shared/print-document-layout/print-document-layout.component";
 import { PerfectScrollbarModule } from "ngx-perfect-scrollbar";
@@ -45,6 +44,7 @@ import { LoglistingService } from "./services/log-listing/loglisting.service";
 import { PrintDocumentService } from "./services/print-document/print-document.service";
 import { TableForStorePipe } from "./pipes/tableForStoreNumber/table-for-store.pipe";
 import { LogModalDataService } from "./services/log-modal-data/log-modal-data.service";
+import { PrintDocumentComponent } from "./components/print-document/print-document.component";
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
