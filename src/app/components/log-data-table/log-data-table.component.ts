@@ -28,7 +28,7 @@ export class LogDataTableComponent implements OnInit {
   checkBoxStatus: boolean = false;
   selectedDataForPrint: any = [];
   selectAll: boolean = false;
-  selectedOption: string = "All";
+  selectedOption: string = "Select a Store";
   selectedStoreValue: string = "8501";
 
   displayedColumns: object = {};
@@ -83,7 +83,7 @@ export class LogDataTableComponent implements OnInit {
         this.printedData = data;
 
         let storeData = [];
-        storeData.push("All");
+        storeData.push("Select a Store");
         data.map((dataValue, i) => {
           dataValue["checked"] = false;
           dataValue["index"] = i;
@@ -434,7 +434,7 @@ export class LogDataTableComponent implements OnInit {
       }
 
       this._loglistingService.getLogListForEntity(tableName).subscribe(data => {
-        let storeData = ["All"];
+        let storeData = ["Select a Store"];
         this.storeUniqueData = [];
         this.printedData = data;
         data.map((dataValue, i) => {
@@ -442,7 +442,7 @@ export class LogDataTableComponent implements OnInit {
           dataValue["index"] = i;
           storeData.push(dataValue.store);
         });
-        this.selectedOption = "All";
+        this.selectedOption = "Select a Store";
 
         this.storeUniqueData = this.uniqueStore(storeData);
         console.log("unique store value", this.storeUniqueData);
@@ -472,7 +472,7 @@ export class LogDataTableComponent implements OnInit {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
     console.log("in the search filter", this.dataByAPI);
-    if (filterValue === "all") {
+    if (filterValue === "select a store") {
       this.dataByAPI.filter = null;
     } else {
       this.dataByAPI.filter = filterValue;
@@ -571,7 +571,7 @@ export class LogDataTableComponent implements OnInit {
 
   /**
    * updateCheck: Check the status of header check-box.
-   * Also push the data in case of selecting all rows.
+   * Also push the data in case of selecting Select a Store rows.
    */
   updateCheck() {
     this.selectedDataForPrint = [];
