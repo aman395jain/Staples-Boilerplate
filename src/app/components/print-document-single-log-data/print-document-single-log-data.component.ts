@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { PrintDocumentService } from "src/app/services/print-document/print-document.service";
 import { LogModalDataService } from "src/app/services/log-modal-data/log-modal-data.service";
+import { DashboardHeaderNameConverstionService } from "src/app/services/dashboard-header-name-conversion/dashboard-header-name-converstion.service";
 
 @Component({
   selector: "app-print-document-single-log-data",
@@ -9,16 +10,24 @@ import { LogModalDataService } from "src/app/services/log-modal-data/log-modal-d
 })
 export class PrintDocumentSingleLogDataComponent implements OnInit {
   dataPrintedDataForModal = [];
+
+  dataDisplay = {};
   constructor(
     private _printService: PrintDocumentService,
-    private _logModalDataService: LogModalDataService
+    private _logModalDataService: LogModalDataService,
+    private _dashboardHeaderNameConverstionService: DashboardHeaderNameConverstionService
   ) {}
 
   ngOnInit() {
     this._printService.onDataReady();
     this._logModalDataService.setLogModalData().subscribe(printData => {
-      console.log("in the print log data", printData);
-      this.dataPrintedDataForModal = printData;
+      let testData = [];
+      testData.push(printData);
+      this.dataDisplay = this._dashboardHeaderNameConverstionService.headerNameConvert(
+        testData
+      );
+      console.log("in the print log data", this.dataDisplay);
+      this.dataPrintedDataForModal = this.dataDisplay[0];
     });
   }
 }
