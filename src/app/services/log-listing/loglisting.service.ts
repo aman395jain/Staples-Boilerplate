@@ -63,7 +63,15 @@ export class LoglistingService {
     } else {
       this._serviceUrl = "http://www.mocky.io/v2/5cb860794c0000c51ad3d50d";
     }
-    return this.http.get<any>(this._serviceUrl);
+    return this.http.get<any>(this._serviceUrl).pipe(
+      map((response: Response) => {
+        return response;
+      }),
+      catchError((err: Response) => {
+        console.log("in the error", err.status);
+        return null;
+      })
+    );
   }
 
   getTestDataToPrint(printedData) {

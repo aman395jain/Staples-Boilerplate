@@ -34,6 +34,8 @@ export class LogDataTableComponent implements OnInit {
   displayedColumns: object = {};
   dataByAPI: MatTableDataSource<any>;
   storeUniqueData: any = [];
+
+  isLoading = true;
   constructor(
     private _loglistingService: LoglistingService,
     private _dialog: MatDialog,
@@ -82,6 +84,7 @@ export class LogDataTableComponent implements OnInit {
       this._loglistingService.getLogList().subscribe(data => {
         this.printedData = data;
 
+        this.isLoading = false;
         let storeData = [];
         storeData.push("Select a Store");
         data.map((dataValue, i) => {
@@ -100,6 +103,7 @@ export class LogDataTableComponent implements OnInit {
       console.log("in the test error", e);
     }
     this._navBarService.getElementName().subscribe(tableName => {
+      this.isLoading = true;
       this.selectedDataForPrint = [];
       if (tableName === "Price_Prompt_SKUs") {
         this.columns = [
@@ -434,6 +438,7 @@ export class LogDataTableComponent implements OnInit {
       }
 
       this._loglistingService.getLogListForEntity(tableName).subscribe(data => {
+        this.isLoading = false;
         let storeData = ["Select a Store"];
         this.storeUniqueData = [];
         this.printedData = data;

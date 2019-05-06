@@ -14,7 +14,9 @@ import {
   MatExpansionModule,
   MatListModule,
   MatCheckboxModule,
-  MatSelectModule
+  MatSelectModule,
+  MatCardModule,
+  MatProgressSpinnerModule
 } from "@angular/material";
 import { CdkColumnDef, CdkTableModule } from "@angular/cdk/table";
 import { NgxBarcodeModule } from "ngx-barcode";
@@ -87,9 +89,11 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     CdkTableModule,
     CommonModule,
     FormsModule,
+    MatCardModule,
     MatSelectModule,
     ReactiveFormsModule,
-    PerfectScrollbarModule
+    PerfectScrollbarModule,
+    MatProgressSpinnerModule
   ],
   entryComponents: [LogDiscriptionComponent],
   providers: [

@@ -42,7 +42,14 @@
       </div>
     </div>
     <div class="col-md-12 log-list-table">
-      <mat-table #table [dataSource]="dataByAPI" matSort>
+      <mat-card
+        *ngIf="isLoading"
+        style="display: flex; justify-content: center; align-items: center"
+      >
+        <mat-progress-spinner color="warn" mode="indeterminate">
+        </mat-progress-spinner>
+      </mat-card>
+      <mat-table #table [dataSource]="dataByAPI" *ngIf="!isLoading" matSort>
         <ng-container
           *ngFor="let column of columns"
           [cdkColumnDef]="column.columnDef"
