@@ -13,6 +13,7 @@ export class LogDiscriptionComponent implements OnInit {
   dataDiscriptionKeysToDisplay = [];
   dataDisplay = {};
   dataDisplayOnModal = [];
+  dataBarCode = [];
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public dataDiscription: any,
@@ -29,6 +30,15 @@ export class LogDiscriptionComponent implements OnInit {
     );
 
     this.dataDisplayOnModal = this.dataDisplay[0];
+
+    for (
+      let i = 0;
+      i < this.dataDiscriptionKeysToDisplay[0].upcList.length;
+      i++
+    ) {
+      this.dataBarCode.push(this.dataDiscriptionKeysToDisplay[0].upcList[i]);
+    }
+    console.log("in the modal", this.dataBarCode);
   }
 
   printDialogData(): void {

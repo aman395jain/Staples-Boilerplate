@@ -2,7 +2,7 @@
   <table class="table">
     <thead>
       <tr>
-        <th scope="col" *ngFor="let headerRow of _keysForPrintedTable">
+        <th scope="col" *ngFor="let headerRow of keysForPrintedTable">
           <span *ngIf="!(headerRow === 'checked' || headerRow === 'index')">{{
             headerRow
           }}</span>
@@ -10,20 +10,22 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let printedData of _dataForPrint">
-        <td *ngFor="let key of _rowTableData">
-          <span
+      <tr *ngFor="let printedData of dataForPrint">
+        <td *ngFor="let key of rowTableData">
+          <div
             *ngIf="!(key === 'checked' || key === 'barCode' || key === 'index')"
-            >{{ printedData[key] }}</span
           >
-          <span *ngIf="key === 'barCode'">
+            {{ printedData[key] }}
+          </div>
+          <div *ngIf="key === 'barCode'">
             <ngx-barcode
-              [bc-value]="printedData[key]"
+              [bc-value]="printedData['upcList'][0]"
               [bc-display-value]="false"
               [bc-height]="30"
               [bc-width]="1"
             ></ngx-barcode>
-          </span>
+            <div class="barCode-value">{{ printedData["upcList"][0] }}</div>
+          </div>
         </td>
       </tr>
     </tbody>

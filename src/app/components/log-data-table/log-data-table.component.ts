@@ -69,7 +69,7 @@ export class LogDataTableComponent implements OnInit {
       {
         columnDef: "barCode",
         header: "BAR CODE",
-        cell: (element: any) => `${element.posId}`
+        cell: (element: any) => `${element.upcList[0]}`
       },
       {
         columnDef: "action",
@@ -506,7 +506,7 @@ export class LogDataTableComponent implements OnInit {
     _dialogConfig.disableClose = false;
     _dialogConfig.autoFocus = true;
     _dialogConfig.width = "50%";
-    _dialogConfig.height = "52%";
+    _dialogConfig.height = "60%";
     this._dialog.open(LogDiscriptionComponent, _dialogConfig);
   }
 

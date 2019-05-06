@@ -22,7 +22,7 @@ export class LoglistingService {
   constructor(private http: HttpClient) {}
 
   getLogList(): Observable<any> {
-    this._serviceUrl = "http://www.mocky.io/v2/5cc2d9463300002b007e54d1";
+    this._serviceUrl = "http://www.mocky.io/v2/5ccff0b9320000b52100f912";
     return this.http.get<any>(this._serviceUrl).pipe(
       map((response: Response) => {
         return response;

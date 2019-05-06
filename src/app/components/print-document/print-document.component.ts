@@ -10,50 +10,29 @@ import { DashboardHeaderNameConverstionService } from "src/app/services/dashboar
   styleUrls: ["./print-document.component.scss"]
 })
 export class PrintDocumentComponent implements OnInit {
-  _dataForPrint: {};
-  _keysForPrintedTable = [];
-  _rowsForPrint = {};
+  dataForPrint: {};
+  keysForPrintedTable = [];
   printedDataNew = {};
-  keyMap = {
-    barCode: "BAR CODE",
-    itemDesc: "ITEM DESCRIPION",
-    permPrice: "PREM PRICE",
-    posId: "POSITION ID",
-    profit: "PROFIT",
-    sellPrice: "SELL PRICE",
-    sku: "SKU",
-    state: "STATE",
-    store: "STORE",
-    empName: "EMPLOYEE NAME",
-    empPass: "PASSWORD",
-    empRole: "EMPLOYEE ROLE",
-    taxRate: "TAX RATE",
-    taxState: "TAX STATE",
-    freeSku: "FREE SKUs",
-    freeSkuPrice: "FREE SKU PRICE",
-    itemGroupID: "ITEM GROUP ID",
-    warranty: "WARRANTY"
-  };
-  _rowTableData = [];
+
+  rowTableData = [];
 
   constructor(
-    private printService: PrintDocumentService,
-    private loglistingService: LoglistingService,
+    private _printService: PrintDocumentService,
+    private _loglistingService: LoglistingService,
     private _dashboardHeaderNameConverstionService: DashboardHeaderNameConverstionService
   ) {}
 
   ngOnInit() {
-    this.printService.onDataReady();
-    // debugger;
-    this.loglistingService.setTestDataToPrint().subscribe(printedData => {
+    this._printService.onDataReady();
+    this._loglistingService.setTestDataToPrint().subscribe(printedData => {
       try {
         if (printedData.length > 0) {
-          this._dataForPrint = printedData;
-          this._rowTableData = Object.keys(printedData[0]);
+          this.dataForPrint = printedData;
+          this.rowTableData = Object.keys(printedData[0]);
           this.printedDataNew = this._dashboardHeaderNameConverstionService.headerNameConvert(
             printedData
           );
-          this._keysForPrintedTable = Object.keys(this.printedDataNew[0]);
+          this.keysForPrintedTable = Object.keys(this.printedDataNew[0]);
         }
       } catch (e) {}
     });
