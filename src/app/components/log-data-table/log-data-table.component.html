@@ -3,8 +3,8 @@
     <div class="col-md-12 list-search">
       <div class="row">
         <div class="col-md-3 d-flex align-items-center justify-content-end">
-          <span class="store-name">Store</span>
-          <mat-form-field>
+          <span class="store-name" *ngIf="!isLoading">Store</span>
+          <mat-form-field *ngIf="!isLoading">
             <!-- <mat-label>Choose a store</mat-label> -->
             <mat-select
               (selectionChange)="onSelectStore($event)"
@@ -29,9 +29,10 @@
             data-toggle="tooltip"
             title="print"
             (click)="onPrintInvoice()"
+            [hidden]="isLoading"
             >print</mat-icon
           >
-          <mat-form-field>
+          <mat-form-field *ngIf="!isLoading">
             <input
               matInput
               (keyup)="applyFilter($event.target.value)"
@@ -42,13 +43,6 @@
       </div>
     </div>
     <div class="col-md-12 log-list-table">
-      <mat-card
-        *ngIf="isLoading"
-        style="display: flex; justify-content: center; align-items: center"
-      >
-        <mat-progress-spinner color="warn" mode="indeterminate">
-        </mat-progress-spinner>
-      </mat-card>
       <mat-table #table [dataSource]="dataByAPI" *ngIf="!isLoading" matSort>
         <ng-container
           *ngFor="let column of columns"
@@ -114,13 +108,32 @@
           </mat-cell>
         </ng-container>
 
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+        <mat-header-row
+          [hidden]="isLoading"
+          *matHeaderRowDef="displayedColumns"
+        ></mat-header-row>
+        <mat-row
+          [hidden]="isLoading"
+          *matRowDef="let row; columns: displayedColumns"
+        ></mat-row>
       </mat-table>
     </div>
     <div class="col-md-12">
-      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="5">
+      <mat-paginator
+        [hidden]="isLoading"
+        [pageSizeOptions]="[5, 10, 25, 100]"
+        [pageSize]="5"
+      >
       </mat-paginator>
     </div>
   </div>
+</div>
+<div class="load-spinner">
+  <mat-progress-spinner
+    *ngIf="isLoading"
+    style="display: flex; justify-content: center; align-items: center"
+    color="warn"
+    mode="indeterminate"
+  >
+  </mat-progress-spinner>
 </div>
