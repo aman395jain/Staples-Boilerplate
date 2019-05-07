@@ -10,6 +10,7 @@ import { DashboardHeaderNameConverstionService } from "src/app/services/dashboar
 })
 export class PrintDocumentSingleLogDataComponent implements OnInit {
   dataPrintedDataForModal = [];
+  dataBarCode = [];
 
   dataDisplay = {};
   constructor(
@@ -26,8 +27,9 @@ export class PrintDocumentSingleLogDataComponent implements OnInit {
       this.dataDisplay = this._dashboardHeaderNameConverstionService.headerNameConvert(
         testData
       );
-      console.log("in the print log data", this.dataDisplay);
       this.dataPrintedDataForModal = this.dataDisplay[0];
+      this.dataBarCode = testData[0].upcList;
+      console.log("in the print log data", testData[0].upcList);
     });
   }
 }

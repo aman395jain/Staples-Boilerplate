@@ -44,12 +44,17 @@
                 printedLogData.key === 'barCode'
               "
             >
-              <ngx-barcode
-                [bc-value]="printedLogData.value"
-                [bc-display-value]="false"
-                [bc-height]="25"
-                [bc-width]="1"
-              ></ngx-barcode>
+              <div *ngFor="let barCode of dataBarCode">
+                <div>
+                  <ngx-barcode
+                    [bc-value]="barCode"
+                    [bc-display-value]="false"
+                    [bc-height]="25"
+                    [bc-width]="1"
+                  ></ngx-barcode>
+                </div>
+                <div>{{ barCode }}</div>
+              </div>
             </td>
           </tr>
         </tbody>
