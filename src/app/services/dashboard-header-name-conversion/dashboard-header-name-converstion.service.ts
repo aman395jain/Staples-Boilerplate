@@ -23,8 +23,8 @@ export class DashboardHeaderNameConverstionService {
     freeSkuPrice: "FREE SKU PRICE",
     itemGroupID: "ITEM GROUP ID",
     warranty: "WARRANTY",
-    upcList: "UPC List",
-    itemId: "Item ID"
+    upcList: "UPC LIST",
+    itemId: "ITEM ID"
   };
   printedDataNewHeader = {};
 
