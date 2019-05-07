@@ -13,18 +13,32 @@
       <tr *ngFor="let printedData of dataForPrint">
         <td *ngFor="let key of rowTableData">
           <div
-            *ngIf="!(key === 'checked' || key === 'barCode' || key === 'index')"
+            *ngIf="
+              !(
+                key === 'checked' ||
+                key === 'barCode' ||
+                key === 'index' ||
+                key === 'upcList'
+              )
+            "
           >
             {{ printedData[key] }}
           </div>
           <div *ngIf="key === 'barCode'">
-            <ngx-barcode
-              [bc-value]="printedData['upcList'][0]"
-              [bc-display-value]="false"
-              [bc-height]="30"
-              [bc-width]="1"
-            ></ngx-barcode>
-            <div class="barCode-value">{{ printedData["upcList"][0] }}</div>
+            <div *ngFor="let barCode of printedData['upcList']">
+              <ngx-barcode
+                [bc-value]="barCode"
+                [bc-display-value]="false"
+                [bc-height]="30"
+                [bc-width]="1"
+              ></ngx-barcode>
+              <div class="text-center barCode-value">{{ barCode }}</div>
+            </div>
+          </div>
+          <div *ngIf="key === 'upcList'">
+            <div *ngFor="let upcList of printedData['upcList']">
+              {{ upcList }}
+            </div>
           </div>
         </td>
       </tr>
