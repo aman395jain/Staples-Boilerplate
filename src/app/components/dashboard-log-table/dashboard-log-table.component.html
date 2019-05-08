@@ -1,6 +1,10 @@
 <div class="wrapper dashBoard" style="width: 100%; height: 500px;">
   <as-split direction="horizontal">
-    <as-split-area [size]="[splitLeftBarSize]" minSize="5" maxSize="20">
+    <as-split-area
+      [size]="[splitLeftBarSize]"
+      [minSize]="[minLeftBarSize]"
+      [maxSize]="[maxLeftBarSize]"
+    >
       <as-split direction="vertical">
         <as-split-area>
           <app-side-nav-bar></app-side-nav-bar>
