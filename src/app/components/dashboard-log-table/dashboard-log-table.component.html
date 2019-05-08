@@ -1,4 +1,4 @@
-<div class="wrapper dashBoard" style="width: 100%; height: 500px;">
+<div class="wrapper dashBoard" style="width: 100%; height: auto;">
   <as-split direction="horizontal">
     <as-split-area
       [size]="[splitLeftBarSize]"
@@ -7,7 +7,9 @@
     >
       <as-split direction="vertical">
         <as-split-area>
-          <app-side-nav-bar></app-side-nav-bar>
+          <div>
+            <app-side-nav-bar></app-side-nav-bar>
+          </div>
         </as-split-area>
       </as-split>
     </as-split-area>
@@ -15,9 +17,11 @@
     <as-split-area [size]="[rightPartSplitSize]" minSize="80" maxSize="95">
       <as-split direction="vertical">
         <as-split-area>
-          <div class="log-data-table">
-            <app-log-data-table></app-log-data-table>
-          </div>
+          <perfect-scrollbar [config]="config" [scrollIndicators]="true">
+            <div class="log-data-table">
+              <app-log-data-table></app-log-data-table>
+            </div>
+          </perfect-scrollbar>
         </as-split-area>
       </as-split>
     </as-split-area>

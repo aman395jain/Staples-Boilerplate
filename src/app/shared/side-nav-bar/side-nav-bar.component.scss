@@ -1,9 +1,6 @@
 .example-container {
-  min-height: 592px;
   height: 100%;
   .nav-bar-expandable {
-    // background-color: aqua;
-    // max-width: 160px;
     width: 100%;
     .toggle-icon {
       margin: 10px;
@@ -11,6 +8,7 @@
     }
   }
 }
+
 .mat-nav-list {
   padding-top: 0px !important;
   .mat-list-item {
@@ -31,14 +29,6 @@
   //   text-overflow: ellipsis;
   // }
 }
-
-// .mat-expansion-panel-header {
-//   height: 40px !important;
-// }
-
-// .mat-expansion-header-adjust {
-// height: 40px !important;
-// }
 
 .nav-bar-expandable.mat-drawer {
   background: rgba(204, 0, 0, 0.6784313725490196);
