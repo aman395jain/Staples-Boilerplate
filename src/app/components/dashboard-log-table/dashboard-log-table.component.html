@@ -1,6 +1,6 @@
 <div class="wrapper dashBoard" style="width: 100%; height: 500px;">
   <as-split direction="horizontal">
-    <as-split-area size="12">
+    <as-split-area [size]="[splitLeftBarSize]" minSize="5" maxSize="20">
       <as-split direction="vertical">
         <as-split-area>
           <app-side-nav-bar></app-side-nav-bar>
@@ -8,7 +8,7 @@
       </as-split>
     </as-split-area>
 
-    <as-split-area size="88">
+    <as-split-area [size]="[rightPartSplitSize]" minSize="80" maxSize="95">
       <as-split direction="vertical">
         <as-split-area>
           <div class="log-data-table">
