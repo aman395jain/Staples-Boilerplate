@@ -6,7 +6,10 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./dashboard-log-table.component.scss"]
 })
 export class DisplayLogTableComponent implements OnInit {
+  splitSize = "";
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.splitSize = "12";
+  }
 }

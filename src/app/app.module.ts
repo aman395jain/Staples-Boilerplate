@@ -24,6 +24,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { CommonModule } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { AngularSplitModule } from "angular-split";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -93,7 +94,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     MatSelectModule,
     ReactiveFormsModule,
     PerfectScrollbarModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    AngularSplitModule.forRoot()
   ],
   entryComponents: [LogDiscriptionComponent],
   providers: [

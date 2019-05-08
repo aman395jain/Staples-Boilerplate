@@ -1,11 +1,15 @@
 .dashBoard {
   min-height: 592px;
+  .log-data-table {
+    padding: 20px;
+  }
   .row {
     margin-right: 0px !important;
     margin-left: 0px !important;
     .side-nav-bar {
       padding-left: 0%;
     }
+
     .log-table {
       margin: 0 auto 2%;
       // margin: 0 0 2%;
