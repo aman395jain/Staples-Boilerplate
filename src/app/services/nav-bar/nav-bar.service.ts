@@ -13,6 +13,8 @@ import { Subject, Observable } from "rxjs";
 export class NavBarService {
   private _elementNameSubject = new Subject<any>();
   private _toggleStatusSubject = new Subject<any>();
+  private _pageSizeSubject = new Subject<any>();
+  private _pageLengthSubject = new Subject<any>();
   constructor() {}
 
   /**
@@ -44,5 +46,22 @@ export class NavBarService {
    */
   getToggleStatus(): Observable<any> {
     return this._toggleStatusSubject.asObservable();
+  }
+
+  setPageSize(pSize) {
+    this._pageSizeSubject.next(pSize);
+  }
+
+  setPageLength(pLength) {
+    console.log(pLength);
+    this._pageLengthSubject.next(pLength);
+  }
+
+  getPageLength(): Observable<any> {
+    return this._pageLengthSubject.asObservable();
+  }
+
+  getPageSize(): Observable<any> {
+    return this._pageSizeSubject.asObservable();
   }
 }

@@ -43,15 +43,15 @@
       </div>
     </div>
     <div class="col-md-12 log-list-table">
-      <mat-table #table [dataSource]="dataByAPI" *ngIf="!isLoading" matSort>
+      <mat-table #table [dataSource]="dataByAPI" matSort>
         <ng-container
           *ngFor="let column of columns"
           [cdkColumnDef]="column.columnDef"
         >
           <mat-header-cell
             *cdkHeaderCellDef
-            [disabled]="isSortingDisabled(column.columnDef)"
             mat-sort-header
+            [disabled]="isSortingDisabled(column.columnDef)"
             ><span *ngIf="!(column.columnDef === 'select')">{{
               column.header
             }}</span
@@ -121,8 +121,9 @@
     <div class="col-md-12">
       <mat-paginator
         [hidden]="isLoading"
-        [pageSizeOptions]="[5, 10, 25, 100]"
+        [pageSizeOptions]="[5, 10, 25, 50]"
         [pageSize]="5"
+        (page)="getUpdate($event)"
       >
       </mat-paginator>
     </div>

@@ -592,4 +592,10 @@ export class LogDataTableComponent implements OnInit {
       });
     }
   }
+
+  getUpdate(event) {
+    console.log("in the pag event", event);
+    this._navBarService.setPageSize(event.pageSize);
+    this._navBarService.setPageLength(event.length);
+  }
 }
