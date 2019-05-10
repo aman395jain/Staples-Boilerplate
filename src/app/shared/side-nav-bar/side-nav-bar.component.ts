@@ -81,5 +81,6 @@ export class SideNavBarComponent implements OnInit {
   getElementNameTest(eleName) {
     this._navBarService.setElementNameFromSideBar(eleName);
     this.barHeight = 592;
+    this._navBarService.setPageSize(5);
   }
 }

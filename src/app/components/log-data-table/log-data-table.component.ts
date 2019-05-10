@@ -107,7 +107,6 @@ export class LogDataTableComponent implements OnInit {
     this._navBarService.getElementName().subscribe(tableName => {
       this.isLoading = true;
       this.selectedDataForPrint = [];
-      this.testPageSize = 5;
       if (tableName === "Price_Prompt_SKUs") {
         this.columns = [
           {
@@ -439,6 +438,10 @@ export class LogDataTableComponent implements OnInit {
 
         this.displayedColumns = this.columns.map(c => c.columnDef);
       }
+
+      this._navBarService.getPageSize().subscribe(size => {
+        this.testPageSize = size;
+      });
 
       this._loglistingService.getLogListForEntity(tableName).subscribe(data => {
         this.isLoading = false;
