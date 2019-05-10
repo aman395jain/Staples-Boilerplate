@@ -133,7 +133,7 @@ export class LogDataTableComponent implements OnInit {
           {
             columnDef: "barCode",
             header: "Bar Code",
-            cell: (element: any) => `${element.posId}`
+            cell: (element: any) => `${element.upcList[0]}`
           },
           {
             columnDef: "action",
