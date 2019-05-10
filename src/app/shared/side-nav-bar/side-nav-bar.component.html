@@ -68,7 +68,11 @@
                     [expandedHeight]="'36px'"
                     [collapsedHeight]="'32px'"
                   >
-                    <mat-panel-title data-toggle="tooltip" title="Items Master">
+                    <mat-panel-title
+                      (click)="getElementNameTest('Item_Master')"
+                      data-toggle="tooltip"
+                      title="Items Master"
+                    >
                       Items Master
                     </mat-panel-title>
                   </mat-expansion-panel-header>

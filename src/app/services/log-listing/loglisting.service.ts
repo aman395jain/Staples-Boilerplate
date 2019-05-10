@@ -38,6 +38,8 @@ export class LoglistingService {
     // console.log("in the loglist service", entity);
     if (entity === "Price_Prompt_SKUs") {
       this._serviceUrl = "http://www.mocky.io/v2/5cac66ee300000b723103596";
+    } else if (entity === "Item_Master") {
+      this._serviceUrl = "http://www.mocky.io/v2/5ccff0b9320000b52100f912";
     } else if (entity === "Employee") {
       this._serviceUrl = "http://www.mocky.io/v2/5cbedebf300000ae069ce330";
     } else if (entity === "Tax_Rates") {

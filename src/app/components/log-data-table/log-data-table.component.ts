@@ -142,6 +142,41 @@ export class LogDataTableComponent implements OnInit {
         ];
 
         this.displayedColumns = this.columns.map(c => c.columnDef);
+      } else if (tableName === "Item_Master") {
+        this.columns = [
+          {
+            columnDef: "select",
+            header: null,
+            cell: null
+          },
+          {
+            columnDef: "sku",
+            header: "SKU",
+            cell: (element: any) => `${element.sku}`
+          },
+          {
+            columnDef: "itemDesc",
+            header: "ITEM DESCRIPTION",
+            cell: (element: any) => `${element.itemDesc}`
+          },
+          {
+            columnDef: "permPrice",
+            header: "PERM PRICE",
+            cell: (element: any) => `${element.permPrice}`
+          },
+          {
+            columnDef: "barCode",
+            header: "BAR CODE",
+            cell: (element: any) => this.barCodeDisplay(element)
+          },
+          {
+            columnDef: "action",
+            header: null,
+            cell: null
+          }
+        ];
+
+        this.displayedColumns = this.columns.map(c => c.columnDef);
       } else if (tableName === "Employee") {
         this.columns = [
           {
@@ -462,6 +497,12 @@ export class LogDataTableComponent implements OnInit {
         this.dataByAPI.paginator = this.paginator;
       });
     });
+  }
+
+  barCodeDisplay(element) {
+    try {
+      return `${element.upcList[0]}`;
+    } catch (e) {}
   }
 
   /**
