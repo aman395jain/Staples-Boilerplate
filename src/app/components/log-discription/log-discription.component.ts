@@ -35,14 +35,21 @@ export class LogDiscriptionComponent implements OnInit {
     // console.log("this.dataDisplay", this.dataDisplay);
 
     this.dataDisplayOnModal = this.dataDisplay[0];
-    // console.log("this.dataDisplayOnModal", this.dataDisplayOnModal);
+    console.log(
+      "this.dataDisplayOnModal",
+      this.dataDiscriptionKeysToDisplay[0]
+    );
 
-    for (
-      let i = 0;
-      i < this.dataDiscriptionKeysToDisplay[0].upcList.length;
-      i++
-    ) {
-      this.dataBarCode.push(this.dataDiscriptionKeysToDisplay[0].upcList[i]);
+    if (this.dataDiscriptionKeysToDisplay[0].upcList) {
+      for (
+        let i = 0;
+        i < this.dataDiscriptionKeysToDisplay[0].upcList.length;
+        i++
+      ) {
+        this.dataBarCode.push(this.dataDiscriptionKeysToDisplay[0].upcList[i]);
+      }
+    } else {
+      this.dataBarCode.push(this.dataDiscriptionKeysToDisplay[0].barCode);
     }
     // console.log("in the modal", this.dataBarCode);
   }

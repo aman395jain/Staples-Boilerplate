@@ -7,7 +7,7 @@ export class DashboardHeaderNameConverstionService {
   keyMap = {
     barCode: "Bar Code",
     itemDesc: "Description",
-    permPrice: "Prem Price",
+    permPrice: "Retail Price",
     posId: "Position ID",
     profit: "Profit",
     sellPrice: "Sell Price",
@@ -44,7 +44,20 @@ export class DashboardHeaderNameConverstionService {
     price_verify_flg: "Price Verify Flag",
     item_status_code: "Item Status Code",
     associate_grp_id: "Associate Group Id",
-    item_type_code: "Item Type code"
+    item_type_code: "Item Type code",
+    emailId: "Employee Id",
+    emplName: "Employee Name",
+    emplRole: "Employee Role",
+    libraryUserName: "Liberary User Name",
+    location: "Location",
+    password: "Password",
+    rowUpdtTms: "Row Update Time",
+    updatedByBatch: "Updated By Batch",
+    city: "City",
+    rate: "Rate",
+    roundRule: "Round Rule",
+    alertCode: "Alert Code",
+    retailPrice: "Retail Price"
   };
   printedDataNewHeader = {};
 

@@ -65,7 +65,7 @@ export class LogDataTableComponent implements OnInit {
       },
       {
         columnDef: "permPrice",
-        header: "Perm Price",
+        header: "Retail Price",
         cell: (element: any) => `${element.permPrice}`
       },
       {
@@ -108,10 +108,16 @@ export class LogDataTableComponent implements OnInit {
       this.isLoading = true;
       this.selectedDataForPrint = [];
       if (tableName === "Price_Prompt_SKUs") {
+        console.log("in the price prompt");
         this.columns = [
           {
+            columnDef: "select",
+            header: null,
+            cell: null
+          },
+          {
             columnDef: "sku",
-            header: "SKU",
+            header: "SKU Number",
             cell: (element: any) => `${element.sku}`
           },
           {
@@ -121,13 +127,8 @@ export class LogDataTableComponent implements OnInit {
           },
           {
             columnDef: "permPrice",
-            header: "Perm Price",
+            header: "Retail Price",
             cell: (element: any) => `${element.permPrice}`
-          },
-          {
-            columnDef: "posId",
-            header: "Position ID",
-            cell: (element: any) => `${element.posId}`
           },
           {
             columnDef: "barCode",
@@ -161,7 +162,7 @@ export class LogDataTableComponent implements OnInit {
           },
           {
             columnDef: "permPrice",
-            header: "Perm Price",
+            header: "Retail Price",
             cell: (element: any) => `${element.permPrice}`
           },
           {
@@ -185,19 +186,19 @@ export class LogDataTableComponent implements OnInit {
             cell: null
           },
           {
-            columnDef: "empName ",
+            columnDef: "emplName ",
             header: "Employee Name",
-            cell: (element: any) => `${element.empName}`
+            cell: (element: any) => `${element.emplName}`
           },
           {
-            columnDef: "empPass",
-            header: "EMPLOYEE PASSOWORD",
-            cell: (element: any) => `${element.empPass}`
+            columnDef: "password",
+            header: "Emp Password",
+            cell: (element: any) => `${element.password}`
           },
           {
-            columnDef: "empRole",
-            header: "EmployeeE Role",
-            cell: (element: any) => `${element.empRole}`
+            columnDef: "emplRole",
+            header: "Role",
+            cell: (element: any) => `${element.emplRole}`
           },
           {
             columnDef: "store",
@@ -265,14 +266,14 @@ export class LogDataTableComponent implements OnInit {
             cell: (element: any) => `${element.store}`
           },
           {
-            columnDef: "taxRate",
+            columnDef: "rate",
             header: "Tax Rate",
-            cell: (element: any) => `${element.taxRate}`
+            cell: (element: any) => `${element.rate}`
           },
           {
             columnDef: "taxState",
-            header: "State",
-            cell: (element: any) => `${element.taxState}`
+            header: "State/Jurisdiction",
+            cell: (element: any) => `${element.state}`
           },
           {
             columnDef: "action",
@@ -291,7 +292,7 @@ export class LogDataTableComponent implements OnInit {
           },
           {
             columnDef: "sku",
-            header: "SKU",
+            header: "SKU Number",
             cell: (element: any) => `${element.sku}`
           },
           {
@@ -301,12 +302,12 @@ export class LogDataTableComponent implements OnInit {
           },
           {
             columnDef: "permPrice",
-            header: "Perm Price",
+            header: "Retail Price",
             cell: (element: any) => `${element.permPrice}`
           },
           {
             columnDef: "barCode",
-            header: "Bar Code",
+            header: "UPC",
             cell: (element: any) => `${element.posId}`
           },
           {
@@ -371,7 +372,7 @@ export class LogDataTableComponent implements OnInit {
           },
           {
             columnDef: "sku",
-            header: "SKU No.",
+            header: "SKU Number",
             cell: (element: any) => `${element.sku}`
           },
           {
@@ -396,7 +397,7 @@ export class LogDataTableComponent implements OnInit {
           },
           {
             columnDef: "alertCode",
-            header: "ALERT CODE",
+            header: "Alert Code",
             cell: (element: any) => `${element.alertCode}`
           },
           {
@@ -416,17 +417,17 @@ export class LogDataTableComponent implements OnInit {
           },
           {
             columnDef: "licenseNo",
-            header: "LICENSE No.",
+            header: "License No.",
             cell: (element: any) => `${element.licenseNo}`
           },
           {
             columnDef: "licenseFrontPage",
-            header: "LICENSE FRONT IMAGE",
+            header: "License Front Image",
             cell: (element: any) => `${element.licenseFrontPage}`
           },
           {
             columnDef: "licenseBackPage",
-            header: "LICENSE BACK IMAGE",
+            header: "License Back Image",
             cell: (element: any) => `${element.licenseBackPage}`
           },
           {
@@ -451,17 +452,17 @@ export class LogDataTableComponent implements OnInit {
           },
           {
             columnDef: "lastTransation",
-            header: "LAST TRANSTION DATE",
+            header: "Last Transation Date",
             cell: (element: any) => `${element.lastTransation}`
           },
           {
             columnDef: "lowPrice",
-            header: "LOWEST PRICE",
+            header: "Lowest Price",
             cell: (element: any) => `${element.lowPrice}`
           },
           {
             columnDef: "reason",
-            header: "REASON",
+            header: "Reason",
             cell: (element: any) => `${element.reason}`
           },
           {
