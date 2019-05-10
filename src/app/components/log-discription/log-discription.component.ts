@@ -24,12 +24,18 @@ export class LogDiscriptionComponent implements OnInit {
 
   ngOnInit() {
     this.dataDiscriptionKeysToDisplay.push(this.dataDiscription);
+    // console.log(
+    //   "this.dataDiscriptionKeysToDisplay",
+    //   this.dataDiscriptionKeysToDisplay
+    // );
 
     this.dataDisplay = this._dashboardHeaderNameConverstionService.headerNameConvert(
       this.dataDiscriptionKeysToDisplay
     );
+    // console.log("this.dataDisplay", this.dataDisplay);
 
     this.dataDisplayOnModal = this.dataDisplay[0];
+    // console.log("this.dataDisplayOnModal", this.dataDisplayOnModal);
 
     for (
       let i = 0;
@@ -38,7 +44,7 @@ export class LogDiscriptionComponent implements OnInit {
     ) {
       this.dataBarCode.push(this.dataDiscriptionKeysToDisplay[0].upcList[i]);
     }
-    console.log("in the modal", this.dataBarCode);
+    // console.log("in the modal", this.dataBarCode);
   }
 
   printDialogData(): void {

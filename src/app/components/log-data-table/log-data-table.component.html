@@ -68,7 +68,7 @@
             ><span
               *ngIf="
                 !(
-                  column.header === 'BAR CODE' ||
+                  column.header === 'Bar Code' ||
                   column.header === 'UPC' ||
                   column.columnDef === 'action' ||
                   column.columnDef === 'select'
@@ -83,7 +83,7 @@
               ></mat-checkbox
             ></span>
             <div
-              *ngIf="column.header === 'BAR CODE' || column.header === 'UPC'"
+              *ngIf="column.header === 'Bar Code' || column.header === 'UPC'"
             >
               <ngx-barcode
                 [bc-value]="column.cell(row)"

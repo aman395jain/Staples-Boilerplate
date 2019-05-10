@@ -60,17 +60,17 @@ export class LogDataTableComponent implements OnInit {
       },
       {
         columnDef: "itemDesc",
-        header: "ITEM DESCRIPTION",
+        header: "Description",
         cell: (element: any) => `${element.itemDesc}`
       },
       {
         columnDef: "permPrice",
-        header: "PERM PRICE",
+        header: "Perm Price",
         cell: (element: any) => `${element.permPrice}`
       },
       {
         columnDef: "barCode",
-        header: "BAR CODE",
+        header: "Bar Code",
         cell: (element: any) => `${element.upcList[0]}`
       },
       {
@@ -116,22 +116,22 @@ export class LogDataTableComponent implements OnInit {
           },
           {
             columnDef: "itemDesc",
-            header: "ITEM DESCRIPTION",
+            header: "Description",
             cell: (element: any) => `${element.itemDesc}`
           },
           {
             columnDef: "permPrice",
-            header: "PERM PRICE",
+            header: "Perm Price",
             cell: (element: any) => `${element.permPrice}`
           },
           {
             columnDef: "posId",
-            header: "POSITION ID",
+            header: "Position ID",
             cell: (element: any) => `${element.posId}`
           },
           {
             columnDef: "barCode",
-            header: "BAR CODE",
+            header: "Bar Code",
             cell: (element: any) => `${element.posId}`
           },
           {
@@ -156,17 +156,17 @@ export class LogDataTableComponent implements OnInit {
           },
           {
             columnDef: "itemDesc",
-            header: "ITEM DESCRIPTION",
+            header: "Description",
             cell: (element: any) => `${element.itemDesc}`
           },
           {
             columnDef: "permPrice",
-            header: "PERM PRICE",
+            header: "Perm Price",
             cell: (element: any) => `${element.permPrice}`
           },
           {
             columnDef: "barCode",
-            header: "BAR CODE",
+            header: "Bar Code",
             cell: (element: any) => this.barCodeDisplay(element)
           },
           {
@@ -186,7 +186,7 @@ export class LogDataTableComponent implements OnInit {
           },
           {
             columnDef: "empName ",
-            header: "EMPLOYEE NAME",
+            header: "Employee Name",
             cell: (element: any) => `${element.empName}`
           },
           {
@@ -196,12 +196,12 @@ export class LogDataTableComponent implements OnInit {
           },
           {
             columnDef: "empRole",
-            header: "EMPLOYEE ROLE",
+            header: "EmployeeE Role",
             cell: (element: any) => `${element.empRole}`
           },
           {
             columnDef: "store",
-            header: "STORE",
+            header: "Store",
             cell: (element: any) => `${element.store}`
           },
           {
@@ -226,7 +226,7 @@ export class LogDataTableComponent implements OnInit {
           },
           {
             columnDef: "permPrice",
-            header: "RETAIL PRICE",
+            header: "Retail Price",
             cell: (element: any) => `${element.permPrice}`
           },
           {
@@ -236,12 +236,12 @@ export class LogDataTableComponent implements OnInit {
           },
           {
             columnDef: "warranty",
-            header: "WARRANTY",
+            header: "Warrenty",
             cell: (element: any) => `${element.warranty}`
           },
           {
             columnDef: "itemGroupID",
-            header: "ITEM GROUP ID",
+            header: "Item Group ID",
             cell: (element: any) => `${element.itemGroupID}`
           },
           {
@@ -261,17 +261,17 @@ export class LogDataTableComponent implements OnInit {
           },
           {
             columnDef: "store ",
-            header: "STORE",
+            header: "Store",
             cell: (element: any) => `${element.store}`
           },
           {
             columnDef: "taxRate",
-            header: "TAX RATE",
+            header: "Tax Rate",
             cell: (element: any) => `${element.taxRate}`
           },
           {
             columnDef: "taxState",
-            header: "STATE",
+            header: "State",
             cell: (element: any) => `${element.taxState}`
           },
           {
@@ -296,17 +296,17 @@ export class LogDataTableComponent implements OnInit {
           },
           {
             columnDef: "itemDesc",
-            header: "ITEM DESCRIPTION",
+            header: "Description",
             cell: (element: any) => `${element.itemDesc}`
           },
           {
             columnDef: "permPrice",
-            header: "PERM PRICE",
+            header: "Perm Price",
             cell: (element: any) => `${element.permPrice}`
           },
           {
             columnDef: "barCode",
-            header: "BAR CODE",
+            header: "Bar Code",
             cell: (element: any) => `${element.posId}`
           },
           {
@@ -331,12 +331,12 @@ export class LogDataTableComponent implements OnInit {
           },
           {
             columnDef: "itemDesc",
-            header: "ITEM DESCRIPTION",
+            header: "Description",
             cell: (element: any) => `${element.itemDesc}`
           },
           {
             columnDef: "permPrice",
-            header: "RETAIL PRICE",
+            header: "Retail Price",
             cell: (element: any) => `${element.permPrice}`
           },
           {
@@ -346,12 +346,12 @@ export class LogDataTableComponent implements OnInit {
           },
           {
             columnDef: "freeSku",
-            header: "FREE SKUs",
+            header: "Free SKUs",
             cell: (element: any) => `${element.freeSku}`
           },
           {
             columnDef: "freeSkuPrice",
-            header: "FREE SKU PRICE",
+            header: "Free SKU Price",
             cell: (element: any) => `${element.freeSkuPrice}`
           },
           {
@@ -376,12 +376,12 @@ export class LogDataTableComponent implements OnInit {
           },
           {
             columnDef: "itemDesc",
-            header: "ITEM DESCRIPTION",
+            header: "Description",
             cell: (element: any) => `${element.itemDesc}`
           },
           {
             columnDef: "retailPrice",
-            header: "RETAIL PRICE",
+            header: "Retail Price",
             cell: (element: any) => `${element.retailPrice}`
           },
           {
@@ -391,7 +391,7 @@ export class LogDataTableComponent implements OnInit {
           },
           {
             columnDef: "itemGroupID",
-            header: "ITEM GROUP ID",
+            header: "Item Group ID",
             cell: (element: any) => `${element.itemGroupID}`
           },
           {
@@ -499,6 +499,10 @@ export class LogDataTableComponent implements OnInit {
     });
   }
 
+  /**
+   * To display barCode
+   * @param element upcList
+   */
   barCodeDisplay(element) {
     try {
       return `${element.upcList[0]}`;
@@ -546,7 +550,7 @@ export class LogDataTableComponent implements OnInit {
   * discriptionLog to populate the data in a Modal
   */
   discriptionLog(row) {
-    console.log("in the row test", row);
+    // console.log("in the row test", row);
     this._logModalDataService.getLogModalData(row);
     const _dialogConfig = new MatDialogConfig();
     _dialogConfig.data = row;
