@@ -22,7 +22,7 @@ export class SideNavBarComponent implements OnInit {
   @ViewChild(PerfectScrollbarDirective)
   directiveRef?: PerfectScrollbarDirective;
 
-  barHeight: number;
+  barHeight: number = 592;
   pageSize: number;
   pagelength: number;
 
