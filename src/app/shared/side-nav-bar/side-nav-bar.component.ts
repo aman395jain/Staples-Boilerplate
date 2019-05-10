@@ -23,7 +23,7 @@ export class SideNavBarComponent implements OnInit {
   directiveRef?: PerfectScrollbarDirective;
 
   barHeight: number;
-  pageSize1: number;
+  pageSize: number;
   pagelength: number;
 
   constructor(private _navBarService: NavBarService) {}
@@ -34,19 +34,19 @@ export class SideNavBarComponent implements OnInit {
       this._toggleIsExpend = toggleStatus;
     });
 
-    this._navBarService.getPageSize().subscribe(pageSize => {
-      this.pageSize1 = pageSize;
+    this._navBarService.getPageSize().subscribe(size => {
+      this.pageSize = size;
     });
 
     this._navBarService.getPageLength().subscribe(length => {
-      this._navBarService.getPageSize().subscribe(pageSize => {
-        this.pageSize1 = pageSize;
-      });
+      // this._navBarService.getPageSize().subscribe(pageSize => {
+      //   this.pageSize = pageSize;
+      // });
       this.pagelength = length;
       console.log("in the side bar length", this.pagelength);
-      if (this.pageSize1 === 5) {
+      if (this.pageSize === 5) {
         this.barHeight = 592;
-      } else if (this.pageSize1 === 10) {
+      } else if (this.pageSize === 10) {
         if (this.pagelength <= 5) {
           this.barHeight = 592;
         } else if (this.pagelength > 5 && this.pagelength < 10) {
@@ -54,7 +54,7 @@ export class SideNavBarComponent implements OnInit {
         } else {
           this.barHeight = 938;
         }
-      } else if (this.pageSize1 === 25) {
+      } else if (this.pageSize === 25) {
         if (this.pagelength <= 5) {
           this.barHeight = 592;
         } else if (this.pagelength > 5 && this.pagelength <= 10) {
@@ -64,7 +64,7 @@ export class SideNavBarComponent implements OnInit {
         } else {
           this.barHeight = 2019;
         }
-      } else if (this.pageSize1 === 50) {
+      } else if (this.pageSize === 50) {
         if (this.pagelength <= 5) {
           this.barHeight = 592;
         } else if (this.pagelength > 5 && this.pagelength <= 10) {
@@ -80,5 +80,6 @@ export class SideNavBarComponent implements OnInit {
 
   getElementNameTest(eleName) {
     this._navBarService.setElementNameFromSideBar(eleName);
+    this.barHeight = 592;
   }
 }

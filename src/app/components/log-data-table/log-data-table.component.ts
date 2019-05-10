@@ -35,6 +35,8 @@ export class LogDataTableComponent implements OnInit {
   dataByAPI: MatTableDataSource<any>;
   storeUniqueData: any = [];
 
+  testPageSize: 5;
+
   isLoading = true;
   constructor(
     private _loglistingService: LoglistingService,
@@ -105,6 +107,7 @@ export class LogDataTableComponent implements OnInit {
     this._navBarService.getElementName().subscribe(tableName => {
       this.isLoading = true;
       this.selectedDataForPrint = [];
+      this.testPageSize = 5;
       if (tableName === "Price_Prompt_SKUs") {
         this.columns = [
           {
