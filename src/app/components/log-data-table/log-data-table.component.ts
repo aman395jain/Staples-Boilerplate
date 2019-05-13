@@ -13,6 +13,7 @@ import { LoglistingService } from "src/app/services/log-listing/loglisting.servi
 import { NavBarService } from "src/app/services/nav-bar/nav-bar.service";
 import { PrintDocumentService } from "src/app/services/print-document/print-document.service";
 import { LogModalDataService } from "src/app/services/log-modal-data/log-modal-data.service";
+import { LogDiscriptionDataOrderService } from "src/app/helper/logDiscription/log-discription-data-order.service";
 
 @Component({
   selector: "app-log-data-table",
@@ -35,7 +36,8 @@ export class LogDataTableComponent implements OnInit {
   dataByAPI: MatTableDataSource<any>;
   storeUniqueData: any = [];
 
-  testPageSize: 5;
+  initialPageSize: 5;
+  tableName: String = "";
 
   isLoading = true;
   constructor(
@@ -43,7 +45,8 @@ export class LogDataTableComponent implements OnInit {
     private _dialog: MatDialog,
     private _navBarService: NavBarService,
     private _printDocumentService: PrintDocumentService,
-    private _logModalDataService: LogModalDataService
+    private _logModalDataService: LogModalDataService,
+    private _logDiscriptionDataOrderService: LogDiscriptionDataOrderService
   ) {}
 
   ngOnInit() {
@@ -55,7 +58,7 @@ export class LogDataTableComponent implements OnInit {
       },
       {
         columnDef: "sku",
-        header: "SKU",
+        header: "SKU Number",
         cell: (element: any) => `${element.sku}`
       },
       {
@@ -70,7 +73,7 @@ export class LogDataTableComponent implements OnInit {
       },
       {
         columnDef: "barCode",
-        header: "Bar Code",
+        header: "UPC",
         cell: (element: any) => `${element.upcList[0]}`
       },
       {
@@ -80,6 +83,7 @@ export class LogDataTableComponent implements OnInit {
       }
     ];
 
+    this.tableName = "Item_Master";
     this.displayedColumns = this.columns.map(c => c.columnDef);
 
     try {
@@ -95,7 +99,6 @@ export class LogDataTableComponent implements OnInit {
           storeData.push(dataValue.store);
         });
         this.storeUniqueData = this.uniqueStore(storeData);
-        // console.log("data value", this.storeUniqueData);
 
         this.dataByAPI = new MatTableDataSource(data);
         this.dataByAPI.sort = this.sort;
@@ -152,7 +155,7 @@ export class LogDataTableComponent implements OnInit {
           },
           {
             columnDef: "sku",
-            header: "SKU",
+            header: "SKU Number",
             cell: (element: any) => `${element.sku}`
           },
           {
@@ -161,13 +164,13 @@ export class LogDataTableComponent implements OnInit {
             cell: (element: any) => `${element.itemDesc}`
           },
           {
-            columnDef: "permPrice",
+            columnDef: "retailPrice",
             header: "Retail Price",
-            cell: (element: any) => `${element.permPrice}`
+            cell: (element: any) => `${element.retailPrice}`
           },
           {
             columnDef: "barCode",
-            header: "Bar Code",
+            header: "UPC",
             cell: (element: any) => this.barCodeDisplay(element)
           },
           {
@@ -211,6 +214,7 @@ export class LogDataTableComponent implements OnInit {
             cell: null
           }
         ];
+        this.tableName = "Employee";
 
         this.displayedColumns = this.columns.map(c => c.columnDef);
       } else if (tableName === "Linked_SKUs") {
@@ -222,7 +226,7 @@ export class LogDataTableComponent implements OnInit {
           },
           {
             columnDef: "sku",
-            header: "SKU NO.",
+            header: "SKU Number",
             cell: (element: any) => `${element.sku}`
           },
           {
@@ -284,6 +288,7 @@ export class LogDataTableComponent implements OnInit {
 
         this.displayedColumns = this.columns.map(c => c.columnDef);
       } else if (tableName === "Hardware_SKUs") {
+        console.log("in the hardware");
         this.columns = [
           {
             columnDef: "select",
@@ -301,14 +306,19 @@ export class LogDataTableComponent implements OnInit {
             cell: (element: any) => `${element.itemDesc}`
           },
           {
-            columnDef: "permPrice",
+            columnDef: "retailPrice",
             header: "Retail Price",
-            cell: (element: any) => `${element.permPrice}`
+            cell: (element: any) => `${element.retailPrice}`
           },
           {
             columnDef: "barCode",
             header: "UPC",
-            cell: (element: any) => `${element.posId}`
+            cell: (element: any) => this.barCodeDisplay(element)
+          },
+          {
+            columnDef: "vendorName",
+            header: "Vendor Name",
+            cell: (element: any) => `${element.vendorName}`
           },
           {
             columnDef: "action",
@@ -388,12 +398,7 @@ export class LogDataTableComponent implements OnInit {
           {
             columnDef: "barCode",
             header: "UPC",
-            cell: (element: any) => `${element.barCode}`
-          },
-          {
-            columnDef: "itemGroupID",
-            header: "Item Group ID",
-            cell: (element: any) => `${element.itemGroupID}`
+            cell: (element: any) => this.barCodeDisplay(element)
           },
           {
             columnDef: "alertCode",
@@ -476,7 +481,7 @@ export class LogDataTableComponent implements OnInit {
       }
 
       this._navBarService.getPageSize().subscribe(size => {
-        this.testPageSize = size;
+        this.initialPageSize = size;
       });
 
       this._loglistingService.getLogListForEntity(tableName).subscribe(data => {
@@ -551,8 +556,9 @@ export class LogDataTableComponent implements OnInit {
   * discriptionLog to populate the data in a Modal
   */
   discriptionLog(row) {
-    // console.log("in the row test", row);
-    this._logModalDataService.getLogModalData(row);
+    this._logDiscriptionDataOrderService.tableNameByComponent(this.tableName);
+
+    this._logModalDataService.getLogModalData(row); //data for print
     const _dialogConfig = new MatDialogConfig();
     _dialogConfig.data = row;
     _dialogConfig.disableClose = false;
@@ -566,7 +572,7 @@ export class LogDataTableComponent implements OnInit {
     // event will give you full breif of action
     console.log("store value", event.value);
     this.selectedStoreValue = event.value;
-    this.applyFilterOnStore(event.value);
+    this.applyFilterOnStore(event.value.toString());
   }
 
   isSortingDisabled(columnDef) {

@@ -11,7 +11,7 @@ export class DashboardHeaderNameConverstionService {
     posId: "Position ID",
     profit: "Profit",
     sellPrice: "Sell Price",
-    sku: "SKU",
+    sku: "SKU Number",
     state: "State",
     store: "Store",
     empName: "Employee Name",
@@ -57,13 +57,40 @@ export class DashboardHeaderNameConverstionService {
     rate: "Rate",
     roundRule: "Round Rule",
     alertCode: "Alert Code",
-    retailPrice: "Retail Price"
+    retailPrice: "Retail Price",
+    ageRestrictedItem: "Age Restricted Item",
+    allowQtyKeyFlg: "Allow Quantity Key Flag",
+    allowRetFlg: "Allow Return Flag",
+    associateGrpId: "Accociate Group ID",
+    discountCode: "Discount Code",
+    hardwareSku: "Hardware SKU",
+    id: "ID",
+    itemStatusCode: "Item Status Code",
+    itemTypeCode: "Item Type Code",
+    markdownCode: "Mark Down Code",
+    posItemDesc: "Position Item Description",
+    priceOverrideCode: "Price Override Code",
+    pricePromptSku: "Price Prompt SKU",
+    priceVerifyFlg: "Price Verify Flag",
+    promotionlFlg: "Promotional Flag",
+    serialNoFlg: "Serial No Flag",
+    sourceDb: "Source Data Base",
+    spiffCode: "Spiff Code",
+    styleCode: "Style Code",
+    subDept: "Sub Department",
+    taxGroup: "Tax Group",
+    threshDiscountCode: "Threshold Discount Group",
+    upcNumber: "UPC Number",
+    userId: "User ID",
+    vendorName: "Vendor Name",
+    vendorNumber: "Vender Number"
   };
   printedDataNewHeader = {};
 
   constructor() {}
 
   headerNameConvert = dataForConvertion => {
+    console.log("data for converstion", dataForConvertion);
     this.printedDataNewHeader = dataForConvertion.map(data => {
       return Object.keys(data).reduce((prev, next) => {
         if (next in this.keyMap) {

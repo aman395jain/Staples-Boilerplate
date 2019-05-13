@@ -39,19 +39,19 @@ export class LoglistingService {
     if (entity === "Price_Prompt_SKUs") {
       this._serviceUrl = "http://www.mocky.io/v2/5ccff0b9320000b52100f912";
     } else if (entity === "Item_Master") {
-      this._serviceUrl = "http://www.mocky.io/v2/5ccff0b9320000b52100f912";
+      this._serviceUrl = "http://www.mocky.io/v2/5cd912853000008320c01387";
     } else if (entity === "Employee") {
-      this._serviceUrl = "http://www.mocky.io/v2/5cd290db3100005346339821";
+      this._serviceUrl = "http://www.mocky.io/v2/5cd90e06300000d120c01345";
     } else if (entity === "Tax_Rates") {
-      this._serviceUrl = "http://www.mocky.io/v2/5cd40d60350000a92c7a52c6";
+      this._serviceUrl = "http://www.mocky.io/v2/5cd90d1e3000006621c01342";
     } else if (entity === "Hardware_SKUs") {
-      this._serviceUrl = "http://www.mocky.io/v2/5cb860794c0000c51ad3d50d";
+      this._serviceUrl = "http://www.mocky.io/v2/5cd91e433000008320c013e4";
     } else if (entity === "Linked_SKUs") {
       this._serviceUrl = "http://www.mocky.io/v2/5cbef6d530000053059ce413";
     } else if (entity === "Free_SKUs") {
       this._serviceUrl = "http://www.mocky.io/v2/5cbeff80300000bb069ce463";
     } else if (entity === "Age_Restricted_Special_rest") {
-      this._serviceUrl = "http://www.mocky.io/v2/5cbff17f310000090a035f48";
+      this._serviceUrl = "http://www.mocky.io/v2/5cd9297b3000006d21c0143e";
     } else if (entity === "Return_Driver_License") {
       this._serviceUrl = "http://www.mocky.io/v2/5cbff4ce310000170e035f4e";
     } else if (entity === "Lowest_Price") {
