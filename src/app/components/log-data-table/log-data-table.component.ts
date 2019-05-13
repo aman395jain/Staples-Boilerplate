@@ -542,7 +542,7 @@ export class LogDataTableComponent implements OnInit {
   discriptionLog(row) {
     this._logDiscriptionDataOrderService.tableNameByComponent(this.tableName);
 
-    console.log("row data", row);
+    // console.log("row data", row);
 
     this._logModalDataService.getLogModalData(row); //data for print
     const _dialogConfig = new MatDialogConfig();
@@ -550,7 +550,7 @@ export class LogDataTableComponent implements OnInit {
     _dialogConfig.disableClose = false;
     _dialogConfig.autoFocus = true;
     _dialogConfig.width = "50%";
-    _dialogConfig.height = "60%";
+    _dialogConfig.height = "65%";
     this._dialog.open(LogDiscriptionComponent, _dialogConfig);
   }
 
