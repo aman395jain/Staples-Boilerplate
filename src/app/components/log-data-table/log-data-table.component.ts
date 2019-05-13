@@ -14,6 +14,7 @@ import { NavBarService } from "src/app/services/nav-bar/nav-bar.service";
 import { PrintDocumentService } from "src/app/services/print-document/print-document.service";
 import { LogModalDataService } from "src/app/services/log-modal-data/log-modal-data.service";
 import { LogDiscriptionDataOrderService } from "src/app/helper/logDiscription/log-discription-data-order.service";
+import { UniqueStoreService } from "src/app/services/uniqueStore/unique-store.service";
 
 @Component({
   selector: "app-log-data-table",
@@ -46,7 +47,8 @@ export class LogDataTableComponent implements OnInit {
     private _navBarService: NavBarService,
     private _printDocumentService: PrintDocumentService,
     private _logModalDataService: LogModalDataService,
-    private _logDiscriptionDataOrderService: LogDiscriptionDataOrderService
+    private _logDiscriptionDataOrderService: LogDiscriptionDataOrderService,
+    private _uniqueStoreService: UniqueStoreService
   ) {}
 
   ngOnInit() {
@@ -98,7 +100,7 @@ export class LogDataTableComponent implements OnInit {
           dataValue["index"] = i;
           storeData.push(dataValue.store);
         });
-        this.storeUniqueData = this.uniqueStore(storeData);
+        this.storeUniqueData = this._uniqueStoreService.uniqueStore(storeData);
 
         this.dataByAPI = new MatTableDataSource(data);
         this.dataByAPI.sort = this.sort;
@@ -145,6 +147,7 @@ export class LogDataTableComponent implements OnInit {
           }
         ];
 
+        this.tableName = "Price_Prompt_SKUs";
         this.displayedColumns = this.columns.map(c => c.columnDef);
       } else if (tableName === "Item_Master") {
         this.columns = [
@@ -180,6 +183,7 @@ export class LogDataTableComponent implements OnInit {
           }
         ];
 
+        this.tableName = "Price_Prompt_SKUs";
         this.displayedColumns = this.columns.map(c => c.columnDef);
       } else if (tableName === "Employee") {
         this.columns = [
@@ -214,8 +218,8 @@ export class LogDataTableComponent implements OnInit {
             cell: null
           }
         ];
-        this.tableName = "Employee";
 
+        this.tableName = "Employee";
         this.displayedColumns = this.columns.map(c => c.columnDef);
       } else if (tableName === "Linked_SKUs") {
         this.columns = [
@@ -256,6 +260,7 @@ export class LogDataTableComponent implements OnInit {
           }
         ];
 
+        this.tableName = "Linked_SKUs";
         this.displayedColumns = this.columns.map(c => c.columnDef);
       } else if (tableName === "Tax_Rates") {
         this.columns = [
@@ -286,9 +291,9 @@ export class LogDataTableComponent implements OnInit {
           }
         ];
 
+        this.tableName = "Tax_Rates";
         this.displayedColumns = this.columns.map(c => c.columnDef);
       } else if (tableName === "Hardware_SKUs") {
-        console.log("in the hardware");
         this.columns = [
           {
             columnDef: "select",
@@ -327,6 +332,7 @@ export class LogDataTableComponent implements OnInit {
           }
         ];
 
+        this.tableName = "Hardware_SKUs";
         this.displayedColumns = this.columns.map(c => c.columnDef);
       } else if (tableName === "Free_SKUs") {
         this.columns = [
@@ -372,6 +378,7 @@ export class LogDataTableComponent implements OnInit {
           }
         ];
 
+        this.tableName = "Free_SKUs";
         this.displayedColumns = this.columns.map(c => c.columnDef);
       } else if (tableName === "Age_Restricted_Special_rest") {
         this.columns = [
@@ -412,6 +419,7 @@ export class LogDataTableComponent implements OnInit {
           }
         ];
 
+        this.tableName = "Age_Restricted_Special_rest";
         this.displayedColumns = this.columns.map(c => c.columnDef);
       } else if (tableName === "Return_Driver_License") {
         this.columns = [
@@ -442,6 +450,7 @@ export class LogDataTableComponent implements OnInit {
           }
         ];
 
+        this.tableName = "Return_Driver_License";
         this.displayedColumns = this.columns.map(c => c.columnDef);
       } else if (tableName === "Lowest_Price") {
         this.columns = [
@@ -477,6 +486,7 @@ export class LogDataTableComponent implements OnInit {
           }
         ];
 
+        this.tableName = "Lowest_Price";
         this.displayedColumns = this.columns.map(c => c.columnDef);
       }
 
@@ -496,7 +506,7 @@ export class LogDataTableComponent implements OnInit {
         });
         this.selectedOption = "Select a Store";
 
-        this.storeUniqueData = this.uniqueStore(storeData);
+        this.storeUniqueData = this._uniqueStoreService.uniqueStore(storeData);
         console.log("unique store value", this.storeUniqueData);
         this.dataByAPI = new MatTableDataSource(data);
         this.dataByAPI.sort = this.sort;
@@ -513,32 +523,6 @@ export class LogDataTableComponent implements OnInit {
     try {
       return `${element.upcList[0]}`;
     } catch (e) {}
-  }
-
-  /**
-   * uniqueStore: find out the unique store values.
-   */
-
-  uniqueStore = storeData => {
-    let aux = {};
-    return storeData.reduce((tot, curr) => {
-      if (!aux[curr]) {
-        aux[curr] = 1;
-        tot.push(curr);
-      }
-      return tot;
-    }, []);
-  };
-
-  applyFilterOnStore(filterValue: string) {
-    filterValue = filterValue.trim(); // Remove whitespace
-    filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
-    console.log("in the search filter", this.dataByAPI);
-    if (filterValue === "select a store") {
-      this.dataByAPI.filter = null;
-    } else {
-      this.dataByAPI.filter = filterValue;
-    }
   }
 
   /*
@@ -572,7 +556,10 @@ export class LogDataTableComponent implements OnInit {
     // event will give you full breif of action
     console.log("store value", event.value);
     this.selectedStoreValue = event.value;
-    this.applyFilterOnStore(event.value.toString());
+    this._uniqueStoreService.applyFilterOnStore(
+      event.value.toString(),
+      this.dataByAPI
+    );
   }
 
   isSortingDisabled(columnDef) {
