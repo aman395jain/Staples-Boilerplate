@@ -12,7 +12,7 @@ import { LogDiscriptionDataOrderService } from "src/app/helper/logDiscription/lo
 })
 export class LogDiscriptionComponent implements OnInit {
   dataDiscriptionKeysToDisplay = [];
-  dataDiscriptionKeysToDisplay1 = [];
+  restDataDiscriptionKeysToDisplay = [];
   mainDataDisplay = {};
   restDataDisplay = {};
   dataDisplayOnModal = [];
@@ -20,7 +20,7 @@ export class LogDiscriptionComponent implements OnInit {
   dataBarCode = [];
   dataDisplay = {};
 
-  testData = [];
+  classifiedData = [];
 
   tableName: string = "";
 
@@ -34,22 +34,32 @@ export class LogDiscriptionComponent implements OnInit {
 
   ngOnInit() {
     this.tableName = this._logDiscriptionDataOrderService.getTableName();
-    console.log("in the component table name", this.tableName);
 
-    if (this.tableName === "Item_Master") {
-      this.testData = this._logDiscriptionDataOrderService.modalDataOrder(
+    if (
+      this.tableName === "Tax_Rates" ||
+      this.tableName === "Employee" ||
+      this.tableName === "Item_Master" ||
+      this.tableName === "Price_Prompt_SKUs" ||
+      this.tableName === "Hardware_SKUs" ||
+      this.tableName === "Linked_SKUs" ||
+      this.tableName === "Free_SKUs" ||
+      this.tableName === "Age_Restricted_Special_rest"
+    ) {
+      console.log("in the component table name", this.tableName);
+      //If condition is Just for test
+      this.classifiedData = this._logDiscriptionDataOrderService.modalDataOrder(
         this.dataDiscription
       );
 
-      this.dataDiscriptionKeysToDisplay.push(this.testData[0]);
-      this.dataDiscriptionKeysToDisplay1.push(this.testData[1]);
+      this.dataDiscriptionKeysToDisplay.push(this.classifiedData[0]);
+      this.restDataDiscriptionKeysToDisplay.push(this.classifiedData[1]);
 
       this.mainDataDisplay = this._dashboardHeaderNameConverstionService.headerNameConvert(
         this.dataDiscriptionKeysToDisplay
       );
 
       this.restDataDisplay = this._dashboardHeaderNameConverstionService.headerNameConvert(
-        this.dataDiscriptionKeysToDisplay1
+        this.restDataDiscriptionKeysToDisplay
       );
       // console.log("this.mainDataDisplay", this.mainDataDisplay);
 
@@ -71,20 +81,13 @@ export class LogDiscriptionComponent implements OnInit {
       }
     } else {
       this.dataDiscriptionKeysToDisplay.push(this.dataDiscription);
-      // console.log(
-      //   "this.dataDiscriptionKeysToDisplay",
-      //   this.dataDiscriptionKeysToDisplay
-      // );
 
       this.dataDisplay = this._dashboardHeaderNameConverstionService.headerNameConvert(
         this.dataDiscriptionKeysToDisplay
       );
-      // console.log("this.dataDisplay", this.dataDisplay);
 
       this.dataDisplayOnModal = this.dataDisplay[0];
     }
-
-    // console.log("in the modal", this.dataBarCode);
   }
 
   printDialogData(): void {

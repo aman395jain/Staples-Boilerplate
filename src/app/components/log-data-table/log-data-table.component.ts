@@ -507,7 +507,7 @@ export class LogDataTableComponent implements OnInit {
         this.selectedOption = "Select a Store";
 
         this.storeUniqueData = this._uniqueStoreService.uniqueStore(storeData);
-        console.log("unique store value", this.storeUniqueData);
+        // console.log("unique store value", this.storeUniqueData);
         this.dataByAPI = new MatTableDataSource(data);
         this.dataByAPI.sort = this.sort;
         this.dataByAPI.paginator = this.paginator;
@@ -541,6 +541,8 @@ export class LogDataTableComponent implements OnInit {
   */
   discriptionLog(row) {
     this._logDiscriptionDataOrderService.tableNameByComponent(this.tableName);
+
+    console.log("row data", row);
 
     this._logModalDataService.getLogModalData(row); //data for print
     const _dialogConfig = new MatDialogConfig();

@@ -32,136 +32,179 @@
         </div>
       </mat-dialog-actions>
     </div>
-<div *ngIf = "tableName === 'Item_Master'">
-    <div class="row">
-      <div class="col-md-4" *ngFor="let data of dataDisplayOnModal | keyvalue">
-        <table class="table table-bordered">
-          <thead>
-            <tr *ngIf="!(data.key === 'checked' || data.key === 'index')">
-              <th class="table-header">
-                <span>{{ data.key }}</span>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngIf="!(data.key === 'checked' || data.key === 'index')">
-              <td *ngIf="!(data.key === 'Bar Code' || data.key === 'UPC List')">
-                <div class="discription-blocks">{{ data.value }}</div>
-              </td>
-              <td *ngIf="data.key === 'UPC List'">
-                <div class="discription-blocks">
-                  <perfect-scrollbar
-                    [config]="config"
-                    [scrollIndicators]="true"
-                  >
-                    <div *ngFor="let barCode of dataBarCode">
-                      <div>
-                        <ngx-barcode
-                          [bc-value]="barCode"
-                          [bc-display-value]="true"
-                          [bc-height]="25"
-                          [bc-width]="1"
-                        ></ngx-barcode>
-                      </div>
-                    </div>
-                  </perfect-scrollbar>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
 
-    <div class="row">
-      <div class="col-md-4" *ngFor="let data of dataDisplayOnModal1 | keyvalue">
-        <table class="table table-bordered">
-          <thead>
-            <tr *ngIf="!(data.key === 'checked' || data.key === 'index')">
-              <th class="table-header">
-                <span>{{ data.key }}</span>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngIf="!(data.key === 'checked' || data.key === 'index')">
-              <td *ngIf="!(data.key === 'Bar Code' || data.key === 'UPC List')">
-                <div class="discription-blocks">{{ data.value }}</div>
-              </td>
-              <td *ngIf="data.key === 'UPC List'">
-                <div class="discription-blocks">
-                  <perfect-scrollbar
-                    [config]="config"
-                    [scrollIndicators]="true"
-                  >
-                    <div *ngFor="let barCode of dataBarCode">
-                      <div>
-                        <ngx-barcode
-                          [bc-value]="barCode"
-                          [bc-display-value]="true"
-                          [bc-height]="25"
-                          [bc-width]="1"
-                        ></ngx-barcode>
-                      </div>
-                    </div>
-                  </perfect-scrollbar>
-                </div>
-              </td>
-              <td *ngIf="data.key === 'UPC List'">
-                <div *ngFor="let barCode of dataBarCode">
-                  {{ barCode }}
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>  
-
-  <div *ngIf = "!(tableName === 'Item_Master')"><div class="row">
-    <div class="col-md-4" *ngFor="let data of dataDisplayOnModal | keyvalue">
-      <table class="table table-bordered">
-        <thead>
-          <tr *ngIf="!(data.key === 'checked' || data.key === 'index')">
-            <th class="table-header">
-              <span>{{ data.key }}</span>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngIf="!(data.key === 'checked' || data.key === 'index')">
-            <td *ngIf="!(data.key === 'Bar Code' || data.key === 'UPC List')">
-              <div class="discription-blocks">{{ data.value }}</div>
-            </td>
-            <td *ngIf="data.key === 'Bar Code'">
-              <div class="discription-blocks">
-                <perfect-scrollbar
-                  [config]="config"
-                  [scrollIndicators]="true"
+    <div
+      *ngIf="
+        tableName === 'Tax_Rates' ||
+        tableName === 'Employee' ||
+        tableName === 'Item_Master' ||
+        tableName === 'Price_Prompt_SKUs' ||
+        tableName === 'Hardware_SKUs' ||
+        tableName === 'Linked_SKUs' ||
+        tableName === 'Free_SKUs' ||
+        tableName === 'Age_Restricted_Special_rest'
+      "
+    >
+      <div>Main Content</div>
+      <div class="row">
+        <div
+          class="col-md-4"
+          *ngFor="let data of dataDisplayOnModal | keyvalue"
+        >
+          <table class="table table-bordered">
+            <thead>
+              <tr *ngIf="!(data.key === 'checked' || data.key === 'index')">
+                <th class="table-header">
+                  <span>{{ data.key }}</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngIf="!(data.key === 'checked' || data.key === 'index')">
+                <td
+                  *ngIf="!(data.key === 'Bar Code' || data.key === 'UPC List')"
                 >
-                  <div *ngFor="let barCode of dataBarCode">
-                    <div>
-                      <ngx-barcode
-                        [bc-value]="barCode"
-                        [bc-display-value]="true"
-                        [bc-height]="25"
-                        [bc-width]="1"
-                      ></ngx-barcode>
-                    </div>
+                  <div class="discription-blocks">{{ data.value }}</div>
+                </td>
+                <td *ngIf="data.key === 'UPC List'">
+                  <div class="discription-blocks">
+                    <perfect-scrollbar
+                      [config]="config"
+                      [scrollIndicators]="true"
+                    >
+                      <div *ngFor="let barCode of dataBarCode">
+                        <div>
+                          <ngx-barcode
+                            [bc-value]="barCode"
+                            [bc-display-value]="true"
+                            [bc-height]="25"
+                            [bc-width]="1"
+                          ></ngx-barcode>
+                        </div>
+                      </div>
+                    </perfect-scrollbar>
                   </div>
-                </perfect-scrollbar>
-              </div>
-            </td>
-            <td *ngIf="data.key === 'UPC List'">
-              <div *ngFor="let barCode of dataBarCode">
-                {{ barCode }}
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div>Other Content</div>
+      <div class="row">
+        <div
+          class="col-md-4"
+          *ngFor="let data of dataDisplayOnModal1 | keyvalue"
+        >
+          <table class="table table-bordered">
+            <thead>
+              <tr *ngIf="!(data.key === 'checked' || data.key === 'index')">
+                <th class="table-header">
+                  <span>{{ data.key }}</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngIf="!(data.key === 'checked' || data.key === 'index')">
+                <td
+                  *ngIf="!(data.key === 'Bar Code' || data.key === 'UPC List')"
+                >
+                  <div class="discription-blocks">{{ data.value }}</div>
+                </td>
+                <td *ngIf="data.key === 'UPC List'">
+                  <div class="discription-blocks">
+                    <perfect-scrollbar
+                      [config]="config"
+                      [scrollIndicators]="true"
+                    >
+                      <div *ngFor="let barCode of dataBarCode">
+                        <div>
+                          <ngx-barcode
+                            [bc-value]="barCode"
+                            [bc-display-value]="true"
+                            [bc-height]="25"
+                            [bc-width]="1"
+                          ></ngx-barcode>
+                        </div>
+                      </div>
+                    </perfect-scrollbar>
+                  </div>
+                </td>
+                <td *ngIf="data.key === 'UPC List'">
+                  <div *ngFor="let barCode of dataBarCode">
+                    {{ barCode }}
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
-  </div></div>
+
+    <div
+      *ngIf="
+        !(
+          tableName === 'Tax_Rates' ||
+          tableName === 'Employee' ||
+          tableName === 'Item_Master' ||
+          tableName === 'Price_Prompt_SKUs' ||
+          tableName === 'Hardware_SKUs' ||
+          tableName === 'Linked_SKUs' ||
+          tableName === 'Free_SKUs' ||
+          tableName === 'Age_Restricted_Special_rest'
+        )
+      "
+    >
+      <div class="row">
+        <div
+          class="col-md-4"
+          *ngFor="let data of dataDisplayOnModal | keyvalue"
+        >
+          <table class="table table-bordered">
+            <thead>
+              <tr *ngIf="!(data.key === 'checked' || data.key === 'index')">
+                <th class="table-header">
+                  <span>{{ data.key }}</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngIf="!(data.key === 'checked' || data.key === 'index')">
+                <td
+                  *ngIf="!(data.key === 'Bar Code' || data.key === 'UPC List')"
+                >
+                  <div class="discription-blocks">{{ data.value }}</div>
+                </td>
+                <td *ngIf="data.key === 'Bar Code'">
+                  <div class="discription-blocks">
+                    <perfect-scrollbar
+                      [config]="config"
+                      [scrollIndicators]="true"
+                    >
+                      <div *ngFor="let barCode of dataBarCode">
+                        <div>
+                          <ngx-barcode
+                            [bc-value]="barCode"
+                            [bc-display-value]="true"
+                            [bc-height]="25"
+                            [bc-width]="1"
+                          ></ngx-barcode>
+                        </div>
+                      </div>
+                    </perfect-scrollbar>
+                  </div>
+                </td>
+                <td *ngIf="data.key === 'UPC List'">
+                  <div *ngFor="let barCode of dataBarCode">
+                    {{ barCode }}
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
   </div>
 </perfect-scrollbar>
