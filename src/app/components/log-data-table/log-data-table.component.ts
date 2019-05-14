@@ -61,7 +61,7 @@ export class LogDataTableComponent implements OnInit {
       },
       {
         columnDef: "sku",
-        header: "SKU Number",
+        header: "SKU",
         cell: (element: any) => `${element.sku}`
       },
       {
@@ -123,7 +123,7 @@ export class LogDataTableComponent implements OnInit {
           },
           {
             columnDef: "sku",
-            header: "SKU Number",
+            header: "SKU",
             cell: (element: any) => `${element.sku}`
           },
           {
@@ -159,7 +159,7 @@ export class LogDataTableComponent implements OnInit {
           },
           {
             columnDef: "sku",
-            header: "SKU Number",
+            header: "SKU",
             cell: (element: any) => `${element.sku}`
           },
           {
@@ -231,7 +231,7 @@ export class LogDataTableComponent implements OnInit {
           },
           {
             columnDef: "sku",
-            header: "SKU Number",
+            header: "SKU",
             cell: (element: any) => `${element.sku}`
           },
           {
@@ -303,7 +303,7 @@ export class LogDataTableComponent implements OnInit {
           },
           {
             columnDef: "sku",
-            header: "SKU Number",
+            header: "SKU",
             cell: (element: any) => `${element.sku}`
           },
           {
@@ -344,7 +344,7 @@ export class LogDataTableComponent implements OnInit {
           },
           {
             columnDef: "sku",
-            header: "SKU No.",
+            header: "SKU",
             cell: (element: any) => `${element.sku}`
           },
           {
@@ -390,7 +390,7 @@ export class LogDataTableComponent implements OnInit {
           },
           {
             columnDef: "sku",
-            header: "SKU Number",
+            header: "SKU",
             cell: (element: any) => `${element.sku}`
           },
           {
@@ -462,7 +462,7 @@ export class LogDataTableComponent implements OnInit {
           },
           {
             columnDef: "skuNo",
-            header: "SKU No.",
+            header: "SKU",
             cell: (element: any) => `${element.skuNo}`
           },
           {

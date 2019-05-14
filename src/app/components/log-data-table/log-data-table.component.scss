@@ -37,11 +37,28 @@
   }
 
   .advanced-search {
+    .row-bottom-border {
+      border-width: 0;
+      border-bottom-width: 1px;
+      border-bottom-color: rgba(0, 0, 0, 0.12);
+      border-style: solid;
+    }
+    .inner-rows {
+      min-height: 45px;
+      .advance-search-button {
+        margin-top: 7px;
+      }
+    }
     .advance-search-text {
       color: #0056b3;
+      font-weight: bold;
     }
     .select-fields {
       padding: 0 25px;
+    }
+    .advance-search-addition {
+      margin: auto 0;
+      color: #0056b3;
     }
   }
 
