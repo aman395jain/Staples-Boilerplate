@@ -1,23 +1,7 @@
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { HttpClientModule } from "@angular/common/http";
-import {
-  MatTableModule,
-  MatFormFieldModule,
-  MatInputModule,
-  MatPaginatorModule,
-  MatSortModule,
-  MatIconModule,
-  MatDialogModule,
-  MatMenuModule,
-  MatSidenavModule,
-  MatExpansionModule,
-  MatListModule,
-  MatCheckboxModule,
-  MatSelectModule,
-  MatCardModule,
-  MatProgressSpinnerModule
-} from "@angular/material";
+
 import { CdkColumnDef, CdkTableModule } from "@angular/cdk/table";
 import { NgxBarcodeModule } from "ngx-barcode";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -25,8 +9,9 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { CommonModule } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { AngularSplitModule } from "angular-split";
-
+import { MaterialModule } from "./helper/material.module";
 import { AppRoutingModule } from "./app-routing.module";
+
 import { AppComponent } from "./app.component";
 import { HomeComponent } from "./components/home/home.component";
 import { PageNotFoundComponent } from "./components/page-not-found/page-not-found.component";
@@ -74,29 +59,15 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    MatTableModule,
-    MatSortModule,
-    MatPaginatorModule,
-    MatIconModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatDialogModule,
-    MatMenuModule,
-    MatCheckboxModule,
-    MatExpansionModule,
-    MatListModule,
-    MatSidenavModule,
+    MaterialModule,
     NgxBarcodeModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
     CdkTableModule,
     CommonModule,
     FormsModule,
-    MatCardModule,
-    MatSelectModule,
     ReactiveFormsModule,
     PerfectScrollbarModule,
-    MatProgressSpinnerModule,
     AngularSplitModule.forRoot()
   ],
   entryComponents: [LogDiscriptionComponent],

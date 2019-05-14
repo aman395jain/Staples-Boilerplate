@@ -39,6 +39,7 @@ export class LogDataTableComponent implements OnInit {
 
   initialPageSize: 5;
   tableName: String = "";
+  advancedSearchStatus: boolean = false;
 
   isLoading = true;
   constructor(
@@ -644,5 +645,10 @@ export class LogDataTableComponent implements OnInit {
     console.log("in the pag event", event);
     this._navBarService.setPageSize(event.pageSize);
     this._navBarService.setPageLength(event.length);
+  }
+
+  advanceSearchStatus() {
+    this.advancedSearchStatus = !this.advancedSearchStatus;
+    console.log("advanced search clicked", this.advancedSearchStatus);
   }
 }
