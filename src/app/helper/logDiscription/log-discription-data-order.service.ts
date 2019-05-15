@@ -19,6 +19,11 @@ export class LogDiscriptionDataOrderService {
   getTableName() {
     return this.tableName;
   }
+
+  /**
+   * For classification of data of Modal.
+   * @param row
+   */
   modalDataOrder(row) {
     Object.assign(this.rowDataWithRestData, row);
     if (this.tableName === "Item_Master") {
@@ -157,6 +162,143 @@ export class LogDiscriptionDataOrderService {
 
       this.dataToBeDisplayedOnModal[1] = this.rowDataWithRestData;
       return this.dataToBeDisplayedOnModal;
+    }
+  }
+
+  filterRestrictionOnlyForDisplayedRows(tableName) {
+    if (tableName === "Item_Master") {
+      return function(data, filter: string): boolean {
+        if (data.permPrice) {
+          return (
+            data.sku.toLowerCase().includes(filter) ||
+            data.itemDesc.toLowerCase().includes(filter) ||
+            data.permPrice.toString().includes(filter) ||
+            data.upcList[0].toString() === filter
+          );
+        } else {
+          return (
+            data.sku.toLowerCase().includes(filter) ||
+            data.itemDesc.toLowerCase().includes(filter) ||
+            data.retailPrice.toString().includes(filter) ||
+            data.upcList[0] === filter
+          );
+        }
+      };
+    } else if (tableName === "Price_Prompt_SKUs") {
+      return function(data, filter: string): boolean {
+        if (data.permPrice) {
+          return (
+            data.sku.toLowerCase().includes(filter) ||
+            data.itemDesc.toLowerCase().includes(filter) ||
+            data.permPrice.toString().includes(filter) ||
+            data.upcList[0].toString() === filter
+          );
+        } else {
+          return (
+            data.sku.toLowerCase().includes(filter) ||
+            data.itemDesc.toLowerCase().includes(filter) ||
+            data.retailPrice.toString().includes(filter) ||
+            data.upcList[0] === filter
+          );
+        }
+      };
+    } else if (tableName === "Employee") {
+      return function(data, filter: string): boolean {
+        return (
+          data.emplName.toLowerCase().includes(filter) ||
+          data.password.toLowerCase().includes(filter) ||
+          data.emplRole.toString().includes(filter) ||
+          data.store === filter
+        );
+      };
+    } else if (tableName === "Linked_SKUs") {
+      return function(data, filter: string): boolean {
+        return (
+          data.sku.toLowerCase().includes(filter) ||
+          data.permPrice.toString().includes(filter) ||
+          data.posId.toString().includes(filter) ||
+          data.warranty
+            .toString()
+            .toLowerCase()
+            .includes(filter) ||
+          data.itemGroupID.toString() === filter
+        );
+      };
+    } else if (tableName === "Tax_Rates") {
+      return function(data, filter: string): boolean {
+        return (
+          data.store
+            .toString()
+            .toLowerCase()
+            .includes(filter) ||
+          data.rate
+            .toString()
+            .toLowerCase()
+            .includes(filter) ||
+          data.state
+            .toString()
+            .toLowerCase()
+            .includes(filter)
+        );
+      };
+    } else if (tableName === "Hardware_SKUs") {
+      // Need to add Vendor Name check
+      return function(data, filter: string): boolean {
+        return (
+          data.sku
+            .toString()
+            .toLowerCase()
+            .includes(filter) ||
+          data.itemDesc
+            .toString()
+            .toLowerCase()
+            .includes(filter) ||
+          data.retailPrice
+            .toString()
+            .toLowerCase()
+            .includes(filter) ||
+          data.upcList[0].includes(filter)
+        );
+      };
+    } else if (tableName === "Free_SKUs") {
+      return function(data, filter: string): boolean {
+        return (
+          data.sku
+            .toString()
+            .toLowerCase()
+            .includes(filter) ||
+          data.itemDesc
+            .toString()
+            .toLowerCase()
+            .includes(filter) ||
+          data.permPrice
+            .toString()
+            .toLowerCase()
+            .includes(filter) ||
+          data.posId.includes(filter) ||
+          data.freeSku.includes(filter) ||
+          data.freeSkuPrice.includes(filter)
+        );
+      };
+    } else if (tableName === "Age_Restricted_Special_rest") {
+      return function(data, filter: string): boolean {
+        return (
+          data.sku
+            .toString()
+            .toLowerCase()
+            .includes(filter) ||
+          data.itemDesc
+            .toString()
+            .toLowerCase()
+            .includes(filter) ||
+          data.retailPrice
+            .toString()
+            .toLowerCase()
+            .includes(filter) ||
+          data.upcList[0] === filter ||
+          data.alertCode === filter
+        );
+      };
     }
   }
 }

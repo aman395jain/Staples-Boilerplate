@@ -57,8 +57,14 @@
       padding: 0 25px;
     }
     .advance-search-addition {
-      margin: auto 0;
-      color: #0056b3;
+      font-size: 1.5em;
+      color: green;
+      cursor: pointer;
+    }
+    .advance-search-minus {
+      font-size: 1.5em;
+      color: #cc0000;
+      cursor: pointer;
     }
   }
 

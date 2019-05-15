@@ -106,6 +106,9 @@ export class LogDataTableComponent implements OnInit {
         this.dataByAPI = new MatTableDataSource(data);
         this.dataByAPI.sort = this.sort;
         this.dataByAPI.paginator = this.paginator;
+        this.dataByAPI.filterPredicate = this._logDiscriptionDataOrderService.filterRestrictionOnlyForDisplayedRows(
+          "Item_Master"
+        );
       });
     } catch (e) {
       console.log("in the test error", e);
@@ -184,7 +187,7 @@ export class LogDataTableComponent implements OnInit {
           }
         ];
 
-        this.tableName = "Price_Prompt_SKUs";
+        this.tableName = "Item_Master";
         this.displayedColumns = this.columns.map(c => c.columnDef);
       } else if (tableName === "Employee") {
         this.columns = [
@@ -506,12 +509,27 @@ export class LogDataTableComponent implements OnInit {
           storeData.push(dataValue.store);
         });
         this.selectedOption = "Select a Store";
+        console.log("table name", this.tableName);
 
         this.storeUniqueData = this._uniqueStoreService.uniqueStore(storeData);
         // console.log("unique store value", this.storeUniqueData);
         this.dataByAPI = new MatTableDataSource(data);
         this.dataByAPI.sort = this.sort;
         this.dataByAPI.paginator = this.paginator;
+        if (
+          this.tableName === "Item_Master" ||
+          this.tableName === "Price_Prompt_SKUs" ||
+          this.tableName === "Employee" ||
+          this.tableName === "Linked_SKUs" ||
+          this.tableName === "Tax_Rates" ||
+          this.tableName === "Hardware_SKUs" ||
+          this.tableName === "Free_SKUs" ||
+          this.tableName === "Age_Restricted_Special_rest"
+        ) {
+          this.dataByAPI.filterPredicate = this._logDiscriptionDataOrderService.filterRestrictionOnlyForDisplayedRows(
+            this.tableName
+          );
+        }
       });
     });
   }
@@ -533,7 +551,7 @@ export class LogDataTableComponent implements OnInit {
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
-    console.log("in the search filter", this.dataByAPI);
+    // console.log("in the search filter", this.dataByAPI);
     this.dataByAPI.filter = filterValue;
   }
 
