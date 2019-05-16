@@ -157,11 +157,11 @@ export class LogDataTableComponent implements OnInit {
           storeData.push(dataValue.store);
         });
         this.selectedOption = "Select a Store";
-        console.log("table name", this.tableName);
+        // console.log("table name", this.tableName);
 
         this.storeUniqueData = this._uniqueStoreService.uniqueStore(storeData);
         this.dataByAPI = new MatTableDataSource(data);
-        console.log("datasource", this.dataByAPI);
+        // console.log("datasource", this.dataByAPI);
         this.dataByAPI.sort = this.sort;
         this.dataByAPI.paginator = this.paginator;
         this.paginator.pageSize = 5;
@@ -181,16 +181,6 @@ export class LogDataTableComponent implements OnInit {
         }
       });
     });
-  }
-
-  /**
-   * To display barCode
-   * @param element upcList
-   */
-  barCodeDisplay(element) {
-    try {
-      return `${element.upcList[0]}`;
-    } catch (e) {}
   }
 
   /*

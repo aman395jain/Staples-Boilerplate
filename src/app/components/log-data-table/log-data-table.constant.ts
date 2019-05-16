@@ -23,7 +23,7 @@ export const logDataTableConst = {
     {
       columnDef: "barCode",
       header: "UPC",
-      cell: (element: any) => `${element.upcList[0]}`
+      cell: (element: any) => barCodeDisplay(element)
     },
     {
       columnDef: "action",
@@ -55,7 +55,7 @@ export const logDataTableConst = {
     {
       columnDef: "barCode",
       header: "UPC",
-      cell: (element: any) => `${element.upcList[0]}`
+      cell: (element: any) => barCodeDisplay(element)
     },
     {
       columnDef: "action",
@@ -87,7 +87,7 @@ export const logDataTableConst = {
     {
       columnDef: "barCode",
       header: "Bar Code",
-      cell: (element: any) => `${element.upcList[0]}`
+      cell: (element: any) => barCodeDisplay(element)
     },
     {
       columnDef: "action",
@@ -215,7 +215,7 @@ export const logDataTableConst = {
     {
       columnDef: "barCode",
       header: "UPC",
-      cell: (element: any) => `${element.upcList[0]}`
+      cell: (element: any) => barCodeDisplay(element)
     },
     {
       columnDef: "vendorName",
@@ -294,7 +294,7 @@ export const logDataTableConst = {
     {
       columnDef: "barCode",
       header: "UPC",
-      cell: (element: any) => `${element.upcList[0]}`
+      cell: (element: any) => barCodeDisplay(element)
     },
     {
       columnDef: "alertCode",
@@ -367,3 +367,9 @@ export const logDataTableConst = {
     }
   ]
 };
+
+function barCodeDisplay(element) {
+  try {
+    return `${element.upcList[0]}`;
+  } catch (e) {}
+}

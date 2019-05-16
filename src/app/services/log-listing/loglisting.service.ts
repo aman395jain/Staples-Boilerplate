@@ -37,7 +37,6 @@ export class LoglistingService {
   }
 
   getLogListForEntity(entity): Observable<any> {
-    // console.log("in the loglist service", entity);
     if (entity === "Price_Prompt_SKUs") {
       this._serviceUrl = dataUrls.getPricePromptSKUs;
     } else if (entity === "Item_Master") {
@@ -69,7 +68,7 @@ export class LoglistingService {
     }
     return this.http.get<any>(this._serviceUrl).pipe(
       map((response: Response) => {
-        console.log("in the service", response[0]);
+        // console.log("in the service", response[0]);
         return response;
       }),
       catchError((err: Response) => {
