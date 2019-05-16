@@ -16,6 +16,8 @@ import { LogModalDataService } from "src/app/services/log-modal-data/log-modal-d
 import { LogDiscriptionDataOrderService } from "src/app/helper/logDiscription/log-discription-data-order.service";
 import { UniqueStoreService } from "src/app/services/uniqueStore/unique-store.service";
 
+import { logDataTableConst } from "./log-data-table.constant";
+
 @Component({
   selector: "app-log-data-table",
   templateUrl: "./log-data-table.component.html",
@@ -54,38 +56,7 @@ export class LogDataTableComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.columns = [
-      {
-        columnDef: "select",
-        header: null,
-        cell: null
-      },
-      {
-        columnDef: "sku",
-        header: "SKU",
-        cell: (element: any) => `${element.sku}`
-      },
-      {
-        columnDef: "itemDesc",
-        header: "Description",
-        cell: (element: any) => `${element.itemDesc}`
-      },
-      {
-        columnDef: "permPrice",
-        header: "Retail Price",
-        cell: (element: any) => `${element.permPrice}`
-      },
-      {
-        columnDef: "barCode",
-        header: "UPC",
-        cell: (element: any) => `${element.upcList[0]}`
-      },
-      {
-        columnDef: "action",
-        header: null,
-        cell: null
-      }
-    ];
+    this.columns = logDataTableConst.item_Master;
 
     this.tableName = "Item_Master";
     this.displayedColumns = this.columns.map(c => c.columnDef);
@@ -120,377 +91,52 @@ export class LogDataTableComponent implements OnInit {
       this.selectedDataForPrint = [];
       if (tableName === "Price_Prompt_SKUs") {
         console.log("in the price prompt");
-        this.columns = [
-          {
-            columnDef: "select",
-            header: null,
-            cell: null
-          },
-          {
-            columnDef: "sku",
-            header: "SKU",
-            cell: (element: any) => `${element.sku}`
-          },
-          {
-            columnDef: "itemDesc",
-            header: "Description",
-            cell: (element: any) => `${element.itemDesc}`
-          },
-          {
-            columnDef: "permPrice",
-            header: "Retail Price",
-            cell: (element: any) => `${element.permPrice}`
-          },
-          {
-            columnDef: "barCode",
-            header: "Bar Code",
-            cell: (element: any) => `${element.upcList[0]}`
-          },
-          {
-            columnDef: "action",
-            header: null,
-            cell: null
-          }
-        ];
+        this.columns = logDataTableConst.price_Prompt_Sku;
 
         this.tableName = "Price_Prompt_SKUs";
         this.displayedColumns = this.columns.map(c => c.columnDef);
       } else if (tableName === "Item_Master") {
-        this.columns = [
-          {
-            columnDef: "select",
-            header: null,
-            cell: null
-          },
-          {
-            columnDef: "sku",
-            header: "SKU",
-            cell: (element: any) => `${element.sku}`
-          },
-          {
-            columnDef: "itemDesc",
-            header: "Description",
-            cell: (element: any) => `${element.itemDesc}`
-          },
-          {
-            columnDef: "retailPrice",
-            header: "Retail Price",
-            cell: (element: any) => `${element.retailPrice}`
-          },
-          {
-            columnDef: "barCode",
-            header: "UPC",
-            cell: (element: any) => this.barCodeDisplay(element)
-          },
-          {
-            columnDef: "action",
-            header: null,
-            cell: null
-          }
-        ];
+        this.columns = logDataTableConst.item_Master_Main;
 
         this.tableName = "Item_Master";
         this.displayedColumns = this.columns.map(c => c.columnDef);
       } else if (tableName === "Employee") {
-        this.columns = [
-          {
-            columnDef: "select",
-            header: null,
-            cell: null
-          },
-          {
-            columnDef: "emplName ",
-            header: "Employee Name",
-            cell: (element: any) => `${element.emplName}`
-          },
-          {
-            columnDef: "password",
-            header: "Emp Password",
-            cell: (element: any) => `${element.password}`
-          },
-          {
-            columnDef: "emplRole",
-            header: "Role",
-            cell: (element: any) => `${element.emplRole}`
-          },
-          {
-            columnDef: "store",
-            header: "Store",
-            cell: (element: any) => `${element.store}`
-          },
-          {
-            columnDef: "action",
-            header: null,
-            cell: null
-          }
-        ];
+        this.columns = logDataTableConst.employee;
 
         this.tableName = "Employee";
         this.displayedColumns = this.columns.map(c => c.columnDef);
       } else if (tableName === "Linked_SKUs") {
-        this.columns = [
-          {
-            columnDef: "select",
-            header: null,
-            cell: null
-          },
-          {
-            columnDef: "sku",
-            header: "SKU",
-            cell: (element: any) => `${element.sku}`
-          },
-          {
-            columnDef: "permPrice",
-            header: "Retail Price",
-            cell: (element: any) => `${element.permPrice}`
-          },
-          {
-            columnDef: "barCode",
-            header: "UPC",
-            cell: (element: any) => `${element.posId}`
-          },
-          {
-            columnDef: "warranty",
-            header: "Warrenty",
-            cell: (element: any) => `${element.warranty}`
-          },
-          {
-            columnDef: "itemGroupID",
-            header: "Item Group ID",
-            cell: (element: any) => `${element.itemGroupID}`
-          },
-          {
-            columnDef: "action",
-            header: null,
-            cell: null
-          }
-        ];
+        this.columns = logDataTableConst.linked_SKUs;
 
         this.tableName = "Linked_SKUs";
         this.displayedColumns = this.columns.map(c => c.columnDef);
       } else if (tableName === "Tax_Rates") {
-        this.columns = [
-          {
-            columnDef: "select",
-            header: null,
-            cell: null
-          },
-          {
-            columnDef: "store ",
-            header: "Store",
-            cell: (element: any) => `${element.store}`
-          },
-          {
-            columnDef: "rate",
-            header: "Tax Rate",
-            cell: (element: any) => `${element.rate}`
-          },
-          {
-            columnDef: "taxState",
-            header: "State/Jurisdiction",
-            cell: (element: any) => `${element.state}`
-          },
-          {
-            columnDef: "action",
-            header: null,
-            cell: null
-          }
-        ];
+        this.columns = logDataTableConst.tax_Rate;
 
         this.tableName = "Tax_Rates";
         this.displayedColumns = this.columns.map(c => c.columnDef);
       } else if (tableName === "Hardware_SKUs") {
-        this.columns = [
-          {
-            columnDef: "select",
-            header: null,
-            cell: null
-          },
-          {
-            columnDef: "sku",
-            header: "SKU",
-            cell: (element: any) => `${element.sku}`
-          },
-          {
-            columnDef: "itemDesc",
-            header: "Description",
-            cell: (element: any) => `${element.itemDesc}`
-          },
-          {
-            columnDef: "retailPrice",
-            header: "Retail Price",
-            cell: (element: any) => `${element.retailPrice}`
-          },
-          {
-            columnDef: "barCode",
-            header: "UPC",
-            cell: (element: any) => this.barCodeDisplay(element)
-          },
-          {
-            columnDef: "vendorName",
-            header: "Vendor Name",
-            cell: (element: any) => `${element.vendorName}`
-          },
-          {
-            columnDef: "action",
-            header: null,
-            cell: null
-          }
-        ];
+        this.columns = logDataTableConst.hardware_SKUs;
 
         this.tableName = "Hardware_SKUs";
         this.displayedColumns = this.columns.map(c => c.columnDef);
       } else if (tableName === "Free_SKUs") {
-        this.columns = [
-          {
-            columnDef: "select",
-            header: null,
-            cell: null
-          },
-          {
-            columnDef: "sku",
-            header: "SKU",
-            cell: (element: any) => `${element.sku}`
-          },
-          {
-            columnDef: "itemDesc",
-            header: "Description",
-            cell: (element: any) => `${element.itemDesc}`
-          },
-          {
-            columnDef: "permPrice",
-            header: "Retail Price",
-            cell: (element: any) => `${element.permPrice}`
-          },
-          {
-            columnDef: "barCode",
-            header: "UPC",
-            cell: (element: any) => `${element.posId}`
-          },
-          {
-            columnDef: "freeSku",
-            header: "Free SKUs",
-            cell: (element: any) => `${element.freeSku}`
-          },
-          {
-            columnDef: "freeSkuPrice",
-            header: "Free SKU Price",
-            cell: (element: any) => `${element.freeSkuPrice}`
-          },
-          {
-            columnDef: "action",
-            header: null,
-            cell: null
-          }
-        ];
+        this.columns = logDataTableConst.free_SKUs;
 
         this.tableName = "Free_SKUs";
         this.displayedColumns = this.columns.map(c => c.columnDef);
       } else if (tableName === "Age_Restricted_Special_rest") {
-        this.columns = [
-          {
-            columnDef: "select",
-            header: null,
-            cell: null
-          },
-          {
-            columnDef: "sku",
-            header: "SKU",
-            cell: (element: any) => `${element.sku}`
-          },
-          {
-            columnDef: "itemDesc",
-            header: "Description",
-            cell: (element: any) => `${element.itemDesc}`
-          },
-          {
-            columnDef: "retailPrice",
-            header: "Retail Price",
-            cell: (element: any) => `${element.retailPrice}`
-          },
-          {
-            columnDef: "barCode",
-            header: "UPC",
-            cell: (element: any) => this.barCodeDisplay(element)
-          },
-          {
-            columnDef: "alertCode",
-            header: "Alert Code",
-            cell: (element: any) => `${element.alertCode}`
-          },
-          {
-            columnDef: "action",
-            header: null,
-            cell: null
-          }
-        ];
+        this.columns = logDataTableConst.age_Restricted_Special_rest;
 
         this.tableName = "Age_Restricted_Special_rest";
         this.displayedColumns = this.columns.map(c => c.columnDef);
       } else if (tableName === "Return_Driver_License") {
-        this.columns = [
-          {
-            columnDef: "select",
-            header: null,
-            cell: null
-          },
-          {
-            columnDef: "licenseNo",
-            header: "License No.",
-            cell: (element: any) => `${element.licenseNo}`
-          },
-          {
-            columnDef: "licenseFrontPage",
-            header: "License Front Image",
-            cell: (element: any) => `${element.licenseFrontPage}`
-          },
-          {
-            columnDef: "licenseBackPage",
-            header: "License Back Image",
-            cell: (element: any) => `${element.licenseBackPage}`
-          },
-          {
-            columnDef: "action",
-            header: null,
-            cell: null
-          }
-        ];
+        this.columns = logDataTableConst.return_Driver_License;
 
         this.tableName = "Return_Driver_License";
         this.displayedColumns = this.columns.map(c => c.columnDef);
       } else if (tableName === "Lowest_Price") {
-        this.columns = [
-          {
-            columnDef: "select",
-            header: null,
-            cell: null
-          },
-          {
-            columnDef: "skuNo",
-            header: "SKU",
-            cell: (element: any) => `${element.skuNo}`
-          },
-          {
-            columnDef: "lastTransation",
-            header: "Last Transation Date",
-            cell: (element: any) => `${element.lastTransation}`
-          },
-          {
-            columnDef: "lowPrice",
-            header: "Lowest Price",
-            cell: (element: any) => `${element.lowPrice}`
-          },
-          {
-            columnDef: "reason",
-            header: "Reason",
-            cell: (element: any) => `${element.reason}`
-          },
-          {
-            columnDef: "action",
-            header: null,
-            cell: null
-          }
-        ];
+        this.columns = logDataTableConst.lowest_Price;
 
         this.tableName = "Lowest_Price";
         this.displayedColumns = this.columns.map(c => c.columnDef);
@@ -600,7 +246,6 @@ export class LogDataTableComponent implements OnInit {
   /**
    * print the documents
    */
-
   onPrintInvoice() {
     console.log("selectedDataForPrint data", this.selectedDataForPrint);
     this._loglistingService.getTestDataToPrint(this.selectedDataForPrint);
@@ -621,7 +266,6 @@ export class LogDataTableComponent implements OnInit {
         }),
         1
       );
-
       selectedRows.checked = false;
     }
   }
@@ -639,7 +283,6 @@ export class LogDataTableComponent implements OnInit {
    * @param row: get the row and check it's checked status.
    * return boolean
    */
-
   isSelected(row) {
     if (row.checked) {
       return true;
