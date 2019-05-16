@@ -31,12 +31,14 @@ export class LogDiscriptionDataOrderService {
         sku: row.sku,
         upcList: row.upcList,
         itemDesc: row.itemDesc,
-        permPrice: row.permPrice
+        permPrice: row.permPrice,
+        store: row.store
       };
       delete this.rowDataWithRestData["sku"];
       delete this.rowDataWithRestData["upcList"];
       delete this.rowDataWithRestData["itemDesc"];
       delete this.rowDataWithRestData["permPrice"];
+      delete this.rowDataWithRestData["store"];
 
       this.dataToBeDisplayedOnModal[0] = this.mainDataToDisplay;
 

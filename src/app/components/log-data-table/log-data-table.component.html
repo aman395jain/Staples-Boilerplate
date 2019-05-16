@@ -55,21 +55,22 @@
                   
                   <mat-form-field>
                       <mat-select placeholder  ="select the first field">
-                      <mat-option>list1</mat-option>
+                      <mat-option value = "store">store</mat-option>
                     </mat-select>
                   </mat-form-field>
                 </div>
                 <div class="select-fields"> 
                     <mat-form-field>
-                        <mat-select placeholder = "select the condition" [(value)] = "first">
-                        <mat-option [value] = 'equals'>Equals</mat-option>
-                        <mat-option  [value] = 'contains'>Contains</mat-option>
+                        <mat-select placeholder = "select the condition"
+                        >
+                        <mat-option value = 'equals'>Equals</mat-option>
+                        <mat-option  value = 'contains'>Contains</mat-option>
                       </mat-select>
                     </mat-form-field>
                   </div>
                 <div  class="select-fields"> <mat-form-field>
                       <mat-select placeholder = "select the second field">
-                      <mat-option>list2</mat-option>
+                      <mat-option value = "8501">8501</mat-option>
                     </mat-select>
                   </mat-form-field>
                 </div>
@@ -82,7 +83,7 @@
               </div> 
             </div>
               <div class="col-md-12 align-items-center inner-rows ">
-                <button class="btn btn-primary float-right advance-search-button">Search</button>
+                <button class="btn btn-primary float-right advance-search-button" (click)="doAdvanceFilter()">Apply</button>
               </div>
           </div>
           

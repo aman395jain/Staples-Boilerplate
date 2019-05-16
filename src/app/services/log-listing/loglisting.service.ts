@@ -2,9 +2,10 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Response } from "@angular/http";
 import { map, catchError } from "rxjs/operators";
+import { Observable, BehaviorSubject } from "rxjs";
 
 import { Loglist } from "../../models/loglist.model";
-import { Observable, BehaviorSubject } from "rxjs";
+import { dataUrls } from "../../utils/dataApiUrls.enum";
 
 /**
  * @ngdoc service
@@ -22,7 +23,7 @@ export class LoglistingService {
   constructor(private http: HttpClient) {}
 
   getLogList(): Observable<any> {
-    this._serviceUrl = "http://www.mocky.io/v2/5ccff0b9320000b52100f912";
+    this._serviceUrl = dataUrls.getItemMaster;
     return this.http.get<any>(this._serviceUrl).pipe(
       map((response: Response) => {
         console.log("in the service", response[0]);
@@ -38,33 +39,33 @@ export class LoglistingService {
   getLogListForEntity(entity): Observable<any> {
     // console.log("in the loglist service", entity);
     if (entity === "Price_Prompt_SKUs") {
-      this._serviceUrl = "http://www.mocky.io/v2/5ccff0b9320000b52100f912";
+      this._serviceUrl = dataUrls.getPricePromptSKUs;
     } else if (entity === "Item_Master") {
-      this._serviceUrl = "http://www.mocky.io/v2/5cd912853000008320c01387";
+      this._serviceUrl = dataUrls.getItemMasterMain;
     } else if (entity === "Employee") {
-      this._serviceUrl = "http://www.mocky.io/v2/5cd90e06300000d120c01345";
+      this._serviceUrl = dataUrls.getEmployee;
     } else if (entity === "Tax_Rates") {
-      this._serviceUrl = "http://www.mocky.io/v2/5cd90d1e3000006621c01342";
+      this._serviceUrl = dataUrls.getTaxRate;
     } else if (entity === "Hardware_SKUs") {
-      this._serviceUrl = "http://www.mocky.io/v2/5cd91e433000008320c013e4";
+      this._serviceUrl = dataUrls.getHardwareSKUs;
     } else if (entity === "Linked_SKUs") {
-      this._serviceUrl = "http://www.mocky.io/v2/5cbef6d530000053059ce413";
+      this._serviceUrl = dataUrls.getLinkedSKUs;
     } else if (entity === "Free_SKUs") {
-      this._serviceUrl = "http://www.mocky.io/v2/5cbeff80300000bb069ce463";
+      this._serviceUrl = dataUrls.getFreeSKUs;
     } else if (entity === "Age_Restricted_Special_rest") {
-      this._serviceUrl = "http://www.mocky.io/v2/5cd9297b3000006d21c0143e";
+      this._serviceUrl = dataUrls.getAgeRestrictiedSpecialRest;
     } else if (entity === "Return_Driver_License") {
-      this._serviceUrl = "http://www.mocky.io/v2/5cbff4ce310000170e035f4e";
+      this._serviceUrl = dataUrls.getReturnDrivingLicence;
     } else if (entity === "Lowest_Price") {
-      this._serviceUrl = "http://www.mocky.io/v2/5cbffef9310000580b035f87";
+      this._serviceUrl = dataUrls.getLowestPrice;
     } else if (entity === "POSA") {
       //changes reqired according to service
-      this._serviceUrl = "http://www.mocky.io/v2/5cb860794c0000c51ad3d50d";
+      this._serviceUrl = dataUrls.getPOSA;
     } else if (entity === "Order") {
       //changes reqired according to service
-      this._serviceUrl = "http://www.mocky.io/v2/5cb860794c0000c51ad3d50d";
+      this._serviceUrl = dataUrls.getOrder;
     } else {
-      this._serviceUrl = "http://www.mocky.io/v2/5cb860794c0000c51ad3d50d";
+      this._serviceUrl = dataUrls.getOrder;
     }
     return this.http.get<any>(this._serviceUrl).pipe(
       map((response: Response) => {

@@ -593,6 +593,10 @@ export class LogDataTableComponent implements OnInit {
     return false;
   }
 
+  doAdvanceFilter() {
+    console.log("do advance filter");
+  }
+
   /**
    * print the documents
    */
