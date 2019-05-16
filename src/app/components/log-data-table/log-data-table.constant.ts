@@ -1,3 +1,7 @@
+/**
+ * logDataTableConst: constants for different data tables
+ * and consumed in log-data-table component.
+ */
 export const logDataTableConst = {
   item_Master: [
     {

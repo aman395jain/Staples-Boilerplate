@@ -1,3 +1,6 @@
+/**
+ * API's url to call data from Restful api's for different data-logs.
+ */
 export enum dataUrls {
   getItemMaster = "http://www.mocky.io/v2/5ccff0b9320000b52100f912",
   getPricePromptSKUs = "http://www.mocky.io/v2/5ccff0b9320000b52100f912",
