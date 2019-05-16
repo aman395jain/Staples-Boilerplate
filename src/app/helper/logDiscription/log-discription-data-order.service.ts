@@ -178,14 +178,22 @@ export class LogDiscriptionDataOrderService {
             data.sku.toLowerCase().includes(filter) ||
             data.itemDesc.toLowerCase().includes(filter) ||
             data.permPrice.toString().includes(filter) ||
-            data.upcList[0].toString() === filter
+            data.upcList[0].toString() === filter ||
+            data.store
+              .toString()
+              .toLowerCase()
+              .includes(filter)
           );
         } else {
           return (
             data.sku.toLowerCase().includes(filter) ||
             data.itemDesc.toLowerCase().includes(filter) ||
             data.retailPrice.toString().includes(filter) ||
-            data.upcList[0] === filter
+            data.upcList[0] === filter ||
+            data.store
+              .toString()
+              .toLowerCase()
+              .includes(filter)
           );
         }
       };
@@ -196,14 +204,22 @@ export class LogDiscriptionDataOrderService {
             data.sku.toLowerCase().includes(filter) ||
             data.itemDesc.toLowerCase().includes(filter) ||
             data.permPrice.toString().includes(filter) ||
-            data.upcList[0].toString() === filter
+            data.upcList[0].toString() === filter ||
+            data.store
+              .toString()
+              .toLowerCase()
+              .includes(filter)
           );
         } else {
           return (
             data.sku.toLowerCase().includes(filter) ||
             data.itemDesc.toLowerCase().includes(filter) ||
             data.retailPrice.toString().includes(filter) ||
-            data.upcList[0] === filter
+            data.upcList[0] === filter ||
+            data.store
+              .toString()
+              .toLowerCase()
+              .includes(filter)
           );
         }
       };
@@ -226,7 +242,11 @@ export class LogDiscriptionDataOrderService {
             .toString()
             .toLowerCase()
             .includes(filter) ||
-          data.itemGroupID.toString() === filter
+          data.itemGroupID.toString() === filter ||
+          data.store
+            .toString()
+            .toLowerCase()
+            .includes(filter)
         );
       };
     } else if (tableName === "Tax_Rates") {
@@ -262,7 +282,11 @@ export class LogDiscriptionDataOrderService {
             .toString()
             .toLowerCase()
             .includes(filter) ||
-          data.upcList[0].includes(filter)
+          data.upcList[0].includes(filter) ||
+          data.store
+            .toString()
+            .toLowerCase()
+            .includes(filter)
         );
       };
     } else if (tableName === "Free_SKUs") {
@@ -282,7 +306,11 @@ export class LogDiscriptionDataOrderService {
             .includes(filter) ||
           data.posId.includes(filter) ||
           data.freeSku.includes(filter) ||
-          data.freeSkuPrice.includes(filter)
+          data.freeSkuPrice.includes(filter) ||
+          data.store
+            .toString()
+            .toLowerCase()
+            .includes(filter)
         );
       };
     } else if (tableName === "Age_Restricted_Special_rest") {
@@ -301,7 +329,11 @@ export class LogDiscriptionDataOrderService {
             .toLowerCase()
             .includes(filter) ||
           data.upcList[0] === filter ||
-          data.alertCode === filter
+          data.alertCode === filter ||
+          data.store
+            .toString()
+            .toLowerCase()
+            .includes(filter)
         );
       };
     }

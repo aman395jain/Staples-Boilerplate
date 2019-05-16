@@ -61,14 +61,14 @@
                 </div>
                 <div class="select-fields"> 
                     <mat-form-field>
-                        <mat-select placeholder  ="select the condition">
+                        <mat-select placeholder = "select the condition" [(value)] = "first">
                         <mat-option [value] = 'equals'>Equals</mat-option>
                         <mat-option  [value] = 'contains'>Contains</mat-option>
                       </mat-select>
                     </mat-form-field>
                   </div>
                 <div  class="select-fields"> <mat-form-field>
-                      <mat-select placeholder  ="select the second field">
+                      <mat-select placeholder = "select the second field">
                       <mat-option>list2</mat-option>
                     </mat-select>
                   </mat-form-field>
@@ -81,9 +81,9 @@
                 </div> -->
               </div> 
             </div>
-            <div class="col-md-12 align-items-center inner-rows ">
-              <button class="btn btn-primary float-right advance-search-button">Search</button>
-            </div>
+              <div class="col-md-12 align-items-center inner-rows ">
+                <button class="btn btn-primary float-right advance-search-button">Search</button>
+              </div>
           </div>
           
         </div>

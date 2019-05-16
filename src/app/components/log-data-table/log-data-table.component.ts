@@ -107,6 +107,7 @@ export class LogDataTableComponent implements OnInit {
         this.dataByAPI = new MatTableDataSource(data);
         this.dataByAPI.sort = this.sort;
         this.dataByAPI.paginator = this.paginator;
+        this.paginator.pageSize = 5;
         this.dataByAPI.filterPredicate = this._logDiscriptionDataOrderService.filterRestrictionOnlyForDisplayedRows(
           "Item_Master"
         );
