@@ -37,11 +37,12 @@ export class LogDataTableComponent implements OnInit {
   dataByAPI: MatTableDataSource<any>;
   storeUniqueData: any = [];
 
-  initialPageSize: 5;
+  initialPageSize: number = 5;
   tableName: String = "";
   advancedSearchStatus: boolean = false;
 
   isLoading = true;
+
   constructor(
     private _loglistingService: LoglistingService,
     private _dialog: MatDialog,
@@ -512,10 +513,11 @@ export class LogDataTableComponent implements OnInit {
         console.log("table name", this.tableName);
 
         this.storeUniqueData = this._uniqueStoreService.uniqueStore(storeData);
-        // console.log("unique store value", this.storeUniqueData);
         this.dataByAPI = new MatTableDataSource(data);
+        console.log("datasource", this.dataByAPI);
         this.dataByAPI.sort = this.sort;
         this.dataByAPI.paginator = this.paginator;
+        this.paginator.pageSize = 5;
         if (
           this.tableName === "Item_Master" ||
           this.tableName === "Price_Prompt_SKUs" ||

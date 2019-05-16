@@ -165,6 +165,11 @@ export class LogDiscriptionDataOrderService {
     }
   }
 
+  /**
+   * Restrict the searching according to dashboard colunms.
+   * @param tableName
+   */
+
   filterRestrictionOnlyForDisplayedRows(tableName) {
     if (tableName === "Item_Master") {
       return function(data, filter: string): boolean {
