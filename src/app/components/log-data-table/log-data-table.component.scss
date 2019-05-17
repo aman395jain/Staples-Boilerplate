@@ -86,6 +86,10 @@
           justify-content: center;
         }
       }
+
+      .material-rows {
+        min-height: 66px !important;
+      }
     }
 
     .mat-cell {
