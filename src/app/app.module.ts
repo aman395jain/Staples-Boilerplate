@@ -34,7 +34,7 @@ import { TableForStorePipe } from "./pipes/tableForStoreNumber/table-for-store.p
 import { LogModalDataService } from "./services/log-modal-data/log-modal-data.service";
 import { PrintDocumentComponent } from "./components/print-document/print-document.component";
 import { LogDiscriptionDataOrderService } from "./helper/logDiscription/log-discription-data-order.service";
-import { UniqueStoreService } from "./services/uniqueStore/unique-store.service";
+import { UniqueStoreService } from "./helper/uniqueStore/unique-store.service";
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true

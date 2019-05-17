@@ -14,7 +14,7 @@ import { NavBarService } from "src/app/services/nav-bar/nav-bar.service";
 import { PrintDocumentService } from "src/app/services/print-document/print-document.service";
 import { LogModalDataService } from "src/app/services/log-modal-data/log-modal-data.service";
 import { LogDiscriptionDataOrderService } from "src/app/helper/logDiscription/log-discription-data-order.service";
-import { UniqueStoreService } from "src/app/services/uniqueStore/unique-store.service";
+import { UniqueStoreService } from "src/app/helper/uniqueStore/unique-store.service";
 
 import { logDataTableConst } from "./log-data-table.constant";
 

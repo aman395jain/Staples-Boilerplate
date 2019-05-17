@@ -4,7 +4,6 @@ import { Subject, Observable } from "rxjs";
 /**
  * @ngdoc service
  * @name NavBarService
- *
  * @description
  * Service for sharing the data from side nav bar and header component.
  **/

@@ -372,6 +372,10 @@ export const logDataTableConst = {
   ]
 };
 
+/**
+ * Print the bar-code in data tables.
+ * @param element
+ */
 function barCodeDisplay(element) {
   try {
     return `${element.upcList[0]}`;

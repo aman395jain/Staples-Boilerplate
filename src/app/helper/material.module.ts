@@ -1,3 +1,6 @@
+/**
+ * Sub module file for seprating the Material modules from app module file.
+ */
 import { NgModule } from "@angular/core";
 import {
   MatTableModule,
