@@ -22,7 +22,7 @@ export class SideNavBarComponent implements OnInit {
   @ViewChild(PerfectScrollbarDirective)
   directiveRef?: PerfectScrollbarDirective;
 
-  barHeight: number = 623;
+  barHeight: number = 592;
   pageSize: number;
   pagelength: number;
 
@@ -45,28 +45,28 @@ export class SideNavBarComponent implements OnInit {
       this.pagelength = length;
       console.log("in the side bar length", this.pagelength);
       if (this.pageSize === 5) {
-        this.barHeight = 623;
+        this.barHeight = 592;
       } else if (this.pageSize === 10) {
         if (this.pagelength <= 5) {
-          this.barHeight = 623;
+          this.barHeight = 592;
         } else if (this.pagelength > 5 && this.pagelength < 10) {
           this.barHeight = 100 * this.pagelength;
         } else {
-          this.barHeight = 938;
+          this.barHeight = 952;
         }
       } else if (this.pageSize === 25) {
         if (this.pagelength <= 5) {
-          this.barHeight = 623;
+          this.barHeight = 592;
         } else if (this.pagelength > 5 && this.pagelength <= 10) {
           this.barHeight = 100 * this.pagelength;
         } else if (this.pagelength > 10 && this.pagelength < 25) {
           this.barHeight = 938 + 72 * (this.pagelength - 10);
         } else {
-          this.barHeight = 2019;
+          this.barHeight = 2052;
         }
       } else if (this.pageSize === 50) {
         if (this.pagelength <= 5) {
-          this.barHeight = 623;
+          this.barHeight = 592;
         } else if (this.pagelength > 5 && this.pagelength <= 10) {
           this.barHeight = 100 * this.pagelength;
         } else if (this.pagelength < 50) {
@@ -80,7 +80,7 @@ export class SideNavBarComponent implements OnInit {
 
   getElementNameTest(eleName) {
     this._navBarService.setElementNameFromSideBar(eleName);
-    this.barHeight = 623;
+    this.barHeight = 592;
     this._navBarService.setPageSize(5);
   }
 }
