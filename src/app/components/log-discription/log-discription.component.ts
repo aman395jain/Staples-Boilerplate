@@ -1,4 +1,9 @@
-import { Component, OnInit, Inject } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  Inject,
+  ChangeDetectionStrategy
+} from "@angular/core";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material";
 
 import { DashboardHeaderNameConverstionService } from "src/app/services/dashboard-header-name-conversion/dashboard-header-name-converstion.service";
@@ -8,7 +13,8 @@ import { LogDiscriptionDataOrderService } from "src/app/helper/logDiscription/lo
 @Component({
   selector: "app-log-discription",
   templateUrl: "./log-discription.component.html",
-  styleUrls: ["./log-discription.component.scss"]
+  styleUrls: ["./log-discription.component.scss"],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LogDiscriptionComponent implements OnInit {
   dataDiscriptionKeysToDisplay = [];

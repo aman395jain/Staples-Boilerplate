@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, OnInit, ViewChild, OnDestroy } from "@angular/core";
 import {
   MatPaginator,
   MatTableDataSource,
@@ -7,6 +7,8 @@ import {
   MatDialog
 } from "@angular/material";
 import "rxjs/add/observable/of";
+import { Subject } from "rxjs";
+import { takeUntil } from "rxjs/operators";
 
 import { LogDiscriptionComponent } from "../log-discription/log-discription.component";
 import { LoglistingService } from "src/app/services/log-listing/loglisting.service";
@@ -23,9 +25,10 @@ import { logDataTableConst } from "./log-data-table.constant";
   templateUrl: "./log-data-table.component.html",
   styleUrls: ["./log-data-table.component.scss"]
 })
-export class LogDataTableComponent implements OnInit {
+export class LogDataTableComponent implements OnInit, OnDestroy {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+  private _onDestroy = new Subject<void>();
 
   columns: any = [];
   printedData: any = [];
@@ -62,125 +65,146 @@ export class LogDataTableComponent implements OnInit {
     this.displayedColumns = this.columns.map(c => c.columnDef);
 
     try {
-      this._loglistingService.getLogList().subscribe(data => {
-        this.printedData = data;
+      this._loglistingService
+        .getLogList()
+        .pipe(takeUntil(this._onDestroy))
+        .subscribe(data => {
+          this.printedData = data;
 
-        this.isLoading = false;
-        let storeData = [];
-        storeData.push("Select a Store");
-        data.map((dataValue, i) => {
-          dataValue["checked"] = false;
-          dataValue["index"] = i;
-          storeData.push(dataValue.store);
+          this.isLoading = false;
+          let storeData = [];
+          storeData.push("Select a Store");
+          data.map((dataValue, i) => {
+            dataValue["checked"] = false;
+            dataValue["index"] = i;
+            storeData.push(dataValue.store);
+          });
+          this.storeUniqueData = this._uniqueStoreService.uniqueStore(
+            storeData
+          );
+
+          this.dataByAPI = new MatTableDataSource(data);
+          this.dataByAPI.sort = this.sort;
+          this.dataByAPI.paginator = this.paginator;
+          this.paginator.pageSize = 5;
+          this.dataByAPI.filterPredicate = this._logDiscriptionDataOrderService.filterRestrictionOnlyForDisplayedRows(
+            "Item_Master"
+          );
         });
-        this.storeUniqueData = this._uniqueStoreService.uniqueStore(storeData);
-
-        this.dataByAPI = new MatTableDataSource(data);
-        this.dataByAPI.sort = this.sort;
-        this.dataByAPI.paginator = this.paginator;
-        this.paginator.pageSize = 5;
-        this.dataByAPI.filterPredicate = this._logDiscriptionDataOrderService.filterRestrictionOnlyForDisplayedRows(
-          "Item_Master"
-        );
-      });
     } catch (e) {
       console.log("in the test error", e);
     }
-    this._navBarService.getElementName().subscribe(tableName => {
-      this.isLoading = true;
-      this.selectedDataForPrint = [];
-      if (tableName === "Price_Prompt_SKUs") {
-        console.log("in the price prompt");
-        this.columns = logDataTableConst.price_Prompt_Sku;
+    this._navBarService
+      .getElementName()
+      .pipe(takeUntil(this._onDestroy))
+      .subscribe(tableName => {
+        this.isLoading = true;
+        this.selectedDataForPrint = [];
+        if (tableName === "Price_Prompt_SKUs") {
+          console.log("in the price prompt");
+          this.columns = logDataTableConst.price_Prompt_Sku;
 
-        this.tableName = "Price_Prompt_SKUs";
-        this.displayedColumns = this.columns.map(c => c.columnDef);
-      } else if (tableName === "Item_Master") {
-        this.columns = logDataTableConst.item_Master_Main;
+          this.tableName = "Price_Prompt_SKUs";
+          this.displayedColumns = this.columns.map(c => c.columnDef);
+        } else if (tableName === "Item_Master") {
+          this.columns = logDataTableConst.item_Master_Main;
 
-        this.tableName = "Item_Master";
-        this.displayedColumns = this.columns.map(c => c.columnDef);
-      } else if (tableName === "Employee") {
-        this.columns = logDataTableConst.employee;
+          this.tableName = "Item_Master";
+          this.displayedColumns = this.columns.map(c => c.columnDef);
+        } else if (tableName === "Employee") {
+          this.columns = logDataTableConst.employee;
 
-        this.tableName = "Employee";
-        this.displayedColumns = this.columns.map(c => c.columnDef);
-      } else if (tableName === "Linked_SKUs") {
-        this.columns = logDataTableConst.linked_SKUs;
+          this.tableName = "Employee";
+          this.displayedColumns = this.columns.map(c => c.columnDef);
+        } else if (tableName === "Linked_SKUs") {
+          this.columns = logDataTableConst.linked_SKUs;
 
-        this.tableName = "Linked_SKUs";
-        this.displayedColumns = this.columns.map(c => c.columnDef);
-      } else if (tableName === "Tax_Rates") {
-        this.columns = logDataTableConst.tax_Rate;
+          this.tableName = "Linked_SKUs";
+          this.displayedColumns = this.columns.map(c => c.columnDef);
+        } else if (tableName === "Tax_Rates") {
+          this.columns = logDataTableConst.tax_Rate;
 
-        this.tableName = "Tax_Rates";
-        this.displayedColumns = this.columns.map(c => c.columnDef);
-      } else if (tableName === "Hardware_SKUs") {
-        this.columns = logDataTableConst.hardware_SKUs;
+          this.tableName = "Tax_Rates";
+          this.displayedColumns = this.columns.map(c => c.columnDef);
+        } else if (tableName === "Hardware_SKUs") {
+          this.columns = logDataTableConst.hardware_SKUs;
 
-        this.tableName = "Hardware_SKUs";
-        this.displayedColumns = this.columns.map(c => c.columnDef);
-      } else if (tableName === "Free_SKUs") {
-        this.columns = logDataTableConst.free_SKUs;
+          this.tableName = "Hardware_SKUs";
+          this.displayedColumns = this.columns.map(c => c.columnDef);
+        } else if (tableName === "Free_SKUs") {
+          this.columns = logDataTableConst.free_SKUs;
 
-        this.tableName = "Free_SKUs";
-        this.displayedColumns = this.columns.map(c => c.columnDef);
-      } else if (tableName === "Age_Restricted_Special_rest") {
-        this.columns = logDataTableConst.age_Restricted_Special_rest;
+          this.tableName = "Free_SKUs";
+          this.displayedColumns = this.columns.map(c => c.columnDef);
+        } else if (tableName === "Age_Restricted_Special_rest") {
+          this.columns = logDataTableConst.age_Restricted_Special_rest;
 
-        this.tableName = "Age_Restricted_Special_rest";
-        this.displayedColumns = this.columns.map(c => c.columnDef);
-      } else if (tableName === "Return_Driver_License") {
-        this.columns = logDataTableConst.return_Driver_License;
+          this.tableName = "Age_Restricted_Special_rest";
+          this.displayedColumns = this.columns.map(c => c.columnDef);
+        } else if (tableName === "Return_Driver_License") {
+          this.columns = logDataTableConst.return_Driver_License;
 
-        this.tableName = "Return_Driver_License";
-        this.displayedColumns = this.columns.map(c => c.columnDef);
-      } else if (tableName === "Lowest_Price") {
-        this.columns = logDataTableConst.lowest_Price;
+          this.tableName = "Return_Driver_License";
+          this.displayedColumns = this.columns.map(c => c.columnDef);
+        } else if (tableName === "Lowest_Price") {
+          this.columns = logDataTableConst.lowest_Price;
 
-        this.tableName = "Lowest_Price";
-        this.displayedColumns = this.columns.map(c => c.columnDef);
-      }
-
-      this._navBarService.getPageSize().subscribe(size => {
-        this.initialPageSize = size;
-      });
-
-      this._loglistingService.getLogListForEntity(tableName).subscribe(data => {
-        this.isLoading = false;
-        let storeData = ["Select a Store"];
-        this.storeUniqueData = [];
-        this.printedData = data;
-        data.map((dataValue, i) => {
-          dataValue["checked"] = false;
-          dataValue["index"] = i;
-          storeData.push(dataValue.store);
-        });
-        this.selectedOption = "Select a Store";
-        // console.log("table name", this.tableName);
-
-        this.storeUniqueData = this._uniqueStoreService.uniqueStore(storeData);
-        this.dataByAPI = new MatTableDataSource(data);
-        // console.log("datasource", this.dataByAPI);
-        this.dataByAPI.sort = this.sort;
-        this.dataByAPI.paginator = this.paginator;
-        this.paginator.pageSize = 5;
-        if (
-          this.tableName === "Item_Master" ||
-          this.tableName === "Price_Prompt_SKUs" ||
-          this.tableName === "Employee" ||
-          this.tableName === "Linked_SKUs" ||
-          this.tableName === "Tax_Rates" ||
-          this.tableName === "Hardware_SKUs" ||
-          this.tableName === "Free_SKUs" ||
-          this.tableName === "Age_Restricted_Special_rest"
-        ) {
-          this.dataByAPI.filterPredicate = this._logDiscriptionDataOrderService.filterRestrictionOnlyForDisplayedRows(
-            this.tableName
-          );
+          this.tableName = "Lowest_Price";
+          this.displayedColumns = this.columns.map(c => c.columnDef);
         }
+
+        this._navBarService
+          .getPageSize()
+          .pipe(takeUntil(this._onDestroy))
+          .subscribe(size => {
+            this.initialPageSize = size;
+          });
+
+        this._loglistingService
+          .getLogListForEntity(tableName)
+          .pipe(takeUntil(this._onDestroy))
+          .subscribe(data => {
+            this.isLoading = false;
+            let storeData = ["Select a Store"];
+            this.storeUniqueData = [];
+            this.printedData = data;
+            data.map((dataValue, i) => {
+              dataValue["checked"] = false;
+              dataValue["index"] = i;
+              storeData.push(dataValue.store);
+            });
+            this.selectedOption = "Select a Store";
+            // console.log("table name", this.tableName);
+
+            this.storeUniqueData = this._uniqueStoreService.uniqueStore(
+              storeData
+            );
+            this.dataByAPI = new MatTableDataSource(data);
+            // console.log("datasource", this.dataByAPI);
+            this.dataByAPI.sort = this.sort;
+            this.dataByAPI.paginator = this.paginator;
+            this.paginator.pageSize = 5;
+            if (
+              this.tableName === "Item_Master" ||
+              this.tableName === "Price_Prompt_SKUs" ||
+              this.tableName === "Employee" ||
+              this.tableName === "Linked_SKUs" ||
+              this.tableName === "Tax_Rates" ||
+              this.tableName === "Hardware_SKUs" ||
+              this.tableName === "Free_SKUs" ||
+              this.tableName === "Age_Restricted_Special_rest"
+            ) {
+              this.dataByAPI.filterPredicate = this._logDiscriptionDataOrderService.filterRestrictionOnlyForDisplayedRows(
+                this.tableName
+              );
+            }
+          });
       });
-    });
+  }
+
+  ngOnDestroy(): void {
+    this._onDestroy.next();
+    this._onDestroy.complete();
   }
 
   /*
