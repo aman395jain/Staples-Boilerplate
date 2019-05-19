@@ -68,7 +68,7 @@ export class LoglistingService {
     }
     return this.http.get<any>(this._serviceUrl).pipe(
       map((response: Response) => {
-        // console.log("in the service", response[0]);
+        console.log("in the service", response[0]);
         return response;
       }),
       catchError((err: Response) => {

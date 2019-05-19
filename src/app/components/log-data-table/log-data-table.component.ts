@@ -11,6 +11,7 @@ import { Subject } from "rxjs";
 import { takeUntil } from "rxjs/operators";
 
 import { LogDiscriptionComponent } from "../log-discription/log-discription.component";
+
 import { LoglistingService } from "src/app/services/log-listing/loglisting.service";
 import { NavBarService } from "src/app/services/nav-bar/nav-bar.service";
 import { PrintDocumentService } from "src/app/services/print-document/print-document.service";
@@ -46,7 +47,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
   tableName: String = "";
   advancedSearchStatus: boolean = false;
 
-  isLoading = true;
+  isLoading: boolean = true;
 
   constructor(
     private _loglistingService: LoglistingService,
@@ -223,9 +224,6 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
   */
   discriptionLog(row) {
     this._logDiscriptionDataOrderService.tableNameByComponent(this.tableName);
-
-    // console.log("row data", row);
-
     this._logModalDataService.getLogModalData(row); //data for print
     const _dialogConfig = new MatDialogConfig();
     _dialogConfig.data = row;
