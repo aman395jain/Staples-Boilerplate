@@ -230,7 +230,7 @@ export class LogDiscriptionDataOrderService {
           data.emplName.toLowerCase().includes(filter) ||
           data.password.toLowerCase().includes(filter) ||
           data.emplRole.toString().includes(filter) ||
-          data.store === filter
+          data.store.toString().includes(filter)
         );
       };
     } else if (tableName === "Linked_SKUs") {

@@ -13,7 +13,7 @@ import { NavBarService } from "src/app/services/nav-bar/nav-bar.service";
   styleUrls: ["./side-nav-bar.component.scss"]
 })
 export class SideNavBarComponent implements OnInit {
-  private _toggleIsExpend: boolean = false;
+  _toggleIsExpend: boolean = false;
 
   public config: PerfectScrollbarConfigInterface = {};
 
