@@ -9,6 +9,7 @@ import {
 import "rxjs/add/observable/of";
 import { Subject } from "rxjs";
 import { takeUntil } from "rxjs/operators";
+import { FormGroup, FormControl } from "@angular/forms";
 
 import { LogDiscriptionComponent } from "../log-discription/log-discription.component";
 
@@ -48,6 +49,16 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
   advancedSearchStatus: boolean = false;
 
   isLoading: boolean = true;
+  searchValues: any = {};
+
+  advanceSearchForm = new FormGroup({
+    store: new FormControl(""),
+    condition: new FormControl(""),
+    value: new FormControl(""),
+    sku: new FormControl(""),
+    condition1: new FormControl(""),
+    skuValue: new FormControl("")
+  });
 
   constructor(
     private _loglistingService: LoglistingService,
@@ -217,6 +228,13 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
     filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
     // console.log("in the search filter", this.dataByAPI);
     this.dataByAPI.filter = filterValue;
+  }
+
+  onSubmit() {
+    Object.assign(this.searchValues, this.advanceSearchForm.value);
+    console.log("in the advance search form values", this.searchValues);
+    this.dataByAPI.filter = this.searchValues.value;
+    console.log("in the advance search submit", this.dataByAPI);
   }
 
   /*

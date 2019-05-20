@@ -53,46 +53,99 @@
           <div class="col-md-12 row-bottom-border inner-rows">
             <span class="advance-search-text"> Advance Search </span>
           </div>
-          <div class="col-md-12 row-bottom-border inner-rows">
-            <div class="row d-flex d-inline-block">
-              <div class="select-fields">
-                <mat-form-field>
-                  <mat-select placeholder="select the first field">
-                    <mat-option value="store">store</mat-option>
-                  </mat-select>
-                </mat-form-field>
-              </div>
-              <div class="select-fields">
-                <mat-form-field>
-                  <mat-select placeholder="select the condition">
-                    <mat-option value="equals">Equals</mat-option>
-                    <mat-option value="contains">Contains</mat-option>
-                  </mat-select>
-                </mat-form-field>
-              </div>
-              <div class="select-fields">
-                <mat-form-field>
-                  <mat-select placeholder="select the second field">
-                    <mat-option value="8501">8501</mat-option>
-                  </mat-select>
-                </mat-form-field>
-              </div>
-              <!-- <div style="margin: auto 0px; width: 40px">
-                    <i class="fa fa-plus-circle advance-search-addition" aria-hidden="true"></i>
-                </div>
-                <div style="margin: auto 0px">
-                    <i class="fa fa-minus-circle advance-search-minus" aria-hidden="true"></i>
-                </div> -->
-            </div>
+          <div class="col-md-12">
+              <form [formGroup]="advanceSearchForm" (ngSubmit)="onSubmit()">
+                  <div class="col-md-12 row-bottom-border inner-rows">
+                    <div class="row d-flex d-inline-block">
+                      <div class="select-fields">
+                        <mat-form-field>
+                          <mat-select
+                            formControlName="store"
+                            placeholder="select the first field"
+                          >
+                            <mat-option value="store">store</mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                      <div class="select-fields">
+                        <mat-form-field>
+                          <mat-select
+                            formControlName="condition"
+                            placeholder="select the condition"
+                          >
+                            <mat-option value="equals">Equals</mat-option>
+                            <mat-option value="contains">Contains</mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                      <div class="select-fields">
+                        <mat-form-field>
+                          <mat-select
+                            formControlName="value"
+                            placeholder="select the second field"
+                          >
+                            <mat-option value="8501">8501</mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                      <!-- <div style="margin: auto 0px; width: 40px">
+                          <i class="fa fa-plus-circle advance-search-addition" aria-hidden="true"></i>
+                      </div>
+                      <div style="margin: auto 0px">
+                          <i class="fa fa-minus-circle advance-search-minus" aria-hidden="true"></i>
+                      </div> -->
+                    </div>
+                    <div class="row d-flex d-inline-block">
+                        <div class="select-fields">
+                          <mat-form-field>
+                            <mat-select
+                              formControlName="sku"
+                              placeholder="select the sku"
+                            >
+                              <mat-option value="sku">SKU</mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                        <div class="select-fields">
+                          <mat-form-field>
+                            <mat-select
+                              formControlName="condition1"
+                              placeholder="select the condition"
+                            >
+                              <mat-option value="equals">Equals</mat-option>
+                              <mat-option value="contains">Contains</mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                        <div class="select-fields">
+                          <mat-form-field>
+                            <mat-select
+                              formControlName="skuValue"
+                              placeholder="select the value"
+                            >
+                              <mat-option value="1001730">1001730</mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                        <!-- <div style="margin: auto 0px; width: 40px">
+                            <i class="fa fa-plus-circle advance-search-addition" aria-hidden="true"></i>
+                        </div>
+                        <div style="margin: auto 0px">
+                            <i class="fa fa-minus-circle advance-search-minus" aria-hidden="true"></i>
+                        </div> -->
+                      </div>
+                  </div>
+                  <div class="col-md-12 align-items-center inner-rows ">
+                    <button
+                      class="btn btn-primary float-right advance-search-button"
+                      (click)="doAdvanceFilter()"
+                    >
+                      Apply
+                    </button>
+                  </div>
+                </form>
           </div>
-          <div class="col-md-12 align-items-center inner-rows ">
-            <button
-              class="btn btn-primary float-right advance-search-button"
-              (click)="doAdvanceFilter()"
-            >
-              Apply
-            </button>
-          </div>
+          
         </div>
       </div>
     </div>
