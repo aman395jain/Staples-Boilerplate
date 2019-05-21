@@ -232,9 +232,27 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     Object.assign(this.searchValues, this.advanceSearchForm.value);
-    console.log("in the advance search form values", this.searchValues);
-    this.dataByAPI.filter = this.searchValues.value;
-    console.log("in the advance search submit", this.dataByAPI);
+    // console.log("in the advance search form values", this.searchValues);
+    this.dataByAPI.filter = this.searchValues;
+    // console.log("in the advance search submit", this.dataByAPI.filter);
+  }
+
+  customFilterPredicate() {
+    const myFilterPredicate = (data, filter) => {
+      return (
+        data.store
+          .trim()
+          .toString()
+          .toLowerCase()
+          .includes(filter.value) &&
+        data.sku
+          .trim()
+          .toString()
+          .toLowerCase()
+          .includes(filter.skuValue)
+      );
+    };
+    return myFilterPredicate;
   }
 
   /*
@@ -347,6 +365,13 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
 
   advanceSearchStatus() {
     this.advancedSearchStatus = !this.advancedSearchStatus;
+    if (this.advancedSearchStatus) {
+      this.dataByAPI.filterPredicate = this.customFilterPredicate();
+    } else {
+      this.dataByAPI.filterPredicate = this._logDiscriptionDataOrderService.filterRestrictionOnlyForDisplayedRows(
+        "Item_Master"
+      );
+    }
     console.log("advanced search clicked", this.advancedSearchStatus);
   }
 }
