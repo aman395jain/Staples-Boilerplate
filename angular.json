@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "staples-boilerplate": {
+    "staples-TDM": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/staples-boilerplate",
+            "outputPath": "dist/staples-TDM",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -56,18 +56,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "staples-boilerplate:build"
+            "browserTarget": "staples-TDM:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "staples-boilerplate:build:production"
+              "browserTarget": "staples-TDM:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "staples-boilerplate:build"
+            "browserTarget": "staples-TDM:build"
           }
         },
         "test": {
@@ -91,7 +91,7 @@
         }
       }
     },
-    "staples-boilerplate-e2e": {
+    "staples-TDM-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "architect": {
@@ -99,11 +99,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "staples-boilerplate:serve"
+            "devServerTarget": "staples-TDM:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "staples-boilerplate:serve:production"
+              "devServerTarget": "staples-TDM:serve:production"
             }
           }
         },
@@ -117,5 +117,5 @@
       }
     }
   },
-  "defaultProject": "staples-boilerplate"
+  "defaultProject": "staples-TDM"
 }
