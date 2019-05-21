@@ -60,10 +60,10 @@
                       <div class="select-fields">
                         <mat-form-field>
                           <mat-select
-                            formControlName="store"
-                            placeholder="select the first field"
+                            formControlName="storeName"
+                            placeholder="select the Store"
                           >
-                            <mat-option value="store">store</mat-option>
+                            <mat-option value="store">Store</mat-option>
                           </mat-select>
                         </mat-form-field>
                       </div>
@@ -74,17 +74,18 @@
                             placeholder="select the condition"
                           >
                             <mat-option value="equals">Equals</mat-option>
-                            <mat-option value="contains">Contains</mat-option>
                           </mat-select>
                         </mat-form-field>
                       </div>
                       <div class="select-fields">
                         <mat-form-field>
                           <mat-select
-                            formControlName="value"
-                            placeholder="select the second field"
+                            formControlName="store"
+                            placeholder="select the Store value"
                           >
                             <mat-option value="8501">8501</mat-option>
+                            <mat-option value="8502">8502</mat-option>
+                            <mat-option value="8503">8503</mat-option>
                           </mat-select>
                         </mat-form-field>
                       </div>
@@ -99,7 +100,7 @@
                         <div class="select-fields">
                           <mat-form-field>
                             <mat-select
-                              formControlName="sku"
+                              formControlName="skuNumber"
                               placeholder="select the sku"
                             >
                               <mat-option value="sku">SKU</mat-option>
@@ -113,14 +114,13 @@
                               placeholder="select the condition"
                             >
                               <mat-option value="equals">Equals</mat-option>
-                              <mat-option value="contains">Contains</mat-option>
                             </mat-select>
                           </mat-form-field>
                         </div>
                         <div class="select-fields">
                           <mat-form-field>
                             <mat-select
-                              formControlName="skuValue"
+                              formControlName="sku"
                               placeholder="select the value"
                             >
                               <mat-option value="1001730">1001730</mat-option>
@@ -138,7 +138,6 @@
                   <div class="col-md-12 align-items-center inner-rows ">
                     <button
                       class="btn btn-primary float-right advance-search-button"
-                      (click)="doAdvanceFilter()"
                     >
                       Apply
                     </button>

@@ -52,12 +52,12 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
   searchValues: any = {};
 
   advanceSearchForm = new FormGroup({
-    store: new FormControl(""),
+    storeName: new FormControl(""),
     condition: new FormControl(""),
-    value: new FormControl(""),
-    sku: new FormControl(""),
+    store: new FormControl(""),
+    skuNumber: new FormControl(""),
     condition1: new FormControl(""),
-    skuValue: new FormControl("")
+    sku: new FormControl("")
   });
 
   constructor(
@@ -239,18 +239,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
 
   customFilterPredicate() {
     const myFilterPredicate = (data, filter) => {
-      return (
-        data.store
-          .trim()
-          .toString()
-          .toLowerCase()
-          .includes(filter.value) &&
-        data.sku
-          .trim()
-          .toString()
-          .toLowerCase()
-          .includes(filter.skuValue)
-      );
+      return data.store === filter.store && data.sku === filter.sku;
     };
     return myFilterPredicate;
   }
@@ -285,10 +274,6 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
       return true;
     }
     return false;
-  }
-
-  doAdvanceFilter() {
-    console.log("do advance filter");
   }
 
   /**
@@ -358,7 +343,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
   }
 
   getUpdate(event) {
-    console.log("in the pag event", event);
+    console.log("in the page event", event);
     this._navBarService.setPageSize(event.pageSize);
     this._navBarService.setPageLength(event.length);
   }
@@ -367,12 +352,13 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
     this.advancedSearchStatus = !this.advancedSearchStatus;
     if (this.advancedSearchStatus) {
       this.selectedOption = "Select a Store";
+      this.dataByAPI.filter = null;
       this.dataByAPI.filterPredicate = this.customFilterPredicate();
     } else {
+      this.dataByAPI.filter = null;
       this.dataByAPI.filterPredicate = this._logDiscriptionDataOrderService.filterRestrictionOnlyForDisplayedRows(
         "Item_Master"
       );
     }
-    console.log("advanced search clicked", this.advancedSearchStatus);
   }
 }
