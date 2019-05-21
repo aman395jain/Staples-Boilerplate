@@ -366,6 +366,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
   advanceSearchStatus() {
     this.advancedSearchStatus = !this.advancedSearchStatus;
     if (this.advancedSearchStatus) {
+      this.selectedOption = "Select a Store";
       this.dataByAPI.filterPredicate = this.customFilterPredicate();
     } else {
       this.dataByAPI.filterPredicate = this._logDiscriptionDataOrderService.filterRestrictionOnlyForDisplayedRows(
