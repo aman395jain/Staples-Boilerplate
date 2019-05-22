@@ -40,8 +40,11 @@
             />
           </mat-form-field>
           <div class="advance-search-link">
-            <a data-toggle="collapse" href="#collapseExample"
-            (click)= "advanceSearchStatus()" >Advanced Search</a
+            <a
+              data-toggle="collapse"
+              href="#collapseExample"
+              (click)="advanceSearch()"
+              >Advanced Search</a
             >
           </div>
         </div>
@@ -54,97 +57,66 @@
             <span class="advance-search-text"> Advance Search </span>
           </div>
           <div class="col-md-12">
-              <form [formGroup]="advanceSearchForm" (ngSubmit)="onSubmit()">
-                  <div class="col-md-12 row-bottom-border inner-rows">
-                    <div class="row d-flex d-inline-block">
-                      <div class="select-fields">
-                        <mat-form-field>
-                          <mat-select
-                            formControlName="storeName"
-                            placeholder="select the Store"
-                          >
-                            <mat-option value="store">Store</mat-option>
-                          </mat-select>
-                        </mat-form-field>
-                      </div>
-                      <div class="select-fields">
-                        <mat-form-field>
-                          <mat-select
-                            formControlName="condition"
-                            placeholder="select the condition"
-                          >
-                            <mat-option value="equals">Equals</mat-option>
-                          </mat-select>
-                        </mat-form-field>
-                      </div>
-                      <div class="select-fields">
-                        <mat-form-field>
-                          <mat-select
-                            formControlName="store"
-                            placeholder="select the Store value"
-                          >
-                            <mat-option value="8501">8501</mat-option>
-                            <mat-option value="8502">8502</mat-option>
-                            <mat-option value="8503">8503</mat-option>
-                          </mat-select>
-                        </mat-form-field>
-                      </div>
-                      <!-- <div style="margin: auto 0px; width: 40px">
+            <form
+              [formGroup]="advanceSearchForm"
+              (ngSubmit)="advanceSearchOnSubmit()"
+            >
+              <div class="col-md-12 row-bottom-border inner-rows">
+                <div
+                  class="row d-flex d-inline-block"
+                  *ngFor="let item of advanceSearchData | keyvalue"
+                >
+                  <div class="select-fields">
+                    <mat-form-field>
+                      <mat-select placeholder="select the field"
+                        ><mat-option value="item.key">{{
+                          item.key
+                        }}</mat-option></mat-select
+                      >
+                    </mat-form-field>
+                  </div>
+                  <div class="select-fields">
+                    <mat-form-field>
+                      <mat-select placeholder="select the condition"
+                        ><mat-option value="Equals"
+                          >Equals</mat-option
+                        ></mat-select
+                      >
+                    </mat-form-field>
+                  </div>
+
+                  <div class="select-fields">
+                    <mat-form-field>
+                      <mat-select
+                        placeholder="select the value"
+                        formControlName="{{ item.key }}"
+                        ><mat-option
+                          *ngFor="let searchOptions of item.value"
+                          value="{{ searchOptions }}"
+                          >{{ searchOptions }}</mat-option
+                        ></mat-select
+                      >
+                    </mat-form-field>
+                  </div>
+                  <div style="margin: auto 0px; width: 40px">
                           <i class="fa fa-plus-circle advance-search-addition" aria-hidden="true"></i>
                       </div>
                       <div style="margin: auto 0px">
                           <i class="fa fa-minus-circle advance-search-minus" aria-hidden="true"></i>
-                      </div> -->
-                    </div>
-                    <div class="row d-flex d-inline-block">
-                        <div class="select-fields">
-                          <mat-form-field>
-                            <mat-select
-                              formControlName="skuNumber"
-                              placeholder="select the sku"
-                            >
-                              <mat-option value="sku">SKU</mat-option>
-                            </mat-select>
-                          </mat-form-field>
-                        </div>
-                        <div class="select-fields">
-                          <mat-form-field>
-                            <mat-select
-                              formControlName="condition1"
-                              placeholder="select the condition"
-                            >
-                              <mat-option value="equals">Equals</mat-option>
-                            </mat-select>
-                          </mat-form-field>
-                        </div>
-                        <div class="select-fields">
-                          <mat-form-field>
-                            <mat-select
-                              formControlName="sku"
-                              placeholder="select the value"
-                            >
-                              <mat-option value="1001730">1001730</mat-option>
-                            </mat-select>
-                          </mat-form-field>
-                        </div>
-                        <!-- <div style="margin: auto 0px; width: 40px">
-                            <i class="fa fa-plus-circle advance-search-addition" aria-hidden="true"></i>
-                        </div>
-                        <div style="margin: auto 0px">
-                            <i class="fa fa-minus-circle advance-search-minus" aria-hidden="true"></i>
-                        </div> -->
                       </div>
-                  </div>
-                  <div class="col-md-12 align-items-center inner-rows ">
-                    <button
-                      class="btn btn-primary float-right advance-search-button"
-                    >
-                      Apply
-                    </button>
-                  </div>
-                </form>
+                </div>
+
+                
+              </div>
+              <div class="col-md-12 align-items-center inner-rows ">
+                <button
+                  class="btn btn-primary float-right advance-search-button"
+                >
+                  Apply
+                </button>
+              </div>
+            </form>
           </div>
-          
         </div>
       </div>
     </div>

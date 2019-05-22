@@ -9,7 +9,7 @@ import {
 import "rxjs/add/observable/of";
 import { Subject } from "rxjs";
 import { takeUntil } from "rxjs/operators";
-import { FormGroup, FormControl } from "@angular/forms";
+import { FormBuilder, FormGroup, FormArray, FormControl } from "@angular/forms";
 
 import { LogDiscriptionComponent } from "../log-discription/log-discription.component";
 
@@ -51,14 +51,10 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
   isLoading: boolean = true;
   searchValues: any = {};
 
-  advanceSearchForm = new FormGroup({
-    storeName: new FormControl(""),
-    condition: new FormControl(""),
-    store: new FormControl(""),
-    skuNumber: new FormControl(""),
-    condition1: new FormControl(""),
-    sku: new FormControl("")
-  });
+  advanceSearchData = {};
+
+  advanceSearchForm = new FormGroup({});
+  testAdvanceForm: FormGroup;
 
   constructor(
     private _loglistingService: LoglistingService,
@@ -67,14 +63,32 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
     private _printDocumentService: PrintDocumentService,
     private _logModalDataService: LogModalDataService,
     private _logDiscriptionDataOrderService: LogDiscriptionDataOrderService,
-    private _uniqueStoreService: UniqueStoreService
+    private _uniqueStoreService: UniqueStoreService,
+    private fb: FormBuilder
   ) {}
+
+  //  formFields() {
+  //    return this.fb.group({
+  //      field: ["Store", "sku"],
+  //      condition: ["Equals"],
+  //      values: [""]
+  //    })
+  //  }
+
+  //  addAdvanceField() {
+  //   const control = <FormArray>this.testAdvanceForm.controls['field'];
+  //   control.push(this.formFields());
+  //  }
 
   ngOnInit() {
     this.columns = logDataTableConst.item_Master;
 
     this.tableName = "Item_Master";
     this.displayedColumns = this.columns.map(c => c.columnDef);
+
+    // this.testAdvanceForm = this.fb.group({
+    //   advanceFields :  this.fb.array([this.formFields()])
+    // })
 
     try {
       this._loglistingService
@@ -84,16 +98,31 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
           this.printedData = data;
 
           this.isLoading = false;
-          let storeData = [];
+          let storeData = [],
+            skuData = [],
+            itemIdData = [];
           storeData.push("Select a Store");
           data.map((dataValue, i) => {
             dataValue["checked"] = false;
             dataValue["index"] = i;
             storeData.push(dataValue.store);
+            skuData.push(dataValue.sku);
+            itemIdData.push(dataValue.itemId);
           });
           this.storeUniqueData = this._uniqueStoreService.uniqueStore(
             storeData
           );
+
+          this.advanceSearchData = {
+            Store: this.storeUniqueData,
+            sku: skuData,
+            ItemID: itemIdData
+          };
+          this.advanceSearchForm = new FormGroup({
+            sku: new FormControl(""),
+            Store: new FormControl(""),
+            ItemID: new FormControl("")
+          });
 
           this.dataByAPI = new MatTableDataSource(data);
           this.dataByAPI.sort = this.sort;
@@ -230,7 +259,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
     this.dataByAPI.filter = filterValue;
   }
 
-  onSubmit() {
+  advanceSearchOnSubmit() {
     Object.assign(this.searchValues, this.advanceSearchForm.value);
     // console.log("in the advance search form values", this.searchValues);
     this.dataByAPI.filter = this.searchValues;
@@ -239,7 +268,11 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
 
   customFilterPredicate() {
     const myFilterPredicate = (data, filter) => {
-      return data.store === filter.store && data.sku === filter.sku;
+      return (
+        data.store === filter.Store &&
+        data.sku === filter.sku &&
+        data.itemId.toString().includes(filter.ItemID)
+      );
     };
     return myFilterPredicate;
   }
@@ -348,7 +381,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
     this._navBarService.setPageLength(event.length);
   }
 
-  advanceSearchStatus() {
+  advanceSearch() {
     this.advancedSearchStatus = !this.advancedSearchStatus;
     if (this.advancedSearchStatus) {
       this.selectedOption = "Select a Store";

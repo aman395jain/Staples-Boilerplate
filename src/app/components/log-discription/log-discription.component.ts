@@ -71,6 +71,7 @@ export class LogDiscriptionComponent implements OnInit {
 
       this.dataDisplayOnModal = this.mainDataDisplay[0];
       this.dataDisplayOnModal1 = this.restDataDisplay[0];
+      console.log("test data in dialog", this.dataDisplayOnModal);
 
       if (this.dataDiscriptionKeysToDisplay[0].upcList) {
         for (
