@@ -42,7 +42,9 @@
         tableName === 'Hardware_SKUs' ||
         tableName === 'Linked_SKUs' ||
         tableName === 'Free_SKUs' ||
-        tableName === 'Age_Restricted_Special_rest'
+        tableName === 'Age_Restricted_Special_rest' ||
+        tableName === 'Promos'
+
       "
     >
       <div class="classified-content align-items-center justify-content-end">
@@ -97,7 +99,7 @@
       <div class="row">
         <div
           class="col-md-4"
-          *ngFor="let data of dataDisplayOnModal1 | keyvalue"
+          *ngFor="let data of dataDisplayOnModalRest | keyvalue"
         >
           <table class="table table-bordered">
             <thead>
@@ -154,7 +156,8 @@
           tableName === 'Hardware_SKUs' ||
           tableName === 'Linked_SKUs' ||
           tableName === 'Free_SKUs' ||
-          tableName === 'Age_Restricted_Special_rest'
+          tableName === 'Age_Restricted_Special_rest' ||
+          tableName === 'Promos'
         )
       "
     >

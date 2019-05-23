@@ -22,7 +22,7 @@ export class LogDiscriptionComponent implements OnInit {
   mainDataDisplay = {};
   restDataDisplay = {};
   dataDisplayOnModal = [];
-  dataDisplayOnModal1 = [];
+  dataDisplayOnModalRest = [];
   dataBarCode = [];
   dataDisplay = {};
 
@@ -49,7 +49,8 @@ export class LogDiscriptionComponent implements OnInit {
       this.tableName === "Hardware_SKUs" ||
       this.tableName === "Linked_SKUs" ||
       this.tableName === "Free_SKUs" ||
-      this.tableName === "Age_Restricted_Special_rest"
+      this.tableName === "Age_Restricted_Special_rest" ||
+      this.tableName === "Promos"
     ) {
       console.log("in the component table name", this.tableName);
       //If condition is Just for test
@@ -70,7 +71,7 @@ export class LogDiscriptionComponent implements OnInit {
       // console.log("this.mainDataDisplay", this.mainDataDisplay);
 
       this.dataDisplayOnModal = this.mainDataDisplay[0];
-      this.dataDisplayOnModal1 = this.restDataDisplay[0];
+      this.dataDisplayOnModalRest = this.restDataDisplay[0];
       console.log("test data in dialog", this.dataDisplayOnModal);
 
       if (this.dataDiscriptionKeysToDisplay[0].upcList) {

@@ -57,6 +57,8 @@ export class LoglistingService {
       this._serviceUrl = dataUrls.getReturnDrivingLicence;
     } else if (entity === "Lowest_Price") {
       this._serviceUrl = dataUrls.getLowestPrice;
+    } else if (entity === "Promos") {
+      this._serviceUrl = dataUrls.getPromos;
     } else if (entity === "POSA") {
       //changes reqired according to service
       this._serviceUrl = dataUrls.getPOSA;

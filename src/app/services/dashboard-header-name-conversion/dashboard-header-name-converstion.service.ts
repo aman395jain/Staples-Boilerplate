@@ -83,7 +83,24 @@ export class DashboardHeaderNameConverstionService {
     upcNumber: "UPC Number",
     userId: "User ID",
     vendorName: "Vendor Name",
-    vendorNumber: "Vender Number"
+    vendorNumber: "Vender Number",
+    promoNum: "Promo Num",
+    promoName: "Promo Name",
+    discountName: "Discount Name",
+    discountType: "Discount Type",
+    promoStartDate: "Promo Start Date",
+    promoEndDate: "Promo End Date",
+    thresholdType: "Threshold Type",
+    thresholdQty: "Threshold Qunatity",
+    thresholdAmount: "Threshold Amount",
+    discountQualifierType: "Discount Qualifier Type",
+    discountQualifierValue: "Discount Qualifier Value",
+    discountAppliesTo: "Discount Applies To",
+    discountQuantity: "Discount Quantity",
+    priceAboveLimit: "Price Above Limit",
+    quantityLimit: "Quantity Limit",
+    softHardLimit: "Soft Hard Limit",
+    discountDesc: "Discount Discription"
   };
   printedDataNewHeader = {};
 

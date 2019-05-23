@@ -369,6 +369,53 @@ export const logDataTableConst = {
       header: null,
       cell: null
     }
+  ],
+  Promos: [
+    {
+      columnDef: "select",
+      header: null,
+      cell: null
+    },
+    {
+      columnDef: "promoNum",
+      header: "Promo Num",
+      cell: (element: any) => `${element.promoNum}`
+    },
+    {
+      columnDef: "promoName",
+      header: "Promotion Name",
+      cell: (element: any) => `${element.promoName}`
+    },
+    {
+      columnDef: "discountName",
+      header: "Discount Name",
+      cell: (element: any) => `${element.discountName}`
+    },
+    {
+      columnDef: "discountDesc",
+      header: "Discount Discription",
+      cell: (element: any) => `${element.discountDesc}`
+    },
+    {
+      columnDef: "discountType",
+      header: "Discount Type",
+      cell: (element: any) => `${element.discountType}`
+    },
+    {
+      columnDef: "promoStartDate",
+      header: "Start Date",
+      cell: (element: any) => `${element.promoStartDate}`
+    },
+    {
+      columnDef: "promoEndDate",
+      header: "End Date",
+      cell: (element: any) => `${element.promoEndDate}`
+    },
+    {
+      columnDef: "action",
+      header: null,
+      cell: null
+    }
   ]
 };
 

@@ -192,6 +192,11 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
 
           this.tableName = "Lowest_Price";
           this.displayedColumns = this.columns.map(c => c.columnDef);
+        } else if (tableName === "Promos") {
+          this.columns = logDataTableConst.Promos;
+
+          this.tableName = "Promos";
+          this.displayedColumns = this.columns.map(c => c.columnDef);
         }
 
         this._navBarService

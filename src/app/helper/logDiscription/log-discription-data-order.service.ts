@@ -164,6 +164,28 @@ export class LogDiscriptionDataOrderService {
 
       this.dataToBeDisplayedOnModal[1] = this.rowDataWithRestData;
       return this.dataToBeDisplayedOnModal;
+    } else if (this.tableName === "Promos") {
+      this.mainDataToDisplay = {
+        promoNum: row.promoNum,
+        promoName: row.promoName,
+        discountName: row.discountName,
+        discountType: row.discountType,
+        discountDesc: row.discountDesc,
+        promoStartDate: row.promoStartDate,
+        promoEndDate: row.promoEndDate
+      };
+      delete this.rowDataWithRestData["promoNum"];
+      delete this.rowDataWithRestData["promoName"];
+      delete this.rowDataWithRestData["discountName"];
+      delete this.rowDataWithRestData["discountType"];
+      delete this.rowDataWithRestData["discountDesc"];
+      delete this.rowDataWithRestData["promoStartDate"];
+      delete this.rowDataWithRestData["promoEndDate"];
+
+      this.dataToBeDisplayedOnModal[0] = this.mainDataToDisplay;
+
+      this.dataToBeDisplayedOnModal[1] = this.rowDataWithRestData;
+      return this.dataToBeDisplayedOnModal;
     }
   }
 
