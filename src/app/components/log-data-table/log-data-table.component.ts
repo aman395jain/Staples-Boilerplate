@@ -55,6 +55,56 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
 
   advanceSearchForm = new FormGroup({});
   testAdvanceForm: FormGroup;
+  testOptionValues = {};
+  testAdvanceSearchFields = ["store", "sku"];
+  testFieldControl = "store";
+  testField = "store";
+
+  addAdvanceField() {
+    console.log("testhhhhhhhhhh===========", this.testFieldControl);
+    // if(this.testFieldControl === 'store') {
+    //   return this.fb.group({
+    //     store: ""
+    //   });
+    // } else if(this.testFieldControl === 'sku') {
+    //   return this.fb.group({
+    //     sku: ""
+    //   });
+    // }
+    return this.fb.group({
+      sku: new FormControl(""),
+      store: new FormControl("")
+    });
+  }
+
+  get formArr() {
+    return this.testAdvanceForm.get("itemRows") as FormArray;
+  }
+
+  addNewRow(index) {
+    console.log("index--------", index);
+    this.formArr.push(this.addAdvanceField());
+  }
+
+  deleteRow(indexDelete: number) {
+    this.formArr.removeAt(indexDelete);
+  }
+
+  advanceSearchField(e) {
+    this.testFieldControl = e;
+    this.testField = e;
+    console.log("test===========", this.testFieldControl);
+    this.testOptionValues = {
+      store: ["8501", "8502"],
+      sku: ["1001730", "1001731"]
+    };
+    // if (this.testField === "store") {
+    //   this.testOptionValues =  {store: ["8501", "8502"]} ;
+
+    // }  if(this.testField === "sku") {
+    //   this.testOptionValues =   ["1001730", "1001731"];
+    // }
+  }
 
   constructor(
     private _loglistingService: LoglistingService,
@@ -85,6 +135,10 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
 
     this.tableName = "Item_Master";
     this.displayedColumns = this.columns.map(c => c.columnDef);
+
+    this.testAdvanceForm = this.fb.group({
+      itemRows: this.fb.array([this.addAdvanceField()])
+    });
 
     // this.testAdvanceForm = this.fb.group({
     //   advanceFields :  this.fb.array([this.formFields()])
@@ -141,6 +195,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
       .subscribe(tableName => {
         this.isLoading = true;
         this.selectedDataForPrint = [];
+        console.log("table name", tableName);
         if (tableName === "Price_Prompt_SKUs") {
           console.log("in the price prompt");
           this.columns = logDataTableConst.price_Prompt_Sku;
@@ -197,6 +252,20 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
 
           this.tableName = "Promos";
           this.displayedColumns = this.columns.map(c => c.columnDef);
+        } else if (tableName === "POSA") {
+          this.tableName = "POSA";
+        } else if (tableName === "Order") {
+          this.tableName = "Order";
+        } else if (tableName === "Coupon") {
+          this.tableName = "Coupon";
+        } else if (tableName === "Tax_Exempt") {
+          this.tableName = "Tax_Exempt";
+        } else if (tableName === "Rewards") {
+          this.tableName = "Rewards";
+        } else if (tableName === "CBP") {
+          this.tableName = "CBP";
+        } else if (tableName === "CEP") {
+          this.tableName = "CEP";
         }
 
         this._navBarService
@@ -229,7 +298,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
             // console.log("datasource", this.dataByAPI);
             this.dataByAPI.sort = this.sort;
             this.dataByAPI.paginator = this.paginator;
-            this.paginator.pageSize = 5;
+
             if (
               this.tableName === "Item_Master" ||
               this.tableName === "Price_Prompt_SKUs" ||
@@ -240,6 +309,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
               this.tableName === "Free_SKUs" ||
               this.tableName === "Age_Restricted_Special_rest"
             ) {
+              this.paginator.pageSize = 5;
               this.dataByAPI.filterPredicate = this._logDiscriptionDataOrderService.filterRestrictionOnlyForDisplayedRows(
                 this.tableName
               );
@@ -266,6 +336,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
 
   advanceSearchOnSubmit() {
     Object.assign(this.searchValues, this.advanceSearchForm.value);
+    // Object.assign(this.searchValues, this.testAdvanceForm.value.itemRows[0]);
     // console.log("in the advance search form values", this.searchValues);
     this.dataByAPI.filter = this.searchValues;
     // console.log("in the advance search submit", this.dataByAPI.filter);

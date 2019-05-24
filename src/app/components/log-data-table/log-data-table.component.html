@@ -1,4 +1,18 @@
-<div class="container mat-elevation-z8 log-list" [hidden]="isLoading">
+<div
+  class="container mat-elevation-z8 log-list"
+  [hidden]="isLoading"
+  *ngIf="
+    !(
+      tableName === 'POSA' ||
+      tableName === 'Order' ||
+      tableName === 'Coupon' ||
+      tableName === 'Tax_Exempt' ||
+      tableName === 'Rewards' ||
+      tableName === 'CBP' ||
+      tableName === 'CEP'
+    )
+  "
+>
   <div class="row">
     <div class="col-md-12 list-search">
       <div class="row">
@@ -211,6 +225,26 @@
       </mat-paginator>
     </div>
   </div>
+</div>
+<div
+  [hidden]="isLoading"
+  *ngIf="
+    tableName === 'POSA' ||
+    tableName === 'Order' ||
+    tableName === 'Coupon' ||
+    tableName === 'Tax_Exempt' ||
+    tableName === 'Rewards' ||
+    tableName === 'CBP' ||
+    tableName === 'CEP'
+  "
+>
+  <img
+    class="header-logo"
+    src="../../../app/assets/images/under_Process.jfif"
+    alt="Staples"
+    height="300px"
+    width="300px"
+  />
 </div>
 <div class="load-spinner">
   <mat-progress-spinner
