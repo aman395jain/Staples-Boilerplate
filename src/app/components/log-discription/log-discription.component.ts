@@ -73,9 +73,6 @@ export class LogDiscriptionComponent implements OnInit {
 
       if (this.tableName === "Linked_SKUs") {
         this.linkedSKUsData = this.classifiedData[2].linkedList;
-        this.linkedSKUsData.map(data => {
-          console.log("in linked skus", data);
-        });
         this.linkedSKUsDisplayStatus = true;
       }
 
