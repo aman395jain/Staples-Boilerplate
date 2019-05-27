@@ -52,21 +52,22 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
 
   advanceSearchFields = [{ name: "", fieldValue: "" }];
   rowLength = 0;
-  advanceSearchOptions: string[] = ["store", "sku"];
-  testSearchObject = [];
-  advanceSearchValues = [];
+  advanceSearchOptions: string[] = [];
+  advanceSearchObject = [];
   advanceSearchData = {};
   testEvalue = "";
 
   addRow() {
+    console.log("rowLength", this.rowLength);
     if (this.rowLength < 2) {
       this.rowLength = this.rowLength + 1;
       this.advanceSearchFields.push({ name: "", fieldValue: "" });
     }
   }
   deleteRows(i) {
-    this.rowLength = this.rowLength - 1;
+    console.log("index", i);
     this.advanceSearchFields.splice(i, 1);
+    this.rowLength = this.rowLength - 1;
   }
 
   advanceSearchFieldOption(eValue) {
@@ -88,16 +89,15 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
   }
 
   testAdvanceSearchOnSubmit() {
-    console.log("testAdvanceSearchOnSubmit", this.advanceSearchFields.length);
     if (this.advanceSearchFields.length === 1) {
-      this.testSearchObject = [
+      this.advanceSearchObject = [
         {
           [this.advanceSearchFields[0].name]: this.advanceSearchFields[0]
             .fieldValue
         }
       ];
     } else if (this.advanceSearchFields.length === 2) {
-      this.testSearchObject = [
+      this.advanceSearchObject = [
         {
           [this.advanceSearchFields[0].name]: this.advanceSearchFields[0]
             .fieldValue,
@@ -106,7 +106,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
         }
       ];
     } else if (this.advanceSearchFields.length === 3) {
-      this.testSearchObject = [
+      this.advanceSearchObject = [
         {
           [this.advanceSearchFields[0].name]: this.advanceSearchFields[0]
             .fieldValue,
@@ -117,9 +117,9 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
         }
       ];
     }
-    console.log("testAdvanceSearchOnSubmit", this.testSearchObject[0]);
-    this.dataByAPI.filter = this.testSearchObject[0];
-    this.dataByAPI.filterPredicate = this.customFilterPredicate();
+    console.log("testAdvanceSearchOnSubmit", this.advanceSearchObject[0]);
+    this.dataByAPI.filter = this.advanceSearchObject[0];
+    this.dataByAPI.filterPredicate = this._logDiscriptionDataOrderService.customFilterPredicate();
   }
 
   constructor(
@@ -137,6 +137,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
 
     this.tableName = "Item_Master";
     this.displayedColumns = this.columns.map(c => c.columnDef);
+    this.advanceSearchOptions = ["store", "sku", "Description"];
 
     try {
       this._loglistingService
@@ -323,27 +324,6 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
     this.dataByAPI.filter = filterValue;
   }
 
-  customFilterPredicate() {
-    const myFilterPredicate = (data, filter) => {
-      if (filter.hasOwnProperty("store") && !filter.hasOwnProperty("sku")) {
-        return data.store.includes(filter.store);
-      } else if (
-        filter.hasOwnProperty("sku") &&
-        !filter.hasOwnProperty("store")
-      ) {
-        return data.sku.includes(filter.sku);
-      } else if (
-        filter.hasOwnProperty("sku") &&
-        filter.hasOwnProperty("store")
-      ) {
-        return (
-          data.store.includes(filter.store) && data.sku.includes(filter.sku)
-        );
-      }
-    };
-    return myFilterPredicate;
-  }
-
   /*
   * discriptionLog to populate the data in a Modal
   */
@@ -449,11 +429,12 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
   }
 
   advanceSearch() {
+    console.log("tablename", this.tableName);
     this.advancedSearchStatus = !this.advancedSearchStatus;
     if (this.advancedSearchStatus) {
       this.selectedOption = "Select a Store";
       this.dataByAPI.filter = null;
-      this.dataByAPI.filterPredicate = this.customFilterPredicate();
+      this.dataByAPI.filterPredicate = this._logDiscriptionDataOrderService.customFilterPredicate();
     } else {
       this.dataByAPI.filter = null;
       this.dataByAPI.filterPredicate = this._logDiscriptionDataOrderService.filterRestrictionOnlyForDisplayedRows(

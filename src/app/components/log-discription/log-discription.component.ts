@@ -27,6 +27,8 @@ export class LogDiscriptionComponent implements OnInit {
   dataDisplay = {};
 
   classifiedData = [];
+  linkedSKUsData: any[] = [];
+  linkedSKUsDisplayStatus = false;
 
   tableName: string = "";
 
@@ -52,7 +54,7 @@ export class LogDiscriptionComponent implements OnInit {
       this.tableName === "Age_Restricted_Special_rest" ||
       this.tableName === "Promos"
     ) {
-      console.log("in the component table name", this.tableName);
+      // console.log("in the component table name", this.tableName);
       //If condition is Just for test
       this.classifiedData = this._logDiscriptionDataOrderService.modalDataOrder(
         this.dataDiscription
@@ -68,11 +70,18 @@ export class LogDiscriptionComponent implements OnInit {
       this.restDataDisplay = this._dashboardHeaderNameConverstionService.headerNameConvert(
         this.restDataDiscriptionKeysToDisplay
       );
-      // console.log("this.mainDataDisplay", this.mainDataDisplay);
+
+      if (this.tableName === "Linked_SKUs") {
+        this.linkedSKUsData = this.classifiedData[2].linkedList;
+        this.linkedSKUsData.map(data => {
+          console.log("in linked skus", data);
+        });
+        this.linkedSKUsDisplayStatus = true;
+        console.log("this.mainDataDisplay", this.linkedSKUsData);
+      }
 
       this.dataDisplayOnModal = this.mainDataDisplay[0];
       this.dataDisplayOnModalRest = this.restDataDisplay[0];
-      console.log("test data in dialog", this.dataDisplayOnModal);
 
       if (this.dataDiscriptionKeysToDisplay[0].upcList) {
         for (

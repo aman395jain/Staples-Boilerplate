@@ -7,6 +7,7 @@ export class LogDiscriptionDataOrderService {
   private dataToBeDisplayedOnModal = [];
   private mainDataToDisplay = {};
   private rowDataWithRestData = {};
+  private rowDataWithLinkedSKUs = {};
 
   private tableName = "";
 
@@ -81,20 +82,25 @@ export class LogDiscriptionDataOrderService {
     } else if (this.tableName === "Linked_SKUs") {
       this.mainDataToDisplay = {
         sku: row.sku,
-        posId: row.posId,
+        upcList: row.upcList,
         warranty: row.warranty,
-        permPrice: row.permPrice,
-        itemGroupID: row.itemGroupID
+        retailPrice: row.retailPrice,
+        associateGrpId: row.associateGrpId
+      };
+      this.rowDataWithLinkedSKUs = {
+        linkedList: row.linkedList
       };
       delete this.rowDataWithRestData["sku"];
-      delete this.rowDataWithRestData["posId"];
+      delete this.rowDataWithRestData["upcList"];
       delete this.rowDataWithRestData["warranty"];
-      delete this.rowDataWithRestData["permPrice"];
-      delete this.rowDataWithRestData["itemGroupID"];
+      delete this.rowDataWithRestData["retailPrice"];
+      delete this.rowDataWithRestData["associateGrpId"];
+      delete this.rowDataWithRestData["linkedList"];
 
       this.dataToBeDisplayedOnModal[0] = this.mainDataToDisplay;
 
       this.dataToBeDisplayedOnModal[1] = this.rowDataWithRestData;
+      this.dataToBeDisplayedOnModal[2] = this.rowDataWithLinkedSKUs;
       return this.dataToBeDisplayedOnModal;
     } else if (this.tableName === "Free_SKUs") {
       this.mainDataToDisplay = {
@@ -259,7 +265,7 @@ export class LogDiscriptionDataOrderService {
       return function(data, filter: string): boolean {
         return (
           data.sku.toLowerCase().includes(filter) ||
-          data.permPrice.toString().includes(filter) ||
+          data.retailPrice.toString().includes(filter) ||
           data.posId.toString().includes(filter) ||
           data.warranty
             .toString()
@@ -360,5 +366,59 @@ export class LogDiscriptionDataOrderService {
         );
       };
     }
+  }
+
+  customFilterPredicate() {
+    return function(data, filter) {
+      if (
+        filter.hasOwnProperty("store") &&
+        !filter.hasOwnProperty("sku") &&
+        !filter.hasOwnProperty("Description")
+      ) {
+        return data.store.includes(filter.store);
+      } else if (
+        filter.hasOwnProperty("sku") &&
+        !filter.hasOwnProperty("store") &&
+        !filter.hasOwnProperty("Description")
+      ) {
+        return data.sku.includes(filter.sku);
+      } else if (
+        !filter.hasOwnProperty("sku") &&
+        !filter.hasOwnProperty("store") &&
+        filter.hasOwnProperty("Description")
+      ) {
+        return data.itemDesc.toLowerCase().includes(filter.Description);
+      } else if (
+        filter.hasOwnProperty("sku") &&
+        filter.hasOwnProperty("store") &&
+        !filter.hasOwnProperty("Description")
+      ) {
+        return (
+          data.store.includes(filter.store) && data.sku.includes(filter.sku)
+        );
+      } else if (
+        !filter.hasOwnProperty("sku") &&
+        filter.hasOwnProperty("store") &&
+        filter.hasOwnProperty("Description")
+      ) {
+        return (
+          data.store.includes(filter.store) &&
+          data.itemDesc.toLowerCase().includes(filter.Description)
+        );
+      } else if (
+        filter.hasOwnProperty("sku") &&
+        !filter.hasOwnProperty("store") &&
+        filter.hasOwnProperty("Description")
+      ) {
+        return (
+          data.sku.includes(filter.sku) &&
+          data.itemDesc.toLowerCase().includes(filter.Description)
+        );
+      } else {
+        data.store.includes(filter.store) &&
+          data.sku.includes(filter.sku) &&
+          data.itemDesc.toLowerCase().includes(filter.Description);
+      }
+    };
   }
 }

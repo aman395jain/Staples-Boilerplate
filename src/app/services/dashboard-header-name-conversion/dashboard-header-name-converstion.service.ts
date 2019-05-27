@@ -100,14 +100,14 @@ export class DashboardHeaderNameConverstionService {
     priceAboveLimit: "Price Above Limit",
     quantityLimit: "Quantity Limit",
     softHardLimit: "Soft Hard Limit",
-    discountDesc: "Discount Discription"
+    discountDesc: "Discount Discription",
+    linkedList: "Linked SKUs"
   };
   printedDataNewHeader = {};
 
   constructor() {}
 
   headerNameConvert = dataForConvertion => {
-    console.log("data for converstion", dataForConvertion);
     this.printedDataNewHeader = dataForConvertion.map(data => {
       return Object.keys(data).reduce((prev, next) => {
         if (next in this.keyMap) {

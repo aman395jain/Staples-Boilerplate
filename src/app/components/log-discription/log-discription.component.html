@@ -44,7 +44,6 @@
         tableName === 'Free_SKUs' ||
         tableName === 'Age_Restricted_Special_rest' ||
         tableName === 'Promos'
-
       "
     >
       <div class="classified-content align-items-center justify-content-end">
@@ -72,9 +71,7 @@
                 </td>
                 <td *ngIf="data.key === 'UPC List'">
                   <div class="discription-blocks">
-                    <perfect-scrollbar
-                      [scrollIndicators]="true"
-                    >
+                    <perfect-scrollbar [scrollIndicators]="true">
                       <div *ngFor="let barCode of dataBarCode">
                         <div>
                           <ngx-barcode
@@ -118,9 +115,7 @@
                 </td>
                 <td *ngIf="data.key === 'UPC List'">
                   <div class="discription-blocks">
-                    <perfect-scrollbar
-                      [scrollIndicators]="true"
-                    >
+                    <perfect-scrollbar [scrollIndicators]="true">
                       <div *ngFor="let barCode of dataBarCode">
                         <div>
                           <ngx-barcode
@@ -139,6 +134,36 @@
                     {{ barCode }}
                   </div>
                 </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div
+        class="classified-content align-items-center justify-content-end"
+        *ngIf="linkedSKUsDisplayStatus"
+      >
+        Linked SKUs Content
+      </div>
+      <div class="row" *ngIf="linkedSKUsDisplayStatus">
+        <div class="col-md-12">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th class="table-header">
+                  <span>SKUs</span>
+                </th>
+                <th class="table-header">
+                  <span>SKUs</span>
+                </th>
+                <th class="table-header">
+                  <span>SKUs</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td></td>
               </tr>
             </tbody>
           </table>
@@ -183,9 +208,7 @@
                 </td>
                 <td *ngIf="data.key === 'Bar Code'">
                   <div class="discription-blocks">
-                    <perfect-scrollbar
-                      [scrollIndicators]="true"
-                    >
+                    <perfect-scrollbar [scrollIndicators]="true">
                       <div *ngFor="let barCode of dataBarCode">
                         <div>
                           <ngx-barcode

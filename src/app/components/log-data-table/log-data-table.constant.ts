@@ -143,14 +143,14 @@ export const logDataTableConst = {
       cell: (element: any) => `${element.sku}`
     },
     {
-      columnDef: "permPrice",
+      columnDef: "retailPrice",
       header: "Retail Price",
-      cell: (element: any) => `${element.permPrice}`
+      cell: (element: any) => `${element.retailPrice}`
     },
     {
       columnDef: "barCode",
       header: "UPC",
-      cell: (element: any) => `${element.posId}`
+      cell: (element: any) => barCodeDisplay(element)
     },
     {
       columnDef: "warranty",
@@ -158,9 +158,9 @@ export const logDataTableConst = {
       cell: (element: any) => `${element.warranty}`
     },
     {
-      columnDef: "itemGroupID",
+      columnDef: "associateGrpId",
       header: "Item Group ID",
-      cell: (element: any) => `${element.itemGroupID}`
+      cell: (element: any) => `${element.associateGrpId}`
     },
     {
       columnDef: "action",
