@@ -77,7 +77,6 @@ export class LogDiscriptionComponent implements OnInit {
           console.log("in linked skus", data);
         });
         this.linkedSKUsDisplayStatus = true;
-        console.log("this.mainDataDisplay", this.linkedSKUsData);
       }
 
       this.dataDisplayOnModal = this.mainDataDisplay[0];
