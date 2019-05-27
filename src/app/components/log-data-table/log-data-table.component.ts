@@ -9,7 +9,6 @@ import {
 import "rxjs/add/observable/of";
 import { Subject } from "rxjs";
 import { takeUntil } from "rxjs/operators";
-import { FormBuilder, FormGroup, FormArray, FormControl } from "@angular/forms";
 
 import { LogDiscriptionComponent } from "../log-discription/log-discription.component";
 
@@ -51,59 +50,76 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
   isLoading: boolean = true;
   searchValues: any = {};
 
+  advanceSearchFields = [{ name: "", fieldValue: "" }];
+  rowLength = 0;
+  advanceSearchOptions: string[] = ["store", "sku"];
+  testSearchObject = [];
+  advanceSearchValues = [];
   advanceSearchData = {};
+  testEvalue = "";
 
-  advanceSearchForm = new FormGroup({});
-  testAdvanceForm: FormGroup;
-  testOptionValues = {};
-  testAdvanceSearchFields = ["store", "sku"];
-  testFieldControl = "store";
-  testField = "store";
-
-  addAdvanceField() {
-    console.log("testhhhhhhhhhh===========", this.testFieldControl);
-    // if(this.testFieldControl === 'store') {
-    //   return this.fb.group({
-    //     store: ""
-    //   });
-    // } else if(this.testFieldControl === 'sku') {
-    //   return this.fb.group({
-    //     sku: ""
-    //   });
-    // }
-    return this.fb.group({
-      sku: new FormControl(""),
-      store: new FormControl("")
-    });
+  addRow() {
+    if (this.rowLength < 2) {
+      this.rowLength = this.rowLength + 1;
+      this.advanceSearchFields.push({ name: "", fieldValue: "" });
+    }
+  }
+  deleteRows(i) {
+    this.rowLength = this.rowLength - 1;
+    this.advanceSearchFields.splice(i, 1);
   }
 
-  get formArr() {
-    return this.testAdvanceForm.get("itemRows") as FormArray;
+  advanceSearchFieldOption(eValue) {
+    console.log("evalue", eValue);
+    if (eValue === "store") {
+      this.testEvalue = eValue;
+    } else if (eValue === "sku") {
+      this.testEvalue = eValue;
+    }
   }
 
-  addNewRow(index) {
-    console.log("index--------", index);
-    this.formArr.push(this.addAdvanceField());
+  getArray(i): any[] {
+    if (i === "store") {
+      return ["8501", "8502"];
+    }
+    if (i === "sku") {
+      return ["1001731", "1001730"];
+    }
   }
 
-  deleteRow(indexDelete: number) {
-    this.formArr.removeAt(indexDelete);
-  }
-
-  advanceSearchField(e) {
-    this.testFieldControl = e;
-    this.testField = e;
-    console.log("test===========", this.testFieldControl);
-    this.testOptionValues = {
-      store: ["8501", "8502"],
-      sku: ["1001730", "1001731"]
-    };
-    // if (this.testField === "store") {
-    //   this.testOptionValues =  {store: ["8501", "8502"]} ;
-
-    // }  if(this.testField === "sku") {
-    //   this.testOptionValues =   ["1001730", "1001731"];
-    // }
+  testAdvanceSearchOnSubmit() {
+    console.log("testAdvanceSearchOnSubmit", this.advanceSearchFields.length);
+    if (this.advanceSearchFields.length === 1) {
+      this.testSearchObject = [
+        {
+          [this.advanceSearchFields[0].name]: this.advanceSearchFields[0]
+            .fieldValue
+        }
+      ];
+    } else if (this.advanceSearchFields.length === 2) {
+      this.testSearchObject = [
+        {
+          [this.advanceSearchFields[0].name]: this.advanceSearchFields[0]
+            .fieldValue,
+          [this.advanceSearchFields[1].name]: this.advanceSearchFields[1]
+            .fieldValue
+        }
+      ];
+    } else if (this.advanceSearchFields.length === 3) {
+      this.testSearchObject = [
+        {
+          [this.advanceSearchFields[0].name]: this.advanceSearchFields[0]
+            .fieldValue,
+          [this.advanceSearchFields[1].name]: this.advanceSearchFields[1]
+            .fieldValue,
+          [this.advanceSearchFields[2].name]: this.advanceSearchFields[2]
+            .fieldValue
+        }
+      ];
+    }
+    console.log("testAdvanceSearchOnSubmit", this.testSearchObject[0]);
+    this.dataByAPI.filter = this.testSearchObject[0];
+    this.dataByAPI.filterPredicate = this.customFilterPredicate();
   }
 
   constructor(
@@ -113,36 +129,14 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
     private _printDocumentService: PrintDocumentService,
     private _logModalDataService: LogModalDataService,
     private _logDiscriptionDataOrderService: LogDiscriptionDataOrderService,
-    private _uniqueStoreService: UniqueStoreService,
-    private fb: FormBuilder
+    private _uniqueStoreService: UniqueStoreService
   ) {}
-
-  //  formFields() {
-  //    return this.fb.group({
-  //      field: ["Store", "sku"],
-  //      condition: ["Equals"],
-  //      values: [""]
-  //    })
-  //  }
-
-  //  addAdvanceField() {
-  //   const control = <FormArray>this.testAdvanceForm.controls['field'];
-  //   control.push(this.formFields());
-  //  }
 
   ngOnInit() {
     this.columns = logDataTableConst.item_Master;
 
     this.tableName = "Item_Master";
     this.displayedColumns = this.columns.map(c => c.columnDef);
-
-    this.testAdvanceForm = this.fb.group({
-      itemRows: this.fb.array([this.addAdvanceField()])
-    });
-
-    // this.testAdvanceForm = this.fb.group({
-    //   advanceFields :  this.fb.array([this.formFields()])
-    // })
 
     try {
       this._loglistingService
@@ -163,20 +157,15 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
             skuData.push(dataValue.sku);
             itemIdData.push(dataValue.itemId);
           });
-          this.storeUniqueData = this._uniqueStoreService.uniqueStore(
-            storeData
-          );
-
           this.advanceSearchData = {
-            Store: this.storeUniqueData,
+            store: this.storeUniqueData,
             sku: skuData,
             ItemID: itemIdData
           };
-          this.advanceSearchForm = new FormGroup({
-            sku: new FormControl(""),
-            Store: new FormControl(""),
-            ItemID: new FormControl("")
-          });
+
+          this.storeUniqueData = this._uniqueStoreService.uniqueStore(
+            storeData
+          );
 
           this.dataByAPI = new MatTableDataSource(data);
           this.dataByAPI.sort = this.sort;
@@ -334,21 +323,23 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
     this.dataByAPI.filter = filterValue;
   }
 
-  advanceSearchOnSubmit() {
-    Object.assign(this.searchValues, this.advanceSearchForm.value);
-    // Object.assign(this.searchValues, this.testAdvanceForm.value.itemRows[0]);
-    // console.log("in the advance search form values", this.searchValues);
-    this.dataByAPI.filter = this.searchValues;
-    // console.log("in the advance search submit", this.dataByAPI.filter);
-  }
-
   customFilterPredicate() {
     const myFilterPredicate = (data, filter) => {
-      return (
-        data.store === filter.Store &&
-        data.sku === filter.sku &&
-        data.itemId.toString().includes(filter.ItemID)
-      );
+      if (filter.hasOwnProperty("store") && !filter.hasOwnProperty("sku")) {
+        return data.store.includes(filter.store);
+      } else if (
+        filter.hasOwnProperty("sku") &&
+        !filter.hasOwnProperty("store")
+      ) {
+        return data.sku.includes(filter.sku);
+      } else if (
+        filter.hasOwnProperty("sku") &&
+        filter.hasOwnProperty("store")
+      ) {
+        return (
+          data.store.includes(filter.store) && data.sku.includes(filter.sku)
+        );
+      }
     };
     return myFilterPredicate;
   }

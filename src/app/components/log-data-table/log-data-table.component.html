@@ -71,22 +71,28 @@
             <span class="advance-search-text"> Advance Search </span>
           </div>
           <div class="col-md-12">
-            <form
-              [formGroup]="advanceSearchForm"
-              (ngSubmit)="advanceSearchOnSubmit()"
-            >
-              <div class="col-md-12 row-bottom-border inner-rows">
-                <div
-                  class="row d-flex d-inline-block"
-                  *ngFor="let item of advanceSearchData | keyvalue"
-                >
+            <form #formRef="ngForm">
+              <div
+                *ngFor="let searchField of advanceSearchFields; let in = index"
+                class="col-md-12  row-bottom-border inner-rows"
+              >
+                <div class="form-group row d-flex d-inline-block">
                   <div class="select-fields">
                     <mat-form-field>
-                      <mat-select placeholder="select the field"
-                        ><mat-option value="item.key">{{
-                          item.key
-                        }}</mat-option></mat-select
+                      <mat-select
+                        placeholder="select the field"
+                        [name]="'f' + in"
+                        [(ngModel)]="searchField.name"
+                        (selectionChange)="
+                          advanceSearchFieldOption($event.value)
+                        "
                       >
+                        <mat-option
+                          *ngFor="let field of advanceSearchOptions"
+                          value="{{ field }}"
+                          >{{ field }}</mat-option
+                        >
+                      </mat-select>
                     </mat-form-field>
                   </div>
                   <div class="select-fields">
@@ -101,34 +107,47 @@
 
                   <div class="select-fields">
                     <mat-form-field>
-                      <mat-select
+                      <input
+                        matInput
+                        placeholder="Search"
+                        [(ngModel)]="searchField.fieldValue"
+                        name="name{{ in }}"
+                        #name="ngModel"
+                      />
+                      <!-- <mat-select
                         placeholder="select the value"
-                        formControlName="{{ item.key }}"
-                        ><mat-option
-                          *ngFor="let searchOptions of item.value"
-                          value="{{ searchOptions }}"
-                          >{{ searchOptions }}</mat-option
-                        ></mat-select
+                        name="name{{ in }}"
+                        [(ngModel)]="searchField.fieldValue"
                       >
+                        <mat-option
+                          *ngFor="let fieldValue of getArray(testEvalue)"
+                          value="{{ fieldValue }}"
+                          >{{ fieldValue }}</mat-option
+                        >
+                      </mat-select> -->
                     </mat-form-field>
                   </div>
-                  <!-- <div style="margin: auto 0px; width: 40px">
+                  <div style="margin: auto 0px; width: 40px">
                     <i
                       class="fa fa-plus-circle advance-search-addition"
                       aria-hidden="true"
+                      (click)="addRow()"
                     ></i>
                   </div>
                   <div style="margin: auto 0px">
                     <i
                       class="fa fa-minus-circle advance-search-minus"
                       aria-hidden="true"
+                      *ngIf="[in] > 0 || rowLength > 0"
+                      (click)="deleteRows(in)"
                     ></i>
-                  </div> -->
+                  </div>
                 </div>
               </div>
               <div class="col-md-12 align-items-center inner-rows ">
                 <button
                   class="btn btn-primary float-right advance-search-button"
+                  (click)="testAdvanceSearchOnSubmit()"
                 >
                   Apply
                 </button>
