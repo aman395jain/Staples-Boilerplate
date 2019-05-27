@@ -145,30 +145,34 @@
       >
         Linked SKUs Content
       </div>
-      <div class="row" *ngIf="linkedSKUsDisplayStatus">
-        <div class="col-md-12">
-          <table class="table table-bordered">
-            <thead>
-              <tr>
-                <th class="table-header">
-                  <span>SKUs</span>
-                </th>
-                <th class="table-header">
-                  <span>SKUs</span>
-                </th>
-                <th class="table-header">
-                  <span>SKUs</span>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td></td>
-              </tr>
-            </tbody>
-          </table>
+      <perfect-scrollbar [scrollIndicators]="true">
+        <div class="row" *ngIf="linkedSKUsDisplayStatus">
+          <div class="col-md-12 linked-sku-table">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th class="table-header">
+                    <span>SKUs</span>
+                  </th>
+                  <th class="table-header">
+                    <span>Item Description</span>
+                  </th>
+                  <th class="table-header">
+                    <span>Retail Price</span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let linkedData of linkedSKUsData">
+                  <td>{{ linkedData.sku }}</td>
+                  <td>{{ linkedData.itemDesc }}</td>
+                  <td>{{ linkedData.retailPrice }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
-      </div>
+      </perfect-scrollbar>
     </div>
 
     <div
