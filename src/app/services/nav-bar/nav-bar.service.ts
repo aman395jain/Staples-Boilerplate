@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Subject, Observable } from "rxjs";
+import { Subject, Observable, BehaviorSubject } from "rxjs";
 
 /**
  * @ngdoc service
@@ -14,6 +14,8 @@ export class NavBarService {
   private _toggleStatusSubject = new Subject<any>();
   private _pageSizeSubject = new Subject<any>();
   private _pageLengthSubject = new Subject<any>();
+  private _elementIsClicked = new Subject<any>();
+  private advanceSearchStatus = new BehaviorSubject<boolean>(null);
   constructor() {}
 
   /**
@@ -62,5 +64,14 @@ export class NavBarService {
 
   getPageSize(): Observable<any> {
     return this._pageSizeSubject.asObservable();
+  }
+
+  getAdvanceSearchStatus(status) {
+    console.log("in the service advance search status", status);
+    this.advanceSearchStatus.next(status);
+  }
+
+  setAdvanceSearchStatus() {
+    return this.advanceSearchStatus;
   }
 }

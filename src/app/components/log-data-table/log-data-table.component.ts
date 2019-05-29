@@ -1,4 +1,11 @@
-import { Component, OnInit, ViewChild, OnDestroy } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  OnDestroy,
+  ElementRef,
+  Renderer2
+} from "@angular/core";
 import {
   MatPaginator,
   MatTableDataSource,
@@ -29,6 +36,7 @@ import { logDataTableConst } from "./log-data-table.constant";
 export class LogDataTableComponent implements OnInit, OnDestroy {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+  @ViewChild("advanceSearchForm") advanceSearchForm: ElementRef;
   private _onDestroy = new Subject<void>();
 
   columns: any = [];
@@ -45,7 +53,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
 
   initialPageSize: number = 5;
   tableName: String = "";
-  advancedSearchStatus: boolean = false;
+  advancedSearchStatus: boolean = true;
 
   isLoading: boolean = true;
   searchValues: any = {};
@@ -56,71 +64,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
   advanceSearchObject = [];
   advanceSearchData = {};
   testEvalue = "";
-
-  addRow() {
-    console.log("rowLength", this.rowLength);
-    if (this.rowLength < 2) {
-      this.rowLength = this.rowLength + 1;
-      this.advanceSearchFields.push({ name: "", fieldValue: "" });
-    }
-  }
-  deleteRows(i) {
-    console.log("index", i);
-    this.advanceSearchFields.splice(i, 1);
-    this.rowLength = this.rowLength - 1;
-  }
-
-  advanceSearchFieldOption(eValue) {
-    console.log("evalue", eValue);
-    if (eValue === "store") {
-      this.testEvalue = eValue;
-    } else if (eValue === "sku") {
-      this.testEvalue = eValue;
-    }
-  }
-
-  getArray(i): any[] {
-    if (i === "store") {
-      return ["8501", "8502"];
-    }
-    if (i === "sku") {
-      return ["1001731", "1001730"];
-    }
-  }
-
-  testAdvanceSearchOnSubmit() {
-    if (this.advanceSearchFields.length === 1) {
-      this.advanceSearchObject = [
-        {
-          [this.advanceSearchFields[0].name]: this.advanceSearchFields[0]
-            .fieldValue
-        }
-      ];
-    } else if (this.advanceSearchFields.length === 2) {
-      this.advanceSearchObject = [
-        {
-          [this.advanceSearchFields[0].name]: this.advanceSearchFields[0]
-            .fieldValue,
-          [this.advanceSearchFields[1].name]: this.advanceSearchFields[1]
-            .fieldValue
-        }
-      ];
-    } else if (this.advanceSearchFields.length === 3) {
-      this.advanceSearchObject = [
-        {
-          [this.advanceSearchFields[0].name]: this.advanceSearchFields[0]
-            .fieldValue,
-          [this.advanceSearchFields[1].name]: this.advanceSearchFields[1]
-            .fieldValue,
-          [this.advanceSearchFields[2].name]: this.advanceSearchFields[2]
-            .fieldValue
-        }
-      ];
-    }
-    console.log("testAdvanceSearchOnSubmit", this.advanceSearchObject[0]);
-    this.dataByAPI.filter = this.advanceSearchObject[0];
-    this.dataByAPI.filterPredicate = this._logDiscriptionDataOrderService.customFilterPredicate();
-  }
+  advanceSearchCollapseStatus: boolean = true;
 
   constructor(
     private _loglistingService: LoglistingService,
@@ -129,7 +73,8 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
     private _printDocumentService: PrintDocumentService,
     private _logModalDataService: LogModalDataService,
     private _logDiscriptionDataOrderService: LogDiscriptionDataOrderService,
-    private _uniqueStoreService: UniqueStoreService
+    private _uniqueStoreService: UniqueStoreService,
+    private renderer: Renderer2
   ) {}
 
   ngOnInit() {
@@ -265,6 +210,17 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
             this.initialPageSize = size;
           });
 
+        // this._navBarService
+        //   .setAdvanceSearchStatus()
+        //   .pipe(takeUntil(this._onDestroy))
+        //   .subscribe(advanceStatus => {
+        //     console.log(
+        //       "advanceSearchCollapseStatus in ng on init",
+        //       advanceStatus
+        //     );
+        //     this.advanceSearchCollapseStatus = !advanceStatus;
+        //   });
+
         this._loglistingService
           .getLogListForEntity(tableName)
           .pipe(takeUntil(this._onDestroy))
@@ -288,6 +244,21 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
             // console.log("datasource", this.dataByAPI);
             this.dataByAPI.sort = this.sort;
             this.dataByAPI.paginator = this.paginator;
+
+            const advanceSearchDiv = this.advanceSearchForm.nativeElement;
+            this._navBarService
+              .setAdvanceSearchStatus()
+              .subscribe(advanceStatus => {
+                console.log("Advance search status", advanceStatus);
+                // advanceStatus = !advanceStatus;
+                this.renderer.setAttribute(
+                  advanceSearchDiv,
+                  "class",
+                  advanceStatus === false
+                    ? "advance-search-collapse"
+                    : "col-md-12 advanced-search"
+                );
+              });
 
             if (
               this.tableName === "Item_Master" ||
@@ -429,17 +400,92 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
   }
 
   advanceSearch() {
-    console.log("tablename", this.tableName);
+    /* Code for Collapsing and Expanding */
+    // this._navBarService.setAdvanceSearchStatus().subscribe(status => {
+    //   console.log("advance status at advance button click", status);
+    //   debugger;
+    //   this.advanceSearchCollapseStatus = status;
+    // });
+
+    /* end Code for Collapsing and Expanding */
+
     this.advancedSearchStatus = !this.advancedSearchStatus;
     if (this.advancedSearchStatus) {
+      this._navBarService.getAdvanceSearchStatus(true);
       this.selectedOption = "Select a Store";
       this.dataByAPI.filter = null;
       this.dataByAPI.filterPredicate = this._logDiscriptionDataOrderService.customFilterPredicate();
     } else {
+      // this._navBarService.getAdvanceSearchStatus(false);
       this.dataByAPI.filter = null;
       this.dataByAPI.filterPredicate = this._logDiscriptionDataOrderService.filterRestrictionOnlyForDisplayedRows(
         "Item_Master"
       );
     }
+  }
+
+  addRow() {
+    // console.log("rowLength", this.rowLength);
+    if (this.rowLength < 2) {
+      this.rowLength = this.rowLength + 1;
+      this.advanceSearchFields.push({ name: "", fieldValue: "" });
+    }
+  }
+  deleteRows(i) {
+    console.log("index", i);
+    this.advanceSearchFields.splice(i, 1);
+    this.rowLength = this.rowLength - 1;
+  }
+
+  advanceSearchFieldOption(eValue) {
+    console.log("evalue", eValue);
+    if (eValue === "store") {
+      this.testEvalue = eValue;
+    } else if (eValue === "sku") {
+      this.testEvalue = eValue;
+    }
+  }
+
+  getArray(i): any[] {
+    if (i === "store") {
+      return ["8501", "8502"];
+    }
+    if (i === "sku") {
+      return ["1001731", "1001730"];
+    }
+  }
+
+  testAdvanceSearchOnSubmit() {
+    if (this.advanceSearchFields.length === 1) {
+      this.advanceSearchObject = [
+        {
+          [this.advanceSearchFields[0].name]: this.advanceSearchFields[0]
+            .fieldValue
+        }
+      ];
+    } else if (this.advanceSearchFields.length === 2) {
+      this.advanceSearchObject = [
+        {
+          [this.advanceSearchFields[0].name]: this.advanceSearchFields[0]
+            .fieldValue,
+          [this.advanceSearchFields[1].name]: this.advanceSearchFields[1]
+            .fieldValue
+        }
+      ];
+    } else if (this.advanceSearchFields.length === 3) {
+      this.advanceSearchObject = [
+        {
+          [this.advanceSearchFields[0].name]: this.advanceSearchFields[0]
+            .fieldValue,
+          [this.advanceSearchFields[1].name]: this.advanceSearchFields[1]
+            .fieldValue,
+          [this.advanceSearchFields[2].name]: this.advanceSearchFields[2]
+            .fieldValue
+        }
+      ];
+    }
+    // console.log("testAdvanceSearchOnSubmit", this.advanceSearchObject[0]);
+    this.dataByAPI.filter = this.advanceSearchObject[0];
+    this.dataByAPI.filterPredicate = this._logDiscriptionDataOrderService.customFilterPredicate();
   }
 }

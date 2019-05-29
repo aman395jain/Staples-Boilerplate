@@ -95,5 +95,6 @@ export class SideNavBarComponent implements OnInit, OnDestroy {
     this._navBarService.setElementNameFromSideBar(eleName);
     this.barHeight = 592;
     this._navBarService.setPageSize(5);
+    this._navBarService.getAdvanceSearchStatus(false);
   }
 }
