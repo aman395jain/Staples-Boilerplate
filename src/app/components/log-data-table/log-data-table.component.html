@@ -87,9 +87,6 @@
                         placeholder="select the field"
                         [name]="'f' + in"
                         [(ngModel)]="searchField.name"
-                        (selectionChange)="
-                          advanceSearchFieldOption($event.value)
-                        "
                       >
                         <mat-option
                           *ngFor="let field of advanceSearchOptions"
@@ -118,17 +115,6 @@
                         name="name{{ in }}"
                         #name="ngModel"
                       />
-                      <!-- <mat-select
-                        placeholder="select the value"
-                        name="name{{ in }}"
-                        [(ngModel)]="searchField.fieldValue"
-                      >
-                        <mat-option
-                          *ngFor="let fieldValue of getArray(testEvalue)"
-                          value="{{ fieldValue }}"
-                          >{{ fieldValue }}</mat-option
-                        >
-                      </mat-select> -->
                     </mat-form-field>
                   </div>
                   <div style="margin: auto 0px; width: 40px">
@@ -151,7 +137,7 @@
               <div class="col-md-12 align-items-center inner-rows ">
                 <button
                   class="btn btn-primary float-right advance-search-button"
-                  (click)="testAdvanceSearchOnSubmit()"
+                  (click)="advanceSearchOnSubmit()"
                 >
                   Apply
                 </button>

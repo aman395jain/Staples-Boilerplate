@@ -26,6 +26,7 @@ import { LogModalDataService } from "src/app/services/log-modal-data/log-modal-d
 import { LogDiscriptionDataOrderService } from "src/app/helper/logDiscription/log-discription-data-order.service";
 import { UniqueStoreService } from "src/app/helper/uniqueStore/unique-store.service";
 
+import LogDataTableHelper from "../../helper/logDataTable/log-data-table-advance-search.helper";
 import { logDataTableConst } from "./log-data-table.constant";
 
 @Component({
@@ -37,6 +38,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild("advanceSearchForm") advanceSearchForm: ElementRef;
+
   private _onDestroy = new Subject<void>();
 
   columns: any = [];
@@ -53,17 +55,16 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
 
   initialPageSize: number = 5;
   tableName: String = "";
-  advancedSearchStatus: boolean = true;
+  advancedSearchStatus: boolean = false;
 
   isLoading: boolean = true;
   searchValues: any = {};
 
   advanceSearchFields = [{ name: "", fieldValue: "" }];
-  rowLength = 0;
+  rowLength: number = 0;
   advanceSearchOptions: string[] = [];
-  advanceSearchObject = [];
-  advanceSearchData = {};
-  testEvalue = "";
+  advanceSearchObject: any[] = [];
+
   advanceSearchCollapseStatus: boolean = true;
 
   constructor(
@@ -92,23 +93,13 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
           this.printedData = data;
 
           this.isLoading = false;
-          let storeData = [],
-            skuData = [],
-            itemIdData = [];
+          let storeData = [];
           storeData.push("Select a Store");
           data.map((dataValue, i) => {
             dataValue["checked"] = false;
             dataValue["index"] = i;
             storeData.push(dataValue.store);
-            skuData.push(dataValue.sku);
-            itemIdData.push(dataValue.itemId);
           });
-          this.advanceSearchData = {
-            store: this.storeUniqueData,
-            sku: skuData,
-            ItemID: itemIdData
-          };
-
           this.storeUniqueData = this._uniqueStoreService.uniqueStore(
             storeData
           );
@@ -130,7 +121,6 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
       .subscribe(tableName => {
         this.isLoading = true;
         this.selectedDataForPrint = [];
-        console.log("table name", tableName);
         if (tableName === "Price_Prompt_SKUs") {
           console.log("in the price prompt");
           this.columns = logDataTableConst.price_Prompt_Sku;
@@ -224,7 +214,6 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
               storeData.push(dataValue.store);
             });
             this.selectedOption = "Select a Store";
-            // console.log("table name", this.tableName);
 
             this.storeUniqueData = this._uniqueStoreService.uniqueStore(
               storeData
@@ -233,7 +222,6 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
             // console.log("datasource", this.dataByAPI);
             this.dataByAPI.sort = this.sort;
             this.dataByAPI.paginator = this.paginator;
-
             const advanceSearchDiv = this.advanceSearchForm.nativeElement;
             this._navBarService
               .setAdvanceSearchStatus()
@@ -248,7 +236,6 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
                     : "col-md-12 advanced-search"
                 );
               });
-
             if (
               this.tableName === "Item_Master" ||
               this.tableName === "Price_Prompt_SKUs" ||
@@ -391,12 +378,11 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
   advanceSearch() {
     this.advancedSearchStatus = !this.advancedSearchStatus;
     if (this.advancedSearchStatus) {
-      this._navBarService.getAdvanceSearchStatus(true);
       this.selectedOption = "Select a Store";
       this.dataByAPI.filter = null;
-      this.dataByAPI.filterPredicate = this._logDiscriptionDataOrderService.customFilterPredicate();
+      this.dataByAPI.filterPredicate = LogDataTableHelper.customFilterPredicate();
     } else {
-      // this._navBarService.getAdvanceSearchStatus(false);
+      this._navBarService.getAdvanceSearchStatus(true);
       this.dataByAPI.filter = null;
       this.dataByAPI.filterPredicate = this._logDiscriptionDataOrderService.filterRestrictionOnlyForDisplayedRows(
         "Item_Master"
@@ -405,67 +391,22 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
   }
 
   addRow() {
-    // console.log("rowLength", this.rowLength);
     if (this.rowLength < 2) {
       this.rowLength = this.rowLength + 1;
       this.advanceSearchFields.push({ name: "", fieldValue: "" });
     }
   }
   deleteRows(i) {
-    console.log("index", i);
-    this.advanceSearchFields.splice(i, 1);
     this.rowLength = this.rowLength - 1;
+    this.advanceSearchFields.splice(i, 1);
   }
 
-  advanceSearchFieldOption(eValue) {
-    console.log("evalue", eValue);
-    if (eValue === "store") {
-      this.testEvalue = eValue;
-    } else if (eValue === "sku") {
-      this.testEvalue = eValue;
-    }
-  }
-
-  getArray(i): any[] {
-    if (i === "store") {
-      return ["8501", "8502"];
-    }
-    if (i === "sku") {
-      return ["1001731", "1001730"];
-    }
-  }
-
-  testAdvanceSearchOnSubmit() {
-    if (this.advanceSearchFields.length === 1) {
-      this.advanceSearchObject = [
-        {
-          [this.advanceSearchFields[0].name]: this.advanceSearchFields[0]
-            .fieldValue
-        }
-      ];
-    } else if (this.advanceSearchFields.length === 2) {
-      this.advanceSearchObject = [
-        {
-          [this.advanceSearchFields[0].name]: this.advanceSearchFields[0]
-            .fieldValue,
-          [this.advanceSearchFields[1].name]: this.advanceSearchFields[1]
-            .fieldValue
-        }
-      ];
-    } else if (this.advanceSearchFields.length === 3) {
-      this.advanceSearchObject = [
-        {
-          [this.advanceSearchFields[0].name]: this.advanceSearchFields[0]
-            .fieldValue,
-          [this.advanceSearchFields[1].name]: this.advanceSearchFields[1]
-            .fieldValue,
-          [this.advanceSearchFields[2].name]: this.advanceSearchFields[2]
-            .fieldValue
-        }
-      ];
-    }
-    // console.log("testAdvanceSearchOnSubmit", this.advanceSearchObject[0]);
-    this.dataByAPI.filter = this.advanceSearchObject[0];
-    this.dataByAPI.filterPredicate = this._logDiscriptionDataOrderService.customFilterPredicate();
+  advanceSearchOnSubmit() {
+    let advanceSearchObject = [];
+    advanceSearchObject = LogDataTableHelper.advanceSearchDataObject(
+      this.advanceSearchFields
+    );
+    this.dataByAPI.filter = advanceSearchObject[0];
+    this.dataByAPI.filterPredicate = LogDataTableHelper.customFilterPredicate();
   }
 }
