@@ -210,17 +210,6 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
             this.initialPageSize = size;
           });
 
-        // this._navBarService
-        //   .setAdvanceSearchStatus()
-        //   .pipe(takeUntil(this._onDestroy))
-        //   .subscribe(advanceStatus => {
-        //     console.log(
-        //       "advanceSearchCollapseStatus in ng on init",
-        //       advanceStatus
-        //     );
-        //     this.advanceSearchCollapseStatus = !advanceStatus;
-        //   });
-
         this._loglistingService
           .getLogListForEntity(tableName)
           .pipe(takeUntil(this._onDestroy))
@@ -400,15 +389,6 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
   }
 
   advanceSearch() {
-    /* Code for Collapsing and Expanding */
-    // this._navBarService.setAdvanceSearchStatus().subscribe(status => {
-    //   console.log("advance status at advance button click", status);
-    //   debugger;
-    //   this.advanceSearchCollapseStatus = status;
-    // });
-
-    /* end Code for Collapsing and Expanding */
-
     this.advancedSearchStatus = !this.advancedSearchStatus;
     if (this.advancedSearchStatus) {
       this._navBarService.getAdvanceSearchStatus(true);
