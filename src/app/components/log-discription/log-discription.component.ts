@@ -10,6 +10,10 @@ import { DashboardHeaderNameConverstionService } from "src/app/services/dashboar
 import { PrintDocumentService } from "src/app/services/print-document/print-document.service";
 import { LogDiscriptionDataOrderService } from "src/app/helper/logDiscription/log-discription-data-order.service";
 
+/**
+ * @Component LogDiscriptionComponent.
+ * Implementing the Log description modal for a single log.
+ */
 @Component({
   selector: "app-log-discription",
   templateUrl: "./log-discription.component.html",

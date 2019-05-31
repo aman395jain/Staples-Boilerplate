@@ -24,9 +24,9 @@ import { NavBarService } from "src/app/services/nav-bar/nav-bar.service";
 import { PrintDocumentService } from "src/app/services/print-document/print-document.service";
 import { LogModalDataService } from "src/app/services/log-modal-data/log-modal-data.service";
 import { LogDiscriptionDataOrderService } from "src/app/helper/logDiscription/log-discription-data-order.service";
-import { UniqueStoreService } from "src/app/helper/uniqueStore/unique-store.service";
 
 import LogDataTableHelper from "../../helper/logDataTable/log-data-table-advance-search.helper";
+import UniqueStoreHelper from "../../helper/uniqueStore/unique-store.helper";
 import { logDataTableConst } from "./log-data-table.constant";
 
 /**
@@ -77,7 +77,6 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
     private _printDocumentService: PrintDocumentService,
     private _logModalDataService: LogModalDataService,
     private _logDiscriptionDataOrderService: LogDiscriptionDataOrderService,
-    private _uniqueStoreService: UniqueStoreService,
     private renderer: Renderer2
   ) {}
 
@@ -103,9 +102,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
             dataValue["index"] = i;
             storeData.push(dataValue.store);
           });
-          this.storeUniqueData = this._uniqueStoreService.uniqueStore(
-            storeData
-          );
+          this.storeUniqueData = UniqueStoreHelper.uniqueStore(storeData);
 
           this.dataByAPI = new MatTableDataSource(data);
           this.dataByAPI.sort = this.sort;
@@ -218,9 +215,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
             });
             this.selectedOption = "Select a Store";
 
-            this.storeUniqueData = this._uniqueStoreService.uniqueStore(
-              storeData
-            );
+            this.storeUniqueData = UniqueStoreHelper.uniqueStore(storeData);
             this.dataByAPI = new MatTableDataSource(data);
             // console.log("datasource", this.dataByAPI);
             this.dataByAPI.sort = this.sort;
@@ -297,7 +292,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
     // event will give you full breif of action
     //console.log("store value", event.value);
     this.selectedStoreValue = event.value;
-    this._uniqueStoreService.applyFilterOnStore(
+    UniqueStoreHelper.applyFilterOnStore(
       event.value.toString(),
       this.dataByAPI
     );

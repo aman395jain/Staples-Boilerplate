@@ -4,12 +4,11 @@ import { Injectable } from "@angular/core";
   providedIn: "root"
 })
 export class LogDiscriptionDataOrderService {
-  private dataToBeDisplayedOnModal = [];
-  private mainDataToDisplay = {};
-  private rowDataWithRestData = {};
-  private rowDataWithLinkedSKUs = {};
-
-  private tableName = "";
+  private dataToBeDisplayedOnModal: any[] = [];
+  private mainDataToDisplay: object = {};
+  private rowDataWithRestData: object = {};
+  private rowDataWithLinkedSKUs: object = {};
+  private tableName: string = "";
 
   constructor() {}
 

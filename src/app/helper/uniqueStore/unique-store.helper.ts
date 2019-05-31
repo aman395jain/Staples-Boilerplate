@@ -1,12 +1,5 @@
-import { Injectable } from "@angular/core";
-
-@Injectable({
-  providedIn: "root"
-})
-export class UniqueStoreService {
-  constructor() {}
-
-  uniqueStore = storeData => {
+export default class UniqueStoreHelper {
+  static uniqueStore(storeData) {
     let aux = {};
     return storeData.reduce((tot, curr) => {
       if (!aux[curr]) {
@@ -15,9 +8,9 @@ export class UniqueStoreService {
       }
       return tot;
     }, []);
-  };
+  }
 
-  applyFilterOnStore(filterValue: string, dataByAPI) {
+  static applyFilterOnStore(filterValue: string, dataByAPI) {
     // console.log("in the search filter service", filterValue);
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
