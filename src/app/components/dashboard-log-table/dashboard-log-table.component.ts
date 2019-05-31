@@ -4,7 +4,7 @@ import { Subject } from "rxjs";
 import { takeUntil } from "rxjs/operators";
 
 @Component({
-  selector: "app-dashboard-log-table",
+  selector: "staples-dashboard-log-table",
   templateUrl: "./dashboard-log-table.component.html",
   styleUrls: ["./dashboard-log-table.component.scss"]
 })

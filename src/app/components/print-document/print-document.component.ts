@@ -7,7 +7,7 @@ import { LoglistingService } from "src/app/services/log-listing/loglisting.servi
 import { DashboardHeaderNameConverstionService } from "src/app/services/dashboard-header-name-conversion/dashboard-header-name-converstion.service";
 
 @Component({
-  selector: "app-print-document",
+  selector: "staples-print-document",
   templateUrl: "./print-document.component.html",
   styleUrls: ["./print-document.component.scss"]
 })

@@ -11,7 +11,7 @@ import { DashboardHeaderNameConverstionService } from "src/app/services/dashboar
  * Printing the data for a single entity from Log discription Modal.
  */
 @Component({
-  selector: "app-print-document-single-log-data",
+  selector: "staples-print-document-single-log-data",
   templateUrl: "./print-document-single-log-data.component.html",
   styleUrls: ["./print-document-single-log-data.component.scss"]
 })

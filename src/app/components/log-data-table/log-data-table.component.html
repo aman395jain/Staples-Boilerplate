@@ -150,7 +150,7 @@
     <div class="col-md-12 log-list-table">
       <mat-table #table [dataSource]="dataByAPI" matSort>
         <ng-container
-          *ngFor="let column of columns"
+          *ngFor="let column of logTableGridColumns"
           [cdkColumnDef]="column.columnDef"
         >
           <mat-header-cell

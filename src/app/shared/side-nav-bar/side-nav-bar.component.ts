@@ -10,7 +10,7 @@ import { takeUntil } from "rxjs/operators";
 import { NavBarService } from "src/app/services/nav-bar/nav-bar.service";
 
 @Component({
-  selector: "app-side-nav-bar",
+  selector: "staples-side-nav-bar",
   templateUrl: "./side-nav-bar.component.html",
   styleUrls: ["./side-nav-bar.component.scss"]
 })

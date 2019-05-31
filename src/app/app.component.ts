@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { PrintDocumentService } from "./services/print-document/print-document.service";
 
 @Component({
-  selector: "app-root",
+  selector: "staples-root",
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.scss"]
 })

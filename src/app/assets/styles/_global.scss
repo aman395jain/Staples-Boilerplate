@@ -28,7 +28,7 @@ body {
   .isPrinting > * {
     display: none;
   }
-  .isPrinting app-print-layout {
+  .isPrinting staples-print-layout {
     display: block;
   }
   .cdk-overlay-container {

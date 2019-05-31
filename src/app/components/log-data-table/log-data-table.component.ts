@@ -34,7 +34,7 @@ import { logDataTableConst } from "./log-data-table.constant";
  * Display the Log-Table according to the table name from Side nav bar.
  */
 @Component({
-  selector: "app-log-data-table",
+  selector: "staples-log-data-table",
   templateUrl: "./log-data-table.component.html",
   styleUrls: ["./log-data-table.component.scss"]
 })
@@ -45,7 +45,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
 
   private _onDestroy = new Subject<void>();
 
-  columns: any = [];
+  logTableGridColumns: any = [];
   printedData: any = [];
   checkBoxStatus: boolean = false;
   selectedDataForPrint: any = [];
@@ -81,10 +81,10 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.columns = logDataTableConst.item_Master;
+    this.logTableGridColumns = logDataTableConst.item_Master;
 
     this.tableName = "Item_Master";
-    this.displayedColumns = this.columns.map(c => c.columnDef);
+    this.displayedColumns = this.logTableGridColumns.map(c => c.columnDef);
     this.advanceSearchOptions = ["store", "sku", "Description"];
 
     try {
@@ -123,60 +123,83 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
         this.selectedDataForPrint = [];
         if (tableName === "Price_Prompt_SKUs") {
           //console.log("in the price prompt");
-          this.columns = logDataTableConst.price_Prompt_Sku;
+          this.logTableGridColumns = logDataTableConst.price_Prompt_Sku;
 
           this.tableName = "Price_Prompt_SKUs";
-          this.displayedColumns = this.columns.map(c => c.columnDef);
+          this.displayedColumns = this.logTableGridColumns.map(
+            c => c.columnDef
+          );
         } else if (tableName === "Item_Master") {
-          this.columns = logDataTableConst.item_Master_Main;
+          this.logTableGridColumns = logDataTableConst.item_Master_Main;
 
           this.tableName = "Item_Master";
-          this.displayedColumns = this.columns.map(c => c.columnDef);
+          this.displayedColumns = this.logTableGridColumns.map(
+            c => c.columnDef
+          );
         } else if (tableName === "Employee") {
-          this.columns = logDataTableConst.employee;
+          this.logTableGridColumns = logDataTableConst.employee;
 
           this.tableName = "Employee";
-          this.displayedColumns = this.columns.map(c => c.columnDef);
+          this.displayedColumns = this.logTableGridColumns.map(
+            c => c.columnDef
+          );
         } else if (tableName === "Linked_SKUs") {
-          this.columns = logDataTableConst.linked_SKUs;
+          this.logTableGridColumns = logDataTableConst.linked_SKUs;
 
           this.tableName = "Linked_SKUs";
-          this.displayedColumns = this.columns.map(c => c.columnDef);
+          this.displayedColumns = this.logTableGridColumns.map(
+            c => c.columnDef
+          );
         } else if (tableName === "Tax_Rates") {
-          this.columns = logDataTableConst.tax_Rate;
+          this.logTableGridColumns = logDataTableConst.tax_Rate;
 
           this.tableName = "Tax_Rates";
-          this.displayedColumns = this.columns.map(c => c.columnDef);
+          this.displayedColumns = this.logTableGridColumns.map(
+            c => c.columnDef
+          );
         } else if (tableName === "Hardware_SKUs") {
-          this.columns = logDataTableConst.hardware_SKUs;
+          this.logTableGridColumns = logDataTableConst.hardware_SKUs;
 
           this.tableName = "Hardware_SKUs";
-          this.displayedColumns = this.columns.map(c => c.columnDef);
+          this.displayedColumns = this.logTableGridColumns.map(
+            c => c.columnDef
+          );
         } else if (tableName === "Free_SKUs") {
-          this.columns = logDataTableConst.free_SKUs;
+          this.logTableGridColumns = logDataTableConst.free_SKUs;
 
           this.tableName = "Free_SKUs";
-          this.displayedColumns = this.columns.map(c => c.columnDef);
+          this.displayedColumns = this.logTableGridColumns.map(
+            c => c.columnDef
+          );
         } else if (tableName === "Age_Restricted_Special_rest") {
-          this.columns = logDataTableConst.age_Restricted_Special_rest;
+          this.logTableGridColumns =
+            logDataTableConst.age_Restricted_Special_rest;
 
           this.tableName = "Age_Restricted_Special_rest";
-          this.displayedColumns = this.columns.map(c => c.columnDef);
+          this.displayedColumns = this.logTableGridColumns.map(
+            c => c.columnDef
+          );
         } else if (tableName === "Return_Driver_License") {
-          this.columns = logDataTableConst.return_Driver_License;
+          this.logTableGridColumns = logDataTableConst.return_Driver_License;
 
           this.tableName = "Return_Driver_License";
-          this.displayedColumns = this.columns.map(c => c.columnDef);
+          this.displayedColumns = this.logTableGridColumns.map(
+            c => c.columnDef
+          );
         } else if (tableName === "Lowest_Price") {
-          this.columns = logDataTableConst.lowest_Price;
+          this.logTableGridColumns = logDataTableConst.lowest_Price;
 
           this.tableName = "Lowest_Price";
-          this.displayedColumns = this.columns.map(c => c.columnDef);
+          this.displayedColumns = this.logTableGridColumns.map(
+            c => c.columnDef
+          );
         } else if (tableName === "Promos") {
-          this.columns = logDataTableConst.Promos;
+          this.logTableGridColumns = logDataTableConst.Promos;
 
           this.tableName = "Promos";
-          this.displayedColumns = this.columns.map(c => c.columnDef);
+          this.displayedColumns = this.logTableGridColumns.map(
+            c => c.columnDef
+          );
         } else if (tableName === "POSA") {
           this.tableName = "POSA";
         } else if (tableName === "Order") {

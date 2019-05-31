@@ -15,7 +15,7 @@ import { LogDiscriptionDataOrderService } from "src/app/helper/logDiscription/lo
  * Implementing the Log description modal for a single log.
  */
 @Component({
-  selector: "app-log-discription",
+  selector: "staples-log-discription",
   templateUrl: "./log-discription.component.html",
   styleUrls: ["./log-discription.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush
