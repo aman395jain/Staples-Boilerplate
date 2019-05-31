@@ -6,6 +6,10 @@ import { PrintDocumentService } from "src/app/services/print-document/print-docu
 import { LogModalDataService } from "src/app/services/log-modal-data/log-modal-data.service";
 import { DashboardHeaderNameConverstionService } from "src/app/services/dashboard-header-name-conversion/dashboard-header-name-converstion.service";
 
+/**
+ * @class PrintDocumentSingleLogDataComponent
+ * Printing the data for a single entity from Log discription Modal.
+ */
 @Component({
   selector: "app-print-document-single-log-data",
   templateUrl: "./print-document-single-log-data.component.html",
@@ -29,14 +33,14 @@ export class PrintDocumentSingleLogDataComponent implements OnInit, OnDestroy {
       .setLogModalData()
       .pipe(takeUntil(this._onDestroy))
       .subscribe(printData => {
-        let testData = [];
-        testData.push(printData);
+        let printedDataForSingleEntity = [];
+        printedDataForSingleEntity.push(printData);
         this.dataDisplay = this._dashboardHeaderNameConverstionService.headerNameConvert(
-          testData
+          printedDataForSingleEntity
         );
         this.dataPrintedDataForModal = this.dataDisplay[0];
-        this.dataBarCode = testData[0].upcList;
-        console.log("in the print log data", testData[0].upcList);
+        this.dataBarCode = printedDataForSingleEntity[0].upcList;
+        // console.log("in the print log data", printedDataForSingleEntity[0].upcList);
       });
   }
   ngOnDestroy(): void {

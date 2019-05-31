@@ -121,7 +121,7 @@
                     <i
                       class="fa fa-plus-circle advance-search-addition"
                       aria-hidden="true"
-                      (click)="addRow()"
+                      (click)="addRowInAdvanceSearch()"
                     ></i>
                   </div>
                   <div style="margin: auto 0px">
@@ -129,7 +129,7 @@
                       class="fa fa-minus-circle advance-search-minus"
                       aria-hidden="true"
                       *ngIf="[in] > 0 || rowLength > 0"
-                      (click)="deleteRows(in)"
+                      (click)="deleteRowsInAdvanceSearch(in)"
                     ></i>
                   </div>
                 </div>
@@ -229,7 +229,7 @@
         [hidden]="isLoading"
         [pageSize]="initialPageSize"
         [pageSizeOptions]="[5, 10, 25, 50]"
-        (page)="getUpdate($event)"
+        (page)="updatePageSize($event)"
       >
       </mat-paginator>
     </div>

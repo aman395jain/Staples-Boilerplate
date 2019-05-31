@@ -1,4 +1,12 @@
+/**
+ * @class LogDataTableHelper
+ * Helper class for Advance search in log data table.
+ */
 export default class LogDataTableHelper {
+  /**
+   * creating the object for search.
+   * @param advanceSearchField
+   */
   static advanceSearchDataObject(advanceSearchField) {
     let advanceSearchObject: any[] = [];
     if (advanceSearchField.length === 1) {
@@ -28,6 +36,9 @@ export default class LogDataTableHelper {
     }
   }
 
+  /**
+   * Predict the columns for filtering.
+   */
   static customFilterPredicate() {
     return function(data, filter) {
       if (

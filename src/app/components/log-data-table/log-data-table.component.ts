@@ -29,6 +29,10 @@ import { UniqueStoreService } from "src/app/helper/uniqueStore/unique-store.serv
 import LogDataTableHelper from "../../helper/logDataTable/log-data-table-advance-search.helper";
 import { logDataTableConst } from "./log-data-table.constant";
 
+/**
+ * @class LogDataTableComponent
+ * Display the Log-Table according to the table name from Side nav bar.
+ */
 @Component({
   selector: "app-log-data-table",
   templateUrl: "./log-data-table.component.html",
@@ -63,7 +67,6 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
   advanceSearchFields = [{ name: "", fieldValue: "" }];
   rowLength: number = 0;
   advanceSearchOptions: string[] = [];
-  advanceSearchObject: any[] = [];
 
   advanceSearchCollapseStatus: boolean = true;
 
@@ -122,7 +125,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
         this.isLoading = true;
         this.selectedDataForPrint = [];
         if (tableName === "Price_Prompt_SKUs") {
-          console.log("in the price prompt");
+          //console.log("in the price prompt");
           this.columns = logDataTableConst.price_Prompt_Sku;
 
           this.tableName = "Price_Prompt_SKUs";
@@ -286,9 +289,13 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
     this._dialog.open(LogDiscriptionComponent, _dialogConfig);
   }
 
+  /**
+   * Filter the data on Store.
+   * @param event
+   */
   onSelectStore(event): void {
     // event will give you full breif of action
-    console.log("store value", event.value);
+    //console.log("store value", event.value);
     this.selectedStoreValue = event.value;
     this._uniqueStoreService.applyFilterOnStore(
       event.value.toString(),
@@ -296,6 +303,10 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
     );
   }
 
+  /**
+   * Disable the sorting on table.
+   * @param columnDef
+   */
   isSortingDisabled(columnDef) {
     if (columnDef === "barCode" || columnDef === "select") {
       return true;
@@ -307,7 +318,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
    * print the documents
    */
   onPrintInvoice() {
-    console.log("selectedDataForPrint data", this.selectedDataForPrint);
+    //console.log("selectedDataForPrint data", this.selectedDataForPrint);
     this._loglistingService.getTestDataToPrint(this.selectedDataForPrint);
     this._printDocumentService.printDocument("invoice");
   }
@@ -369,12 +380,19 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
     }
   }
 
-  getUpdate(event) {
-    console.log("in the page event", event);
+  /**
+   * Update the page size for pagination on switch of page.
+   * @param event
+   */
+  updatePageSize(event) {
+    // console.log("in the page event", event);
     this._navBarService.setPageSize(event.pageSize);
     this._navBarService.setPageLength(event.length);
   }
 
+  /**
+   * Events on Advance search link.
+   */
   advanceSearch() {
     this.advancedSearchStatus = !this.advancedSearchStatus;
     if (this.advancedSearchStatus) {
@@ -390,17 +408,28 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
     }
   }
 
-  addRow() {
+  /**
+   * Adding the dynamic rows in Advance Search Form Upto 3 rows.
+   */
+  addRowInAdvanceSearch() {
     if (this.rowLength < 2) {
       this.rowLength = this.rowLength + 1;
       this.advanceSearchFields.push({ name: "", fieldValue: "" });
     }
   }
-  deleteRows(i) {
+
+  /**
+   * Delete the row from Advance search from on basis of index.
+   * @param i Index.
+   */
+  deleteRowsInAdvanceSearch(i) {
     this.rowLength = this.rowLength - 1;
     this.advanceSearchFields.splice(i, 1);
   }
 
+  /**
+   * Advance search form Submittion.
+   */
   advanceSearchOnSubmit() {
     let advanceSearchObject = [];
     advanceSearchObject = LogDataTableHelper.advanceSearchDataObject(

@@ -54,7 +54,7 @@ export class NavBarService {
   }
 
   setPageLength(pLength) {
-    console.log(pLength);
+    // console.log(pLength);
     this._pageLengthSubject.next(pLength);
   }
 
@@ -67,7 +67,7 @@ export class NavBarService {
   }
 
   getAdvanceSearchStatus(status) {
-    console.log("in the service advance search status", status);
+    // console.log("in the service advance search status", status);
     this.advanceSearchStatus.next(status);
   }
 
