@@ -34,6 +34,7 @@ import { TableForStorePipe } from "./pipes/tableForStoreNumber/table-for-store.p
 import { LogModalDataService } from "./services/log-modal-data/log-modal-data.service";
 import { PrintDocumentComponent } from "./components/print-document/print-document.component";
 import { LogDiscriptionDataOrderService } from "./helper/logDiscription/log-discription-data-order.service";
+import { PromoDetailComponent } from "./components/promo-detail/promo-detail.component";
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -52,7 +53,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     PrintDocumentLayoutComponent,
     PrintDocumentComponent,
     TableForStorePipe,
-    PrintDocumentSingleLogDataComponent
+    PrintDocumentSingleLogDataComponent,
+    PromoDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -69,7 +71,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     PerfectScrollbarModule,
     AngularSplitModule.forRoot()
   ],
-  entryComponents: [LogDiscriptionComponent],
+  entryComponents: [LogDiscriptionComponent, PromoDetailComponent],
   providers: [
     LoglistingService,
     CdkColumnDef,

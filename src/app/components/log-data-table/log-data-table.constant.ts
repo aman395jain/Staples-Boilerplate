@@ -15,9 +15,9 @@ export const logDataTableConst = {
       cell: (element: any) => `${element.sku}`
     },
     {
-      columnDef: "posItemDesc",
+      columnDef: "itemDesc",
       header: "Description",
-      cell: (element: any) => `${element.posItemDesc}`
+      cell: (element: any) => `${element.itemDesc}`
     },
     {
       columnDef: "permPrice",

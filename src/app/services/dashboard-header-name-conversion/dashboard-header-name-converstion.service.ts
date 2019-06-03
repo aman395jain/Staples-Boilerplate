@@ -101,7 +101,8 @@ export class DashboardHeaderNameConverstionService {
     quantityLimit: "Quantity Limit",
     softHardLimit: "Soft Hard Limit",
     discountDesc: "Discount Discription",
-    linkedList: "Linked SKUs"
+    linkedList: "Linked SKUs",
+    posaSku: "POSA SKU"
   };
   printedDataNewHeader = {};
 

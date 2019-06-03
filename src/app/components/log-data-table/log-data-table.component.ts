@@ -18,6 +18,7 @@ import { Subject } from "rxjs";
 import { takeUntil } from "rxjs/operators";
 
 import { LogDiscriptionComponent } from "../log-discription/log-discription.component";
+import { PromoDetailComponent } from "../promo-detail/promo-detail.component";
 
 import { LoglistingService } from "src/app/services/log-listing/loglisting.service";
 import { NavBarService } from "src/app/services/nav-bar/nav-bar.service";
@@ -304,15 +305,13 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
   }
 
   discriptionPromos(row) {
-    this._logDiscriptionDataOrderService.tableNameByComponent(this.tableName);
-    this._logModalDataService.getLogModalData(row); //data for print
     const _dialogConfig = new MatDialogConfig();
     _dialogConfig.data = row;
     _dialogConfig.disableClose = false;
     _dialogConfig.autoFocus = true;
     _dialogConfig.width = "50%";
-    _dialogConfig.height = "65%";
-    this._dialog.open(LogDiscriptionComponent, _dialogConfig);
+    _dialogConfig.height = "50%";
+    this._dialog.open(PromoDetailComponent, _dialogConfig);
   }
 
   /**

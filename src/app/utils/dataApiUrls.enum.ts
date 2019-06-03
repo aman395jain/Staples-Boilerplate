@@ -4,7 +4,7 @@
 export enum dataUrls {
   getItemMaster = "http://www.mocky.io/v2/5ccff0b9320000b52100f912",
   getPricePromptSKUs = "http://www.mocky.io/v2/5ccff0b9320000b52100f912",
-  getItemMasterMain = "http://www.mocky.io/v2/5cd912853000008320c01387",
+  getItemMasterMain = "http://www.mocky.io/v2/5cf4ddba2f000015354f04f8",
   getEmployee = "http://www.mocky.io/v2/5cf4c7832f000070224f0459",
   getTaxRate = "http://www.mocky.io/v2/5cf4c9db2f000099264f0469",
   getHardwareSKUs = "http://www.mocky.io/v2/5cd91e433000008320c013e4",
