@@ -15,9 +15,9 @@ export const logDataTableConst = {
       cell: (element: any) => `${element.sku}`
     },
     {
-      columnDef: "itemDesc",
+      columnDef: "posItemDesc",
       header: "Description",
-      cell: (element: any) => `${element.itemDesc}`
+      cell: (element: any) => `${element.posItemDesc}`
     },
     {
       columnDef: "permPrice",
@@ -47,9 +47,9 @@ export const logDataTableConst = {
       cell: (element: any) => `${element.sku}`
     },
     {
-      columnDef: "itemDesc",
+      columnDef: "posItemDesc",
       header: "Description",
-      cell: (element: any) => `${element.itemDesc}`
+      cell: (element: any) => `${element.posItemDesc}`
     },
     {
       columnDef: "permPrice",
@@ -79,9 +79,9 @@ export const logDataTableConst = {
       cell: (element: any) => `${element.sku}`
     },
     {
-      columnDef: "itemDesc",
+      columnDef: "posItemDesc",
       header: "Description",
-      cell: (element: any) => `${element.itemDesc}`
+      cell: (element: any) => `${element.posItemDesc}`
     },
     {
       columnDef: "permPrice",
@@ -106,24 +106,24 @@ export const logDataTableConst = {
       cell: null
     },
     {
-      columnDef: "emplName ",
-      header: "Employee Name",
-      cell: (element: any) => `${element.emplName}`
+      columnDef: "store",
+      header: "Store",
+      cell: (element: any) => `${element.store}`
     },
     {
-      columnDef: "password",
-      header: "Emp Password",
-      cell: (element: any) => `${element.password}`
+      columnDef: "emplId",
+      header: "Empl ID",
+      cell: (element: any) => `${element.emplId}`
+    },
+    {
+      columnDef: "emplName ",
+      header: "Empl Name",
+      cell: (element: any) => `${element.emplName}`
     },
     {
       columnDef: "emplRole",
       header: "Role",
       cell: (element: any) => `${element.emplRole}`
-    },
-    {
-      columnDef: "store",
-      header: "Store",
-      cell: (element: any) => `${element.store}`
     },
     {
       columnDef: "action",
@@ -207,9 +207,9 @@ export const logDataTableConst = {
       cell: (element: any) => `${element.sku}`
     },
     {
-      columnDef: "itemDesc",
+      columnDef: "posItemDesc",
       header: "Description",
-      cell: (element: any) => `${element.itemDesc}`
+      cell: (element: any) => `${element.posItemDesc}`
     },
     {
       columnDef: "retailPrice",
@@ -244,9 +244,9 @@ export const logDataTableConst = {
       cell: (element: any) => `${element.sku}`
     },
     {
-      columnDef: "itemDesc",
+      columnDef: "posItemDesc",
       header: "Description",
-      cell: (element: any) => `${element.itemDesc}`
+      cell: (element: any) => `${element.posItemDesc}`
     },
     {
       columnDef: "permPrice",
@@ -286,9 +286,9 @@ export const logDataTableConst = {
       cell: (element: any) => `${element.sku}`
     },
     {
-      columnDef: "itemDesc",
+      columnDef: "posItemDesc",
       header: "Description",
-      cell: (element: any) => `${element.itemDesc}`
+      cell: (element: any) => `${element.posItemDesc}`
     },
     {
       columnDef: "retailPrice",
@@ -304,6 +304,11 @@ export const logDataTableConst = {
       columnDef: "alertCode",
       header: "Alert Code",
       cell: (element: any) => `${element.alertCode}`
+    },
+    {
+      columnDef: "associateGrpId",
+      header: "Item Group ID",
+      cell: (element: any) => `${element.associateGrpId}`
     },
     {
       columnDef: "action",

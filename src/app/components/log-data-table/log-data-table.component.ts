@@ -122,7 +122,6 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
         this.isLoading = true;
         this.selectedDataForPrint = [];
         if (tableName === "Price_Prompt_SKUs") {
-          //console.log("in the price prompt");
           this.logTableGridColumns = logDataTableConst.price_Prompt_Sku;
 
           this.tableName = "Price_Prompt_SKUs";
@@ -240,23 +239,21 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
 
             this.storeUniqueData = UniqueStoreHelper.uniqueStore(storeData);
             this.dataByAPI = new MatTableDataSource(data);
-            // console.log("datasource", this.dataByAPI);
             this.dataByAPI.sort = this.sort;
             this.dataByAPI.paginator = this.paginator;
             const advanceSearchDiv = this.advanceSearchForm.nativeElement;
             this._navBarService
               .setAdvanceSearchStatus()
               .subscribe(advanceStatus => {
-                console.log("Advance search status", advanceStatus);
-                // advanceStatus = !advanceStatus;
                 this.renderer.setAttribute(
                   advanceSearchDiv,
                   "class",
                   advanceStatus === false
-                    ? "advance-search-collapse"
-                    : "col-md-12 advanced-search"
+                    ? "col-md-12 advanced-search collapse"
+                    : "col-md-12 advanced-search collapse show"
                 );
               });
+
             if (
               this.tableName === "Item_Master" ||
               this.tableName === "Price_Prompt_SKUs" ||
@@ -288,7 +285,6 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
-    // console.log("in the search filter", this.dataByAPI);
     this.dataByAPI.filter = filterValue;
   }
 
@@ -307,13 +303,24 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
     this._dialog.open(LogDiscriptionComponent, _dialogConfig);
   }
 
+  discriptionPromos(row) {
+    this._logDiscriptionDataOrderService.tableNameByComponent(this.tableName);
+    this._logModalDataService.getLogModalData(row); //data for print
+    const _dialogConfig = new MatDialogConfig();
+    _dialogConfig.data = row;
+    _dialogConfig.disableClose = false;
+    _dialogConfig.autoFocus = true;
+    _dialogConfig.width = "50%";
+    _dialogConfig.height = "65%";
+    this._dialog.open(LogDiscriptionComponent, _dialogConfig);
+  }
+
   /**
    * Filter the data on Store.
    * @param event
    */
   onSelectStore(event): void {
     // event will give you full breif of action
-    //console.log("store value", event.value);
     this.selectedStoreValue = event.value;
     UniqueStoreHelper.applyFilterOnStore(
       event.value.toString(),
@@ -418,7 +425,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
       this.dataByAPI.filter = null;
       this.dataByAPI.filterPredicate = LogDataTableHelper.customFilterPredicate();
     } else {
-      this._navBarService.getAdvanceSearchStatus(true);
+      // this._navBarService.getAdvanceSearchStatus(true);
       this.dataByAPI.filter = null;
       this.dataByAPI.filterPredicate = this._logDiscriptionDataOrderService.filterRestrictionOnlyForDisplayedRows(
         "Item_Master"

@@ -176,11 +176,18 @@
                   column.header === 'Bar Code' ||
                   column.header === 'UPC' ||
                   column.columnDef === 'action' ||
-                  column.columnDef === 'select'
+                  column.columnDef === 'select' ||
+                  column.columnDef === 'promoNum'
                 )
               "
               >{{ column.cell(row) }}</span
-            ><span *ngIf="column.columnDef === 'select'"
+            >
+            <span *ngIf="column.columnDef === 'promoNum'"
+              ><a class="promo-number-column" (click)="discriptionPromos(row)">{{
+                column.cell(row)
+              }}</a></span
+            >
+            <span *ngIf="column.columnDef === 'select'"
               ><mat-checkbox
                 (click)="$event.stopPropagation()"
                 (change)="checkedRowForPrint(row, $event)"
