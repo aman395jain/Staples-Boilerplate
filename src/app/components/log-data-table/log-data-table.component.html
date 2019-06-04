@@ -185,7 +185,7 @@
             <span *ngIf="column.columnDef === 'promoNum'"
               ><a
                 class="promo-number-column"
-                (click)="discriptionPromos(row)"
+                (click)="descriptionPromos(row)"
                 data-toggle="tooltip"
                 title="view details for {{ column.cell(row) }}"
                 >{{ column.cell(row) }}</a
@@ -214,7 +214,7 @@
             <span *ngIf="column.columnDef === 'action'"
               ><a
                 class="launch-icon"
-                (click)="discriptionLog(row)"
+                (click)="descriptionLogsForModal(row)"
                 mat-icon-button
                 ><mat-icon data-toggle="tooltip" title="view"
                   >launch</mat-icon

@@ -316,6 +316,38 @@ export const logDataTableConst = {
       cell: null
     }
   ],
+  Item_Group: [
+    {
+      columnDef: "select",
+      header: null,
+      cell: null
+    },
+    {
+      columnDef: "itemGroupId",
+      header: "Item Group ID",
+      cell: (element: any) => `${element.itemGroupId}`
+    },
+    {
+      columnDef: "itemGroupDescription",
+      header: "Item Group Description",
+      cell: (element: any) => `${element.itemGroupDescription}`
+    },
+    {
+      columnDef: "addOrAutoadd",
+      header: "Auto-Add/Add",
+      cell: (element: any) => `${element.addOrAutoadd}`
+    },
+    {
+      columnDef: "promoId",
+      header: "Promo ID",
+      cell: (element: any) => `${element.promoId}`
+    },
+    {
+      columnDef: "action",
+      header: null,
+      cell: null
+    }
+  ],
   return_Driver_License: [
     {
       columnDef: "select",

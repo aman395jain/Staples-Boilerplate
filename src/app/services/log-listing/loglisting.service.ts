@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { Response } from "@angular/http";
 import { map, catchError } from "rxjs/operators";
 import { Observable, BehaviorSubject } from "rxjs";
+// import { LoggerModule, NgxLoggerLevel, NGXLogger } from "ngx-logger";
 
 import { Loglist } from "../../models/loglist.model";
 import { dataUrls } from "../../utils/dataApiUrls.enum";
@@ -30,7 +31,7 @@ export class LoglistingService {
         return response;
       }),
       catchError((err: Response) => {
-        //console.log("in the error", err.status);
+        console.log("in the error", err.status);
         return null;
       })
     );
@@ -53,6 +54,8 @@ export class LoglistingService {
       this._serviceUrl = dataUrls.getFreeSKUs;
     } else if (entity === "Age_Restricted_Special_rest") {
       this._serviceUrl = dataUrls.getAgeRestrictiedSpecialRest;
+    } else if (entity === "Item_Group") {
+      this._serviceUrl = dataUrls.getItemGroup;
     } else if (entity === "Return_Driver_License") {
       this._serviceUrl = dataUrls.getReturnDrivingLicence;
     } else if (entity === "Lowest_Price") {

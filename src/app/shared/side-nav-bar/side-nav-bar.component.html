@@ -136,6 +136,7 @@
               data-toggle="tooltip"
               title="Item - Item Groups"
               mat-list-icon
+              (click)="getElementNameTest('Item_Group')"
               >device_hub</mat-icon
             >
             <h4 mat-line *ngIf="_toggleIsExpend">
@@ -147,7 +148,11 @@
                     [expandedHeight]="'36px'"
                     [collapsedHeight]="'32px'"
                   >
-                    <mat-panel-title data-toggle="tooltip" title="Item Groups">
+                    <mat-panel-title
+                      data-toggle="tooltip"
+                      title="Item Groups"
+                      (click)="getElementNameTest('Item_Group')"
+                    >
                       Item - Item Groups
                     </mat-panel-title>
                   </mat-expansion-panel-header>

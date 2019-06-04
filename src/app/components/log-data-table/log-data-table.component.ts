@@ -179,6 +179,13 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
           this.displayedColumns = this.logTableGridColumns.map(
             c => c.columnDef
           );
+        } else if (tableName === "Item_Group") {
+          this.logTableGridColumns = logDataTableConst.Item_Group;
+
+          this.tableName = "Item_Group";
+          this.displayedColumns = this.logTableGridColumns.map(
+            c => c.columnDef
+          );
         } else if (tableName === "Return_Driver_License") {
           this.logTableGridColumns = logDataTableConst.return_Driver_License;
 
@@ -290,9 +297,9 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
   }
 
   /*
-  * discriptionLog to populate the data in a Modal
+  * descriptionLogsForModal to populate the data in a Modal
   */
-  discriptionLog(row) {
+  descriptionLogsForModal(row) {
     this._logDiscriptionDataOrderService.tableNameByComponent(this.tableName);
     this._logModalDataService.getLogModalData(row); //data for print
     const _dialogConfig = new MatDialogConfig();
@@ -304,7 +311,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
     this._dialog.open(LogDiscriptionComponent, _dialogConfig);
   }
 
-  discriptionPromos(row) {
+  descriptionPromos(row) {
     const _dialogConfig = new MatDialogConfig();
     _dialogConfig.data = row;
     _dialogConfig.disableClose = false;
