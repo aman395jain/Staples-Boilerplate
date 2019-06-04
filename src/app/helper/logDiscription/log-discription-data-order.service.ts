@@ -142,12 +142,12 @@ export class LogDiscriptionDataOrderService {
     } else if (this.tableName === "Employee") {
       this.mainDataToDisplay = {
         emplName: row.emplName,
-        password: row.password,
+        emplId: row.emplId,
         emplRole: row.emplRole,
         store: row.store
       };
       delete this.rowDataWithRestData["emplName"];
-      delete this.rowDataWithRestData["password"];
+      delete this.rowDataWithRestData["emplId"];
       delete this.rowDataWithRestData["emplRole"];
       delete this.rowDataWithRestData["store"];
 
