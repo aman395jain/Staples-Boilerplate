@@ -2,6 +2,7 @@
  * @class LogDataTableHelper
  * Helper class for Advance search in log data table.
  */
+// @dynamic
 export default class LogDataTableHelper {
   /**
    * creating the object for search.
