@@ -339,7 +339,6 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
    * print the documents
    */
   onPrintInvoice() {
-    //console.log("selectedDataForPrint data", this.selectedDataForPrint);
     this._loglistingService.getTestDataToPrint(this.selectedDataForPrint);
     this._printDocumentService.printDocument("invoice");
   }
@@ -373,7 +372,6 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
   /**
    * Maintain the status of checkbox in data table.
    * @param row: get the row and check it's checked status.
-   * return boolean
    */
   isSelected(row) {
     if (row.checked) {
@@ -421,7 +419,6 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
       this.dataByAPI.filter = null;
       this.dataByAPI.filterPredicate = LogDataTableHelper.customFilterPredicate();
     } else {
-      // this._navBarService.getAdvanceSearchStatus(true);
       //collapse of accordian.
       this.advanceSearchFields = [{ name: "", fieldValue: "" }];
       this.dataByAPI.filter = null;
