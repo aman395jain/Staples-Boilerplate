@@ -139,6 +139,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
             columnName => columnName.columnDef
           );
         } else if (tableName === "Employee") {
+          this.advanceSearchOptions = ["Location", "Employee ID", "Role"];
           this.logTableGridColumns = logDataTableConst.employee;
 
           this.tableName = "Employee";
@@ -413,11 +414,14 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
    * Events on Advance search link.
    */
   advanceSearch() {
+    // console.log("table name", this.tableName)
     this.advancedSearchStatus = !this.advancedSearchStatus;
     if (this.advancedSearchStatus) {
       this.selectedOption = "Select a Store";
       this.dataByAPI.filter = null;
-      this.dataByAPI.filterPredicate = LogDataTableHelper.customFilterPredicate();
+      this.dataByAPI.filterPredicate = LogDataTableHelper.customFilterPredicate(
+        this.tableName
+      );
     } else {
       //collapse of accordian.
       this.advanceSearchFields = [{ name: "", fieldValue: "" }];
@@ -451,12 +455,15 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
    * Advance search form Submittion.
    */
   advanceSearchOnSubmit() {
+    // console.log("the table name on submission of advance seach", this.tableName)
     let advanceSearchObject = [];
     advanceSearchObject = LogDataTableHelper.advanceSearchDataObject(
       this.advanceSearchFields
     );
     this.dataByAPI.filter = advanceSearchObject[0];
-    this.dataByAPI.filterPredicate = LogDataTableHelper.customFilterPredicate();
+    this.dataByAPI.filterPredicate = LogDataTableHelper.customFilterPredicate(
+      this.tableName
+    );
   }
 
   /**

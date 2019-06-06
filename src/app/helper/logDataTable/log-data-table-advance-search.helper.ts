@@ -40,57 +40,115 @@ export default class LogDataTableHelper {
   /**
    * Predict the columns for filtering.
    */
-  static customFilterPredicate() {
-    return function(data, filter) {
-      if (
-        filter.hasOwnProperty("store") &&
-        !filter.hasOwnProperty("sku") &&
-        !filter.hasOwnProperty("Description")
-      ) {
-        return data.store.includes(filter.store);
-      } else if (
-        filter.hasOwnProperty("sku") &&
-        !filter.hasOwnProperty("store") &&
-        !filter.hasOwnProperty("Description")
-      ) {
-        return data.sku.includes(filter.sku);
-      } else if (
-        !filter.hasOwnProperty("sku") &&
-        !filter.hasOwnProperty("store") &&
-        filter.hasOwnProperty("Description")
-      ) {
-        return data.itemDesc.toLowerCase().includes(filter.Description);
-      } else if (
-        filter.hasOwnProperty("sku") &&
-        filter.hasOwnProperty("store") &&
-        !filter.hasOwnProperty("Description")
-      ) {
-        return (
-          data.store.includes(filter.store) && data.sku.includes(filter.sku)
-        );
-      } else if (
-        !filter.hasOwnProperty("sku") &&
-        filter.hasOwnProperty("store") &&
-        filter.hasOwnProperty("Description")
-      ) {
-        return (
+  static customFilterPredicate(table_name) {
+    if (table_name === "Item_Master") {
+      return function(data, filter) {
+        if (
+          filter.hasOwnProperty("store") &&
+          !filter.hasOwnProperty("sku") &&
+          !filter.hasOwnProperty("Description")
+        ) {
+          return data.store.includes(filter.store);
+        } else if (
+          filter.hasOwnProperty("sku") &&
+          !filter.hasOwnProperty("store") &&
+          !filter.hasOwnProperty("Description")
+        ) {
+          return data.sku.includes(filter.sku);
+        } else if (
+          !filter.hasOwnProperty("sku") &&
+          !filter.hasOwnProperty("store") &&
+          filter.hasOwnProperty("Description")
+        ) {
+          return data.itemDesc.toLowerCase().includes(filter.Description);
+        } else if (
+          filter.hasOwnProperty("sku") &&
+          filter.hasOwnProperty("store") &&
+          !filter.hasOwnProperty("Description")
+        ) {
+          return (
+            data.store.includes(filter.store) && data.sku.includes(filter.sku)
+          );
+        } else if (
+          !filter.hasOwnProperty("sku") &&
+          filter.hasOwnProperty("store") &&
+          filter.hasOwnProperty("Description")
+        ) {
+          return (
+            data.store.includes(filter.store) &&
+            data.itemDesc.toLowerCase().includes(filter.Description)
+          );
+        } else if (
+          filter.hasOwnProperty("sku") &&
+          !filter.hasOwnProperty("store") &&
+          filter.hasOwnProperty("Description")
+        ) {
+          return (
+            data.sku.includes(filter.sku) &&
+            data.itemDesc.toLowerCase().includes(filter.Description)
+          );
+        } else {
           data.store.includes(filter.store) &&
-          data.itemDesc.toLowerCase().includes(filter.Description)
-        );
-      } else if (
-        filter.hasOwnProperty("sku") &&
-        !filter.hasOwnProperty("store") &&
-        filter.hasOwnProperty("Description")
-      ) {
-        return (
-          data.sku.includes(filter.sku) &&
-          data.itemDesc.toLowerCase().includes(filter.Description)
-        );
-      } else {
-        data.store.includes(filter.store) &&
-          data.sku.includes(filter.sku) &&
-          data.itemDesc.toLowerCase().includes(filter.Description);
-      }
-    };
+            data.sku.includes(filter.sku) &&
+            data.itemDesc.toLowerCase().includes(filter.Description);
+        }
+      };
+    } else if (table_name === "Employee") {
+      return function(data, filter) {
+        console.log("in the employee filter the filter is", filter);
+        console.log("in the employee filter the data is", data);
+
+        if (
+          filter.hasOwnProperty("Location") &&
+          !filter.hasOwnProperty("Employee ID") &&
+          !filter.hasOwnProperty("Role")
+        ) {
+          return data.location.includes(filter.Location);
+        } else if (
+          !filter.hasOwnProperty("Location") &&
+          filter.hasOwnProperty("Employee ID") &&
+          !filter.hasOwnProperty("Role")
+        ) {
+          return data.emplId.toString().includes(filter["Employee ID"]);
+        } else if (
+          !filter.hasOwnProperty("Location") &&
+          !filter.hasOwnProperty("Employee ID") &&
+          filter.hasOwnProperty("Role")
+        ) {
+          return data.emplRole.includes(filter.Role);
+        } else if (
+          filter.hasOwnProperty("Location") &&
+          filter.hasOwnProperty("Employee ID") &&
+          !filter.hasOwnProperty("Role")
+        ) {
+          return (
+            data.location.includes(filter.Location) &&
+            data.emplId.toString().includes(filter["Employee ID"])
+          );
+        } else if (
+          filter.hasOwnProperty("Location") &&
+          !filter.hasOwnProperty("Employee ID") &&
+          filter.hasOwnProperty("Role")
+        ) {
+          return (
+            data.store.includes(filter.store) &&
+            data.emplRole.includes(filter.Role)
+          );
+        } else if (
+          !filter.hasOwnProperty("Location") &&
+          filter.hasOwnProperty("Employee ID") &&
+          filter.hasOwnProperty("Role")
+        ) {
+          return (
+            data.emplId.toString().includes(filter["Employee ID"]) &&
+            data.emplRole.includes(filter.Role)
+          );
+        } else {
+          data.location.includes(filter.Location) &&
+            data.emplId.toString().includes(filter["Employee ID"]) &&
+            data.emplRole.includes(filter.Role);
+        }
+      };
+    }
   }
 }
