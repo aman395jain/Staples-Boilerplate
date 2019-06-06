@@ -101,7 +101,7 @@ export class DashboardHeaderNameConverstionService {
     priceAboveLimit: "Price Above Limit",
     quantityLimit: "Quantity Limit",
     softHardLimit: "Soft Hard Limit",
-    discountDesc: "Discount Discription",
+    discountDesc: "Discount Description",
     linkedList: "Linked SKUs",
     posaSku: "POSA SKU"
   };
