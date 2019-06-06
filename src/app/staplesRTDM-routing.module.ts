@@ -35,4 +35,4 @@ import { PrintDocumentComponent } from "./components/print-document/print-docume
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class StaplesRtdmRoutingModule {}

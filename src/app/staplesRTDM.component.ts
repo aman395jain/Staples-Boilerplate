@@ -6,7 +6,7 @@ import { PrintDocumentService } from "./services/print-document/print-document.s
   templateUrl: "./staplesRTDM.component.html",
   styleUrls: ["./staplesRTDM.component.scss"]
 })
-export class AppComponent {
-  title = "app";
+export class StaplesRtdmApplicationComponent {
+  title = "Staples-RTDM";
   constructor(public printDocumentService: PrintDocumentService) {}
 }

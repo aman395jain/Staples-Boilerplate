@@ -9,9 +9,9 @@ import { CommonModule } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { AngularSplitModule } from "angular-split";
 import { MaterialModule } from "./helper/material.module";
-import { AppRoutingModule } from "./staplesRTDM-routing.module";
+import { StaplesRtdmRoutingModule } from "./staplesRTDM-routing.module";
 
-import { AppComponent } from "./staplesRTDM.component";
+import { StaplesRtdmApplicationComponent } from "./staplesRTDM.component";
 import { HomeComponent } from "./components/home/home.component";
 import { PageNotFoundComponent } from "./components/page-not-found/page-not-found.component";
 import { LogDataTableComponent } from "./components/log-data-table/log-data-table.component";
@@ -40,7 +40,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 };
 @NgModule({
   declarations: [
-    AppComponent,
+    StaplesRtdmApplicationComponent,
     HomeComponent,
     PageNotFoundComponent,
     HeaderComponent,
@@ -58,7 +58,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule,
+    StaplesRtdmRoutingModule,
     MaterialModule,
     NgxBarcodeModule,
     BrowserAnimationsModule,
@@ -83,6 +83,6 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
     }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [StaplesRtdmApplicationComponent]
 })
 export class StaplesRTDMModule {}
