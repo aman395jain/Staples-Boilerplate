@@ -8,7 +8,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material";
 
 import { DashboardHeaderNameConverstionService } from "src/app/services/dashboard-header-name-conversion/dashboard-header-name-converstion.service";
 import { PrintDocumentService } from "src/app/services/print-document/print-document.service";
-import { LogDiscriptionDataOrderService } from "src/app/helper/logDiscription/log-discription-data-order.service";
+import { LogDescriptionDataOrderService } from "src/app/helper/logDescription/log-description-data-order.service";
 
 /**
  * @Component LogDiscriptionComponent.
@@ -16,11 +16,11 @@ import { LogDiscriptionDataOrderService } from "src/app/helper/logDiscription/lo
  */
 @Component({
   selector: "staples-log-discription",
-  templateUrl: "./log-discription.component.html",
-  styleUrls: ["./log-discription.component.scss"],
+  templateUrl: "./log-description.component.html",
+  styleUrls: ["./log-description.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class LogDiscriptionComponent implements OnInit {
+export class LogDescriptionComponent implements OnInit {
   dataDiscriptionKeysToDisplay = [];
   restDataDiscriptionKeysToDisplay = [];
   mainDataDisplay = {};
@@ -39,9 +39,9 @@ export class LogDiscriptionComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public dataDiscription: any,
     private _dashboardHeaderNameConverstionService: DashboardHeaderNameConverstionService,
-    private dialogRef: MatDialogRef<LogDiscriptionComponent>,
+    private dialogRef: MatDialogRef<LogDescriptionComponent>,
     private _printDocumentService: PrintDocumentService,
-    private _logDiscriptionDataOrderService: LogDiscriptionDataOrderService
+    private _logDiscriptionDataOrderService: LogDescriptionDataOrderService
   ) {}
 
   ngOnInit() {

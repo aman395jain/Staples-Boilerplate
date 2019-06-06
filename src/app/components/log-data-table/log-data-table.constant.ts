@@ -430,7 +430,7 @@ export const logDataTableConst = {
     },
     {
       columnDef: "discountDesc",
-      header: "Discount Discription",
+      header: "Discount Description",
       cell: (element: any) => `${element.discountDesc}`
     },
     {

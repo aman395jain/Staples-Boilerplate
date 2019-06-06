@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 @Injectable({
   providedIn: "root"
 })
-export class LogDiscriptionDataOrderService {
+export class LogDescriptionDataOrderService {
   private dataToBeDisplayedOnModal: any[] = [];
   private mainDataToDisplay: object = {};
   private rowDataWithRestData: object = {};

@@ -17,14 +17,14 @@ import "rxjs/add/observable/of";
 import { Subject } from "rxjs";
 import { takeUntil } from "rxjs/operators";
 
-import { LogDiscriptionComponent } from "../log-discription/log-discription.component";
+import { LogDescriptionComponent } from "../log-description/log-description.component";
 import { PromoDetailComponent } from "../promo-detail/promo-detail.component";
 
 import { LoglistingService } from "src/app/services/log-listing/loglisting.service";
 import { NavBarService } from "src/app/services/nav-bar/nav-bar.service";
 import { PrintDocumentService } from "src/app/services/print-document/print-document.service";
 import { LogModalDataService } from "src/app/services/log-modal-data/log-modal-data.service";
-import { LogDiscriptionDataOrderService } from "src/app/helper/logDiscription/log-discription-data-order.service";
+import { LogDescriptionDataOrderService } from "src/app/helper/logDescription/log-description-data-order.service";
 
 import LogDataTableHelper from "../../helper/logDataTable/log-data-table-advance-search.helper";
 import UniqueStoreHelper from "../../helper/uniqueStore/unique-store.helper";
@@ -77,7 +77,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
     private _navBarService: NavBarService,
     private _printDocumentService: PrintDocumentService,
     private _logModalDataService: LogModalDataService,
-    private _logDiscriptionDataOrderService: LogDiscriptionDataOrderService,
+    private _logDescriptionDataOrderService: LogDescriptionDataOrderService,
     private renderer: Renderer2
   ) {}
 
@@ -111,7 +111,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
           this.dataByAPI.sort = this.sort;
           this.dataByAPI.paginator = this.paginator;
           this.paginator.pageSize = 5;
-          this.dataByAPI.filterPredicate = this._logDiscriptionDataOrderService.filterRestrictionOnlyForDisplayedRows(
+          this.dataByAPI.filterPredicate = this._logDescriptionDataOrderService.filterRestrictionOnlyForDisplayedRows(
             "Item_Master"
           );
         });
@@ -275,7 +275,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
               this.tableName === "Age_Restricted_Special_rest"
             ) {
               this.paginator.pageSize = 5;
-              this.dataByAPI.filterPredicate = this._logDiscriptionDataOrderService.filterRestrictionOnlyForDisplayedRows(
+              this.dataByAPI.filterPredicate = this._logDescriptionDataOrderService.filterRestrictionOnlyForDisplayedRows(
                 this.tableName
               );
             }
@@ -302,7 +302,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
   * descriptionLogsForModal to populate the data in a Modal
   */
   descriptionLogsForModal(row) {
-    this._logDiscriptionDataOrderService.tableNameByComponent(this.tableName);
+    this._logDescriptionDataOrderService.tableNameByComponent(this.tableName);
     this._logModalDataService.getLogModalData(row); //data for print
     const _dialogConfig = new MatDialogConfig();
     _dialogConfig.data = row;
@@ -310,7 +310,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
     _dialogConfig.autoFocus = true;
     _dialogConfig.width = "50%";
     _dialogConfig.height = "65%";
-    this._dialog.open(LogDiscriptionComponent, _dialogConfig);
+    this._dialog.open(LogDescriptionComponent, _dialogConfig);
   }
 
   descriptionPromos(row) {
@@ -435,7 +435,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
     } else {
       // this._navBarService.getAdvanceSearchStatus(true);
       this.dataByAPI.filter = null;
-      this.dataByAPI.filterPredicate = this._logDiscriptionDataOrderService.filterRestrictionOnlyForDisplayedRows(
+      this.dataByAPI.filterPredicate = this._logDescriptionDataOrderService.filterRestrictionOnlyForDisplayedRows(
         "Item_Master"
       );
     }

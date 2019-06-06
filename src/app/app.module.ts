@@ -11,6 +11,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { AngularSplitModule } from "angular-split";
 import { MaterialModule } from "./helper/material.module";
 import { AppRoutingModule } from "./app-routing.module";
+// import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
 
 import { AppComponent } from "./app.component";
 import { HomeComponent } from "./components/home/home.component";
@@ -19,7 +20,7 @@ import { LogDataTableComponent } from "./components/log-data-table/log-data-tabl
 import { SideNavBarComponent } from "./shared/side-nav-bar/side-nav-bar.component";
 import { HeaderComponent } from "./shared/header/header.component";
 import { FooterComponent } from "./shared/footer/footer.component";
-import { LogDiscriptionComponent } from "./components/log-discription/log-discription.component";
+import { LogDescriptionComponent } from "./components/log-description/log-description.component";
 import { DisplayLogTableComponent } from "./components/dashboard-log-table/dashboard-log-table.component";
 import { PrintDocumentSingleLogDataComponent } from "./components/print-document-single-log-data/print-document-single-log-data.component";
 import { PrintDocumentLayoutComponent } from "./shared/print-document-layout/print-document-layout.component";
@@ -33,7 +34,7 @@ import { PrintDocumentService } from "./services/print-document/print-document.s
 import { TableForStorePipe } from "./pipes/tableForStoreNumber/table-for-store.pipe";
 import { LogModalDataService } from "./services/log-modal-data/log-modal-data.service";
 import { PrintDocumentComponent } from "./components/print-document/print-document.component";
-import { LogDiscriptionDataOrderService } from "./helper/logDiscription/log-discription-data-order.service";
+import { LogDescriptionDataOrderService } from "./helper/logDescription/log-description-data-order.service";
 import { PromoDetailComponent } from "./components/promo-detail/promo-detail.component";
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -46,7 +47,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     PageNotFoundComponent,
     HeaderComponent,
     FooterComponent,
-    LogDiscriptionComponent,
+    LogDescriptionComponent,
     DisplayLogTableComponent,
     LogDataTableComponent,
     SideNavBarComponent,
@@ -71,14 +72,14 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     PerfectScrollbarModule,
     AngularSplitModule.forRoot()
   ],
-  entryComponents: [LogDiscriptionComponent, PromoDetailComponent],
+  entryComponents: [LogDescriptionComponent, PromoDetailComponent],
   providers: [
     LoglistingService,
     CdkColumnDef,
     NavBarService,
     PrintDocumentService,
     LogModalDataService,
-    LogDiscriptionDataOrderService,
+    LogDescriptionDataOrderService,
     {
       provide: PERFECT_SCROLLBAR_CONFIG,
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG

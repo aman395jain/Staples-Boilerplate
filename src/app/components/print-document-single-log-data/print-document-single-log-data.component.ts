@@ -8,7 +8,7 @@ import { DashboardHeaderNameConverstionService } from "src/app/services/dashboar
 
 /**
  * @class PrintDocumentSingleLogDataComponent
- * Printing the data for a single entity from Log discription Modal.
+ * Printing the data for a single entity from Log description Modal.
  */
 @Component({
   selector: "staples-print-document-single-log-data",
