@@ -58,7 +58,7 @@
               data-toggle="collapse"
               href="#collapseExample"
               (click)="advanceSearch()"
-              >Advanced Search</a
+              >Advance Search</a
             >
           </div>
         </div>
@@ -122,6 +122,8 @@
                       class="fa fa-plus-circle advance-search-addition"
                       aria-hidden="true"
                       (click)="addRowInAdvanceSearch()"
+                      data-toggle="tooltip"
+                      title="Add new Search field"
                     ></i>
                   </div>
                   <div style="margin: auto 0px">
@@ -130,6 +132,8 @@
                       aria-hidden="true"
                       *ngIf="[in] > 0 || rowLength > 0"
                       (click)="deleteRowsInAdvanceSearch(in)"
+                      data-toggle="tooltip"
+                      title="Delete Search field"
                     ></i>
                   </div>
                 </div>
@@ -137,10 +141,10 @@
               <div class="col-md-12 align-items-center inner-rows ">
                 <div class="float-right">
                   <button
-                    class="btn btn-info advance-search-button"
+                    class="btn btn-warning advance-search-button"
                     (click)="clearSearchFields()"
                   >
-                    Clear Search
+                    Clear
                   </button>
                   <button
                     class="btn btn-primary advance-search-button"
