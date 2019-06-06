@@ -1,5 +1,5 @@
 import { TestBed, async } from "@angular/core/testing";
-import { AppComponent } from "./StaplesRDM.component";
+import { AppComponent } from "./staplesRTDM.component";
 describe("AppComponent", () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({

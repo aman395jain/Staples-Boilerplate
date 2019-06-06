@@ -13,7 +13,7 @@ import { MaterialModule } from "./helper/material.module";
 import { AppRoutingModule } from "./app-routing.module";
 import { LoggerModule, NgxLoggerLevel } from "ngx-logger";
 
-import { AppComponent } from "./StaplesRDM.component";
+import { AppComponent } from "./staplesRTDM.component";
 import { HomeComponent } from "./components/home/home.component";
 import { PageNotFoundComponent } from "./components/page-not-found/page-not-found.component";
 import { LogDataTableComponent } from "./components/log-data-table/log-data-table.component";
@@ -87,4 +87,4 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   ],
   bootstrap: [AppComponent]
 })
-export class StaplesRDMModule {}
+export class StaplesRTDMModule {}

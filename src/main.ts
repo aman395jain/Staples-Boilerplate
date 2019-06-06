@@ -1,7 +1,7 @@
 import { enableProdMode } from "@angular/core";
 import { platformBrowserDynamic } from "@angular/platform-browser-dynamic";
 
-import { StaplesRDMModule } from "./app/staplesRDM.module";
+import { StaplesRTDMModule } from "./app/staplesRTDM.module";
 import { environment } from "./environments/environment";
 
 if (environment.production) {
@@ -9,5 +9,5 @@ if (environment.production) {
 }
 
 platformBrowserDynamic()
-  .bootstrapModule(StaplesRDMModule)
+  .bootstrapModule(StaplesRTDMModule)
   .catch(err => console.log(err));
