@@ -263,22 +263,10 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
                     : "col-md-12 advanced-search collapse show"
                 );
               });
-
-            if (
-              this.tableName === "Item_Master" ||
-              this.tableName === "Price_Prompt_SKUs" ||
-              this.tableName === "Employee" ||
-              this.tableName === "Linked_SKUs" ||
-              this.tableName === "Tax_Rates" ||
-              this.tableName === "Hardware_SKUs" ||
-              this.tableName === "Free_SKUs" ||
-              this.tableName === "Age_Restricted_Special_rest"
-            ) {
-              this.paginator.pageSize = 5;
-              this.dataByAPI.filterPredicate = this._logDescriptionDataOrderService.filterRestrictionOnlyForDisplayedRows(
-                this.tableName
-              );
-            }
+            this.paginator.pageSize = 5;
+            this.dataByAPI.filterPredicate = this._logDescriptionDataOrderService.filterRestrictionOnlyForDisplayedRows(
+              this.tableName
+            );
           });
       });
   }
@@ -474,6 +462,9 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
     this.dataByAPI.filterPredicate = LogDataTableHelper.customFilterPredicate();
   }
 
+  /**
+   * Clear the search fields in Advance search.
+   */
   clearSearchFields() {
     this.advanceSearchFields = [{ name: "", fieldValue: "" }];
     this.dataByAPI.filter = null;
