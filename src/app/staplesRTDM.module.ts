@@ -1,7 +1,6 @@
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { HttpClientModule } from "@angular/common/http";
-
 import { CdkColumnDef, CdkTableModule } from "@angular/cdk/table";
 import { NgxBarcodeModule } from "ngx-barcode";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -10,8 +9,7 @@ import { CommonModule } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { AngularSplitModule } from "angular-split";
 import { MaterialModule } from "./helper/material.module";
-import { AppRoutingModule } from "./app-routing.module";
-import { LoggerModule, NgxLoggerLevel } from "ngx-logger";
+import { AppRoutingModule } from "./staplesRTDM-routing.module";
 
 import { AppComponent } from "./staplesRTDM.component";
 import { HomeComponent } from "./components/home/home.component";
