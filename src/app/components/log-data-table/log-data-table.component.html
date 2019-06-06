@@ -135,12 +135,20 @@
                 </div>
               </div>
               <div class="col-md-12 align-items-center inner-rows ">
-                <button
-                  class="btn btn-primary float-right advance-search-button"
-                  (click)="advanceSearchOnSubmit()"
-                >
-                  Apply
-                </button>
+                <div class="float-right">
+                  <button
+                    class="btn btn-info advance-search-button"
+                    (click)="clearSearchFields()"
+                  >
+                    Clear Search
+                  </button>
+                  <button
+                    class="btn btn-primary advance-search-button"
+                    (click)="advanceSearchOnSubmit()"
+                  >
+                    Apply
+                  </button>
+                </div>
               </div>
             </form>
           </div>

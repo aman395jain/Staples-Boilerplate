@@ -430,6 +430,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
     this.advancedSearchStatus = !this.advancedSearchStatus;
     if (this.advancedSearchStatus) {
       this.selectedOption = "Select a Store";
+      this.advanceSearchFields = [{ name: "", fieldValue: "" }];
       this.dataByAPI.filter = null;
       this.dataByAPI.filterPredicate = LogDataTableHelper.customFilterPredicate();
     } else {
@@ -470,5 +471,9 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
     );
     this.dataByAPI.filter = advanceSearchObject[0];
     this.dataByAPI.filterPredicate = LogDataTableHelper.customFilterPredicate();
+  }
+
+  clearSearchFields() {
+    this.advanceSearchFields = [{ name: "", fieldValue: "" }];
   }
 }
