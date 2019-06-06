@@ -85,7 +85,9 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
     this.logTableGridColumns = logDataTableConst.item_Master;
 
     this.tableName = "Item_Master";
-    this.displayedColumns = this.logTableGridColumns.map(c => c.columnDef);
+    this.displayedColumns = this.logTableGridColumns.map(
+      columnName => columnName.columnDef
+    );
     this.advanceSearchOptions = ["store", "sku", "Description"];
 
     try {
@@ -127,49 +129,49 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
 
           this.tableName = "Price_Prompt_SKUs";
           this.displayedColumns = this.logTableGridColumns.map(
-            c => c.columnDef
+            columnName => columnName.columnDef
           );
         } else if (tableName === "Item_Master") {
           this.logTableGridColumns = logDataTableConst.item_Master_Main;
 
           this.tableName = "Item_Master";
           this.displayedColumns = this.logTableGridColumns.map(
-            c => c.columnDef
+            columnName => columnName.columnDef
           );
         } else if (tableName === "Employee") {
           this.logTableGridColumns = logDataTableConst.employee;
 
           this.tableName = "Employee";
           this.displayedColumns = this.logTableGridColumns.map(
-            c => c.columnDef
+            columnName => columnName.columnDef
           );
         } else if (tableName === "Linked_SKUs") {
           this.logTableGridColumns = logDataTableConst.linked_SKUs;
 
           this.tableName = "Linked_SKUs";
           this.displayedColumns = this.logTableGridColumns.map(
-            c => c.columnDef
+            columnName => columnName.columnDef
           );
         } else if (tableName === "Tax_Rates") {
           this.logTableGridColumns = logDataTableConst.tax_Rate;
 
           this.tableName = "Tax_Rates";
           this.displayedColumns = this.logTableGridColumns.map(
-            c => c.columnDef
+            columnName => columnName.columnDef
           );
         } else if (tableName === "Hardware_SKUs") {
           this.logTableGridColumns = logDataTableConst.hardware_SKUs;
 
           this.tableName = "Hardware_SKUs";
           this.displayedColumns = this.logTableGridColumns.map(
-            c => c.columnDef
+            columnName => columnName.columnDef
           );
         } else if (tableName === "Free_SKUs") {
           this.logTableGridColumns = logDataTableConst.free_SKUs;
 
           this.tableName = "Free_SKUs";
           this.displayedColumns = this.logTableGridColumns.map(
-            c => c.columnDef
+            columnName => columnName.columnDef
           );
         } else if (tableName === "Age_Restricted_Special_rest") {
           this.logTableGridColumns =
@@ -177,35 +179,35 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
 
           this.tableName = "Age_Restricted_Special_rest";
           this.displayedColumns = this.logTableGridColumns.map(
-            c => c.columnDef
+            columnName => columnName.columnDef
           );
         } else if (tableName === "Item_Group") {
           this.logTableGridColumns = logDataTableConst.Item_Group;
 
           this.tableName = "Item_Group";
           this.displayedColumns = this.logTableGridColumns.map(
-            c => c.columnDef
+            columnName => columnName.columnDef
           );
         } else if (tableName === "Return_Driver_License") {
           this.logTableGridColumns = logDataTableConst.return_Driver_License;
 
           this.tableName = "Return_Driver_License";
           this.displayedColumns = this.logTableGridColumns.map(
-            c => c.columnDef
+            columnName => columnName.columnDef
           );
         } else if (tableName === "Lowest_Price") {
           this.logTableGridColumns = logDataTableConst.lowest_Price;
 
           this.tableName = "Lowest_Price";
           this.displayedColumns = this.logTableGridColumns.map(
-            c => c.columnDef
+            columnName => columnName.columnDef
           );
         } else if (tableName === "Promos") {
           this.logTableGridColumns = logDataTableConst.Promos;
 
           this.tableName = "Promos";
           this.displayedColumns = this.logTableGridColumns.map(
-            c => c.columnDef
+            columnName => columnName.columnDef
           );
         } else if (tableName === "POSA") {
           this.tableName = "POSA";
