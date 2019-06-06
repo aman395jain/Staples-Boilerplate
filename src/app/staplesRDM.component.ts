@@ -3,8 +3,8 @@ import { PrintDocumentService } from "./services/print-document/print-document.s
 
 @Component({
   selector: "staples-root",
-  templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.scss"]
+  templateUrl: "./StaplesRDM.component.html",
+  styleUrls: ["./StaplesRDM.component.scss"]
 })
 export class AppComponent {
   title = "app";

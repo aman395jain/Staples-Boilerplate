@@ -11,9 +11,9 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { AngularSplitModule } from "angular-split";
 import { MaterialModule } from "./helper/material.module";
 import { AppRoutingModule } from "./app-routing.module";
-// import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
+import { LoggerModule, NgxLoggerLevel } from "ngx-logger";
 
-import { AppComponent } from "./app.component";
+import { AppComponent } from "./StaplesRDM.component";
 import { HomeComponent } from "./components/home/home.component";
 import { PageNotFoundComponent } from "./components/page-not-found/page-not-found.component";
 import { LogDataTableComponent } from "./components/log-data-table/log-data-table.component";
@@ -87,4 +87,4 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class StaplesRDMModule {}
