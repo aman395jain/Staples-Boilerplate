@@ -430,11 +430,12 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
     this.advancedSearchStatus = !this.advancedSearchStatus;
     if (this.advancedSearchStatus) {
       this.selectedOption = "Select a Store";
-      this.advanceSearchFields = [{ name: "", fieldValue: "" }];
       this.dataByAPI.filter = null;
       this.dataByAPI.filterPredicate = LogDataTableHelper.customFilterPredicate();
     } else {
       // this._navBarService.getAdvanceSearchStatus(true);
+      //collapse of accordian.
+      this.advanceSearchFields = [{ name: "", fieldValue: "" }];
       this.dataByAPI.filter = null;
       this.dataByAPI.filterPredicate = this._logDescriptionDataOrderService.filterRestrictionOnlyForDisplayedRows(
         "Item_Master"
@@ -475,5 +476,6 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
 
   clearSearchFields() {
     this.advanceSearchFields = [{ name: "", fieldValue: "" }];
+    this.dataByAPI.filter = null;
   }
 }
