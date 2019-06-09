@@ -227,6 +227,11 @@ export const logDataTableConst = {
       cell: (element: any) => `${element.vendorName}`
     },
     {
+      columnDef: "serialNumber",
+      header: "Serial Number",
+      cell: (element: any) => `${element.serialNumber}`
+    },
+    {
       columnDef: "action",
       header: null,
       cell: null

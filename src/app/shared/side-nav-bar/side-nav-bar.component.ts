@@ -8,6 +8,8 @@ import { Subject } from "rxjs";
 import { takeUntil } from "rxjs/operators";
 
 import { NavBarService } from "src/app/services/nav-bar/nav-bar.service";
+import { Router } from "@angular/router";
+import { LogModalDataService } from "src/app/services/log-modal-data/log-modal-data.service";
 
 @Component({
   selector: "staples-side-nav-bar",
@@ -29,7 +31,11 @@ export class SideNavBarComponent implements OnInit, OnDestroy {
   pageSize: number;
   pagelength: number;
 
-  constructor(private _navBarService: NavBarService) {}
+  constructor(
+    private _navBarService: NavBarService,
+    private router: Router,
+    private _logModalDataService: LogModalDataService
+  ) {}
 
   ngOnInit() {
     this._navBarService
@@ -92,6 +98,10 @@ export class SideNavBarComponent implements OnInit, OnDestroy {
   }
 
   getElementNameTest(eleName) {
+    if (this.router.url === "/testDataManagement/logDetail") {
+      this._logModalDataService.getLogDetailFlag(false);
+      this.router.navigate(["/testDataManagement"]);
+    }
     this._navBarService.setElementNameFromSideBar(eleName);
     this.barHeight = 592;
     this._navBarService.setPageSize(5);

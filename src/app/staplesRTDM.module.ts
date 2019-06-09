@@ -34,6 +34,7 @@ import { LogModalDataService } from "./services/log-modal-data/log-modal-data.se
 import { PrintDocumentComponent } from "./components/print-document/print-document.component";
 import { LogDescriptionDataOrderService } from "./helper/logDescription/log-description-data-order.service";
 import { PromoDetailComponent } from "./components/promo-detail/promo-detail.component";
+import { LogDetailComponent } from "./components/log-detail/log-detail.component";
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -53,7 +54,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     PrintDocumentComponent,
     TableForStorePipe,
     PrintDocumentSingleLogDataComponent,
-    PromoDetailComponent
+    PromoDetailComponent,
+    LogDetailComponent
   ],
   imports: [
     BrowserModule,

@@ -14,7 +14,6 @@ export class NavBarService {
   private _toggleStatusSubject = new Subject<any>();
   private _pageSizeSubject = new Subject<any>();
   private _pageLengthSubject = new Subject<any>();
-  private _elementIsClicked = new Subject<any>();
   private advanceSearchStatus = new BehaviorSubject<boolean>(null);
   constructor() {}
 

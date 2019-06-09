@@ -1,0 +1,67 @@
+<div>
+  <a (click)="backToDataManagement()">Back</a>
+  <div class="container">
+    <div class="row">
+      <div
+        class="col-md-6"
+        *ngFor="let printedLogData of logDataForSingleEntity | keyvalue"
+      >
+        <table class="table table-bordered">
+          <thead>
+            <tr
+              *ngIf="
+                !(
+                  printedLogData.key === 'checked' ||
+                  printedLogData.key === 'index'
+                )
+              "
+            >
+              <th class="table-header">
+                <span>{{ printedLogData.key }}</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              *ngIf="
+                !(
+                  printedLogData.key === 'checked' ||
+                  printedLogData.key === 'index'
+                )
+              "
+            >
+              <td
+                *ngIf="
+                  !(
+                    printedLogData.key === 'Bar Code' ||
+                    printedLogData.key === 'barCode'
+                  )
+                "
+              >
+                {{ printedLogData.value }}
+              </td>
+              <td
+                *ngIf="
+                  printedLogData.key === 'Bar Code' ||
+                  printedLogData.key === 'barCode'
+                "
+              >
+                <div *ngFor="let barCode of dataBarCode">
+                  <div>
+                    <ngx-barcode
+                      [bc-value]="barCode"
+                      [bc-display-value]="false"
+                      [bc-height]="25"
+                      [bc-width]="0.8"
+                    ></ngx-barcode>
+                  </div>
+                  <div>{{ barCode }}</div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

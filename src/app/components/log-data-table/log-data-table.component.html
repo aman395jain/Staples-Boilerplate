@@ -10,7 +10,7 @@
       tableName === 'Rewards' ||
       tableName === 'CBP' ||
       tableName === 'CEP'
-    )
+    ) && !logDetailsFlag
   "
 >
   <div class="row">
@@ -189,7 +189,8 @@
                   column.header === 'UPC' ||
                   column.columnDef === 'action' ||
                   column.columnDef === 'select' ||
-                  column.columnDef === 'promoNum'
+                  column.columnDef === 'promoNum' ||
+                  column.columnDef === 'serialNumber'
                 )
               "
               >{{ column.cell(row) }}</span
@@ -211,7 +212,11 @@
               ></mat-checkbox
             ></span>
             <div
-              *ngIf="column.header === 'Bar Code' || column.header === 'UPC'"
+              *ngIf="
+                column.header === 'Bar Code' ||
+                column.header === 'UPC' ||
+                column.columnDef === 'serialNumber'
+              "
             >
               <ngx-barcode
                 [bc-value]="column.cell(row)"
@@ -226,7 +231,7 @@
             <span *ngIf="column.columnDef === 'action'"
               ><a
                 class="launch-icon"
-                (click)="descriptionLogsForModal(row)"
+                (click)="launchLogsForSingleEntity(row)"
                 mat-icon-button
                 ><mat-icon data-toggle="tooltip" title="view"
                   >launch</mat-icon
@@ -261,13 +266,14 @@
 <div
   [hidden]="isLoading"
   *ngIf="
-    tableName === 'POSA' ||
-    tableName === 'Order' ||
-    tableName === 'Coupon' ||
-    tableName === 'Tax_Exempt' ||
-    tableName === 'Rewards' ||
-    tableName === 'CBP' ||
-    tableName === 'CEP'
+    (tableName === 'POSA' ||
+      tableName === 'Order' ||
+      tableName === 'Coupon' ||
+      tableName === 'Tax_Exempt' ||
+      tableName === 'Rewards' ||
+      tableName === 'CBP' ||
+      tableName === 'CEP') &&
+    !logDetailsFlag
   "
   class="under-construction"
 >
@@ -279,7 +285,7 @@
     width="300px"
   />
 </div>
-<div class="load-spinner">
+<div class="load-spinner" *ngIf="!logDetailsFlag">
   <mat-progress-spinner
     *ngIf="isLoading"
     style="display: flex; justify-content: center; align-items: center"
@@ -287,4 +293,7 @@
     mode="indeterminate"
   >
   </mat-progress-spinner>
+</div>
+<div *ngIf="logDetailsFlag">
+  <router-outlet></router-outlet>
 </div>

@@ -29,6 +29,7 @@ import { LogDescriptionDataOrderService } from "src/app/helper/logDescription/lo
 import LogDataTableHelper from "../../helper/logDataTable/log-data-table-advance-search.helper";
 import UniqueStoreHelper from "../../helper/uniqueStore/unique-store.helper";
 import { logDataTableConst } from "./log-data-table.constant";
+import { Router } from "@angular/router";
 
 /**
  * @class LogDataTableComponent
@@ -70,6 +71,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
   advanceSearchOptions: string[] = [];
 
   advanceSearchCollapseStatus: boolean = true;
+  logDetailsFlag: any = false;
 
   constructor(
     private _loglistingService: LoglistingService,
@@ -78,13 +80,24 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
     private _printDocumentService: PrintDocumentService,
     private _logModalDataService: LogModalDataService,
     private _logDescriptionDataOrderService: LogDescriptionDataOrderService,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private router: Router
   ) {}
 
   ngOnInit() {
+    if (this.router.url === "/testDataManagement") {
+      this._logModalDataService.getLogDetailFlag(false);
+    } else {
+      this._logModalDataService.getLogDetailFlag(true);
+    }
     this.logTableGridColumns = logDataTableConst.item_Master;
 
+    this._logModalDataService.setLogDetailFlag().subscribe(flag => {
+      this.logDetailsFlag = flag;
+    });
+
     this.tableName = "Item_Master";
+    console.log("in the testDataManagement component", this.tableName);
     this.displayedColumns = this.logTableGridColumns.map(
       columnName => columnName.columnDef
     );
@@ -110,7 +123,9 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
           this.dataByAPI = new MatTableDataSource(data);
           this.dataByAPI.sort = this.sort;
           this.dataByAPI.paginator = this.paginator;
-          this.paginator.pageSize = 5;
+          if (this.paginator) {
+            this.paginator.pageSize = 5;
+          }
           this.dataByAPI.filterPredicate = this._logDescriptionDataOrderService.filterRestrictionOnlyForDisplayedRows(
             "Item_Master"
           );
@@ -118,6 +133,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
     } catch (e) {
       console.log("in the test error", e);
     }
+
     this._navBarService
       .getElementName()
       .pipe(takeUntil(this._onDestroy))
@@ -310,6 +326,13 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
     _dialogConfig.width = "50%";
     _dialogConfig.height = "50%";
     this._dialog.open(PromoDetailComponent, _dialogConfig);
+  }
+
+  launchLogsForSingleEntity(row) {
+    console.log("redirect to log detail page", row);
+    this._logModalDataService.getLogModalData(row);
+    this.logDetailsFlag = true;
+    this.router.navigate(["/testDataManagement/logDetail"]);
   }
 
   /**

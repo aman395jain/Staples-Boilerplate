@@ -7,13 +7,18 @@ import { DisplayLogTableComponent } from "./components/dashboard-log-table/dashb
 import { PrintDocumentLayoutComponent } from "./shared/print-document-layout/print-document-layout.component";
 import { PrintDocumentSingleLogDataComponent } from "./components/print-document-single-log-data/print-document-single-log-data.component";
 import { PrintDocumentComponent } from "./components/print-document/print-document.component";
+import { LogDetailComponent } from "./components/log-detail/log-detail.component";
 
 @NgModule({
   imports: [
     RouterModule.forRoot(
       [
         { path: "", component: HomeComponent },
-        { path: "testDataManagement", component: DisplayLogTableComponent },
+        {
+          path: "testDataManagement",
+          component: DisplayLogTableComponent,
+          children: [{ path: "logDetail", component: LogDetailComponent }]
+        },
         {
           path: "print",
           outlet: "print",
