@@ -1,11 +1,12 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { Router } from "@angular/router";
+import { Subject } from "rxjs";
+import { takeUntil } from "rxjs/operators";
+
 import { LogModalDataService } from "src/app/services/log-modal-data/log-modal-data.service";
 import { NavBarService } from "src/app/services/nav-bar/nav-bar.service";
 import { DashboardHeaderNameConverstionService } from "src/app/services/dashboard-header-name-conversion/dashboard-header-name-converstion.service";
 import { LogDescriptionDataOrderService } from "src/app/helper/logDescription/log-description-data-order.service";
-import { Subject } from "rxjs";
-import { takeUntil } from "rxjs/operators";
 import { PrintDocumentService } from "src/app/services/print-document/print-document.service";
 
 @Component({
@@ -104,7 +105,7 @@ export class LogDetailComponent implements OnInit, OnDestroy {
     this._onDestroy.complete();
   }
 
-  printDialogData(): void {
+  printSingleEntityData(): void {
     this._printDocumentService.printDocument("logInvoice");
   }
 
