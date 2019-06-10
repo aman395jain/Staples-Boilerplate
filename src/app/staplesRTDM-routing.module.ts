@@ -8,6 +8,7 @@ import { PrintDocumentLayoutComponent } from "./shared/print-document-layout/pri
 import { PrintDocumentSingleLogDataComponent } from "./components/print-document-single-log-data/print-document-single-log-data.component";
 import { PrintDocumentComponent } from "./components/print-document/print-document.component";
 import { LogDetailComponent } from "./components/log-detail/log-detail.component";
+import { LogDetailGuard } from "./guards/log-detail/log-detail-guard.guard";
 
 @NgModule({
   imports: [
@@ -20,7 +21,8 @@ import { LogDetailComponent } from "./components/log-detail/log-detail.component
           children: [
             {
               path: "logDetail",
-              component: LogDetailComponent
+              component: LogDetailComponent,
+              canActivate: [LogDetailGuard]
             }
           ]
         },
