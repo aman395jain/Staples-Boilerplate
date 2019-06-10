@@ -96,8 +96,10 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
       this.logDetailsFlag = flag;
     });
 
+    this._logModalDataService.getTableNameForLogDetail("Item_Master");
+
     this.tableName = "Item_Master";
-    console.log("in the testDataManagement component", this.tableName);
+    // console.log("in the testDataManagement component", this.tableName);
     this.displayedColumns = this.logTableGridColumns.map(
       columnName => columnName.columnDef
     );
@@ -144,6 +146,9 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
           this.logTableGridColumns = logDataTableConst.price_Prompt_Sku;
 
           this.tableName = "Price_Prompt_SKUs";
+          this._logModalDataService.getTableNameForLogDetail(
+            "Price_Prompt_SKUs"
+          );
           this.displayedColumns = this.logTableGridColumns.map(
             columnName => columnName.columnDef
           );
@@ -151,6 +156,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
           this.logTableGridColumns = logDataTableConst.item_Master_Main;
 
           this.tableName = "Item_Master";
+          this._logModalDataService.getTableNameForLogDetail("Item_Master");
           this.displayedColumns = this.logTableGridColumns.map(
             columnName => columnName.columnDef
           );
@@ -159,6 +165,8 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
           this.logTableGridColumns = logDataTableConst.employee;
 
           this.tableName = "Employee";
+
+          this._logModalDataService.getTableNameForLogDetail("Employee");
           this.displayedColumns = this.logTableGridColumns.map(
             columnName => columnName.columnDef
           );
@@ -166,11 +174,13 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
           this.logTableGridColumns = logDataTableConst.linked_SKUs;
 
           this.tableName = "Linked_SKUs";
+          this._logModalDataService.getTableNameForLogDetail("Linked_SKUs");
           this.displayedColumns = this.logTableGridColumns.map(
             columnName => columnName.columnDef
           );
         } else if (tableName === "Tax_Rates") {
           this.logTableGridColumns = logDataTableConst.tax_Rate;
+          this._logModalDataService.getTableNameForLogDetail("Tax_Rates");
 
           this.tableName = "Tax_Rates";
           this.displayedColumns = this.logTableGridColumns.map(
@@ -178,6 +188,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
           );
         } else if (tableName === "Hardware_SKUs") {
           this.logTableGridColumns = logDataTableConst.hardware_SKUs;
+          this._logModalDataService.getTableNameForLogDetail("Hardware_SKUs");
 
           this.tableName = "Hardware_SKUs";
           this.displayedColumns = this.logTableGridColumns.map(
@@ -185,6 +196,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
           );
         } else if (tableName === "Free_SKUs") {
           this.logTableGridColumns = logDataTableConst.free_SKUs;
+          this._logModalDataService.getTableNameForLogDetail("Free_SKUs");
 
           this.tableName = "Free_SKUs";
           this.displayedColumns = this.logTableGridColumns.map(
@@ -193,6 +205,9 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
         } else if (tableName === "Age_Restricted_Special_rest") {
           this.logTableGridColumns =
             logDataTableConst.age_Restricted_Special_rest;
+          this._logModalDataService.getTableNameForLogDetail(
+            "Age_Restricted_Special_rest"
+          );
 
           this.tableName = "Age_Restricted_Special_rest";
           this.displayedColumns = this.logTableGridColumns.map(
@@ -200,6 +215,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
           );
         } else if (tableName === "Item_Group") {
           this.logTableGridColumns = logDataTableConst.Item_Group;
+          this._logModalDataService.getTableNameForLogDetail("Item_Group");
 
           this.tableName = "Item_Group";
           this.displayedColumns = this.logTableGridColumns.map(
@@ -207,6 +223,9 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
           );
         } else if (tableName === "Return_Driver_License") {
           this.logTableGridColumns = logDataTableConst.return_Driver_License;
+          this._logModalDataService.getTableNameForLogDetail(
+            "Return_Driver_License"
+          );
 
           this.tableName = "Return_Driver_License";
           this.displayedColumns = this.logTableGridColumns.map(
@@ -214,6 +233,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
           );
         } else if (tableName === "Lowest_Price") {
           this.logTableGridColumns = logDataTableConst.lowest_Price;
+          this._logModalDataService.getTableNameForLogDetail("Lowest_Price");
 
           this.tableName = "Lowest_Price";
           this.displayedColumns = this.logTableGridColumns.map(
@@ -221,6 +241,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
           );
         } else if (tableName === "Promos") {
           this.logTableGridColumns = logDataTableConst.Promos;
+          this._logModalDataService.getTableNameForLogDetail("Promos");
 
           this.tableName = "Promos";
           this.displayedColumns = this.logTableGridColumns.map(
@@ -329,8 +350,8 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
   }
 
   launchLogsForSingleEntity(row) {
-    console.log("redirect to log detail page", row);
-    this._logModalDataService.getLogModalData(row);
+    this._logModalDataService.getLogDetailData(row);
+    this._logModalDataService.getLogModalData(row); //data for print
     this.logDetailsFlag = true;
     this.router.navigate(["/testDataManagement/logDetail"]);
   }

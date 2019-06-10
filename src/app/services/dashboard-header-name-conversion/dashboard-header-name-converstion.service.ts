@@ -103,7 +103,8 @@ export class DashboardHeaderNameConverstionService {
     softHardLimit: "Soft Hard Limit",
     discountDesc: "Discount Description",
     linkedList: "Linked SKUs",
-    posaSku: "POSA SKU"
+    posaSku: "POSA SKU",
+    serialNumber: "Serial Number"
   };
   printedDataNewHeader = {};
 

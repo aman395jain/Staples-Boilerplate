@@ -6,7 +6,6 @@ import { Injectable } from "@angular/core";
 export class LogDescriptionDataOrderService {
   private dataToBeDisplayedOnModal: any[] = [];
   private mainDataToDisplay: object = {};
-  private rowDataWithRestData: object = {};
   private rowDataWithLinkedSKUs: object = {};
   private tableName: string = "";
 
@@ -24,9 +23,10 @@ export class LogDescriptionDataOrderService {
    * For classification of data of Modal.
    * @param row
    */
-  modalDataOrder(row) {
-    Object.assign(this.rowDataWithRestData, row);
-    if (this.tableName === "Item_Master") {
+  modalDataOrder(row, tableName) {
+    let rowDataWithRestData = {};
+    Object.assign(rowDataWithRestData, row);
+    if (tableName === "Item_Master") {
       this.mainDataToDisplay = {
         sku: row.sku,
         upcList: row.upcList,
@@ -34,33 +34,33 @@ export class LogDescriptionDataOrderService {
         permPrice: row.permPrice,
         store: row.store
       };
-      delete this.rowDataWithRestData["sku"];
-      delete this.rowDataWithRestData["upcList"];
-      delete this.rowDataWithRestData["itemDesc"];
-      delete this.rowDataWithRestData["permPrice"];
-      delete this.rowDataWithRestData["store"];
+      delete rowDataWithRestData["sku"];
+      delete rowDataWithRestData["upcList"];
+      delete rowDataWithRestData["itemDesc"];
+      delete rowDataWithRestData["permPrice"];
+      delete rowDataWithRestData["store"];
 
       this.dataToBeDisplayedOnModal[0] = this.mainDataToDisplay;
 
-      this.dataToBeDisplayedOnModal[1] = this.rowDataWithRestData;
+      this.dataToBeDisplayedOnModal[1] = rowDataWithRestData;
       return this.dataToBeDisplayedOnModal;
-    } else if (this.tableName === "Price_Prompt_SKUs") {
+    } else if (tableName === "Price_Prompt_SKUs") {
       this.mainDataToDisplay = {
         sku: row.sku,
         upcList: row.upcList,
         itemDesc: row.itemDesc,
         permPrice: row.permPrice
       };
-      delete this.rowDataWithRestData["sku"];
-      delete this.rowDataWithRestData["upcList"];
-      delete this.rowDataWithRestData["itemDesc"];
-      delete this.rowDataWithRestData["permPrice"];
+      delete rowDataWithRestData["sku"];
+      delete rowDataWithRestData["upcList"];
+      delete rowDataWithRestData["itemDesc"];
+      delete rowDataWithRestData["permPrice"];
 
       this.dataToBeDisplayedOnModal[0] = this.mainDataToDisplay;
 
-      this.dataToBeDisplayedOnModal[1] = this.rowDataWithRestData;
+      this.dataToBeDisplayedOnModal[1] = rowDataWithRestData;
       return this.dataToBeDisplayedOnModal;
-    } else if (this.tableName === "Hardware_SKUs") {
+    } else if (tableName === "Hardware_SKUs") {
       this.mainDataToDisplay = {
         sku: row.sku,
         upcList: row.upcList,
@@ -68,17 +68,17 @@ export class LogDescriptionDataOrderService {
         retailPrice: row.retailPrice,
         vendorName: row.vendorName
       };
-      delete this.rowDataWithRestData["sku"];
-      delete this.rowDataWithRestData["upcList"];
-      delete this.rowDataWithRestData["itemDesc"];
-      delete this.rowDataWithRestData["retailPrice"];
-      delete this.rowDataWithRestData["vendorName"];
+      delete rowDataWithRestData["sku"];
+      delete rowDataWithRestData["upcList"];
+      delete rowDataWithRestData["itemDesc"];
+      delete rowDataWithRestData["retailPrice"];
+      delete rowDataWithRestData["vendorName"];
 
       this.dataToBeDisplayedOnModal[0] = this.mainDataToDisplay;
 
-      this.dataToBeDisplayedOnModal[1] = this.rowDataWithRestData;
+      this.dataToBeDisplayedOnModal[1] = rowDataWithRestData;
       return this.dataToBeDisplayedOnModal;
-    } else if (this.tableName === "Linked_SKUs") {
+    } else if (tableName === "Linked_SKUs") {
       this.mainDataToDisplay = {
         sku: row.sku,
         upcList: row.upcList,
@@ -89,19 +89,19 @@ export class LogDescriptionDataOrderService {
       this.rowDataWithLinkedSKUs = {
         linkedList: row.linkedList
       };
-      delete this.rowDataWithRestData["sku"];
-      delete this.rowDataWithRestData["upcList"];
-      delete this.rowDataWithRestData["warranty"];
-      delete this.rowDataWithRestData["retailPrice"];
-      delete this.rowDataWithRestData["associateGrpId"];
-      delete this.rowDataWithRestData["linkedList"];
+      delete rowDataWithRestData["sku"];
+      delete rowDataWithRestData["upcList"];
+      delete rowDataWithRestData["warranty"];
+      delete rowDataWithRestData["retailPrice"];
+      delete rowDataWithRestData["associateGrpId"];
+      delete rowDataWithRestData["linkedList"];
 
       this.dataToBeDisplayedOnModal[0] = this.mainDataToDisplay;
 
-      this.dataToBeDisplayedOnModal[1] = this.rowDataWithRestData;
+      this.dataToBeDisplayedOnModal[1] = rowDataWithRestData;
       this.dataToBeDisplayedOnModal[2] = this.rowDataWithLinkedSKUs;
       return this.dataToBeDisplayedOnModal;
-    } else if (this.tableName === "Free_SKUs") {
+    } else if (tableName === "Free_SKUs") {
       this.mainDataToDisplay = {
         sku: row.sku,
         itemDesc: row.itemDesc,
@@ -110,18 +110,18 @@ export class LogDescriptionDataOrderService {
         freeSku: row.freeSku,
         freeSkuPrice: row.freeSkuPrice
       };
-      delete this.rowDataWithRestData["sku"];
-      delete this.rowDataWithRestData["itemDesc"];
-      delete this.rowDataWithRestData["posId"];
-      delete this.rowDataWithRestData["permPrice"];
-      delete this.rowDataWithRestData["freeSku"];
-      delete this.rowDataWithRestData["freeSkuPrice"];
+      delete rowDataWithRestData["sku"];
+      delete rowDataWithRestData["itemDesc"];
+      delete rowDataWithRestData["posId"];
+      delete rowDataWithRestData["permPrice"];
+      delete rowDataWithRestData["freeSku"];
+      delete rowDataWithRestData["freeSkuPrice"];
 
       this.dataToBeDisplayedOnModal[0] = this.mainDataToDisplay;
 
-      this.dataToBeDisplayedOnModal[1] = this.rowDataWithRestData;
+      this.dataToBeDisplayedOnModal[1] = rowDataWithRestData;
       return this.dataToBeDisplayedOnModal;
-    } else if (this.tableName === "Age_Restricted_Special_rest") {
+    } else if (tableName === "Age_Restricted_Special_rest") {
       this.mainDataToDisplay = {
         sku: row.sku,
         itemDesc: row.itemDesc,
@@ -129,47 +129,47 @@ export class LogDescriptionDataOrderService {
         retailPrice: row.retailPrice,
         alertCode: row.alertCode
       };
-      delete this.rowDataWithRestData["sku"];
-      delete this.rowDataWithRestData["itemDesc"];
-      delete this.rowDataWithRestData["upcList"];
-      delete this.rowDataWithRestData["retailPrice"];
-      delete this.rowDataWithRestData["alertCode"];
+      delete rowDataWithRestData["sku"];
+      delete rowDataWithRestData["itemDesc"];
+      delete rowDataWithRestData["upcList"];
+      delete rowDataWithRestData["retailPrice"];
+      delete rowDataWithRestData["alertCode"];
 
       this.dataToBeDisplayedOnModal[0] = this.mainDataToDisplay;
 
-      this.dataToBeDisplayedOnModal[1] = this.rowDataWithRestData;
+      this.dataToBeDisplayedOnModal[1] = rowDataWithRestData;
       return this.dataToBeDisplayedOnModal;
-    } else if (this.tableName === "Employee") {
+    } else if (tableName === "Employee") {
       this.mainDataToDisplay = {
         emplName: row.emplName,
         emplId: row.emplId,
         emplRole: row.emplRole,
         store: row.store
       };
-      delete this.rowDataWithRestData["emplName"];
-      delete this.rowDataWithRestData["emplId"];
-      delete this.rowDataWithRestData["emplRole"];
-      delete this.rowDataWithRestData["store"];
+      delete rowDataWithRestData["emplName"];
+      delete rowDataWithRestData["emplId"];
+      delete rowDataWithRestData["emplRole"];
+      delete rowDataWithRestData["store"];
 
       this.dataToBeDisplayedOnModal[0] = this.mainDataToDisplay;
 
-      this.dataToBeDisplayedOnModal[1] = this.rowDataWithRestData;
+      this.dataToBeDisplayedOnModal[1] = rowDataWithRestData;
       return this.dataToBeDisplayedOnModal;
-    } else if (this.tableName === "Tax_Rates") {
+    } else if (tableName === "Tax_Rates") {
       this.mainDataToDisplay = {
         store: row.store,
         rate: row.rate,
         state: row.state
       };
-      delete this.rowDataWithRestData["store"];
-      delete this.rowDataWithRestData["rate"];
-      delete this.rowDataWithRestData["state"];
+      delete rowDataWithRestData["store"];
+      delete rowDataWithRestData["rate"];
+      delete rowDataWithRestData["state"];
 
       this.dataToBeDisplayedOnModal[0] = this.mainDataToDisplay;
 
-      this.dataToBeDisplayedOnModal[1] = this.rowDataWithRestData;
+      this.dataToBeDisplayedOnModal[1] = rowDataWithRestData;
       return this.dataToBeDisplayedOnModal;
-    } else if (this.tableName === "Promos") {
+    } else if (tableName === "Promos") {
       this.mainDataToDisplay = {
         promoNum: row.promoNum,
         promoName: row.promoName,
@@ -179,17 +179,17 @@ export class LogDescriptionDataOrderService {
         promoStartDate: row.promoStartDate,
         promoEndDate: row.promoEndDate
       };
-      delete this.rowDataWithRestData["promoNum"];
-      delete this.rowDataWithRestData["promoName"];
-      delete this.rowDataWithRestData["discountName"];
-      delete this.rowDataWithRestData["discountType"];
-      delete this.rowDataWithRestData["discountDesc"];
-      delete this.rowDataWithRestData["promoStartDate"];
-      delete this.rowDataWithRestData["promoEndDate"];
+      delete rowDataWithRestData["promoNum"];
+      delete rowDataWithRestData["promoName"];
+      delete rowDataWithRestData["discountName"];
+      delete rowDataWithRestData["discountType"];
+      delete rowDataWithRestData["discountDesc"];
+      delete rowDataWithRestData["promoStartDate"];
+      delete rowDataWithRestData["promoEndDate"];
 
       this.dataToBeDisplayedOnModal[0] = this.mainDataToDisplay;
 
-      this.dataToBeDisplayedOnModal[1] = this.rowDataWithRestData;
+      this.dataToBeDisplayedOnModal[1] = rowDataWithRestData;
       return this.dataToBeDisplayedOnModal;
     }
   }

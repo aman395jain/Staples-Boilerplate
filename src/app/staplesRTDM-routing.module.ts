@@ -17,7 +17,12 @@ import { LogDetailComponent } from "./components/log-detail/log-detail.component
         {
           path: "testDataManagement",
           component: DisplayLogTableComponent,
-          children: [{ path: "logDetail", component: LogDetailComponent }]
+          children: [
+            {
+              path: "logDetail",
+              component: LogDetailComponent
+            }
+          ]
         },
         {
           path: "print",

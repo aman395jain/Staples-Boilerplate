@@ -1,0 +1,41 @@
+.print-close-row {
+  margin-bottom: 15px;
+  margin-right: 0px;
+  .print-close-icon {
+    margin: 0 10px;
+  }
+}
+
+.classified-content {
+  height: 32px;
+  color: #007bff;
+  font-weight: bold;
+}
+
+.main-attribute-content {
+  height: 300px;
+  overflow: auto;
+}
+
+.linked-sku-table {
+  height: 150px;
+  overflow: auto;
+  margin-bottom: 20px;
+  margin-top: 12px;
+}
+
+.other-attribute-content {
+  height: 300px;
+  overflow: auto;
+}
+
+.table-bordered {
+  .table-header {
+    color: #cc0000;
+  }
+}
+
+.description-blocks {
+  height: 60px;
+  overflow: auto;
+}
