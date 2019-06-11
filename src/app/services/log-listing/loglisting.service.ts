@@ -83,6 +83,29 @@ export class LoglistingService {
     );
   }
 
+  postDataForPromos(promoId) {
+    return this.http.post("", promoId).pipe(
+      catchError((err: Response) => {
+        console.log("in the error", err.status);
+        return null;
+      })
+    );
+  }
+
+  getDataForPromosJustForTest() {
+    return this.http
+      .get("http://www.mocky.io/v2/5cf905a23400008a2e01b322")
+      .pipe(
+        map((response: Response) => {
+          return response;
+        }),
+        catchError((err: Response) => {
+          console.log("in the error", err.status);
+          return null;
+        })
+      );
+  }
+
   getTestDataToPrint(printedData) {
     this._dataToBePrinted.next(printedData);
   }

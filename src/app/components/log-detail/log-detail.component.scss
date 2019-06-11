@@ -13,9 +13,10 @@
   font-weight: bold;
 }
 
-.main-attribute-content {
-  margin-left: 0px !important;
-  margin-right: 0px !important;
+.attribute-table-content {
+  padding-left: 15px;
+  padding-right: 15px;
+  height: 150px;
   overflow: auto;
 }
 
@@ -27,9 +28,10 @@
 }
 
 .other-attribute-content {
-  margin-left: 0px !important;
-  margin-right: 0px !important;
+  padding-left: 15px;
+  padding-right: 15px;
   overflow: auto;
+  height: 150px;
 }
 
 .table-bordered {
