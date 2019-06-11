@@ -14,7 +14,8 @@
 }
 
 .main-attribute-content {
-  height: 150px;
+  margin-left: 0px !important;
+  margin-right: 0px !important;
   overflow: auto;
 }
 
@@ -26,7 +27,8 @@
 }
 
 .other-attribute-content {
-  height: 300px;
+  margin-left: 0px !important;
+  margin-right: 0px !important;
   overflow: auto;
 }
 
@@ -39,4 +41,8 @@
 .description-blocks {
   height: 60px;
   overflow: auto;
+}
+
+.ng-star-inserted {
+  width: 20%;
 }

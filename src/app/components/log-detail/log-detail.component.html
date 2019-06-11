@@ -17,26 +17,21 @@
         >
       </div>
       <div class="print-close-icon">
-          <mat-icon
-            _ngcontent-c1=""
-            class="print-document mat-icon mat-list-icon material-icons"
-            mat-list-icon=""
-            role="img"
-            aria-hidden="true"
-            data-toggle="tooltip"
-            title="Back to table"
-            (click)="backToDataManagement()"
-            >flip_to_back</mat-icon
-          >
-        </div>
+        <i
+          class="fa fa-undo print-document"
+          aria-hidden="true"
+          (click)="backToDataManagement()"
+          data-toggle="tooltip"
+          title="Back to table"
+        ></i>
+      </div>
     </div>
     <div class="classified-content align-items-center justify-content-end">
-      Main Attribute
+      Main Attributes
     </div>
     <perfect-scrollbar [scrollIndicators]="true">
       <div class="row main-attribute-content">
         <div
-          class="col-md-3"
           *ngFor="let data of dataDisplayOnModal | keyvalue"
         >
           <table class="table table-bordered">
@@ -80,7 +75,7 @@
       class="classified-content align-items-center justify-content-end"
       *ngIf="linkedSKUsDisplayStatus"
     >
-      Linked SKUs Attribute
+      Linked SKUs Attributes
     </div>
     <div>
       <perfect-scrollbar [scrollIndicators]="true">
@@ -113,12 +108,11 @@
       </perfect-scrollbar>
     </div>
     <div class="classified-content align-items-center justify-content-end">
-      Other Attribute
+      Other Attributes
     </div>
     <perfect-scrollbar [scrollIndicators]="true">
       <div class="row other-attribute-content">
         <div
-          class="col-md-3"
           *ngFor="let data of dataDisplayOnModalRest | keyvalue"
         >
           <table class="table table-bordered">

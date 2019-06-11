@@ -106,11 +106,6 @@ export const logDataTableConst = {
       cell: null
     },
     {
-      columnDef: "store",
-      header: "Store",
-      cell: (element: any) => `${element.store}`
-    },
-    {
       columnDef: "emplId",
       header: "Empl ID",
       cell: (element: any) => `${element.emplId}`
