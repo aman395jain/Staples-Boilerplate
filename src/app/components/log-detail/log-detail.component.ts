@@ -8,6 +8,7 @@ import { NavBarService } from "src/app/services/nav-bar/nav-bar.service";
 import { DashboardHeaderNameConverstionService } from "src/app/services/dashboard-header-name-conversion/dashboard-header-name-converstion.service";
 import { LogDescriptionDataOrderService } from "src/app/helper/logDescription/log-description-data-order.service";
 import { PrintDocumentService } from "src/app/services/print-document/print-document.service";
+import { LoglistingService } from "src/app/services/log-listing/loglisting.service";
 
 @Component({
   selector: "staples-log-detail",
@@ -28,12 +29,16 @@ export class LogDetailComponent implements OnInit, OnDestroy {
   dataDisplayOnModalRest: any = [];
   dataBarCode: any = [];
 
-  linkedSKUsDisplayStatus = false;
+  linkedSKUsDisplayStatus: boolean = false;
+  promoBuyDisplayStatus: boolean = false;
+  promoGetDisplayStatus: boolean = false;
 
   tableNameLogDetails = "";
 
   private _onDestroy = new Subject<void>();
   linkedSKUsData: any;
+  promosBuyData: any[];
+  promosGetData: any[];
 
   constructor(
     private router: Router,
@@ -41,7 +46,8 @@ export class LogDetailComponent implements OnInit, OnDestroy {
     private _navBarService: NavBarService,
     private _printDocumentService: PrintDocumentService,
     private _dashboardHeaderNameConverstionService: DashboardHeaderNameConverstionService,
-    private _logDiscriptionDataOrderService: LogDescriptionDataOrderService
+    private _logDiscriptionDataOrderService: LogDescriptionDataOrderService,
+    private _loglistingService: LoglistingService
   ) {}
 
   ngOnInit() {
@@ -96,6 +102,28 @@ export class LogDetailComponent implements OnInit, OnDestroy {
           }
         } else {
           this.dataBarCode.push(this.dataDiscriptionKeysToDisplay[0].barCode);
+        }
+
+        if (this.tableNameLogDetails === "Promos") {
+          this._loglistingService
+            .getDataForPromosJustForTest()
+            .subscribe(data => {
+              data.map(promoData => {
+                if (
+                  promoData.buyOrGetFlag &&
+                  promoData.buyOrGetFlag === "buy"
+                ) {
+                  this.promoBuyDisplayStatus = true;
+                  this.promosBuyData = promoData;
+                } else if (
+                  promoData.buyOrGetFlag &&
+                  promoData.buyOrGetFlag === "get"
+                ) {
+                  this.promoGetDisplayStatus = true;
+                  this.promosGetData = promoData;
+                }
+              });
+            });
         }
       });
   }

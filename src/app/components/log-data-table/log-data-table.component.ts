@@ -254,7 +254,13 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
         } else if (tableName === "Coupon") {
           this.tableName = "Coupon";
         } else if (tableName === "Tax_Exempt") {
+          this.logTableGridColumns = logDataTableConst.Tax_Exempt;
+          this._logModalDataService.getTableNameForLogDetail("Tax_Exempt");
+
           this.tableName = "Tax_Exempt";
+          this.displayedColumns = this.logTableGridColumns.map(
+            columnName => columnName.columnDef
+          );
         } else if (tableName === "Rewards") {
           this.tableName = "Rewards";
         } else if (tableName === "CBP") {

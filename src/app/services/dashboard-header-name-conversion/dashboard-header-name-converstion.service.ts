@@ -104,7 +104,14 @@ export class DashboardHeaderNameConverstionService {
     discountDesc: "Discount Description",
     linkedList: "Linked SKUs",
     posaSku: "POSA SKU",
-    serialNumber: "Serial Number"
+    serialNumber: "Serial Number",
+    companyName: "Company Name",
+    govtCertificate: "Govt Certificate",
+    name: "Name",
+    phoneNo: "Phone Number",
+    expirationDate: "Expiration Date",
+    taxExmInd: "Tax Exception ID",
+    taxExemptNbr: "Tax Exemption Number"
   };
   printedDataNewHeader = {};
 

@@ -453,6 +453,53 @@ export const logDataTableConst = {
       header: null,
       cell: null
     }
+  ],
+  Tax_Exempt: [
+    {
+      columnDef: "select",
+      header: null,
+      cell: null
+    },
+    {
+      columnDef: "taxExemptNbr",
+      header: "Tax Exempt",
+      cell: (element: any) => `${element.taxExemptNbr}`
+    },
+    {
+      columnDef: "name",
+      header: "Name",
+      cell: (element: any) => `${element.name}`
+    },
+    {
+      columnDef: "state",
+      header: "Area Code",
+      cell: (element: any) => `${element.state}`
+    },
+    {
+      columnDef: "phoneNo",
+      header: "Phone No.",
+      cell: (element: any) => `${element.phoneNo}`
+    },
+    {
+      columnDef: "companyName",
+      header: "Company Name",
+      cell: (element: any) => `${element.companyName}`
+    },
+    {
+      columnDef: "govtCertificate",
+      header: "Govt Certificate",
+      cell: (element: any) => `${element.govtCertificate}`
+    },
+    {
+      columnDef: "expirationDate",
+      header: "Test Scenario Type",
+      cell: (element: any) => `${element.expirationDate}`
+    },
+    {
+      columnDef: "action",
+      header: null,
+      cell: null
+    }
   ]
 };
 

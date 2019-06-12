@@ -31,9 +31,7 @@
     </div>
     <perfect-scrollbar [scrollIndicators]="true">
       <div class="row attribute-table-content">
-        <div
-          *ngFor="let data of dataDisplayOnModal | keyvalue"
-        >
+        <div *ngFor="let data of dataDisplayOnModal | keyvalue">
           <table class="table table-bordered">
             <thead>
               <tr *ngIf="!(data.key === 'checked' || data.key === 'index')">
@@ -111,10 +109,8 @@
       Other Attributes
     </div>
     <perfect-scrollbar [scrollIndicators]="true">
-      <div class="row attribute-table-content">
-        <div
-          *ngFor="let data of dataDisplayOnModalRest | keyvalue"
-        >
+      <div class="row other-attribute-table-content">
+        <div *ngFor="let data of dataDisplayOnModalRest | keyvalue">
           <table class="table table-bordered">
             <thead>
               <tr *ngIf="!(data.key === 'checked' || data.key === 'index')">
@@ -151,6 +147,87 @@
                     {{ barCode }}
                   </div>
                 </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </perfect-scrollbar>
+  </div>
+
+  <div
+    class="classified-content align-items-center justify-content-end"
+    *ngIf="promoBuyDisplayStatus"
+  >
+    Promos Buy Attributes
+  </div>
+  <div>
+    <perfect-scrollbar [scrollIndicators]="true">
+      <div class="row" *ngIf="promoBuyDisplayStatus">
+        <div class="col-md-12 ">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th class="table-header">
+                  <span>Buy Item</span>
+                </th>
+                <th class="table-header">
+                  <span>Buy Qty</span>
+                </th>
+                <th class="table-header">
+                  <span>Buy Type</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{ promosBuyData.promoGroup }}</td>
+                <td>{{ promosBuyData.thresholdQty }}</td>
+                <td>{{ promosBuyData.itemReqType }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </perfect-scrollbar>
+  </div>
+  <div
+    class="classified-content align-items-center justify-content-end"
+    *ngIf="promoGetDisplayStatus"
+  >
+    Promos Get Attributes
+  </div>
+  <div>
+    <perfect-scrollbar [scrollIndicators]="true">
+      <div class="row" *ngIf="promoGetDisplayStatus">
+        <div class="col-md-12">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th class="table-header">
+                  <span>Get Item</span>
+                </th>
+                <th class="table-header">
+                  <span>Get Qty</span>
+                </th>
+                <th class="table-header">
+                  <span>Get Type</span>
+                </th>
+                <th class="table-header">
+                  <span>Modifier Type</span>
+                </th>
+                <th class="table-header">
+                  <span>Discount value</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{ promosGetData.promoGroup }}</td>
+                <td>{{ promosGetData.thresholdQty }}</td>
+                <td>{{ promosGetData.itemReqType }}</td>
+                <td>{{ promosGetData.discountQualifierType }}</td>
+                <td>{{ promosGetData.discountQualifierValue }}</td>
               </tr>
             </tbody>
           </table>
