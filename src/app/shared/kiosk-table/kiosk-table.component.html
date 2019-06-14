@@ -1,0 +1,97 @@
+<div class="kiosk-form">
+  <div class="container">
+    <div class="row">
+      <div class="col-10">
+        <form
+          name="kioskForm"
+          [formGroup]="kioskForm"
+          (ngSubmit)="kioskForm.valid && onSubmit()"
+        >
+          <div class="row kiosk-form-inner">
+            <div class="form-group col-6">
+              <select class="form-control" formControlName="fileName">
+                <option value="" selected disabled>select a file</option>
+                <option>Prepaid Kiosk Order with 5 digit coupons</option>
+                <option>Prepaid Kiosk Order with 16 digit coupons</option>
+                <option>Prepaid Kiosk Order with ARW rewards number</option>
+                <option>Prepaid Kiosk Order with Ingram</option>
+                <option>Prepaid Kiosk Order with rewards number</option>
+                <option>Prepaid Kiosk Order with United SKU</option>
+              </select>
+            </div>
+            <div class="form-group col-6">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="enter the customer's email"
+                formControlName="customerEmail"
+              />
+            </div>
+            <div class="form-group col-6">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="enter the customer's email"
+                formControlName="customerEmail"
+              />
+            </div>
+            <div class="form-group col-6">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="enter the customer's First name"
+                formControlName="customerFname"
+              />
+            </div>
+            <div class="form-group col-6">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="enter the customer's Last name"
+                formControlName="customerLname"
+              />
+            </div>
+            <div class="form-group col-6">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="enter the customer's Phone Number"
+                formControlName="CustomerPhoneNo"
+              />
+            </div>
+            <div class="form-group col-6">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="enter the customer's Zip Code"
+                formControlName="CustomerZipCode"
+              />
+            </div>
+            <div class="form-group col-6">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="enter the customer's Zip Code"
+                formControlName="OrderNo"
+              />
+            </div>
+            <div class="form-group col-6">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="enter the Reservation ID"
+                formControlName="ReservationID"
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <button class="btn btn-primary">
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

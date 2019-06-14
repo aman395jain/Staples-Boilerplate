@@ -9,12 +9,14 @@ import { PrintDocumentSingleLogDataComponent } from "./components/print-document
 import { PrintDocumentComponent } from "./components/print-document/print-document.component";
 import { LogDetailComponent } from "./components/log-detail/log-detail.component";
 import { LogDetailGuard } from "./guards/log-detail/log-detail-guard.guard";
+import { KioskTableComponent } from "./shared/kiosk-table/kiosk-table.component";
 
 @NgModule({
   imports: [
     RouterModule.forRoot(
       [
         { path: "", component: HomeComponent },
+        { path: "kioskTable", component: KioskTableComponent },
         {
           path: "testDataManagement",
           component: DisplayLogTableComponent,
