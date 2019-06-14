@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl } from "@angular/forms";
+import { LoglistingService } from "src/app/services/log-listing/loglisting.service";
 
 @Component({
   selector: "staples-kiosk-table",
@@ -20,7 +21,7 @@ export class KioskTableComponent implements OnInit {
 
   selectedFileName = "";
 
-  constructor() {}
+  constructor(private _loglistingService: LoglistingService) {}
 
   get fileName() {
     return this.kioskForm.get("fileName");
@@ -205,5 +206,8 @@ export class KioskTableComponent implements OnInit {
 
   onSubmit() {
     console.log(JSON.stringify(this.kioskForm.value));
+    this._loglistingService.postDataForKioskOrder(
+      JSON.stringify(this.kioskForm.value)
+    );
   }
 }

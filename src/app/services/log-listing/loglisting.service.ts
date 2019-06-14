@@ -94,6 +94,15 @@ export class LoglistingService {
     );
   }
 
+  postDataForKioskOrder(formData) {
+    return this.http.post("", formData).pipe(
+      catchError((err: Response) => {
+        console.log("in the error", err.status);
+        return null;
+      })
+    );
+  }
+
   getDataForPromosJustForTest(): any {
     return this.http
       .get("http://www.mocky.io/v2/5cf905a23400008a2e01b322")
