@@ -500,6 +500,48 @@ export const logDataTableConst = {
       header: null,
       cell: null
     }
+  ],
+  Order: [
+    {
+      columnDef: "select",
+      header: null,
+      cell: null
+    },
+    {
+      columnDef: "orderType",
+      header: "Order Type",
+      cell: (element: any) => `${element.orderType}`
+    },
+    {
+      columnDef: "source",
+      header: "Source",
+      cell: (element: any) => `${element.source}`
+    },
+    {
+      columnDef: "orderNo",
+      header: "Order",
+      cell: (element: any) => `${element.orderNo}`
+    },
+    {
+      columnDef: "orderLineDetail",
+      header: "Order Line Details",
+      cell: (element: any) => `${element.orderLineDetail}`
+    },
+    {
+      columnDef: "expiryDate",
+      header: "Order Expiry Date",
+      cell: (element: any) => `${element.expiryDate}`
+    },
+    {
+      columnDef: "sourceCreateOrderXml",
+      header: "Source Create Order XML",
+      cell: (element: any) => `${element.sourceCreateOrderXml}`
+    },
+    {
+      columnDef: "action",
+      header: null,
+      cell: null
+    }
   ]
 };
 

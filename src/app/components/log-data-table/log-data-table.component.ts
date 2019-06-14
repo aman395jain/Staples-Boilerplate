@@ -250,7 +250,13 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
         } else if (tableName === "POSA") {
           this.tableName = "POSA";
         } else if (tableName === "Order") {
+          this.logTableGridColumns = logDataTableConst.Order;
+          this._logModalDataService.getTableNameForLogDetail("Order");
+
           this.tableName = "Order";
+          this.displayedColumns = this.logTableGridColumns.map(
+            columnName => columnName.columnDef
+          );
         } else if (tableName === "Coupon") {
           this.tableName = "Coupon";
         } else if (tableName === "Tax_Exempt") {
@@ -373,6 +379,10 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
       event.value.toString(),
       this.dataByAPI
     );
+  }
+
+  createOrder() {
+    this.router.navigate(["/kioskTable"]);
   }
 
   /**

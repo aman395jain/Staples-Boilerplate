@@ -116,6 +116,13 @@
       display: none;
     }
   }
+  .create-order {
+    color: #0056b3 !important;
+    cursor: pointer;
+    &:hover {
+      text-decoration: none !important;
+    }
+  }
 }
 
 .under-construction {

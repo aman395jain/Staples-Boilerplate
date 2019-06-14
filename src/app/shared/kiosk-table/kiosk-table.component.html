@@ -9,14 +9,30 @@
         >
           <div class="row kiosk-form-inner">
             <div class="form-group col-6">
-              <select class="form-control" formControlName="fileName">
+              <select
+                class="form-control"
+                formControlName="fileName"
+                (change)="onChange($event.target.value)"
+              >
                 <option value="" selected disabled>select a file</option>
-                <option>Prepaid Kiosk Order with 5 digit coupons</option>
-                <option>Prepaid Kiosk Order with 16 digit coupons</option>
-                <option>Prepaid Kiosk Order with ARW rewards number</option>
-                <option>Prepaid Kiosk Order with Ingram</option>
-                <option>Prepaid Kiosk Order with rewards number</option>
-                <option>Prepaid Kiosk Order with United SKU</option>
+                <option value="Prepaid Kiosk Order with 5 digit coupons"
+                  >Prepaid Kiosk Order with 5 digit coupons</option
+                >
+                <option value="Prepaid Kiosk Order with 16 digit coupons"
+                  >Prepaid Kiosk Order with 16 digit coupons</option
+                >
+                <option value="Prepaid Kiosk Order with ARW rewards number"
+                  >Prepaid Kiosk Order with ARW rewards number</option
+                >
+                <option value="Prepaid Kiosk Order with Ingram"
+                  >Prepaid Kiosk Order with Ingram</option
+                >
+                <option value="Prepaid Kiosk Order with rewards number"
+                  >Prepaid Kiosk Order with rewards number</option
+                >
+                <option value="Prepaid Kiosk Order with United SKU"
+                  >Prepaid Kiosk Order with United SKU</option
+                >
               </select>
             </div>
             <div class="form-group col-6">
@@ -81,6 +97,379 @@
                 class="form-control"
                 placeholder="enter the Reservation ID"
                 formControlName="ReservationID"
+              />
+            </div>
+            <div
+              *ngIf="
+                selectedFileName === 'Prepaid Kiosk Order with 5 digit coupons'
+              "
+              class="form-group col-6"
+            >
+              <input
+                type="text"
+                class="form-control"
+                placeholder="enter the item Description for digit1"
+                formControlName="itemDesc5digit1"
+              />
+            </div>
+            <div
+              *ngIf="
+                selectedFileName === 'Prepaid Kiosk Order with 5 digit coupons'
+              "
+              class="form-group col-6"
+            >
+              <input
+                type="text"
+                class="form-control"
+                placeholder="enter the item ID for digit1"
+                formControlName="itemID5digit1"
+              />
+            </div>
+            <div
+              *ngIf="
+                selectedFileName === 'Prepaid Kiosk Order with 5 digit coupons'
+              "
+              class="form-group col-6"
+            >
+              <input
+                type="text"
+                class="form-control"
+                placeholder="enter the item Description for digit2"
+                formControlName="itemDesc5digit2"
+              />
+            </div>
+            <div
+              *ngIf="
+                selectedFileName === 'Prepaid Kiosk Order with 5 digit coupons'
+              "
+              class="form-group col-6"
+            >
+              <input
+                type="text"
+                class="form-control"
+                placeholder="enter the item ID for digit2"
+                formControlName="itemID5digit2"
+              />
+            </div>
+            <div
+              *ngIf="
+                selectedFileName === 'Prepaid Kiosk Order with 5 digit coupons'
+              "
+              class="form-group col-6"
+            >
+              <input
+                type="text"
+                class="form-control"
+                placeholder="enter the item Description for digit3"
+                formControlName="itemDesc5digit3"
+              />
+            </div>
+
+            <div
+              *ngIf="
+                selectedFileName === 'Prepaid Kiosk Order with 5 digit coupons'
+              "
+              class="form-group col-6"
+            >
+              <input
+                type="text"
+                class="form-control"
+                placeholder="enter the item ID for digit3"
+                formControlName="itemID5digit3"
+              />
+            </div>
+            <div
+              *ngIf="
+                selectedFileName === 'Prepaid Kiosk Order with 5 digit coupons'
+              "
+              class="form-group col-6"
+            >
+              <input
+                type="text"
+                class="form-control"
+                placeholder="enter the item Description for digit4"
+                formControlName="itemDesc5digit4"
+              />
+            </div>
+            <div
+              *ngIf="
+                selectedFileName === 'Prepaid Kiosk Order with 5 digit coupons'
+              "
+              class="form-group col-6"
+            >
+              <input
+                type="text"
+                class="form-control"
+                placeholder="enter the item ID for digit4"
+                formControlName="itemID5digit4"
+              />
+            </div>
+
+            <div
+              *ngIf="
+                selectedFileName === 'Prepaid Kiosk Order with 16 digit coupons'
+              "
+              class="form-group col-6"
+            >
+              <input
+                type="text"
+                class="form-control"
+                placeholder="enter the item Description for digit coupon1"
+                formControlName="itemDesc16DigitCoupon1"
+              />
+            </div>
+            <div
+              *ngIf="
+                selectedFileName === 'Prepaid Kiosk Order with 16 digit coupons'
+              "
+              class="form-group col-6"
+            >
+              <input
+                type="text"
+                class="form-control"
+                placeholder="enter the item ID for digit coupon1"
+                formControlName="itemID16DigitCoupon1"
+              />
+            </div>
+            <div
+              *ngIf="
+                selectedFileName === 'Prepaid Kiosk Order with 16 digit coupons'
+              "
+              class="form-group col-6"
+            >
+              <input
+                type="text"
+                class="form-control"
+                placeholder="enter the item Description for digit coupon2"
+                formControlName="itemDesc16DigitCoupon2"
+              />
+            </div>
+            <div
+              *ngIf="
+                selectedFileName === 'Prepaid Kiosk Order with 16 digit coupons'
+              "
+              class="form-group col-6"
+            >
+              <input
+                type="text"
+                class="form-control"
+                placeholder="enter the item ID for digit coupon2"
+                formControlName="itemID16DigitCoupon2"
+              />
+            </div>
+
+            <div
+              *ngIf="
+                selectedFileName ===
+                'Prepaid Kiosk Order with ARW rewards number'
+              "
+              class="form-group col-6"
+            >
+              <input
+                type="text"
+                class="form-control"
+                placeholder="enter the item Description for ARW Reward No1"
+                formControlName="itemDescARWRN1"
+              />
+            </div>
+            <div
+              *ngIf="
+                selectedFileName ===
+                'Prepaid Kiosk Order with ARW rewards number'
+              "
+              class="form-group col-6"
+            >
+              <input
+                type="text"
+                class="form-control"
+                placeholder="enter the item ID for ARW Reward No1"
+                formControlName="itemIDARWRN1"
+              />
+            </div>
+            <div
+              *ngIf="
+                selectedFileName ===
+                'Prepaid Kiosk Order with ARW rewards number'
+              "
+              class="form-group col-6"
+            >
+              <input
+                type="text"
+                class="form-control"
+                placeholder="enter the item Description for ARW Reward No2"
+                formControlName="itemDescARWRN2"
+              />
+            </div>
+            <div
+              *ngIf="
+                selectedFileName ===
+                'Prepaid Kiosk Order with ARW rewards number'
+              "
+              class="form-group col-6"
+            >
+              <input
+                type="text"
+                class="form-control"
+                placeholder="enter the item ID for ARW Reward No2"
+                formControlName="itemIDARWRN2"
+              />
+            </div>
+            <div
+              *ngIf="
+                selectedFileName ===
+                'Prepaid Kiosk Order with ARW rewards number'
+              "
+              class="form-group col-6"
+            >
+              <input
+                type="text"
+                class="form-control"
+                placeholder="enter the item Description for ARW Reward No3"
+                formControlName="itemDescARWRN3"
+              />
+            </div>
+            <div
+              *ngIf="
+                selectedFileName ===
+                'Prepaid Kiosk Order with ARW rewards number'
+              "
+              class="form-group col-6"
+            >
+              <input
+                type="text"
+                class="form-control"
+                placeholder="enter the item ID for ARW Reward No3"
+                formControlName="itemIDARWRN3"
+              />
+            </div>
+            <div
+              *ngIf="
+                selectedFileName ===
+                'Prepaid Kiosk Order with ARW rewards number'
+              "
+              class="form-group col-6"
+            >
+              <input
+                type="text"
+                class="form-control"
+                placeholder="enter the item Description for ARW Reward No4"
+                formControlName="itemDescARWRN4"
+              />
+            </div>
+            <div
+              *ngIf="
+                selectedFileName ===
+                'Prepaid Kiosk Order with ARW rewards number'
+              "
+              class="form-group col-6"
+            >
+              <input
+                type="text"
+                class="form-control"
+                placeholder="enter the item ID for ARW Reward No4"
+                formControlName="itemIDARWRN4"
+              />
+            </div>
+
+            <div
+              *ngIf="selectedFileName === 'Prepaid Kiosk Order with Ingram'"
+              class="form-group col-6"
+            >
+              <input
+                type="text"
+                class="form-control"
+                placeholder="enter the item Description for Ingram"
+                formControlName="itemDescIngram"
+              />
+            </div>
+            <div
+              *ngIf="selectedFileName === 'Prepaid Kiosk Order with Ingram'"
+              class="form-group col-6"
+            >
+              <input
+                type="text"
+                class="form-control"
+                placeholder="enter the item ID for Ingram"
+                formControlName="itemIDIngram"
+              />
+            </div>
+            <div
+              *ngIf="
+                selectedFileName === 'Prepaid Kiosk Order with rewards number'
+              "
+              class="form-group col-6"
+            >
+              <input
+                type="text"
+                class="form-control"
+                placeholder="enter the item Description for Rewards No1"
+                formControlName="itemDescRewardNo1"
+              />
+            </div>
+            <div
+              *ngIf="
+                selectedFileName === 'Prepaid Kiosk Order with rewards number'
+              "
+              class="form-group col-6"
+            >
+              <input
+                type="text"
+                class="form-control"
+                placeholder="enter the item ID for Rewards No1"
+                formControlName="itemIDRewardNo1"
+              />
+            </div>
+            <div
+              *ngIf="
+                selectedFileName === 'Prepaid Kiosk Order with rewards number'
+              "
+              class="form-group col-6"
+            >
+              <input
+                type="text"
+                class="form-control"
+                placeholder="enter the item Description for Rewards No2"
+                formControlName="itemDescRewardNo2"
+              />
+            </div>
+            <div
+              *ngIf="
+                selectedFileName === 'Prepaid Kiosk Order with rewards number'
+              "
+              class="form-group col-6"
+            >
+              <input
+                type="text"
+                class="form-control"
+                placeholder="enter the item ID for Rewards No2"
+                formControlName="itemIDRewardNo2"
+              />
+            </div>
+
+            <div
+              *ngIf="
+                selectedFileName === 'Prepaid Kiosk Order with United SKU'
+              "
+              class="form-group col-6"
+            >
+              <input
+                type="text"
+                class="form-control"
+                placeholder="enter the item Description for SKU"
+                formControlName="itemDescSku"
+              />
+            </div>
+            <div
+              *ngIf="
+                selectedFileName === 'Prepaid Kiosk Order with United SKU'
+              "
+              class="form-group col-6"
+            >
+              <input
+                type="text"
+                class="form-control"
+                placeholder="enter the item ID for SKU"
+                formControlName="itemIDSku"
               />
             </div>
           </div>

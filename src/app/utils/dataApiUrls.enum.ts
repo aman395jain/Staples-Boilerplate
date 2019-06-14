@@ -14,7 +14,7 @@ export enum dataUrls {
   getReturnDrivingLicence = "http://www.mocky.io/v2/5cbff4ce310000170e035f4e",
   getLowestPrice = "http://www.mocky.io/v2/5cbffef9310000580b035f87",
   getPOSA = "http://www.mocky.io/v2/5cb860794c0000c51ad3d50d",
-  getOrder = "http://www.mocky.io/v2/5cb860794c0000c51ad3d50d",
+  getOrder = "http://www.mocky.io/v2/5d0393333200004b00d7474b",
   getPromos = "http://www.mocky.io/v2/5ce6717d3300005600731588",
   getItemGroup = "http://www.mocky.io/v2/5cf60cd9320000ac2b8ccf7c",
   getTaxExempt = "http://www.mocky.io/v2/5cffb39f3200005400eac913"

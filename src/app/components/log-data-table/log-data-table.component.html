@@ -4,7 +4,6 @@
   *ngIf="
     !(
       tableName === 'POSA' ||
-      tableName === 'Order' ||
       tableName === 'Coupon' ||
       tableName === 'Rewards' ||
       tableName === 'CBP' ||
@@ -60,6 +59,11 @@
               >Advance Search</a
             >
           </div>
+        </div>
+      </div>
+      <div class="row" *ngIf="tableName === 'Order'">
+        <div class="col-md-12">
+          <a class="create-order" (click)="createOrder()">create order</a>
         </div>
       </div>
     </div>
@@ -189,7 +193,8 @@
                   column.columnDef === 'action' ||
                   column.columnDef === 'select' ||
                   column.columnDef === 'promoNum' ||
-                  column.columnDef === 'serialNumber'
+                  column.columnDef === 'serialNumber' ||
+                  column.columnDef === 'orderNo'
                 )
               "
               >{{ column.cell(row) }}</span
@@ -214,7 +219,8 @@
               *ngIf="
                 column.header === 'Bar Code' ||
                 column.header === 'UPC' ||
-                column.columnDef === 'serialNumber'
+                column.columnDef === 'serialNumber' ||
+                column.columnDef === 'orderNo'
               "
             >
               <ngx-barcode
@@ -266,7 +272,6 @@
   [hidden]="isLoading"
   *ngIf="
     (tableName === 'POSA' ||
-      tableName === 'Order' ||
       tableName === 'Coupon' ||
       tableName === 'Rewards' ||
       tableName === 'CBP' ||
