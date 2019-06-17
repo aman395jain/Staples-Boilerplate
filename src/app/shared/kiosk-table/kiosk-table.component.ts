@@ -1,6 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl } from "@angular/forms";
+import { Router } from "@angular/router";
+
 import { LoglistingService } from "src/app/services/log-listing/loglisting.service";
+import { NavBarService } from "src/app/services/nav-bar/nav-bar.service";
+import { LogModalDataService } from "src/app/services/log-modal-data/log-modal-data.service";
 
 @Component({
   selector: "staples-kiosk-table",
@@ -21,7 +25,12 @@ export class KioskTableComponent implements OnInit {
 
   selectedFileName = "";
 
-  constructor(private _loglistingService: LoglistingService) {}
+  constructor(
+    private _loglistingService: LoglistingService,
+    private router: Router,
+    private _navBarService: NavBarService,
+    private _logModalDataService: LogModalDataService
+  ) {}
 
   get fileName() {
     return this.kioskForm.get("fileName");
@@ -209,5 +218,13 @@ export class KioskTableComponent implements OnInit {
     this._loglistingService.postDataForKioskOrder(
       JSON.stringify(this.kioskForm.value)
     );
+  }
+
+  backToOrderDataTable() {
+    this._logModalDataService.getLogDetailFlag(false);
+    this._logModalDataService.getKioskOrderFlag(false);
+    this._navBarService.getAdvanceSearchStatus(false);
+    this._navBarService.setElementNameFromSideBar("Order");
+    this.router.navigate(["/testDataManagement"]);
   }
 }

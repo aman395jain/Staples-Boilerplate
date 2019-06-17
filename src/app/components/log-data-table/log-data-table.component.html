@@ -8,7 +8,9 @@
       tableName === 'Rewards' ||
       tableName === 'CBP' ||
       tableName === 'CEP'
-    ) && !logDetailsFlag
+    ) &&
+    !logDetailsFlag &&
+    !kioskOrderFormFlag
   "
 >
   <div class="row">
@@ -277,7 +279,7 @@
     width="300px"
   />
 </div>
-<div class="load-spinner" *ngIf="!logDetailsFlag">
+<div class="load-spinner" *ngIf="!logDetailsFlag && !kioskOrderFormFlag">
   <mat-progress-spinner
     *ngIf="isLoading"
     style="display: flex; justify-content: center; align-items: center"
@@ -286,6 +288,9 @@
   >
   </mat-progress-spinner>
 </div>
-<div *ngIf="logDetailsFlag">
+<div *ngIf="logDetailsFlag && !kioskOrderFormFlag">
+  <router-outlet></router-outlet>
+</div>
+<div *ngIf="kioskOrderFormFlag">
   <router-outlet></router-outlet>
 </div>

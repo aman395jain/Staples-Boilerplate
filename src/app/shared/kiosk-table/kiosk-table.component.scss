@@ -1,5 +1,23 @@
 .kiosk-form {
-  min-height: 592px;
+  .kiosk-order-upper {
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+    height: 60px;
+    .kiosk-order-banner {
+      align-items: center;
+      font-weight: bold;
+      color: #007bff;
+      font-size: 20px;
+    }
+    .back-order-table {
+      color: #0056b3 !important;
+      cursor: pointer;
+      &:hover {
+        color: #cb2026 !important;
+        text-decoration: underline !important;
+      }
+    }
+  }
   .kiosk-form-inner {
     padding-top: 4%;
   }

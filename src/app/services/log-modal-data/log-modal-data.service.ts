@@ -6,6 +6,7 @@ export class LogModalDataService {
   private printedLogData = new BehaviorSubject<any>(null);
   private logDetailData = new BehaviorSubject<any>(null);
   private logDetailFlag = new Subject<Boolean>();
+  private kioskOrderFlag = new Subject<Boolean>();
   private tableNameForLogDetail = new BehaviorSubject<any>(null);
 
   constructor() {}
@@ -37,7 +38,16 @@ export class LogModalDataService {
   getLogDetailFlag(flag) {
     this.logDetailFlag.next(flag);
   }
+
   setLogDetailFlag() {
     return this.logDetailFlag.asObservable();
+  }
+
+  getKioskOrderFlag(flag) {
+    this.kioskOrderFlag.next(flag);
+  }
+
+  setKioskOrderFlag() {
+    return this.kioskOrderFlag.asObservable();
   }
 }

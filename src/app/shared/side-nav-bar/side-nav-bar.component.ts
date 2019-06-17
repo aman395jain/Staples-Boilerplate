@@ -101,6 +101,9 @@ export class SideNavBarComponent implements OnInit, OnDestroy {
     if (this.router.url === "/testDataManagement/logDetail") {
       this._logModalDataService.getLogDetailFlag(false);
       this.router.navigate(["/testDataManagement"]);
+    } else if (this.router.url === "/testDataManagement/new-kiosk-order") {
+      this._logModalDataService.getKioskOrderFlag(false);
+      this.router.navigate(["/testDataManagement"]);
     }
     this._navBarService.setElementNameFromSideBar(eleName);
     this.barHeight = 592;

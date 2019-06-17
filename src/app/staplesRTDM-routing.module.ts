@@ -16,7 +16,6 @@ import { KioskTableComponent } from "./shared/kiosk-table/kiosk-table.component"
     RouterModule.forRoot(
       [
         { path: "", component: HomeComponent },
-        { path: "new-kiosk-order", component: KioskTableComponent },
         {
           path: "testDataManagement",
           component: DisplayLogTableComponent,
@@ -25,6 +24,10 @@ import { KioskTableComponent } from "./shared/kiosk-table/kiosk-table.component"
               path: "logDetail",
               component: LogDetailComponent,
               canActivate: [LogDetailGuard]
+            },
+            {
+              path: "new-kiosk-order",
+              component: KioskTableComponent
             }
           ]
         },

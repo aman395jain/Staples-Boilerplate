@@ -10,15 +10,12 @@ import {
   MatPaginator,
   MatTableDataSource,
   MatSort,
-  MatDialogConfig,
   MatDialog
 } from "@angular/material";
 import "rxjs/add/observable/of";
 import { Subject } from "rxjs";
 import { takeUntil } from "rxjs/operators";
-
-import { LogDescriptionComponent } from "../log-description/log-description.component";
-import { PromoDetailComponent } from "../promo-detail/promo-detail.component";
+import { Router } from "@angular/router";
 
 import { LoglistingService } from "src/app/services/log-listing/loglisting.service";
 import { NavBarService } from "src/app/services/nav-bar/nav-bar.service";
@@ -29,7 +26,6 @@ import { LogDescriptionDataOrderService } from "src/app/helper/logDescription/lo
 import LogDataTableHelper from "../../helper/logDataTable/log-data-table-advance-search.helper";
 import UniqueStoreHelper from "../../helper/uniqueStore/unique-store.helper";
 import { logDataTableConst } from "./log-data-table.constant";
-import { Router } from "@angular/router";
 
 /**
  * @class LogDataTableComponent
@@ -72,10 +68,10 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
 
   advanceSearchCollapseStatus: boolean = true;
   logDetailsFlag: any = false;
+  kioskOrderFormFlag: any = false;
 
   constructor(
     private _loglistingService: LoglistingService,
-    private _dialog: MatDialog,
     private _navBarService: NavBarService,
     private _printDocumentService: PrintDocumentService,
     private _logModalDataService: LogModalDataService,
@@ -87,13 +83,21 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
   ngOnInit() {
     if (this.router.url === "/testDataManagement") {
       this._logModalDataService.getLogDetailFlag(false);
+      this._logModalDataService.getKioskOrderFlag(false);
     } else {
       this._logModalDataService.getLogDetailFlag(true);
+      this._logModalDataService.getKioskOrderFlag(true);
+    }
+    if (this.router.url === "/testDataManagement/new-kiosk-order") {
+      this.router.navigate(["/testDataManagement"]);
     }
     this.logTableGridColumns = logDataTableConst.item_Master;
 
     this._logModalDataService.setLogDetailFlag().subscribe(flag => {
       this.logDetailsFlag = flag;
+    });
+    this._logModalDataService.setKioskOrderFlag().subscribe(flag => {
+      this.kioskOrderFormFlag = flag;
     });
 
     this._logModalDataService.getTableNameForLogDetail("Item_Master");
@@ -360,7 +364,8 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
   }
 
   createKioskOrder() {
-    this.router.navigate(["/new-kiosk-order"]);
+    this.kioskOrderFormFlag = true;
+    this.router.navigate(["/testDataManagement/new-kiosk-order"]);
   }
 
   /**

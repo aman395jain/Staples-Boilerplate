@@ -22,7 +22,7 @@ export class LogDetailGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean> | Promise<boolean> | boolean {
-    this._logModalDataService.setLogModalData().subscribe(row => {
+    this._logModalDataService.setLogDetailData().subscribe(row => {
       if (row === null) {
         this.router.navigate(["/testDataManagement"]);
         return false;
