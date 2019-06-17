@@ -63,7 +63,7 @@
       </div>
       <div class="row" *ngIf="tableName === 'Order'">
         <div class="col-md-12">
-          <a class="create-order" (click)="createOrder()">create order</a>
+          <a class="create-order" (click)="createKioskOrder()">create order</a>
         </div>
       </div>
     </div>
@@ -192,21 +192,11 @@
                   column.header === 'UPC' ||
                   column.columnDef === 'action' ||
                   column.columnDef === 'select' ||
-                  column.columnDef === 'promoNum' ||
                   column.columnDef === 'serialNumber' ||
                   column.columnDef === 'orderNo'
                 )
               "
               >{{ column.cell(row) }}</span
-            >
-            <span *ngIf="column.columnDef === 'promoNum'"
-              ><a
-                class="promo-number-column"
-                (click)="descriptionPromos(row)"
-                data-toggle="tooltip"
-                title="view details for {{ column.cell(row) }}"
-                >{{ column.cell(row) }}</a
-              ></span
             >
             <span *ngIf="column.columnDef === 'select'"
               ><mat-checkbox

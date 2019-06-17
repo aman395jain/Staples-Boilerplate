@@ -99,7 +99,6 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
     this._logModalDataService.getTableNameForLogDetail("Item_Master");
 
     this.tableName = "Item_Master";
-    // console.log("in the testDataManagement component", this.tableName);
     this.displayedColumns = this.logTableGridColumns.map(
       columnName => columnName.columnDef
     );
@@ -336,31 +335,10 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
     this.dataByAPI.filter = filterValue;
   }
 
-  /*
-  * descriptionLogsForModal to populate the data in a Modal
-  */
-  descriptionLogsForModal(row) {
-    this._logDescriptionDataOrderService.tableNameByComponent(this.tableName);
-    this._logModalDataService.getLogModalData(row); //data for print
-    const _dialogConfig = new MatDialogConfig();
-    _dialogConfig.data = row;
-    _dialogConfig.disableClose = false;
-    _dialogConfig.autoFocus = true;
-    _dialogConfig.width = "50%";
-    _dialogConfig.height = "65%";
-    this._dialog.open(LogDescriptionComponent, _dialogConfig);
-  }
-
-  descriptionPromos(row) {
-    const _dialogConfig = new MatDialogConfig();
-    _dialogConfig.data = row;
-    _dialogConfig.disableClose = false;
-    _dialogConfig.autoFocus = true;
-    _dialogConfig.width = "50%";
-    _dialogConfig.height = "50%";
-    this._dialog.open(PromoDetailComponent, _dialogConfig);
-  }
-
+  /**
+   * Populate the details of a single row on log-detail page.
+   * @param row
+   */
   launchLogsForSingleEntity(row) {
     this._logModalDataService.getLogDetailData(row);
     this._logModalDataService.getLogModalData(row); //data for print
@@ -381,8 +359,8 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
     );
   }
 
-  createOrder() {
-    this.router.navigate(["/kioskTable"]);
+  createKioskOrder() {
+    this.router.navigate(["/new-kiosk-order"]);
   }
 
   /**

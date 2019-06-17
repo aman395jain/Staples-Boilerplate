@@ -16,7 +16,7 @@ import { KioskTableComponent } from "./shared/kiosk-table/kiosk-table.component"
     RouterModule.forRoot(
       [
         { path: "", component: HomeComponent },
-        { path: "kioskTable", component: KioskTableComponent },
+        { path: "new-kiosk-order", component: KioskTableComponent },
         {
           path: "testDataManagement",
           component: DisplayLogTableComponent,
