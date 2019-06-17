@@ -94,18 +94,16 @@
                         <mat-option
                           *ngFor="let field of advanceSearchOptions"
                           value="{{ field }}"
-                          >{{ field }}</mat-option
-                        >
+                          >{{ field }}
+                        </mat-option>
                       </mat-select>
                     </mat-form-field>
                   </div>
                   <div class="select-fields">
                     <mat-form-field>
-                      <mat-select placeholder="select the condition"
-                        ><mat-option value="Equals"
-                          >Equals/Contains</mat-option
-                        ></mat-select
-                      >
+                      <mat-select placeholder="select the condition">
+                        <mat-option value="Equals">Equals/Contains</mat-option>
+                      </mat-select>
                     </mat-form-field>
                   </div>
 
@@ -174,14 +172,15 @@
             [disabled]="isSortingDisabled(column.columnDef)"
             ><span *ngIf="!(column.columnDef === 'select')">{{
               column.header
-            }}</span
-            ><span *ngIf="column.columnDef === 'select'">
+            }}</span>
+            <span *ngIf="column.columnDef === 'select'">
               <mat-checkbox
+                class="header-checkbox"
                 (click)="$event.stopPropagation()"
                 [(ngModel)]="selectAll"
                 (change)="updateCheck()"
                 [checked]="checkBoxStatusForHeader()"
-              ></mat-checkbox></span
+              ></mat-checkbox> </span
           ></mat-header-cell>
 
           <mat-cell *cdkCellDef="let row"
@@ -198,13 +197,13 @@
               "
               >{{ column.cell(row) }}</span
             >
-            <span *ngIf="column.columnDef === 'select'"
-              ><mat-checkbox
+            <span *ngIf="column.columnDef === 'select'">
+              <mat-checkbox
                 (click)="$event.stopPropagation()"
                 (change)="checkedRowForPrint(row, $event)"
                 [checked]="isSelected(row)"
-              ></mat-checkbox
-            ></span>
+              ></mat-checkbox>
+            </span>
             <div
               *ngIf="
                 column.header === 'Bar Code' ||
@@ -218,7 +217,8 @@
                 [bc-display-value]="false"
                 [bc-height]="30"
                 [bc-width]="1"
-              ></ngx-barcode>
+              >
+              </ngx-barcode>
               <div class="bar-code-value">
                 {{ column.cell(row) }}
               </div>
@@ -228,10 +228,9 @@
                 class="launch-icon"
                 (click)="launchLogsForSingleEntity(row)"
                 mat-icon-button
-                ><mat-icon data-toggle="tooltip" title="view"
-                  >launch</mat-icon
-                ></a
-              ></span
+              >
+                <mat-icon data-toggle="tooltip" title="view">launch</mat-icon>
+              </a></span
             >
           </mat-cell>
         </ng-container>

@@ -1,7 +1,5 @@
 .log-list {
-  // margin-top: 2%;
   border-radius: 6px;
-  // display: inline-block;
   .store-name {
     font-size: medium;
     margin-right: 10px;
@@ -85,6 +83,9 @@
           font-weight: bold;
           font-size: 14px;
           justify-content: center;
+          .header-checkbox {
+            margin-left: 40%;
+          }
         }
       }
 
@@ -95,6 +96,7 @@
 
     .mat-cell {
       justify-content: center;
+
       .bar-code-value {
         text-align: center;
       }
