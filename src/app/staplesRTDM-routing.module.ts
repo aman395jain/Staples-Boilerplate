@@ -10,6 +10,7 @@ import { PrintDocumentComponent } from "./components/print-document/print-docume
 import { LogDetailComponent } from "./components/log-detail/log-detail.component";
 import { LogDetailGuard } from "./guards/log-detail/log-detail-guard.guard";
 import { KioskTableComponent } from "./shared/kiosk-table/kiosk-table.component";
+import { SolutionBuilderOrderComponent } from "./shared/solution-builder-order/solution-builder-order.component";
 
 @NgModule({
   imports: [
@@ -28,6 +29,10 @@ import { KioskTableComponent } from "./shared/kiosk-table/kiosk-table.component"
             {
               path: "new-kiosk-order",
               component: KioskTableComponent
+            },
+            {
+              path: "new-solution-builder-order",
+              component: SolutionBuilderOrderComponent
             }
           ]
         },

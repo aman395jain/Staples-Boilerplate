@@ -211,6 +211,22 @@ export class LogDescriptionDataOrderService {
 
       this.dataToBeDisplayedOnModal[1] = rowDataWithRestData;
       return this.dataToBeDisplayedOnModal;
+    } else if (tableName === "Order") {
+      this.mainDataToDisplay = {
+        orderNo: row.orderNo,
+        orderType: row.orderType,
+        source: row.source,
+        sourceCreateOrderXml: row.sourceCreateOrderXml
+      };
+      delete rowDataWithRestData["orderNo"];
+      delete rowDataWithRestData["orderType"];
+      delete rowDataWithRestData["source"];
+      delete rowDataWithRestData["sourceCreateOrderXml"];
+
+      this.dataToBeDisplayedOnModal[0] = this.mainDataToDisplay;
+
+      this.dataToBeDisplayedOnModal[1] = rowDataWithRestData;
+      return this.dataToBeDisplayedOnModal;
     }
   }
 

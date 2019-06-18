@@ -65,7 +65,23 @@
       </div>
       <div class="row" *ngIf="tableName === 'Order'">
         <div class="col-md-12">
-          <a class="create-order" (click)="createKioskOrder()">create order</a>
+          <div class="row">
+            <div class="col-3 d-flex align-items-center justify-content-end">
+              <mat-form-field  *ngIf="!isLoading">
+                <mat-label>Order Type</mat-label>
+                <mat-select 
+                (selectionChange)="onSelectOrderType($event)"
+                [(value)]="newOrder">
+                  <mat-option
+                    *ngFor="let orderType of newOrderType"
+                    [value]="orderType"
+                    >{{ orderType }}</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="col-9"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -141,7 +157,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-md-12 align-items-center inner-rows ">
+              <div class="col-md-12 align-items-center inner-rows">
                 <div class="float-right">
                   <button
                     class="btn btn-warning advance-search-button"
@@ -272,9 +288,8 @@
   class="under-construction"
 >
   <img
-    class="header-logo"
     src="../../../app/assets/images/under_Process.jfif"
-    alt="Staples"
+    alt="Staples under process"
     height="300px"
     width="300px"
   />

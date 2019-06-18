@@ -1,5 +1,9 @@
 import { Injectable } from "@angular/core";
 
+/**
+ * @sevice DashboardHeaderNameConverstionService
+ * Convert the keys of API rest-full service's to header name, display on Log-Detail page.
+ */
 @Injectable({
   providedIn: "root"
 })
@@ -111,7 +115,15 @@ export class DashboardHeaderNameConverstionService {
     phoneNo: "Phone Number",
     expirationDate: "Expiration Date",
     taxExmInd: "Tax Exception ID",
-    taxExemptNbr: "Tax Exemption Number"
+    taxExemptNbr: "Tax Exemption Number",
+    orderNo: "Order Number",
+    orderType: "Order Type",
+    source: "Source",
+    sourceCreateOrderXml: "Source File",
+    created: "Created Date",
+    expiryDate: "Expiry Date",
+    orderLineDetail: "Order Line Detail",
+    status: "Status"
   };
   printedDataNewHeader = {};
 

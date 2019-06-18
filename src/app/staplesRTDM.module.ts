@@ -36,6 +36,7 @@ import { LogDescriptionDataOrderService } from "./helper/logDescription/log-desc
 import { PromoDetailComponent } from "./components/promo-detail/promo-detail.component";
 import { LogDetailComponent } from "./components/log-detail/log-detail.component";
 import { KioskTableComponent } from "./shared/kiosk-table/kiosk-table.component";
+import { SolutionBuilderOrderComponent } from "./shared/solution-builder-order/solution-builder-order.component";
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -57,7 +58,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     PrintDocumentSingleLogDataComponent,
     PromoDetailComponent,
     LogDetailComponent,
-    KioskTableComponent
+    KioskTableComponent,
+    SolutionBuilderOrderComponent
   ],
   imports: [
     BrowserModule,

@@ -18,7 +18,21 @@
       }
     }
   }
+
+  .inner-rows {
+    min-height: 45px;
+    .advance-search-button {
+      margin-top: 7px;
+      margin-right: 20px;
+    }
+  }
+
   .kiosk-form-inner {
     padding-top: 4%;
+    .classified-text {
+      height: 35px;
+      font-weight: bold;
+      color: #007bff;
+    }
   }
 }

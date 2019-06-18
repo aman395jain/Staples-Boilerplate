@@ -48,6 +48,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
   selectedStoreValue: string = "8501";
   displayedColumns: object = {};
   storeUniqueData: any = [];
+  newOrderType: any = [];
   initialPageSize: number = 5;
   tableName: String = "";
   advancedSearchStatus: boolean = false;
@@ -78,7 +79,10 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
       this._logModalDataService.getLogDetailFlag(true);
       this._logModalDataService.getKioskOrderFlag(true);
     }
-    if (this.router.url === "/testDataManagement/new-kiosk-order") {
+    if (
+      this.router.url === "/testDataManagement/new-kiosk-order" ||
+      "/testDataManagement/new-solution-builder-order"
+    ) {
       this.router.navigate(["/testDataManagement"]);
     }
     this.logTableGridColumns = logDataTableConst.item_Master;
@@ -250,6 +254,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
           this.displayedColumns = logDataTableConst.Order.map(
             columnName => columnName.columnDef
           );
+          this.newOrderType = ["Kiosk", "Solution Builder"];
         } else if (tableName === "Coupon") {
           this.tableName = "Coupon";
         } else if (tableName === "Tax_Exempt") {
@@ -350,6 +355,17 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
       event.value.toString(),
       this.dataByAPI
     );
+  }
+
+  onSelectOrderType(event): void {
+    console.log("On selection of order type: ", event.value);
+    if (event.value === "Kiosk") {
+      this.kioskOrderFormFlag = true;
+      this.router.navigate(["/testDataManagement/new-kiosk-order"]);
+    } else if (event.value === "Solution Builder") {
+      this.kioskOrderFormFlag = true;
+      this.router.navigate(["/testDataManagement/new-solution-builder-order"]);
+    }
   }
 
   createKioskOrder() {

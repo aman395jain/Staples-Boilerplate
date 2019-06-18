@@ -5,6 +5,7 @@ import { Router } from "@angular/router";
 import { LoglistingService } from "src/app/services/log-listing/loglisting.service";
 import { NavBarService } from "src/app/services/nav-bar/nav-bar.service";
 import { LogModalDataService } from "src/app/services/log-modal-data/log-modal-data.service";
+import { HttpClient } from "@angular/common/http";
 
 @Component({
   selector: "staples-kiosk-table",
@@ -23,7 +24,9 @@ export class KioskTableComponent implements OnInit {
     ReservationID: new FormControl("")
   });
 
+  kioskFileOptions = [];
   selectedFileName = "";
+  kioskCustomerData = {};
 
   constructor(
     private _loglistingService: LoglistingService,
@@ -172,7 +175,16 @@ export class KioskTableComponent implements OnInit {
     return this.kioskForm.get("itemIDARWRN4");
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.kioskFileOptions = [
+      "Prepaid Kiosk Order with 5 digit coupons",
+      "Prepaid Kiosk Order with 16 digit coupons",
+      "Prepaid Kiosk Order with ARW rewards number",
+      "Prepaid Kiosk Order with Ingram",
+      "Prepaid Kiosk Order with rewards number",
+      "Prepaid Kiosk Order with United SKU"
+    ];
+  }
 
   onChange(fileValue) {
     this.selectedFileName = fileValue;
@@ -185,6 +197,18 @@ export class KioskTableComponent implements OnInit {
       this.kioskForm.addControl("itemID5digit3", new FormControl(""));
       this.kioskForm.addControl("itemDesc5digit4", new FormControl(""));
       this.kioskForm.addControl("itemID5digit4", new FormControl(""));
+      // this._loglistingService.getDataForKioskForm().subscribe(data => {
+      //   console.log("data is ", data)
+      //   this.kioskCustomerData = data
+
+      // })
+      // console.log("data is ", this.kioskCustomerData)
+      // this.kioskForm.controls['customerEmail'].setValue("aman")
+      // this.kioskForm.controls['customerFname'].setValue("jain")
+      // this.kioskForm.controls['customerLname'].setValue("jain")
+      // this.kioskForm.controls['CustomerPhoneNo'].setValue("jain")
+      // this.kioskForm.controls['OrderNo'].setValue("jain")
+      // console.log(JSON.stringify(this.kioskForm.value));
     } else if (fileValue === "Prepaid Kiosk Order with 16 digit coupons") {
       this.kioskForm.addControl("itemDesc16DigitCoupon1", new FormControl(""));
       this.kioskForm.addControl("itemID16DigitCoupon1", new FormControl(""));
@@ -226,5 +250,9 @@ export class KioskTableComponent implements OnInit {
     this._navBarService.getAdvanceSearchStatus(false);
     this._navBarService.setElementNameFromSideBar("Order");
     this.router.navigate(["/testDataManagement"]);
+  }
+
+  clearKioskForm() {
+    this.selectedFileName = "";
   }
 }

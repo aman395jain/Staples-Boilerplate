@@ -117,6 +117,20 @@ export class LoglistingService {
       );
   }
 
+  getDataForKioskForm() {
+    return this.http
+      .get("http://www.mocky.io/v2/5d08c99134000059005d9a80")
+      .pipe(
+        map((response: Response) => {
+          return response;
+        }),
+        catchError((err: Response) => {
+          console.log("in the error", err.status);
+          return null;
+        })
+      );
+  }
+
   getTestDataToPrint(printedData) {
     this._dataToBePrinted.next(printedData);
   }

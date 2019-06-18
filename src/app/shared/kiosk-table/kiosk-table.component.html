@@ -20,7 +20,7 @@
           (ngSubmit)="kioskForm.valid && onSubmit()"
         >
           <div class="row kiosk-form-inner">
-            <div class="form-group col-6">
+            <div class="form-group col-12">
               <select
                 class="form-control"
                 formControlName="fileName"
@@ -47,6 +47,7 @@
                 >
               </select>
             </div>
+            <div class="col-12 classified-text">Customer Details</div>
             <div class="form-group col-6">
               <input
                 type="text"
@@ -87,13 +88,8 @@
                 formControlName="OrderNo"
               />
             </div>
-            <div class="form-group col-6">
-              <input
-                type="text"
-                class="form-control"
-                placeholder="enter the Reservation ID"
-                formControlName="ReservationID"
-              />
+            <div class="col-12 classified-text" *ngIf="selectedFileName !== ''">
+              Kiosk Form Details
             </div>
             <div
               *ngIf="
@@ -466,10 +462,17 @@
             </div>
           </div>
 
-          <div class="form-group">
-            <button class="btn btn-primary">
-              Submit
-            </button>
+          <div class="col-12 align-items-center inner-rows">
+            <div class="float-right">
+              <div class="form-group">
+                <button class="btn btn-primary advance-search-button">
+                  Submit
+                </button>
+                <button class="btn btn-warning advance-search-button" (click)="clearKioskForm()">
+                  Clear
+                </button>
+              </div>
+            </div>
           </div>
         </form>
       </div>
