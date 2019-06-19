@@ -16,7 +16,7 @@ import { SolutionBuilderOrderComponent } from "./shared/solution-builder-order/s
   imports: [
     RouterModule.forRoot(
       [
-        { path: "", component: HomeComponent },
+        { path: "", component: KioskTableComponent },
         {
           path: "testDataManagement",
           component: DisplayLogTableComponent,
