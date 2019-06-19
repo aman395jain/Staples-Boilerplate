@@ -16,7 +16,7 @@ import { SolutionBuilderOrderComponent } from "./shared/solution-builder-order/s
   imports: [
     RouterModule.forRoot(
       [
-        { path: "", component: KioskTableComponent },
+        { path: "", component: HomeComponent },
         {
           path: "testDataManagement",
           component: DisplayLogTableComponent,
@@ -51,7 +51,8 @@ import { SolutionBuilderOrderComponent } from "./shared/solution-builder-order/s
         { path: "**", component: PageNotFoundComponent }
       ],
       {
-        preloadingStrategy: PreloadAllModules
+        preloadingStrategy: PreloadAllModules,
+        useHash: true
       }
     )
   ],
