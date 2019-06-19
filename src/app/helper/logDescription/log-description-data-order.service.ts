@@ -400,6 +400,23 @@ export class LogDescriptionDataOrderService {
             .includes(filter)
         );
       };
+    } else if (tableName === "Order") {
+      return function(data, filter: string): boolean {
+        return (
+          data.orderType
+            .toString()
+            .toLowerCase()
+            .includes(filter) ||
+          data.orderNo
+            .toString()
+            .toLowerCase()
+            .includes(filter) ||
+          data.sourceCreateOrderXml
+            .toString()
+            .toLowerCase()
+            .includes(filter)
+        );
+      };
     }
   }
 }
