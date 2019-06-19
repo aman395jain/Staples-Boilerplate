@@ -51,8 +51,7 @@ import { SolutionBuilderOrderComponent } from "./shared/solution-builder-order/s
         { path: "**", component: PageNotFoundComponent }
       ],
       {
-        preloadingStrategy: PreloadAllModules,
-        useHash: true
+        preloadingStrategy: PreloadAllModules
       }
     )
   ],
