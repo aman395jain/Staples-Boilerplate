@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { Response } from "@angular/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Response, RequestOptions } from "@angular/http";
 import { map, catchError } from "rxjs/operators";
-import { Observable, BehaviorSubject } from "rxjs";
+import { Observable, BehaviorSubject, Subject } from "rxjs";
 // import { LoggerModule, NgxLoggerLevel, NGXLogger } from "ngx-logger";
 
 import { Loglist } from "../../models/loglist.model";
@@ -20,6 +20,7 @@ import { dataUrls } from "../../utils/dataApiUrls.enum";
 export class LoglistingService {
   private _serviceUrl = "";
   private _dataToBePrinted = new BehaviorSubject<any>(null);
+  private _fileName = new BehaviorSubject<any>(null);
 
   constructor(private http: HttpClient) {}
 
@@ -95,12 +96,23 @@ export class LoglistingService {
   }
 
   postDataForKioskOrder(formData) {
-    return this.http.post("", formData).pipe(
-      catchError((err: Response) => {
-        console.log("in the error", err.status);
-        return null;
+    const httpOptions = {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json"
       })
-    );
+    };
+    return this.http
+      .post(
+        "http://localhost:8090/tdmapp/updateOrderXmlString",
+        formData,
+        httpOptions
+      )
+      .pipe(
+        catchError((err: Response) => {
+          console.log("in the error", err.status);
+          return null;
+        })
+      );
   }
 
   getDataForPromosJustForTest(): any {
@@ -129,6 +141,14 @@ export class LoglistingService {
           return null;
         })
       );
+  }
+
+  getKioskFileName(fileName) {
+    this._fileName.next(fileName);
+  }
+
+  setKioskFileName(): Observable<any> {
+    return this._fileName;
   }
 
   getTestDataToPrint(printedData) {

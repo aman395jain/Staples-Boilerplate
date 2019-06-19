@@ -14,7 +14,10 @@
     <div class="row">
       <div class="col-2"></div>
       <div class="col-8 kiosk-order-form">
-        <form name="kioskForm" [formGroup]="kioskForm">
+        <form
+          name="kioskForm"
+          [formGroup]="kioskForm"
+        >
           <div class="row kiosk-form-inner">
             <div class="form-group col-12">
               <select
@@ -461,10 +464,7 @@
           <div class="col-12 align-items-center inner-rows">
             <div class="float-right">
               <div class="form-group">
-                <button
-                  class="btn btn-primary advance-search-button"
-                  (click)="onSubmit()"
-                >
+                <button class="btn btn-primary advance-search-button" (click)="onSubmit()" type="submit">
                   Submit
                 </button>
                 <button

@@ -20,9 +20,9 @@ export const logDataTableConst = {
       cell: (element: any) => `${element.itemDesc}`
     },
     {
-      columnDef: "permPrice",
+      columnDef: "retailPrice",
       header: "Retail Price",
-      cell: (element: any) => `${element.permPrice}`
+      cell: (element: any) => `${element.retailPrice}`
     },
     {
       columnDef: "barCode",
