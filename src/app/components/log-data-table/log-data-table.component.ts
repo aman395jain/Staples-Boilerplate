@@ -341,6 +341,11 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
   launchLogsForSingleEntity(row) {
     this._logModalDataService.getLogDetailData(row);
     this._logModalDataService.getLogModalData(row); //data for print
+    if (this.tableName === "Linked_SKUs") {
+      this._loglistingService.postLinkedListSKUs(row.sku).subscribe(data => {
+        this._logModalDataService.getLinkedSKUsData(data);
+      });
+    }
     this.logDetailsFlag = true;
     this.router.navigate(["/testDataManagement/logDetail"]);
   }

@@ -83,7 +83,10 @@ export class LogDetailComponent implements OnInit, OnDestroy {
         );
 
         if (this.tableNameLogDetails === "Linked_SKUs") {
-          this.linkedSKUsData = this.classifiedDataLogDetail[2].linkedList;
+          this._logModalDataService.setLinkedSKUsData().subscribe(data => {
+            this.linkedSKUsData = data;
+          });
+          // this.linkedSKUsData = this.classifiedDataLogDetail[2].linkedList;
           this.linkedSKUsDisplayStatus = true;
         }
 

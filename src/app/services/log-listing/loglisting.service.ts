@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Response } from "@angular/http";
 import { map, catchError } from "rxjs/operators";
 import { Observable, BehaviorSubject } from "rxjs";
@@ -92,6 +92,20 @@ export class LoglistingService {
         return null;
       })
     );
+  }
+
+  postLinkedListSKUs(linkedSku) {
+    return this.http
+      .get("http://localhost:8090/tdmapp/linkedSkus?sku=" + linkedSku)
+      .pipe(
+        map((response: Response) => {
+          return response;
+        }),
+        catchError((err: Response) => {
+          console.log("in the error", err.status);
+          return null;
+        })
+      );
   }
 
   getDataForPromosJustForTest(): any {
