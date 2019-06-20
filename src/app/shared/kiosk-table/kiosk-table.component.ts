@@ -5,7 +5,6 @@ import { Router } from "@angular/router";
 import { NavBarService } from "src/app/services/nav-bar/nav-bar.service";
 import { LogModalDataService } from "src/app/services/log-modal-data/log-modal-data.service";
 import { KioskOrderService } from "src/app/services/kiosk-order/kiosk-order.service";
-import { HttpHeaders } from "@angular/common/http/index";
 
 @Component({
   selector: "staples-kiosk-table",

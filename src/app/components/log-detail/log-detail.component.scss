@@ -27,11 +27,14 @@
   overflow: auto;
 }
 
-.linked-sku-table {
-  height: 150px;
-  overflow: auto;
-  margin-bottom: 20px;
-  margin-top: 12px;
+.linked-sku-table-header {
+  width: 100% !important;
+  .linked-sku-table {
+    height: 150px;
+    overflow: auto;
+    margin-bottom: 20px;
+    margin-top: 12px;
+  }
 }
 
 .other-attribute-content {
