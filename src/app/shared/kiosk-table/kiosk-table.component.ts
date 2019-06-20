@@ -5,6 +5,7 @@ import { Router } from "@angular/router";
 import { NavBarService } from "src/app/services/nav-bar/nav-bar.service";
 import { LogModalDataService } from "src/app/services/log-modal-data/log-modal-data.service";
 import { KioskOrderService } from "src/app/services/kiosk-order/kiosk-order.service";
+import { HttpHeaders } from "@angular/common/http/index";
 
 @Component({
   selector: "staples-kiosk-table",
@@ -14,12 +15,12 @@ import { KioskOrderService } from "src/app/services/kiosk-order/kiosk-order.serv
 export class KioskTableComponent implements OnInit {
   kioskForm = new FormGroup({
     fileName: new FormControl(""),
-    customerEmail: new FormControl(""),
-    customerFname: new FormControl(""),
-    customerLname: new FormControl(""),
+    customerEMailID: new FormControl(""),
+    customerFirstName: new FormControl(""),
+    customerLastName: new FormControl(""),
     CustomerPhoneNo: new FormControl(""),
     CustomerZipCode: new FormControl(""),
-    OrderNo: new FormControl(""),
+    customerZipCode: new FormControl(""),
     ReservationID: new FormControl("")
   });
 
@@ -38,16 +39,16 @@ export class KioskTableComponent implements OnInit {
     return this.kioskForm.get("fileName");
   }
 
-  get customerEmail() {
-    return this.kioskForm.get("customerEmail");
+  get customerEMailID() {
+    return this.kioskForm.get("customerEMailID");
   }
 
-  get customerFname() {
-    return this.kioskForm.get("customerFname");
+  get customerFirstName() {
+    return this.kioskForm.get("customerFirstName");
   }
 
-  get customerLname() {
-    return this.kioskForm.get("customerLname");
+  get customerLastName() {
+    return this.kioskForm.get("customerLastName");
   }
 
   get CustomerPhoneNo() {
@@ -56,10 +57,6 @@ export class KioskTableComponent implements OnInit {
 
   get CustomerZipCode() {
     return this.kioskForm.get("CustomerZipCode");
-  }
-
-  get OrderNo() {
-    return this.kioskForm.get("OrderNo");
   }
 
   get ReservationID() {
@@ -184,59 +181,57 @@ export class KioskTableComponent implements OnInit {
       "Prepaid Kiosk Order with United SKU"
     ];
 
-    this._kioskOrderService
-      .getDataForKioskForm("5d08c99134000059005d9a80")
-      .subscribe(data => {
-        this.kioskCustomerData = data;
-      });
+    this._kioskOrderService.getDataForKioskForm("").subscribe(data => {
+      this.kioskCustomerData = data;
+    });
   }
 
   onChange(fileValue: string) {
     this.selectedFileName = fileValue;
     if (fileValue === "Prepaid Kiosk Order with 5 digit coupons") {
-      this._kioskOrderService
-        .getDataForKioskForm("5d0b20672f00007400e3edf6")
-        .subscribe(data => {
-          console.log("kiosk data is", data);
+      this._kioskOrderService.getDataForKioskForm(fileValue).subscribe(data => {
+        // console.log("kiosk data is", data);
 
-          this.kioskForm.controls["customerEmail"].setValue(
-            data["customerEMailID"]
-          );
-          this.kioskForm.controls["customerFname"].setValue(
-            data["customerFirstName"]
-          );
-          this.kioskForm.controls["customerLname"].setValue(
-            data["customerLastName"]
-          );
-          this.kioskForm.controls["CustomerPhoneNo"].setValue(
-            data["customerPhoneNo"]
-          );
-          this.kioskForm.controls["OrderNo"].setValue(data["customerZipCode"]);
-          this.kioskForm.controls["itemDesc5digit1"].setValue(
-            data["itemDesc5digit1"]
-          );
-          this.kioskForm.controls["itemID5digit1"].setValue(
-            data["itemID5digit1"]
-          );
-          this.kioskForm.controls["itemDesc5digit2"].setValue(
-            data["itemDesc5digit2"]
-          );
-          this.kioskForm.controls["itemDesc5digit3"].setValue(
-            data["itemDesc5digit3"]
-          );
-          this.kioskForm.controls["itemDesc5digit4"].setValue(
-            data["itemDesc5digit4"]
-          );
-          this.kioskForm.controls["itemID5digit2"].setValue(
-            data["itemID5digit2"]
-          );
-          this.kioskForm.controls["itemID5digit3"].setValue(
-            data["itemID5digit3"]
-          );
-          this.kioskForm.controls["itemID5digit4"].setValue(
-            data["itemID5digit4"]
-          );
-        });
+        this.kioskForm.controls["customerEMailID"].setValue(
+          data["customerEMailID"]
+        );
+        this.kioskForm.controls["customerFirstName"].setValue(
+          data["customerFirstName"]
+        );
+        this.kioskForm.controls["customerLastName"].setValue(
+          data["customerLastName"]
+        );
+        this.kioskForm.controls["CustomerPhoneNo"].setValue(
+          data["customerPhoneNo"]
+        );
+        this.kioskForm.controls["customerZipCode"].setValue(
+          data["customerZipCode"]
+        );
+        this.kioskForm.controls["itemDesc5digit1"].setValue(
+          data["itemDesc5digit1"]
+        );
+        this.kioskForm.controls["itemID5digit1"].setValue(
+          data["itemID5digit1"]
+        );
+        this.kioskForm.controls["itemDesc5digit2"].setValue(
+          data["itemDesc5digit2"]
+        );
+        this.kioskForm.controls["itemDesc5digit3"].setValue(
+          data["itemDesc5digit3"]
+        );
+        this.kioskForm.controls["itemDesc5digit4"].setValue(
+          data["itemDesc5digit4"]
+        );
+        this.kioskForm.controls["itemID5digit2"].setValue(
+          data["itemID5digit2"]
+        );
+        this.kioskForm.controls["itemID5digit3"].setValue(
+          data["itemID5digit3"]
+        );
+        this.kioskForm.controls["itemID5digit4"].setValue(
+          data["itemID5digit4"]
+        );
+      });
       this.kioskForm.addControl("itemDesc5digit1", new FormControl(""));
       this.kioskForm.addControl("itemID5digit1", new FormControl(""));
       this.kioskForm.addControl("itemDesc5digit2", new FormControl(""));
@@ -250,66 +245,177 @@ export class KioskTableComponent implements OnInit {
       this.kioskForm.addControl("itemID16DigitCoupon1", new FormControl(""));
       this.kioskForm.addControl("itemDesc16DigitCoupon2", new FormControl(""));
       this.kioskForm.addControl("itemID16DigitCoupon2", new FormControl(""));
-      this._kioskOrderService
-        .getDataForKioskForm("5d0b26752f00005900e3ee18")
-        .subscribe(data => {
-          console.log("kiosk data is", data);
+      this._kioskOrderService.getDataForKioskForm(fileValue).subscribe(data => {
+        //console.log("kiosk data is", data);
 
-          this.kioskForm.controls["customerEmail"].setValue(
-            data["customerEMailID"]
-          );
-          this.kioskForm.controls["customerFname"].setValue(
-            data["customerFirstName"]
-          );
-          this.kioskForm.controls["customerLname"].setValue(
-            data["customerLastName"]
-          );
-          this.kioskForm.controls["CustomerPhoneNo"].setValue(
-            data["customerPhoneNo"]
-          );
-          this.kioskForm.controls["OrderNo"].setValue(data["customerZipCode"]);
-          this.kioskForm.controls["itemDesc16DigitCoupon1"].setValue(
-            data["itemDesc16DigitCoupon1"]
-          );
-          this.kioskForm.controls["itemID16DigitCoupon1"].setValue(
-            data["itemID16DigitCoupon1"]
-          );
-          this.kioskForm.controls["itemDesc16DigitCoupon2"].setValue(
-            data["itemDesc16DigitCoupon2"]
-          );
-          this.kioskForm.controls["itemID16DigitCoupon2"].setValue(
-            data["itemID16DigitCoupon2"]
-          );
-        });
+        this.kioskForm.controls["customerEMailID"].setValue(
+          data["customerEMailID"]
+        );
+        this.kioskForm.controls["customerFirstName"].setValue(
+          data["customerFirstName"]
+        );
+        this.kioskForm.controls["customerLastName"].setValue(
+          data["customerLastName"]
+        );
+        this.kioskForm.controls["CustomerPhoneNo"].setValue(
+          data["customerPhoneNo"]
+        );
+        this.kioskForm.controls["customerZipCode"].setValue(
+          data["customerZipCode"]
+        );
+        this.kioskForm.controls["itemDesc16DigitCoupon1"].setValue(
+          data["itemDesc16DigitCoupon1"]
+        );
+        this.kioskForm.controls["itemID16DigitCoupon1"].setValue(
+          data["itemID16DigitCoupon1"]
+        );
+        this.kioskForm.controls["itemDesc16DigitCoupon2"].setValue(
+          data["itemDesc16DigitCoupon2"]
+        );
+        this.kioskForm.controls["itemID16DigitCoupon2"].setValue(
+          data["itemID16DigitCoupon2"]
+        );
+      });
+    } else if (fileValue === "Prepaid Kiosk Order with ARW rewards number") {
+      this.kioskForm.addControl("itemDescARWRN1", new FormControl(""));
+      this.kioskForm.addControl("itemIDARWRN1", new FormControl(""));
+      this.kioskForm.addControl("itemDescARWRN2", new FormControl(""));
+      this.kioskForm.addControl("itemIDARWRN2", new FormControl(""));
+      this.kioskForm.addControl("itemDescARWRN3", new FormControl(""));
+      this.kioskForm.addControl("itemIDARWRN3", new FormControl(""));
+      this.kioskForm.addControl("itemDescARWRN4", new FormControl(""));
+      this.kioskForm.addControl("itemIDARWRN4", new FormControl(""));
+      this._kioskOrderService.getDataForKioskForm(fileValue).subscribe(data => {
+        //console.log("kiosk data is", data);
+
+        this.kioskForm.controls["customerEMailID"].setValue(
+          data["customerEMailID"]
+        );
+        this.kioskForm.controls["customerFirstName"].setValue(
+          data["customerFirstName"]
+        );
+        this.kioskForm.controls["customerLastName"].setValue(
+          data["customerLastName"]
+        );
+        this.kioskForm.controls["CustomerPhoneNo"].setValue(
+          data["customerPhoneNo"]
+        );
+        this.kioskForm.controls["customerZipCode"].setValue(
+          data["customerZipCode"]
+        );
+        this.kioskForm.controls["itemDescARWRN1"].setValue(
+          data["itemDescARWRN1"]
+        );
+        this.kioskForm.controls["itemIDARWRN1"].setValue(data["itemIDARWRN1"]);
+        this.kioskForm.controls["itemDescARWRN2"].setValue(
+          data["itemDescARWRN2"]
+        );
+        this.kioskForm.controls["itemIDARWRN2"].setValue(data["itemIDARWRN2"]);
+        this.kioskForm.controls["itemDescARWRN3"].setValue(
+          data["itemDescARWRN3"]
+        );
+        this.kioskForm.controls["itemIDARWRN3"].setValue(data["itemIDARWRN3"]);
+        this.kioskForm.controls["itemDescARWRN4"].setValue(
+          data["itemDescARWRN4"]
+        );
+        this.kioskForm.controls["itemIDARWRN4"].setValue(data["itemIDARWRN4"]);
+      });
+    } else if (fileValue === "Prepaid Kiosk Order with Ingram") {
+      this.kioskForm.addControl("itemDescIngram", new FormControl(""));
+      this.kioskForm.addControl("itemIDIngram", new FormControl(""));
+      this._kioskOrderService.getDataForKioskForm(fileValue).subscribe(data => {
+        //console.log("kiosk data is", data);
+
+        this.kioskForm.controls["customerEMailID"].setValue(
+          data["customerEMailID"]
+        );
+        this.kioskForm.controls["customerFirstName"].setValue(
+          data["customerFirstName"]
+        );
+        this.kioskForm.controls["customerLastName"].setValue(
+          data["customerLastName"]
+        );
+        this.kioskForm.controls["CustomerPhoneNo"].setValue(
+          data["customerPhoneNo"]
+        );
+        this.kioskForm.controls["customerZipCode"].setValue(
+          data["customerZipCode"]
+        );
+        this.kioskForm.controls["itemDescIngram"].setValue(
+          data["itemDescIngram"]
+        );
+        this.kioskForm.controls["itemIDIngram"].setValue(data["itemIDIngram"]);
+      });
+    } else if (fileValue === "Prepaid Kiosk Order with rewards number") {
+      this.kioskForm.addControl("itemDescRewardNo1", new FormControl(""));
+      this.kioskForm.addControl("itemIDRewardNo1", new FormControl(""));
+      this.kioskForm.addControl("itemDescRewardNo2", new FormControl(""));
+      this.kioskForm.addControl("itemIDRewardNo2", new FormControl(""));
+      this._kioskOrderService.getDataForKioskForm(fileValue).subscribe(data => {
+        //console.log("kiosk data is", data);
+
+        this.kioskForm.controls["customerEMailID"].setValue(
+          data["customerEMailID"]
+        );
+        this.kioskForm.controls["customerFirstName"].setValue(
+          data["customerFirstName"]
+        );
+        this.kioskForm.controls["customerLastName"].setValue(
+          data["customerLastName"]
+        );
+        this.kioskForm.controls["CustomerPhoneNo"].setValue(
+          data["customerPhoneNo"]
+        );
+        this.kioskForm.controls["customerZipCode"].setValue(
+          data["customerZipCode"]
+        );
+        this.kioskForm.controls["itemDescRewardNo1"].setValue(
+          data["itemDescRewardNo1"]
+        );
+        this.kioskForm.controls["itemIDRewardNo1"].setValue(
+          data["itemIDRewardNo1"]
+        );
+        this.kioskForm.controls["itemDescRewardNo2"].setValue(
+          data["itemDescRewardNo2"]
+        );
+        this.kioskForm.controls["itemIDRewardNo2"].setValue(
+          data["itemIDRewardNo2"]
+        );
+      });
+    } else if (fileValue === "Prepaid Kiosk Order with United SKU") {
+      this.kioskForm.addControl("itemDescSku", new FormControl(""));
+      this.kioskForm.addControl("itemIDSku", new FormControl(""));
+      this._kioskOrderService.getDataForKioskForm(fileValue).subscribe(data => {
+        // console.log("kiosk data is", data);
+
+        this.kioskForm.controls["customerEMailID"].setValue(
+          data["customerEMailID"]
+        );
+        this.kioskForm.controls["customerFirstName"].setValue(
+          data["customerFirstName"]
+        );
+        this.kioskForm.controls["customerLastName"].setValue(
+          data["customerLastName"]
+        );
+        this.kioskForm.controls["CustomerPhoneNo"].setValue(
+          data["customerPhoneNo"]
+        );
+        this.kioskForm.controls["customerZipCode"].setValue(
+          data["customerZipCode"]
+        );
+        this.kioskForm.controls["itemDescSku"].setValue(data["itemDescSku"]);
+        this.kioskForm.controls["itemIDSku"].setValue(data["itemIDSku"]);
+      });
     }
-    //  else if (fileValue === "Prepaid Kiosk Order with ARW rewards number") {
-    //   this.kioskForm.addControl("itemDescARWRN1", new FormControl(""));
-    //   this.kioskForm.addControl("itemIDARWRN1", new FormControl(""));
-    //   this.kioskForm.addControl("itemDescARWRN2", new FormControl(""));
-    //   this.kioskForm.addControl("itemIDARWRN2", new FormControl(""));
-    //   this.kioskForm.addControl("itemDescARWRN3", new FormControl(""));
-    //   this.kioskForm.addControl("itemIDARWRN3", new FormControl(""));
-    //   this.kioskForm.addControl("itemDescARWRN4", new FormControl(""));
-    //   this.kioskForm.addControl("itemIDARWRN4", new FormControl(""));
-    // } else if (fileValue === "Prepaid Kiosk Order with Ingram") {
-    //   this.kioskForm.addControl("itemDescIngram", new FormControl(""));
-    //   this.kioskForm.addControl("itemIDIngram", new FormControl(""));
-    // } else if (fileValue === "Prepaid Kiosk Order with rewards number") {
-    //   this.kioskForm.addControl("itemDescRewardNo1", new FormControl(""));
-    //   this.kioskForm.addControl("itemIDRewardNo1", new FormControl(""));
-    //   this.kioskForm.addControl("itemDescRewardNo2", new FormControl(""));
-    //   this.kioskForm.addControl("itemIDRewardNo2", new FormControl(""));
-    // } else if (fileValue === "Prepaid Kiosk Order with United SKU") {
-    //   this.kioskForm.addControl("itemDescSku", new FormControl(""));
-    //   this.kioskForm.addControl("itemIDSku", new FormControl(""));
-    // }
   }
 
   onSubmit() {
-    console.log(JSON.stringify(this.kioskForm.value));
-    this._kioskOrderService.postDataForKioskOrder(
-      JSON.stringify(this.kioskForm.value)
-    );
+    //console.log(JSON.stringify(this.kioskForm.value));
+    this._kioskOrderService
+      .postDataForKioskOrder(JSON.stringify(this.kioskForm.value))
+      .subscribe(() => {
+        console.log("works");
+      });
   }
 
   backToOrderDataTable() {
@@ -323,11 +429,11 @@ export class KioskTableComponent implements OnInit {
   clearKioskForm() {
     this.selectedFileName = "";
     this.kioskForm.controls["fileName"].setValue("");
-    this.kioskForm.controls["customerEmail"].setValue("");
-    this.kioskForm.controls["customerFname"].setValue("");
-    this.kioskForm.controls["customerLname"].setValue("");
+    this.kioskForm.controls["customerEMailID"].setValue("");
+    this.kioskForm.controls["customerFirstName"].setValue("");
+    this.kioskForm.controls["customerLastName"].setValue("");
     this.kioskForm.controls["CustomerPhoneNo"].setValue("");
-    this.kioskForm.controls["OrderNo"].setValue("");
+    this.kioskForm.controls["customerZipCode"].setValue("");
     this.kioskForm.controls["itemDesc5digit1"].setValue("");
     this.kioskForm.controls["itemID5digit1"].setValue("");
     this.kioskForm.controls["itemDesc5digit2"].setValue("");
