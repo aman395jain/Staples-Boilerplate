@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Response, RequestOptions } from "@angular/http";
+import { HttpClient } from "@angular/common/http";
+import { Response } from "@angular/http";
 import { map, catchError } from "rxjs/operators";
-import { Observable, BehaviorSubject, Subject } from "rxjs";
+import { Observable, BehaviorSubject } from "rxjs";
 // import { LoggerModule, NgxLoggerLevel, NGXLogger } from "ngx-logger";
 
 import { Loglist } from "../../models/loglist.model";
@@ -20,7 +20,6 @@ import { dataUrls } from "../../utils/dataApiUrls.enum";
 export class LoglistingService {
   private _serviceUrl = "";
   private _dataToBePrinted = new BehaviorSubject<any>(null);
-  private _fileName = new BehaviorSubject<any>(null);
 
   constructor(private http: HttpClient) {}
 
@@ -95,26 +94,6 @@ export class LoglistingService {
     );
   }
 
-  postDataForKioskOrder(formData) {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        "Content-Type": "application/json"
-      })
-    };
-    return this.http
-      .post(
-        "http://localhost:8090/tdmapp/updateOrderXmlString",
-        formData,
-        httpOptions
-      )
-      .pipe(
-        catchError((err: Response) => {
-          console.log("in the error", err.status);
-          return null;
-        })
-      );
-  }
-
   getDataForPromosJustForTest(): any {
     return this.http
       .get("http://www.mocky.io/v2/5cf905a23400008a2e01b322")
@@ -127,28 +106,6 @@ export class LoglistingService {
           return null;
         })
       );
-  }
-
-  getDataForKioskForm() {
-    return this.http
-      .get("http://www.mocky.io/v2/5d08c99134000059005d9a80")
-      .pipe(
-        map((response: Response) => {
-          return response;
-        }),
-        catchError((err: Response) => {
-          console.log("in the error", err.status);
-          return null;
-        })
-      );
-  }
-
-  getKioskFileName(fileName) {
-    this._fileName.next(fileName);
-  }
-
-  setKioskFileName(): Observable<any> {
-    return this._fileName;
   }
 
   getTestDataToPrint(printedData) {
