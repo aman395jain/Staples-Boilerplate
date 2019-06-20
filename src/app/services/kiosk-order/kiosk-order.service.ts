@@ -12,7 +12,7 @@ export class KioskOrderService {
     };
     return this.http
       .post(
-        "http://localhost:8090/tdmapp/updateOrderXmlString",
+        "http://lrtdqnasv104:8090/tdmapp/updateOrderXmlString",
         formData,
         httpOptions
       )
@@ -26,7 +26,7 @@ export class KioskOrderService {
 
   getDataForKioskForm(fileName) {
     return this.http
-      .get("http://localhost:8090/tdmapp/oldXmlData?fileName=" + fileName)
+      .get("http://lrtdqnasv104:8090/tdmapp/oldXmlData?fileName=" + fileName)
       .pipe(
         map((response: Response) => {
           return response;
