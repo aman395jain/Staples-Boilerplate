@@ -1,12 +1,12 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { Response } from "@angular/http";
 import { map, catchError } from "rxjs/operators";
 import { Observable, BehaviorSubject } from "rxjs";
 // import { LoggerModule, NgxLoggerLevel, NGXLogger } from "ngx-logger";
 
 import { Loglist } from "../../models/loglist.model";
-import { dataUrls } from "../../utils/dataApiUrls.enum";
+import { logTableAPIUrls } from "../../utils/logTableApiUrls.enum";
 
 /**
  * @ngdoc service
@@ -24,7 +24,7 @@ export class LoglistingService {
   constructor(private http: HttpClient) {}
 
   getLogList(): Observable<any> {
-    this._serviceUrl = dataUrls.getItemMaster;
+    this._serviceUrl = logTableAPIUrls.getItemMaster;
     return this.http.get<any>(this._serviceUrl).pipe(
       map((response: Response) => {
         // console.log("in the service", response[0]);
@@ -39,39 +39,39 @@ export class LoglistingService {
 
   getLogListForEntity(entity): Observable<any> {
     if (entity === "Price_Prompt_SKUs") {
-      this._serviceUrl = dataUrls.getPricePromptSKUs;
+      this._serviceUrl = logTableAPIUrls.getPricePromptSKUs;
     } else if (entity === "Item_Master") {
-      this._serviceUrl = dataUrls.getItemMasterMain;
+      this._serviceUrl = logTableAPIUrls.getItemMasterMain;
     } else if (entity === "Employee") {
-      this._serviceUrl = dataUrls.getEmployee;
+      this._serviceUrl = logTableAPIUrls.getEmployee;
     } else if (entity === "Tax_Rates") {
-      this._serviceUrl = dataUrls.getTaxRate;
+      this._serviceUrl = logTableAPIUrls.getTaxRate;
     } else if (entity === "Hardware_SKUs") {
-      this._serviceUrl = dataUrls.getHardwareSKUs;
+      this._serviceUrl = logTableAPIUrls.getHardwareSKUs;
     } else if (entity === "Linked_SKUs") {
-      this._serviceUrl = dataUrls.getLinkedSKUs;
+      this._serviceUrl = logTableAPIUrls.getLinkedSKUs;
     } else if (entity === "Free_SKUs") {
-      this._serviceUrl = dataUrls.getFreeSKUs;
+      this._serviceUrl = logTableAPIUrls.getFreeSKUs;
     } else if (entity === "Age_Restricted_Special_rest") {
-      this._serviceUrl = dataUrls.getAgeRestrictiedSpecialRest;
+      this._serviceUrl = logTableAPIUrls.getAgeRestrictiedSpecialRest;
     } else if (entity === "Item_Group") {
-      this._serviceUrl = dataUrls.getItemGroup;
+      this._serviceUrl = logTableAPIUrls.getItemGroup;
     } else if (entity === "Return_Driver_License") {
-      this._serviceUrl = dataUrls.getReturnDrivingLicence;
+      this._serviceUrl = logTableAPIUrls.getReturnDrivingLicence;
     } else if (entity === "Lowest_Price") {
-      this._serviceUrl = dataUrls.getLowestPrice;
+      this._serviceUrl = logTableAPIUrls.getLowestPrice;
     } else if (entity === "Promos") {
-      this._serviceUrl = dataUrls.getPromos;
+      this._serviceUrl = logTableAPIUrls.getPromos;
     } else if (entity === "Tax_Exempt") {
-      this._serviceUrl = dataUrls.getTaxExempt;
+      this._serviceUrl = logTableAPIUrls.getTaxExempt;
     } else if (entity === "POSA") {
       //changes reqired according to service
-      this._serviceUrl = dataUrls.getPOSA;
+      this._serviceUrl = logTableAPIUrls.getPOSA;
     } else if (entity === "Order") {
       //changes reqired according to service
-      this._serviceUrl = dataUrls.getOrder;
+      this._serviceUrl = logTableAPIUrls.getOrder;
     } else {
-      this._serviceUrl = dataUrls.getOrder;
+      this._serviceUrl = logTableAPIUrls.getOrder;
     }
     return this.http.get<any>(this._serviceUrl).pipe(
       map((response: Response) => {

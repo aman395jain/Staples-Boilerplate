@@ -1,7 +1,7 @@
 /**
  * API's url to call data from Restful api's for different data-logs.
  */
-export enum dataUrls {
+export enum logTableAPIUrls {
   getItemMaster = "http://lrtdqnasv104:8090/tdmapp/itemMstList",
   getPricePromptSKUs = "http://lrtdqnasv104:8090/tdmapp/pricePromptList",
   getItemMasterMain = "http://lrtdqnasv104:8090/tdmapp/itemMstList",

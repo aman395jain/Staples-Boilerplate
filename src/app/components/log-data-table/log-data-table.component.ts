@@ -60,6 +60,29 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
   advanceSearchCollapseStatus: boolean = true;
   logDetailsFlag: any = false;
   kioskOrderFormFlag: any = false;
+  indexForPagination: number[] = [1, 2, 3];
+  prevIndexDisable: boolean = true;
+
+  getIndexForPagination(i) {
+    console.log("index for pagination:", i);
+  }
+
+  updateIndex(moveFlag) {
+    if (moveFlag === "next") {
+      this.indexForPagination[0] = this.indexForPagination[0] + 3;
+      this.indexForPagination[1] = this.indexForPagination[1] + 3;
+      this.indexForPagination[2] = this.indexForPagination[2] + 3;
+    } else if (moveFlag === "prev") {
+      this.indexForPagination[0] = this.indexForPagination[0] - 3;
+      this.indexForPagination[1] = this.indexForPagination[1] - 3;
+      this.indexForPagination[2] = this.indexForPagination[2] - 3;
+    }
+    if (this.indexForPagination[0] === 1) {
+      this.prevIndexDisable = true;
+    } else {
+      this.prevIndexDisable = false;
+    }
+  }
 
   constructor(
     private _loglistingService: LoglistingService,
