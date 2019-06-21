@@ -267,29 +267,8 @@
     </div>
     <div class="col-md-12">
       <div class="row">
-        <div class="col-6 main-pagination" >
-          <nav>
-            <ul class="pagination">
-              <li class="page-item main-pagination-links">
-                <a class="page-link" (click)="updateIndex('prev')" aria-label="Previous">
-                  <span aria-hidden="true">&laquo;</span>
-                  <span class="sr-only">Previous</span>
-                </a>
-              </li>
-              <li class="page-item main-pagination-links" *ngFor="let index of indexForPagination">
-                <a class="page-link" (click) = "getIndexForPagination(index)">{{ index }}</a>
-              </li>
-              <!-- <li class="page-item"><a class="page-link" href="#">{{index}}</a></li>
-                  <li class="page-item"><a class="page-link" href="#">2</a></li>
-                  <li class="page-item"><a class="page-link" href="#">3</a></li> -->
-              <li class="page-item main-pagination-links">
-                <a class="page-link" (click)="updateIndex('next')" aria-label="Next">
-                  <span aria-hidden="true">&raquo;</span>
-                  <span class="sr-only">Next</span>
-                </a>
-              </li>
-            </ul>
-          </nav>
+        <div class="col-6 main-pagination">
+          <staples-pagination-for-large-data></staples-pagination-for-large-data>
         </div>
         <div class="col-6">
           <mat-paginator

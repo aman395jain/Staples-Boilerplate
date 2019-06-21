@@ -39,6 +39,8 @@ import { LogDescriptionDataOrderService } from "./helper/logDescription/log-desc
 import { KioskOrderService } from "./services/kiosk-order/kiosk-order.service";
 
 import { TableForStorePipe } from "./pipes/tableForStoreNumber/table-for-store.pipe";
+import { PaginationForLargeDataComponent } from "./shared/pagination-for-large-data/pagination-for-large-data.component";
+import { PaginationForLongDataService } from "./services/pagination-for-longData/pagination-for-long-data.service";
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -61,7 +63,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     PromoDetailComponent,
     LogDetailComponent,
     KioskTableComponent,
-    SolutionBuilderOrderComponent
+    SolutionBuilderOrderComponent,
+    PaginationForLargeDataComponent
   ],
   imports: [
     BrowserModule,
@@ -87,6 +90,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     LogModalDataService,
     LogDescriptionDataOrderService,
     KioskOrderService,
+    PaginationForLongDataService,
     {
       provide: PERFECT_SCROLLBAR_CONFIG,
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG

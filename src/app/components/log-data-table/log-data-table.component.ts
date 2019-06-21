@@ -21,6 +21,7 @@ import { LogDescriptionDataOrderService } from "src/app/helper/logDescription/lo
 import LogDataTableHelper from "../../helper/logDataTable/log-data-table-advance-search.helper";
 import UniqueStoreHelper from "../../helper/uniqueStore/unique-store.helper";
 import { logDataTableConst } from "./log-data-table.constant";
+import { PaginationForLongDataService } from "src/app/services/pagination-for-longData/pagination-for-long-data.service";
 
 /**
  * @class LogDataTableComponent
@@ -60,33 +61,11 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
   advanceSearchCollapseStatus: boolean = true;
   logDetailsFlag: any = false;
   kioskOrderFormFlag: any = false;
-  indexForPagination: number[] = [1, 2, 3];
-  prevIndexDisable: boolean = true;
-
-  getIndexForPagination(i) {
-    console.log("index for pagination:", i);
-  }
-
-  updateIndex(moveFlag) {
-    if (moveFlag === "next") {
-      this.indexForPagination[0] = this.indexForPagination[0] + 3;
-      this.indexForPagination[1] = this.indexForPagination[1] + 3;
-      this.indexForPagination[2] = this.indexForPagination[2] + 3;
-    } else if (moveFlag === "prev") {
-      this.indexForPagination[0] = this.indexForPagination[0] - 3;
-      this.indexForPagination[1] = this.indexForPagination[1] - 3;
-      this.indexForPagination[2] = this.indexForPagination[2] - 3;
-    }
-    if (this.indexForPagination[0] === 1) {
-      this.prevIndexDisable = true;
-    } else {
-      this.prevIndexDisable = false;
-    }
-  }
 
   constructor(
     private _loglistingService: LoglistingService,
     private _navBarService: NavBarService,
+    private _paginationForLongDataService: PaginationForLongDataService,
     private _printDocumentService: PrintDocumentService,
     private _logModalDataService: LogModalDataService,
     private _logDescriptionDataOrderService: LogDescriptionDataOrderService,
@@ -126,31 +105,35 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
     this.advanceSearchOptions = ["store", "sku", "Description"];
 
     try {
-      this._loglistingService
-        .getLogList()
-        .pipe(takeUntil(this._onDestroy))
-        .subscribe(data => {
-          this.printedData = data;
+      this._paginationForLongDataService
+        .setIndexPagination()
+        .subscribe(index => {
+          this._loglistingService
+            .getLogList(index)
+            .pipe(takeUntil(this._onDestroy))
+            .subscribe(data => {
+              this.printedData = data;
 
-          this.isLoading = false;
-          let storeData = [];
-          storeData.push("Select a Store");
-          data.map((dataValue, i) => {
-            dataValue["checked"] = false;
-            dataValue["index"] = i;
-            storeData.push(dataValue.store);
-          });
-          this.storeUniqueData = UniqueStoreHelper.uniqueStore(storeData);
+              this.isLoading = false;
+              let storeData = [];
+              storeData.push("Select a Store");
+              data.map((dataValue, i) => {
+                dataValue["checked"] = false;
+                dataValue["index"] = i;
+                storeData.push(dataValue.store);
+              });
+              this.storeUniqueData = UniqueStoreHelper.uniqueStore(storeData);
 
-          this.dataByAPI = new MatTableDataSource(data);
-          this.dataByAPI.sort = this.sort;
-          this.dataByAPI.paginator = this.paginator;
-          if (this.paginator) {
-            this.paginator.pageSize = 5;
-          }
-          this.dataByAPI.filterPredicate = this._logDescriptionDataOrderService.filterRestrictionOnlyForDisplayedRows(
-            "Item_Master"
-          );
+              this.dataByAPI = new MatTableDataSource(data);
+              this.dataByAPI.sort = this.sort;
+              this.dataByAPI.paginator = this.paginator;
+              if (this.paginator) {
+                this.paginator.pageSize = 5;
+              }
+              this.dataByAPI.filterPredicate = this._logDescriptionDataOrderService.filterRestrictionOnlyForDisplayedRows(
+                "Item_Master"
+              );
+            });
         });
     } catch (e) {
       console.log("in the test error", e);

@@ -23,18 +23,33 @@ export class LoglistingService {
 
   constructor(private http: HttpClient) {}
 
-  getLogList(): Observable<any> {
-    this._serviceUrl = logTableAPIUrls.getItemMaster;
-    return this.http.get<any>(this._serviceUrl).pipe(
-      map((response: Response) => {
-        // console.log("in the service", response[0]);
-        return response;
-      }),
-      catchError((err: Response) => {
-        console.log("in the error", err.status);
-        return null;
-      })
-    );
+  getLogList(index: number): Observable<any> {
+    if (index === 1) {
+      this._serviceUrl = logTableAPIUrls.getItemMaster;
+      return this.http.get<any>(this._serviceUrl).pipe(
+        map((response: Response) => {
+          // console.log("in the service", response[0]);
+          return response;
+        }),
+        catchError((err: Response) => {
+          console.log("in the error", err.status);
+          return null;
+        })
+      );
+    } else if (index === 2) {
+      console.log("in the index 2");
+      this._serviceUrl = logTableAPIUrls.getItemMasterMain;
+      return this.http.get<any>(this._serviceUrl).pipe(
+        map((response: Response) => {
+          // console.log("in the service", response[0]);
+          return response;
+        }),
+        catchError((err: Response) => {
+          console.log("in the error", err.status);
+          return null;
+        })
+      );
+    }
   }
 
   getLogListForEntity(entity): Observable<any> {
