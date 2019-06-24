@@ -25,6 +25,14 @@ export class PaginationForLargeDataComponent implements OnInit {
     this._paginationForLongDataService.getIndexPagination(i);
   }
 
+  disabledStatus(moveFlag): boolean {
+    if (moveFlag === "prev" && this.indexForPagination[0] === 1) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   updateIndex(moveFlag) {
     if (moveFlag === "next") {
       this.indexForPagination[0] = this.indexForPagination[0] + 3;

@@ -2,3 +2,9 @@
   color: #007bff;
   cursor: pointer;
 }
+
+a.disabled {
+  pointer-events: none;
+  cursor: not-allowed;
+  color: black;
+}
