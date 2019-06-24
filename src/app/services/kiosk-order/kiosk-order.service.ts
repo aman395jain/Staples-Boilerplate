@@ -4,6 +4,10 @@ import { catchError, map } from "rxjs/operators";
 
 import { kioskOrderUrls } from "../../utils/kioskOrderApiUrls.enum";
 
+/**
+ * @service KioskOrderService
+ * To integrate the Kiosk order form data with APIs.
+ */
 @Injectable()
 export class KioskOrderService {
   constructor(private http: HttpClient) {}

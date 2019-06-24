@@ -6,6 +6,10 @@ import { NavBarService } from "src/app/services/nav-bar/nav-bar.service";
 import { LogModalDataService } from "src/app/services/log-modal-data/log-modal-data.service";
 import { KioskOrderService } from "src/app/services/kiosk-order/kiosk-order.service";
 
+/**
+ * @component KioskTableComponent
+ * To attain the functionality for Dynamic Kiosk order form.
+ */
 @Component({
   selector: "staples-kiosk-table",
   templateUrl: "./kiosk-table.component.html",

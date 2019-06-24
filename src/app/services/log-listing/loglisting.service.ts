@@ -25,7 +25,13 @@ export class LoglistingService {
 
   getLogList(index: number): Observable<any> {
     this._serviceUrl = logTableAPIUrls.getItemMaster;
-    return this.http.post<any>(this._serviceUrl, { pageNumber: index }).pipe(
+
+    if (index === 1) {
+      this._serviceUrl = logTableAPIUrls.getItemMaster;
+    } else if (index === 2) {
+      this._serviceUrl = logTableAPIUrls.getItemMasterMain;
+    }
+    return this.http.get<any>(this._serviceUrl).pipe(
       map((response: Response) => {
         // console.log("in the service", response[0]);
         return response;

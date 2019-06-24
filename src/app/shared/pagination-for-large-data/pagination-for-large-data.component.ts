@@ -1,7 +1,11 @@
 import { Component, OnInit } from "@angular/core";
-import { NavBarService } from "src/app/services/nav-bar/nav-bar.service";
+
 import { PaginationForLongDataService } from "src/app/services/pagination-for-longData/pagination-for-long-data.service";
 
+/**
+ * @component PaginationForLargeDataComponent
+ * To achieve the functionality of pagination for Large number of data.
+ */
 @Component({
   selector: "staples-pagination-for-large-data",
   templateUrl: "./pagination-for-large-data.component.html",
@@ -10,6 +14,7 @@ import { PaginationForLongDataService } from "src/app/services/pagination-for-lo
 export class PaginationForLargeDataComponent implements OnInit {
   indexForPagination: number[] = [1, 2, 3];
   prevIndexDisable: boolean = true;
+
   constructor(
     private _paginationForLongDataService: PaginationForLongDataService
   ) {}
