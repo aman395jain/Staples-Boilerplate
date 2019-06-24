@@ -1,14 +1,16 @@
 /** 
-* print document icon class.
+* @scss _icon
+* global icon class.
 */
+
 .print-document {
   margin: 8% auto;
-  color: #cc0000;
+  color: $red;
   cursor: pointer;
 }
 
 .close-icon {
-  color: #007bff;
+  color: $blue;
   cursor: pointer;
 }
 
@@ -16,6 +18,12 @@
   margin-left: 30px;
   cursor: pointer;
   .mat-icon {
-    color: #007bff;
+    color: $blue;
   }
+}
+
+.account-profile-icon {
+  font-size: 35px;
+  margin-top: -10px;
+  color: $red;
 }

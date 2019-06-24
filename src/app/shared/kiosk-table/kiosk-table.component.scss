@@ -1,3 +1,5 @@
+@import "../../assets/styles/color-codes";
+
 .kiosk-form {
   .kiosk-order-upper {
     margin-left: 0px !important;
@@ -6,14 +8,14 @@
     .kiosk-order-banner {
       align-items: center;
       font-weight: bold;
-      color: #007bff;
+      color: $blue;
       font-size: 20px;
     }
     .back-order-table {
       color: #0056b3 !important;
       cursor: pointer;
       &:hover {
-        color: #cb2026 !important;
+        color: $red !important;
         text-decoration: underline !important;
       }
     }
@@ -21,10 +23,6 @@
 
   .inner-rows {
     min-height: 45px;
-    .advance-search-button {
-      margin-top: 7px;
-      margin-right: 20px;
-    }
   }
 
   .kiosk-order-form {
@@ -35,7 +33,7 @@
       .classified-text {
         height: 35px;
         font-weight: bold;
-        color: #007bff;
+        color: $blue;
       }
     }
   }

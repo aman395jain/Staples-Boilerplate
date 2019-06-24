@@ -1,10 +1,12 @@
-.main-pagination-links {
-  color: #007bff;
-  cursor: pointer;
-}
+@import "../../assets/styles/color-codes";
 
-a.disabled {
-  pointer-events: none;
-  cursor: not-allowed;
-  color: black;
+.main-pagination-links {
+  color: $blue;
+  cursor: pointer;
+
+  a.disabled {
+    pointer-events: none;
+    cursor: not-allowed;
+    color: #757575;
+  }
 }

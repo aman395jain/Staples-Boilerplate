@@ -1,6 +1,36 @@
+@import "../../assets/styles/color-codes";
+
+@mixin padding {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+@mixin margin($className) {
+  @if $className == "print-close-row" {
+    margin-bottom: 15px;
+    margin-right: 0px;
+  } @else if $className == "linked-sku-table" {
+    margin-bottom: 20px;
+    margin-top: 12px;
+  }
+}
+
+@mixin height-overflow($className) {
+  overflow: auto;
+  @if ($className == "attribute-table-content") or
+    ($className == "other-attribute-content") or
+    ($className == "linked-sku-table")
+  {
+    height: 150px;
+  } @else if $className == "other-attribute-table-content" {
+    height: 300px;
+  } @else if $className == "description-blocks" {
+    height: 60px;
+  }
+}
+
 .print-close-row {
-  margin-bottom: 15px;
-  margin-right: 0px;
+  @include margin("print-close-row");
   .print-close-icon {
     margin: 0 10px;
   }
@@ -9,50 +39,41 @@
 .classified-content {
   margin: 15px 0px;
   height: 32px;
-  color: #007bff;
+  color: $blue;
   font-weight: bold;
 }
 
 .attribute-table-content {
-  padding-left: 15px;
-  padding-right: 15px;
-  height: 150px;
-  overflow: auto;
+  @include padding;
+  @include height-overflow("attribute-table-content");
 }
 
 .other-attribute-table-content {
-  padding-left: 15px;
-  padding-right: 15px;
-  height: 300px;
-  overflow: auto;
+  @include padding;
+  @include height-overflow("other-attribute-table-content");
 }
 
 .linked-sku-table-header {
   width: 100% !important;
   .linked-sku-table {
-    height: 150px;
-    overflow: auto;
-    margin-bottom: 20px;
-    margin-top: 12px;
+    @include height-overflow("linked-sku-table");
+    @include margin("linked-sku-table");
   }
 }
 
 .other-attribute-content {
-  padding-left: 15px;
-  padding-right: 15px;
-  overflow: auto;
-  height: 150px;
+  @include padding;
+  @include height-overflow("other-attribute-content");
 }
 
 .table-bordered {
   .table-header {
-    color: #cc0000;
+    color: $red;
   }
 }
 
 .description-blocks {
-  height: 60px;
-  overflow: auto;
+  @include height-overflow("description-blocks");
 }
 
 .ng-star-inserted {

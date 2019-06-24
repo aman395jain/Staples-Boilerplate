@@ -1,3 +1,12 @@
+/**
+* @sccs _global
+* All global styles applicable to application.
+*/
+
+@import "_color-codes.scss";
+@import "icon";
+@import "buttons";
+
 html,
 body {
   height: 100%;
@@ -6,8 +15,6 @@ body {
   margin: 0;
   font: 16px/1.4 Helvetica;
 }
-
-@import "icon";
 
 // data table modal changes
 .mat-dialog-container {
