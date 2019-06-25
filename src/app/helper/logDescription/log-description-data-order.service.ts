@@ -291,9 +291,14 @@ export class LogDescriptionDataOrderService {
       return function(data, filter: string): boolean {
         return (
           data.emplName.toLowerCase().includes(filter) ||
-          data.password.toLowerCase().includes(filter) ||
-          data.emplRole.toString().includes(filter) ||
-          data.store.toString().includes(filter)
+          data.emplId
+            .toString()
+            .toLowerCase()
+            .includes(filter) ||
+          data.emplRole
+            .toString()
+            .toLowerCase()
+            .includes(filter)
         );
       };
     } else if (tableName === "Linked_SKUs") {
@@ -415,6 +420,39 @@ export class LogDescriptionDataOrderService {
             .toString()
             .toLowerCase()
             .includes(filter)
+        );
+      };
+    } else if (tableName === "Item_Group") {
+      return function(data, filter: string): boolean {
+        // debugger;
+        return (
+          data.itemGroupId
+            .toString()
+            .toLowerCase()
+            .includes(filter) ||
+          data.itemGroupDescription.toLowerCase().includes(filter)
+        );
+      };
+    } else if (tableName === "Promos") {
+      return function(data, filter: string): boolean {
+        return (
+          data.promoNum
+            .toString()
+            .toLowerCase()
+            .includes(filter) ||
+          data.discountDesc.toLowerCase().includes(filter) ||
+          data.discountName.toLowerCase().includes(filter) ||
+          data.discountType.toLowerCase().includes(filter)
+        );
+      };
+    } else if (tableName === "Tax_Exempt") {
+      return function(data, filter: string): boolean {
+        return (
+          data.taxExemptNbr.toLowerCase().includes(filter) ||
+          data.name.toLowerCase().includes(filter) ||
+          data.govtCertificate.toLowerCase().includes(filter) ||
+          data.companyName.toLowerCase().includes(filter) ||
+          data.phoneNo.toLowerCase().includes(filter)
         );
       };
     }

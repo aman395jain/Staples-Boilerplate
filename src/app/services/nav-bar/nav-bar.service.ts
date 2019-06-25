@@ -10,7 +10,7 @@ import { Subject, Observable, BehaviorSubject } from "rxjs";
 
 @Injectable()
 export class NavBarService {
-  private _elementNameSubject = new Subject<any>();
+  private _elementNameSubject = new BehaviorSubject<any>(null);
   private _toggleStatusSubject = new Subject<any>();
   private _pageSizeSubject = new Subject<any>();
   private _pageLengthSubject = new Subject<any>();
@@ -29,7 +29,7 @@ export class NavBarService {
    * getElementName: return the table name as observable.
    */
   getElementName(): Observable<any> {
-    return this._elementNameSubject.asObservable();
+    return this._elementNameSubject;
   }
 
   /**
