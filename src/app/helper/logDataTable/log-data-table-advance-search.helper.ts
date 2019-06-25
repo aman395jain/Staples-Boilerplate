@@ -149,6 +149,168 @@ export default class LogDataTableHelper {
             data.emplRole.includes(filter.Role);
         }
       };
+    } else if (table_name === "Order") {
+      return function(data, filter) {
+        console.log("in the order filter the filter is", filter);
+        console.log("in the order filter the data is", data);
+
+        if (
+          filter.hasOwnProperty("Order Type") &&
+          !filter.hasOwnProperty("Expiry Date") &&
+          !filter.hasOwnProperty("Source")
+        ) {
+          return data.orderType.includes(filter["Order Type"]);
+        } else if (
+          !filter.hasOwnProperty("Order Type") &&
+          filter.hasOwnProperty("Expiry Date") &&
+          !filter.hasOwnProperty("Source")
+        ) {
+          return data.expiryDate.toString().includes(filter["Expiry Date"]);
+        } else if (
+          !filter.hasOwnProperty("Order Type") &&
+          !filter.hasOwnProperty("Expiry Date") &&
+          filter.hasOwnProperty("Source")
+        ) {
+          return data.source.includes(filter.Source);
+        } else if (
+          filter.hasOwnProperty("Order Type") &&
+          filter.hasOwnProperty("Expiry Date") &&
+          !filter.hasOwnProperty("Source")
+        ) {
+          return (
+            data.orderType.includes(filter["Order Type"]) &&
+            data.expiryDate.toString().includes(filter["Expiry Date"])
+          );
+        } else if (
+          filter.hasOwnProperty("Order Type") &&
+          !filter.hasOwnProperty("Expiry Date") &&
+          filter.hasOwnProperty("Source")
+        ) {
+          return (
+            data.orderType.includes(filter["Order Type"]) &&
+            data.source.includes(filter.Source)
+          );
+        } else if (
+          !filter.hasOwnProperty("Order Type") &&
+          filter.hasOwnProperty("Expiry Date") &&
+          filter.hasOwnProperty("Source")
+        ) {
+          return (
+            data.expiryDate.toString().includes(filter["Expiry Date"]) &&
+            data.source.includes(filter.Source)
+          );
+        } else {
+          data.orderType.includes(filter["Order Type"]) &&
+            data.expiryDate.toString().includes(filter["Expiry Date"]) &&
+            data.source.includes(filter.Source);
+        }
+      };
+    } else if (table_name === "Tax_Rates") {
+      return function(data, filter) {
+        if (
+          filter.hasOwnProperty("State") &&
+          !filter.hasOwnProperty("Rate") &&
+          !filter.hasOwnProperty("Round Rule")
+        ) {
+          return data.state.includes(filter["State"]);
+        } else if (
+          !filter.hasOwnProperty("State") &&
+          filter.hasOwnProperty("Rate") &&
+          !filter.hasOwnProperty("Round Rule")
+        ) {
+          return data.rate.toString().includes(filter.Rate);
+        } else if (
+          !filter.hasOwnProperty("State") &&
+          !filter.hasOwnProperty("Rate") &&
+          filter.hasOwnProperty("Round Rule")
+        ) {
+          return data.roundRule.includes(filter["Round Rule"]);
+        } else if (
+          filter.hasOwnProperty("State") &&
+          filter.hasOwnProperty("Rate") &&
+          !filter.hasOwnProperty("Round Rule")
+        ) {
+          return (
+            data.state.includes(filter.State) &&
+            data.rate.toString().includes(filter["Rate"])
+          );
+        } else if (
+          filter.hasOwnProperty("State") &&
+          !filter.hasOwnProperty("Rate") &&
+          filter.hasOwnProperty("Round Rule")
+        ) {
+          return (
+            data.state.includes(filter.State) &&
+            data.roundRule.includes(filter["Round Rule"])
+          );
+        } else if (
+          !filter.hasOwnProperty("State") &&
+          filter.hasOwnProperty("Rate") &&
+          filter.hasOwnProperty("Round Rule")
+        ) {
+          return (
+            data.rate.toString().includes(filter["Rate"]) &&
+            data.roundRule.includes(filter["Round Rule"])
+          );
+        } else {
+          data.state.includes(filter.State) &&
+            data.rate.toString().includes(filter["Rate"]) &&
+            data.roundRule.includes(filter["Round Rule"]);
+        }
+      };
+    } else if (table_name === "Promos") {
+      return function(data, filter) {
+        if (
+          filter.hasOwnProperty("Discount Type") &&
+          !filter.hasOwnProperty("Store") &&
+          !filter.hasOwnProperty("Promo Name")
+        ) {
+          return data.discountType.includes(filter["Discount Type"]);
+        } else if (
+          !filter.hasOwnProperty("Discount Type") &&
+          filter.hasOwnProperty("Store") &&
+          !filter.hasOwnProperty("Promo Name")
+        ) {
+          return data.store.toString().includes(filter.Store);
+        } else if (
+          !filter.hasOwnProperty("Discount Type") &&
+          !filter.hasOwnProperty("Store") &&
+          filter.hasOwnProperty("Promo Name")
+        ) {
+          return data.promoName.includes(filter["Promo Name"]);
+        } else if (
+          filter.hasOwnProperty("Discount Type") &&
+          filter.hasOwnProperty("Store") &&
+          !filter.hasOwnProperty("Promo Name")
+        ) {
+          return (
+            data.discountType.includes(filter["Discount Type"]) &&
+            data.store.toString().includes(filter["Store"])
+          );
+        } else if (
+          filter.hasOwnProperty("Discount Type") &&
+          !filter.hasOwnProperty("Store") &&
+          filter.hasOwnProperty("Promo Name")
+        ) {
+          return (
+            data.discountType.includes(filter["Discount Type"]) &&
+            data.promoName.includes(filter["Promo Name"])
+          );
+        } else if (
+          !filter.hasOwnProperty("Discount Type") &&
+          filter.hasOwnProperty("Store") &&
+          filter.hasOwnProperty("Promo Name")
+        ) {
+          return (
+            data.store.toString().includes(filter["Store"]) &&
+            data.promoName.includes(filter["Promo Name"])
+          );
+        } else {
+          data.discountType.includes(filter["Discount Type"]) &&
+            data.store.toString().includes(filter["Store"]) &&
+            data.promoName.includes(filter["Promo Name"]);
+        }
+      };
     }
   }
 }

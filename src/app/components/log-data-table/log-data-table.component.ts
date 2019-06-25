@@ -192,6 +192,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
             );
             this.tableHeader = "Linked SKUs";
           } else if (tableName === "Tax_Rates") {
+            this.advanceSearchOptions = ["Rate", "City", "State"];
             this.logTableGridColumns = logDataTableConst.tax_Rate;
             this._logModalDataService.getTableNameForLogDetail("Tax_Rates");
 
@@ -260,6 +261,11 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
             );
             this.tableHeader = "Lowest Price";
           } else if (tableName === "Promos") {
+            this.advanceSearchOptions = [
+              "Discount Type",
+              "Store",
+              "Promo Name"
+            ];
             this.logTableGridColumns = logDataTableConst.Promos;
             this._logModalDataService.getTableNameForLogDetail("Promos");
 
@@ -272,6 +278,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
             this.tableName = "POSA";
             this.tableHeader = "POSA";
           } else if (tableName === "Order") {
+            this.advanceSearchOptions = ["Order Type", "Expiry Date", "Source"];
             this.logTableGridColumns = logDataTableConst.Order;
             this._logModalDataService.getTableNameForLogDetail("Order");
 
