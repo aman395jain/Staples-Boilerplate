@@ -90,7 +90,7 @@ export const logDataTableConst = {
     },
     {
       columnDef: "barCode",
-      header: "Bar Code",
+      header: "UPC",
       cell: (element: any) => barCodeDisplay(element)
     },
     {
@@ -232,7 +232,7 @@ export const logDataTableConst = {
       cell: null
     }
   ],
-  free_SKUs: [
+  bag_Fee_SKUs: [
     {
       columnDef: "select",
       header: null,
@@ -244,14 +244,14 @@ export const logDataTableConst = {
       cell: (element: any) => `${element.sku}`
     },
     {
-      columnDef: "posItemDesc",
+      columnDef: "itemDesc",
       header: "Description",
-      cell: (element: any) => `${element.posItemDesc}`
+      cell: (element: any) => `${element.itemDesc}`
     },
     {
-      columnDef: "permPrice",
+      columnDef: "retailPrice",
       header: "Retail Price",
-      cell: (element: any) => `${element.permPrice}`
+      cell: (element: any) => `${element.retailPrice}`
     },
     {
       columnDef: "barCode",
@@ -259,14 +259,19 @@ export const logDataTableConst = {
       cell: (element: any) => `${element.posId}`
     },
     {
-      columnDef: "freeSku",
-      header: "Free SKUs",
-      cell: (element: any) => `${element.freeSku}`
+      columnDef: "feeSku",
+      header: "Fee SKUs",
+      cell: (element: any) => `${element.feeSku}`
     },
     {
-      columnDef: "freeSkuPrice",
-      header: "Free SKU Price",
-      cell: (element: any) => `${element.freeSkuPrice}`
+      columnDef: "feeSkuPrice",
+      header: "Fee SKU Price",
+      cell: (element: any) => `${element.feeSkuPrice}`
+    },
+    {
+      columnDef: "itemGroupDescription",
+      header: "Item Group ID",
+      cell: (element: any) => `${element.itemGroupDescription}`
     },
     {
       columnDef: "action",

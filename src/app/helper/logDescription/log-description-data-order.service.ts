@@ -101,21 +101,21 @@ export class LogDescriptionDataOrderService {
       this.dataToBeDisplayedOnModal[1] = rowDataWithRestData;
       this.dataToBeDisplayedOnModal[2] = this.rowDataWithLinkedSKUs;
       return this.dataToBeDisplayedOnModal;
-    } else if (tableName === "Free_SKUs") {
+    } else if (tableName === "Bag_Fee_SKUs") {
       this.mainDataToDisplay = {
         sku: row.sku,
         itemDesc: row.itemDesc,
-        posId: row.posId,
-        permPrice: row.permPrice,
-        freeSku: row.freeSku,
-        freeSkuPrice: row.freeSkuPrice
+        retailPrice: row.retailPrice,
+        feeSku: row.feeSku,
+        feeSkuPrice: row.feeSkuPrice,
+        itemGroupDescription: row.itemGroupDescription
       };
       delete rowDataWithRestData["sku"];
       delete rowDataWithRestData["itemDesc"];
-      delete rowDataWithRestData["posId"];
-      delete rowDataWithRestData["permPrice"];
-      delete rowDataWithRestData["freeSku"];
-      delete rowDataWithRestData["freeSkuPrice"];
+      delete rowDataWithRestData["retailPrice"];
+      delete rowDataWithRestData["feeSku"];
+      delete rowDataWithRestData["feeSkuPrice"];
+      delete rowDataWithRestData["itemGroupDescription"];
 
       this.dataToBeDisplayedOnModal[0] = this.mainDataToDisplay;
 
@@ -358,28 +358,12 @@ export class LogDescriptionDataOrderService {
             .includes(filter)
         );
       };
-    } else if (tableName === "Free_SKUs") {
+    } else if (tableName === "Bag_Fee_SKUs") {
       return function(data, filter: string): boolean {
         return (
-          data.sku
-            .toString()
-            .toLowerCase()
-            .includes(filter) ||
-          data.itemDesc
-            .toString()
-            .toLowerCase()
-            .includes(filter) ||
-          data.permPrice
-            .toString()
-            .toLowerCase()
-            .includes(filter) ||
-          data.posId.includes(filter) ||
-          data.freeSku.includes(filter) ||
-          data.freeSkuPrice.includes(filter) ||
-          data.store
-            .toString()
-            .toLowerCase()
-            .includes(filter)
+          data.sku.toLowerCase().includes(filter) ||
+          data.itemDesc.toLowerCase().includes(filter) ||
+          data.retailPrice.toLowerCase().includes(filter)
         );
       };
     } else if (tableName === "Age_Restricted_Special_rest") {

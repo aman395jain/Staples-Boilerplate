@@ -61,7 +61,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
   advanceSearchCollapseStatus: boolean = true;
   logDetailsFlag: any = false;
   kioskOrderFormFlag: any = false;
-  header: string;
+  tableHeader: string;
   indexForLog: number = 1;
 
   constructor(
@@ -105,6 +105,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
       columnName => columnName.columnDef
     );
     this.advanceSearchOptions = ["store", "sku", "Description"];
+    this.tableHeader = "Item Master";
 
     try {
       this._paginationForLongDataService
@@ -114,6 +115,9 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
             .getLogList(index)
             .pipe(takeUntil(this._onDestroy))
             .subscribe(data => {
+              // console.log("data for fake", data)
+              // data = data.result;
+
               this.printedData = data;
 
               this.isLoading = false;
@@ -158,7 +162,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
             this.displayedColumns = logDataTableConst.price_Prompt_Sku.map(
               columnName => columnName.columnDef
             );
-            this.header = tableName;
+            this.tableHeader = "Price Prompt SKUs";
           } else if (tableName === "Item_Master") {
             this.logTableGridColumns = logDataTableConst.item_Master_Main;
             this.tableName = "Item_Master";
@@ -166,7 +170,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
             this.displayedColumns = logDataTableConst.item_Master_Main.map(
               columnName => columnName.columnDef
             );
-            this.header = tableName;
+            this.tableHeader = "Item Master";
           } else if (tableName === "Employee") {
             this.advanceSearchOptions = ["Location", "Employee ID", "Role"];
             this.logTableGridColumns = logDataTableConst.employee;
@@ -177,7 +181,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
             this.displayedColumns = logDataTableConst.employee.map(
               columnName => columnName.columnDef
             );
-            this.header = tableName;
+            this.tableHeader = "Employee";
           } else if (tableName === "Linked_SKUs") {
             this.logTableGridColumns = logDataTableConst.linked_SKUs;
 
@@ -186,7 +190,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
             this.displayedColumns = logDataTableConst.linked_SKUs.map(
               columnName => columnName.columnDef
             );
-            this.header = tableName;
+            this.tableHeader = "Linked SKUs";
           } else if (tableName === "Tax_Rates") {
             this.logTableGridColumns = logDataTableConst.tax_Rate;
             this._logModalDataService.getTableNameForLogDetail("Tax_Rates");
@@ -195,7 +199,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
             this.displayedColumns = logDataTableConst.tax_Rate.map(
               columnName => columnName.columnDef
             );
-            this.header = tableName;
+            this.tableHeader = "Tax Rates";
           } else if (tableName === "Hardware_SKUs") {
             this.logTableGridColumns = logDataTableConst.hardware_SKUs;
             this._logModalDataService.getTableNameForLogDetail("Hardware_SKUs");
@@ -204,16 +208,16 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
             this.displayedColumns = logDataTableConst.hardware_SKUs.map(
               columnName => columnName.columnDef
             );
-            this.header = tableName;
-          } else if (tableName === "Free_SKUs") {
-            this.logTableGridColumns = logDataTableConst.free_SKUs;
-            this._logModalDataService.getTableNameForLogDetail("Free_SKUs");
+            this.tableHeader = "Hardware SKUs";
+          } else if (tableName === "Bag_Fee_SKUs") {
+            this.logTableGridColumns = logDataTableConst.bag_Fee_SKUs;
+            this._logModalDataService.getTableNameForLogDetail("Bag_Fee_SKUs");
 
-            this.tableName = "Free_SKUs";
-            this.displayedColumns = logDataTableConst.free_SKUs.map(
+            this.tableName = "Bag_Fee_SKUs";
+            this.displayedColumns = logDataTableConst.bag_Fee_SKUs.map(
               columnName => columnName.columnDef
             );
-            this.header = tableName;
+            this.tableHeader = "Bag Fee SKUs";
           } else if (tableName === "Age_Restricted_Special_rest") {
             this.logTableGridColumns =
               logDataTableConst.age_Restricted_Special_rest;
@@ -225,7 +229,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
             this.displayedColumns = logDataTableConst.age_Restricted_Special_rest.map(
               columnName => columnName.columnDef
             );
-            this.header = tableName;
+            this.tableHeader = "Age Restricted Special Rest";
           } else if (tableName === "Item_Group") {
             this.logTableGridColumns = logDataTableConst.Item_Group;
             this._logModalDataService.getTableNameForLogDetail("Item_Group");
@@ -234,7 +238,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
             this.displayedColumns = logDataTableConst.Item_Group.map(
               columnName => columnName.columnDef
             );
-            this.header = tableName;
+            this.tableHeader = "Item Group";
           } else if (tableName === "Return_Driver_License") {
             this.logTableGridColumns = logDataTableConst.return_Driver_License;
             this._logModalDataService.getTableNameForLogDetail(
@@ -245,7 +249,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
             this.displayedColumns = logDataTableConst.return_Driver_License.map(
               columnName => columnName.columnDef
             );
-            this.header = tableName;
+            this.tableHeader = "Return Driver Licence";
           } else if (tableName === "Lowest_Price") {
             this.logTableGridColumns = logDataTableConst.lowest_Price;
             this._logModalDataService.getTableNameForLogDetail("Lowest_Price");
@@ -254,7 +258,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
             this.displayedColumns = logDataTableConst.lowest_Price.map(
               columnName => columnName.columnDef
             );
-            this.header = tableName;
+            this.tableHeader = "Lowest Price";
           } else if (tableName === "Promos") {
             this.logTableGridColumns = logDataTableConst.Promos;
             this._logModalDataService.getTableNameForLogDetail("Promos");
@@ -263,10 +267,10 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
             this.displayedColumns = logDataTableConst.Promos.map(
               columnName => columnName.columnDef
             );
-            this.header = tableName;
+            this.tableHeader = tableName;
           } else if (tableName === "POSA") {
             this.tableName = "POSA";
-            this.header = tableName;
+            this.tableHeader = "POSA";
           } else if (tableName === "Order") {
             this.logTableGridColumns = logDataTableConst.Order;
             this._logModalDataService.getTableNameForLogDetail("Order");
@@ -275,11 +279,11 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
             this.displayedColumns = logDataTableConst.Order.map(
               columnName => columnName.columnDef
             );
-            this.header = tableName;
+            this.tableHeader = "Order";
             this.newOrderType = ["Kiosk", "Solution Builder"];
           } else if (tableName === "Coupon") {
             this.tableName = "Coupon";
-            this.header = tableName;
+            this.tableHeader = "Coupon";
           } else if (tableName === "Tax_Exempt") {
             this.logTableGridColumns = logDataTableConst.Tax_Exempt;
             this._logModalDataService.getTableNameForLogDetail("Tax_Exempt");
@@ -288,7 +292,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
             this.displayedColumns = logDataTableConst.Tax_Exempt.map(
               columnName => columnName.columnDef
             );
-            this.header = tableName;
+            this.tableHeader = "Tax Exempt";
           } else if (tableName === "Rewards") {
             this.tableName = "Rewards";
           } else if (tableName === "CBP") {
