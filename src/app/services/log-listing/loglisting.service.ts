@@ -37,7 +37,7 @@ export class LoglistingService {
     );
   }
 
-  getLogListForEntity(entity): Observable<any> {
+  getLogListForEntity(entity, index): Observable<any> {
     if (entity === "Price_Prompt_SKUs") {
       this._serviceUrl = logTableAPIUrls.getPricePromptSKUs;
     } else if (entity === "Item_Master") {
