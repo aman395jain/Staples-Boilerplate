@@ -123,7 +123,11 @@ export class DashboardHeaderNameConverstionService {
     created: "Created Date",
     expiryDate: "Expiry Date",
     orderLineDetail: "Order Line Detail",
-    status: "Status"
+    status: "Status",
+    itemGroupDescription: "Item Group Description",
+    promoId: "Promo ID",
+    addOrAutoadd: "Add or Auto Add",
+    buyOrGetFlag: "Buy or get Flag"
   };
   printedDataNewHeader = {};
 

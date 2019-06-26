@@ -227,6 +227,20 @@ export class LogDescriptionDataOrderService {
 
       this.dataToBeDisplayedOnModal[1] = rowDataWithRestData;
       return this.dataToBeDisplayedOnModal;
+    } else if (tableName === "Item_Group") {
+      this.mainDataToDisplay = {
+        itemGroupId: row.itemGroupId,
+        itemGroupDescription: row.itemGroupDescription,
+        promoId: row.promoId
+      };
+      delete rowDataWithRestData["itemGroupId"];
+      delete rowDataWithRestData["itemGroupDescription"];
+      delete rowDataWithRestData["promoId"];
+
+      this.dataToBeDisplayedOnModal[0] = this.mainDataToDisplay;
+
+      this.dataToBeDisplayedOnModal[1] = rowDataWithRestData;
+      return this.dataToBeDisplayedOnModal;
     }
   }
 
