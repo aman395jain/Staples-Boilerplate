@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from "@angular/core";
 import { NavBarService } from "src/app/services/nav-bar/nav-bar.service";
 import { Subject } from "rxjs";
 import { takeUntil } from "rxjs/operators";
+import { PaginationForLongDataService } from "src/app/services/pagination-for-longData/pagination-for-long-data.service";
 
 @Component({
   selector: "staples-dashboard-log-table",
@@ -16,7 +17,10 @@ export class DisplayLogTableComponent implements OnInit, OnDestroy {
 
   private _onDestroy = new Subject<void>();
 
-  constructor(private _navBarService: NavBarService) {}
+  constructor(
+    private _navBarService: NavBarService,
+    private _paginationForLongDataService: PaginationForLongDataService
+  ) {}
 
   ngOnInit() {
     this._navBarService
@@ -35,6 +39,8 @@ export class DisplayLogTableComponent implements OnInit, OnDestroy {
           this.maxLeftBarSize = "5";
         }
       });
+
+    this._paginationForLongDataService.getIndexPagination(1);
   }
 
   ngOnDestroy(): void {

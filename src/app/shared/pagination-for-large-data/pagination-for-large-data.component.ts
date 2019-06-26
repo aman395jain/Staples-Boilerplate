@@ -1,6 +1,7 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 
 import { PaginationForLongDataService } from "src/app/services/pagination-for-longData/pagination-for-long-data.service";
+import { NavBarService } from "src/app/services/nav-bar/nav-bar.service";
 
 /**
  * @component PaginationForLargeDataComponent
@@ -14,15 +15,24 @@ import { PaginationForLongDataService } from "src/app/services/pagination-for-lo
 export class PaginationForLargeDataComponent implements OnInit {
   indexForPagination: number[] = [1, 2, 3];
   prevIndexDisable: boolean = true;
+  @Input("tableName") tableName: string;
 
   constructor(
-    private _paginationForLongDataService: PaginationForLongDataService
+    private _paginationForLongDataService: PaginationForLongDataService,
+    private _navBarService: NavBarService
   ) {}
 
   ngOnInit() {}
 
   getIndexForPagination(i: number) {
-    this._paginationForLongDataService.getIndexPagination(i);
+    if (typeof this.tableName === "undefined") {
+      this._paginationForLongDataService.getIndexPagination(i);
+    } else {
+      const tableNameFromSideNav = { tableName: "", intialIndex: 1 };
+      tableNameFromSideNav.intialIndex = i;
+      tableNameFromSideNav.tableName = this.tableName;
+      this._navBarService.setElementNameFromSideBar(tableNameFromSideNav);
+    }
   }
 
   disabledStatus(moveFlag): boolean {
