@@ -28,7 +28,7 @@ export class LoglistingService {
     return this.http.post<any>(this._serviceUrl, { pageNumber: index }).pipe(
       map((response: Response) => {
         console.log("in the service", response);
-        return response["list"];
+        return response;
       }),
       catchError((err: Response) => {
         console.log("in the error", err.status);
@@ -77,7 +77,7 @@ export class LoglistingService {
       debounceTime(1000),
       map((response: Response) => {
         // console.log("in the service", response[0]);
-        return response["list"];
+        return response;
       }),
       catchError((err: Response) => {
         console.log("in the error", err.status);

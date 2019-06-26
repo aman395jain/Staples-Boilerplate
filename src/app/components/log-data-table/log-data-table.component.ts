@@ -153,6 +153,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
           this.isLoading = true;
           this.selectedDataForPrint = [];
           if (tableName === "Price_Prompt_SKUs") {
+            this.advanceSearchOptions = ["SKU", "Description", "Retail Price"];
             this.logTableGridColumns = logDataTableConst.price_Prompt_Sku;
 
             this.tableName = "Price_Prompt_SKUs";
@@ -164,6 +165,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
             );
             this.tableHeader = "Price Prompt SKUs";
           } else if (tableName === "Item_Master") {
+            this.advanceSearchOptions = ["Store", "SKU", "Description"];
             this.logTableGridColumns = logDataTableConst.item_Master_Main;
             this.tableName = "Item_Master";
             this._logModalDataService.getTableNameForLogDetail("Item_Master");
@@ -183,6 +185,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
             );
             this.tableHeader = "Employee";
           } else if (tableName === "Linked_SKUs") {
+            this.advanceSearchOptions = ["SKU", "Description", "Retail Price"];
             this.logTableGridColumns = logDataTableConst.linked_SKUs;
 
             this.tableName = "Linked_SKUs";
@@ -202,6 +205,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
             );
             this.tableHeader = "Tax Rates";
           } else if (tableName === "Hardware_SKUs") {
+            this.advanceSearchOptions = ["SKU", "Description", "Retail Price"];
             this.logTableGridColumns = logDataTableConst.hardware_SKUs;
             this._logModalDataService.getTableNameForLogDetail("Hardware_SKUs");
 
@@ -211,6 +215,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
             );
             this.tableHeader = "Hardware SKUs";
           } else if (tableName === "Bag_Fee_SKUs") {
+            this.advanceSearchOptions = ["SKU", "Description", "Retail Price"];
             this.logTableGridColumns = logDataTableConst.bag_Fee_SKUs;
             this._logModalDataService.getTableNameForLogDetail("Bag_Fee_SKUs");
 
@@ -220,6 +225,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
             );
             this.tableHeader = "Bag Fee SKUs";
           } else if (tableName === "Age_Restricted_Special_rest") {
+            this.advanceSearchOptions = ["SKU", "Description", "Retail Price"];
             this.logTableGridColumns =
               logDataTableConst.age_Restricted_Special_rest;
             this._logModalDataService.getTableNameForLogDetail(
