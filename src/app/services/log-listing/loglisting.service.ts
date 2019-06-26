@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Response } from "@angular/http";
-import { map, catchError } from "rxjs/operators";
+import { map, catchError, debounceTime } from "rxjs/operators";
 import { Observable, BehaviorSubject } from "rxjs";
 // import { LoggerModule, NgxLoggerLevel, NGXLogger } from "ngx-logger";
 
@@ -27,8 +27,8 @@ export class LoglistingService {
     this._serviceUrl = logTableAPIUrls.getItemMaster;
     return this.http.post<any>(this._serviceUrl, { pageNumber: index }).pipe(
       map((response: Response) => {
-        // console.log("in the service", response[0]);
-        return response;
+        console.log("in the service", response);
+        return response["list"];
       }),
       catchError((err: Response) => {
         console.log("in the error", err.status);
@@ -73,10 +73,11 @@ export class LoglistingService {
     } else {
       this._serviceUrl = logTableAPIUrls.getOrder;
     }
-    return this.http.get<any>(this._serviceUrl).pipe(
+    return this.http.post<any>(this._serviceUrl, { pageNumber: index }).pipe(
+      debounceTime(1000),
       map((response: Response) => {
-        console.log("in the service", response[0]);
-        return response;
+        // console.log("in the service", response[0]);
+        return response["list"];
       }),
       catchError((err: Response) => {
         console.log("in the error", err.status);
