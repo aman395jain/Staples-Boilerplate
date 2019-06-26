@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Subject, Observable, BehaviorSubject } from "rxjs";
+import { Subject, Observable, BehaviorSubject, ReplaySubject } from "rxjs";
 
 /**
  * @ngdoc service
@@ -10,7 +10,7 @@ import { Subject, Observable, BehaviorSubject } from "rxjs";
 
 @Injectable()
 export class NavBarService {
-  private _elementNameSubject = new BehaviorSubject<any>(null);
+  private _elementNameSubject = new ReplaySubject<any>(1);
   private _toggleStatusSubject = new Subject<any>();
   private _pageSizeSubject = new Subject<any>();
   private _pageLengthSubject = new Subject<any>();

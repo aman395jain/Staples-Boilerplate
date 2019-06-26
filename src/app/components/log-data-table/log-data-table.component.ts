@@ -9,7 +9,7 @@ import {
 import { MatPaginator, MatTableDataSource, MatSort } from "@angular/material";
 import "rxjs/add/observable/of";
 import { Subject } from "rxjs";
-import { takeUntil } from "rxjs/operators";
+import { takeUntil, debounceTime } from "rxjs/operators";
 import { Router } from "@angular/router";
 
 import { LoglistingService } from "src/app/services/log-listing/loglisting.service";
@@ -317,7 +317,9 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
 
           this._paginationForLongDataService
             .setIndexPagination()
+            .pipe(debounceTime(100))
             .subscribe(index => {
+              // this.isLoading = true;
               this._loglistingService
                 .getLogListForEntity(this.tableName, index)
                 .pipe(takeUntil(this._onDestroy))
