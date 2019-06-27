@@ -5,7 +5,7 @@ import { BehaviorSubject } from "rxjs";
   providedIn: "root"
 })
 export class PaginationForLongDataService {
-  private _indexPagination = new BehaviorSubject<any>(1);
+  private _indexPagination = new BehaviorSubject<any>(null);
 
   constructor() {}
 

@@ -62,7 +62,8 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
   logDetailsFlag: any = false;
   kioskOrderFormFlag: any = false;
   tableHeader: string;
-  indexForLog: number = 1;
+  indexForLog: number;
+  tableNameFromBar: string;
 
   constructor(
     private _loglistingService: LoglistingService,
@@ -148,224 +149,208 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
     this._navBarService
       .getElementName()
       .pipe(takeUntil(this._onDestroy))
-      .subscribe(tableName => {
-        if (tableName !== null) {
-          this.isLoading = true;
-          this.selectedDataForPrint = [];
-          if (tableName === "Price_Prompt_SKUs") {
-            this.advanceSearchOptions = ["SKU", "Description", "Retail Price"];
-            this.logTableGridColumns = logDataTableConst.price_Prompt_Sku;
+      .subscribe(tableInfoFromSideNav => {
+        this.tableNameFromBar = tableInfoFromSideNav.tableName;
+        this.indexForLog = tableInfoFromSideNav.intialIndex;
+        // this.isLoading = true;
+        this.selectedDataForPrint = [];
 
-            this.tableName = "Price_Prompt_SKUs";
-            this._logModalDataService.getTableNameForLogDetail(
-              "Price_Prompt_SKUs"
-            );
-            this.displayedColumns = logDataTableConst.price_Prompt_Sku.map(
-              columnName => columnName.columnDef
-            );
-            this.tableHeader = "Price Prompt SKUs";
-          } else if (tableName === "Item_Master") {
-            this.advanceSearchOptions = ["Store", "SKU", "Description"];
-            this.logTableGridColumns = logDataTableConst.item_Master_Main;
-            this.tableName = "Item_Master";
-            this._logModalDataService.getTableNameForLogDetail("Item_Master");
-            this.displayedColumns = logDataTableConst.item_Master_Main.map(
-              columnName => columnName.columnDef
-            );
-            this.tableHeader = "Item Master";
-          } else if (tableName === "Employee") {
-            this.advanceSearchOptions = ["Location", "Employee ID", "Role"];
-            this.logTableGridColumns = logDataTableConst.employee;
+        if (this.tableNameFromBar === "Item_Master") {
+          this.logTableGridColumns = logDataTableConst.item_Master_Main;
+          this.tableName = "Item_Master";
+          this._logModalDataService.getTableNameForLogDetail("Item_Master");
+          this.displayedColumns = logDataTableConst.item_Master_Main.map(
+            columnName => columnName.columnDef
+          );
+          this.tableHeader = "Item Master";
+        } else if (this.tableNameFromBar === "Hardware_SKUs") {
+          this.advanceSearchOptions = ["Description", "SKU", "Retail Price"];
+          this.logTableGridColumns = logDataTableConst.hardware_SKUs;
+          this._logModalDataService.getTableNameForLogDetail("Hardware_SKUs");
 
-            this.tableName = "Employee";
+          this.tableName = "Hardware_SKUs";
+          this.displayedColumns = logDataTableConst.hardware_SKUs.map(
+            columnName => columnName.columnDef
+          );
+          this.tableHeader = "Hardware SKUs";
+        } else if (this.tableNameFromBar === "Price_Prompt_SKUs") {
+          this.advanceSearchOptions = ["Description", "SKU", "Retail Price"];
+          this.logTableGridColumns = logDataTableConst.price_Prompt_Sku;
 
-            this._logModalDataService.getTableNameForLogDetail("Employee");
-            this.displayedColumns = logDataTableConst.employee.map(
-              columnName => columnName.columnDef
-            );
-            this.tableHeader = "Employee";
-          } else if (tableName === "Linked_SKUs") {
-            this.advanceSearchOptions = ["SKU", "Description", "Retail Price"];
-            this.logTableGridColumns = logDataTableConst.linked_SKUs;
+          this.tableName = "Price_Prompt_SKUs";
+          this._logModalDataService.getTableNameForLogDetail(
+            "Price_Prompt_SKUs"
+          );
+          this.displayedColumns = logDataTableConst.price_Prompt_Sku.map(
+            columnName => columnName.columnDef
+          );
+          this.tableHeader = "Price Prompt SKUs";
+        } else if (this.tableNameFromBar === "Employee") {
+          this.advanceSearchOptions = ["Location", "Employee ID", "Role"];
+          this.logTableGridColumns = logDataTableConst.employee;
 
-            this.tableName = "Linked_SKUs";
-            this._logModalDataService.getTableNameForLogDetail("Linked_SKUs");
-            this.displayedColumns = logDataTableConst.linked_SKUs.map(
-              columnName => columnName.columnDef
-            );
-            this.tableHeader = "Linked SKUs";
-          } else if (tableName === "Tax_Rates") {
-            this.advanceSearchOptions = ["Rate", "City", "State"];
-            this.logTableGridColumns = logDataTableConst.tax_Rate;
-            this._logModalDataService.getTableNameForLogDetail("Tax_Rates");
+          this.tableName = "Employee";
 
-            this.tableName = "Tax_Rates";
-            this.displayedColumns = logDataTableConst.tax_Rate.map(
-              columnName => columnName.columnDef
-            );
-            this.tableHeader = "Tax Rates";
-          } else if (tableName === "Hardware_SKUs") {
-            this.advanceSearchOptions = ["SKU", "Description", "Retail Price"];
-            this.logTableGridColumns = logDataTableConst.hardware_SKUs;
-            this._logModalDataService.getTableNameForLogDetail("Hardware_SKUs");
+          this._logModalDataService.getTableNameForLogDetail("Employee");
+          this.displayedColumns = logDataTableConst.employee.map(
+            columnName => columnName.columnDef
+          );
+          this.tableHeader = "Employee";
+        } else if (this.tableNameFromBar === "Linked_SKUs") {
+          this.advanceSearchOptions = ["Description", "SKU", "Retail Price"];
+          this.logTableGridColumns = logDataTableConst.linked_SKUs;
 
-            this.tableName = "Hardware_SKUs";
-            this.displayedColumns = logDataTableConst.hardware_SKUs.map(
-              columnName => columnName.columnDef
-            );
-            this.tableHeader = "Hardware SKUs";
-          } else if (tableName === "Bag_Fee_SKUs") {
-            this.advanceSearchOptions = ["SKU", "Description", "Retail Price"];
-            this.logTableGridColumns = logDataTableConst.bag_Fee_SKUs;
-            this._logModalDataService.getTableNameForLogDetail("Bag_Fee_SKUs");
+          this.tableName = "Linked_SKUs";
+          this._logModalDataService.getTableNameForLogDetail("Linked_SKUs");
+          this.displayedColumns = logDataTableConst.linked_SKUs.map(
+            columnName => columnName.columnDef
+          );
+          this.tableHeader = "Linked SKUs";
+        } else if (this.tableNameFromBar === "Tax_Rates") {
+          this.advanceSearchOptions = ["Rate", "City", "State"];
+          this.logTableGridColumns = logDataTableConst.tax_Rate;
+          this._logModalDataService.getTableNameForLogDetail("Tax_Rates");
 
-            this.tableName = "Bag_Fee_SKUs";
-            this.displayedColumns = logDataTableConst.bag_Fee_SKUs.map(
-              columnName => columnName.columnDef
-            );
-            this.tableHeader = "Bag Fee SKUs";
-          } else if (tableName === "Age_Restricted_Special_rest") {
-            this.advanceSearchOptions = ["SKU", "Description", "Retail Price"];
-            this.logTableGridColumns =
-              logDataTableConst.age_Restricted_Special_rest;
-            this._logModalDataService.getTableNameForLogDetail(
-              "Age_Restricted_Special_rest"
-            );
+          this.tableName = "Tax_Rates";
+          this.displayedColumns = logDataTableConst.tax_Rate.map(
+            columnName => columnName.columnDef
+          );
+          this.tableHeader = "Tax Rates";
+        } else if (this.tableNameFromBar === "Bag_Fee_SKUs") {
+          this.advanceSearchOptions = ["Description", "SKU", "Retail Price"];
+          this.logTableGridColumns = logDataTableConst.bag_Fee_SKUs;
+          this._logModalDataService.getTableNameForLogDetail("Bag_Fee_SKUs");
 
-            this.tableName = "Age_Restricted_Special_rest";
-            this.displayedColumns = logDataTableConst.age_Restricted_Special_rest.map(
-              columnName => columnName.columnDef
-            );
-            this.tableHeader = "Age Restricted Special Rest";
-          } else if (tableName === "Item_Group") {
-            this.logTableGridColumns = logDataTableConst.Item_Group;
-            this._logModalDataService.getTableNameForLogDetail("Item_Group");
+          this.tableName = "Bag_Fee_SKUs";
+          this.displayedColumns = logDataTableConst.bag_Fee_SKUs.map(
+            columnName => columnName.columnDef
+          );
+          this.tableHeader = "Bag Fee SKUs";
+        } else if (this.tableNameFromBar === "Age_Restricted_Special_rest") {
+          this.advanceSearchOptions = ["Description", "SKU", "Retail Price"];
+          this.logTableGridColumns =
+            logDataTableConst.age_Restricted_Special_rest;
+          this._logModalDataService.getTableNameForLogDetail(
+            "Age_Restricted_Special_rest"
+          );
 
-            this.tableName = "Item_Group";
-            this.displayedColumns = logDataTableConst.Item_Group.map(
-              columnName => columnName.columnDef
-            );
-            this.tableHeader = "Item Group";
-          } else if (tableName === "Return_Driver_License") {
-            this.logTableGridColumns = logDataTableConst.return_Driver_License;
-            this._logModalDataService.getTableNameForLogDetail(
-              "Return_Driver_License"
-            );
+          this.tableName = "Age_Restricted_Special_rest";
+          this.displayedColumns = logDataTableConst.age_Restricted_Special_rest.map(
+            columnName => columnName.columnDef
+          );
+          this.tableHeader = "Age Restricted Special Rest";
+        } else if (this.tableNameFromBar === "Item_Group") {
+          this.logTableGridColumns = logDataTableConst.Item_Group;
+          this._logModalDataService.getTableNameForLogDetail("Item_Group");
 
-            this.tableName = "Return_Driver_License";
-            this.displayedColumns = logDataTableConst.return_Driver_License.map(
-              columnName => columnName.columnDef
-            );
-            this.tableHeader = "Return Driver Licence";
-          } else if (tableName === "Lowest_Price") {
-            this.logTableGridColumns = logDataTableConst.lowest_Price;
-            this._logModalDataService.getTableNameForLogDetail("Lowest_Price");
+          this.tableName = "Item_Group";
+          this.displayedColumns = logDataTableConst.Item_Group.map(
+            columnName => columnName.columnDef
+          );
+          this.tableHeader = "Item Group";
+        } else if (this.tableNameFromBar === "Return_Driver_License") {
+          this.logTableGridColumns = logDataTableConst.return_Driver_License;
+          this._logModalDataService.getTableNameForLogDetail(
+            "Return_Driver_License"
+          );
 
-            this.tableName = "Lowest_Price";
-            this.displayedColumns = logDataTableConst.lowest_Price.map(
-              columnName => columnName.columnDef
-            );
-            this.tableHeader = "Lowest Price";
-          } else if (tableName === "Promos") {
-            this.advanceSearchOptions = [
-              "Discount Type",
-              "Store",
-              "Promo Name"
-            ];
-            this.logTableGridColumns = logDataTableConst.Promos;
-            this._logModalDataService.getTableNameForLogDetail("Promos");
+          this.tableName = "Return_Driver_License";
+          this.displayedColumns = logDataTableConst.return_Driver_License.map(
+            columnName => columnName.columnDef
+          );
+          this.tableHeader = "Return Driver Licence";
+        } else if (this.tableNameFromBar === "Lowest_Price") {
+          this.logTableGridColumns = logDataTableConst.lowest_Price;
+          this._logModalDataService.getTableNameForLogDetail("Lowest_Price");
 
-            this.tableName = "Promos";
-            this.displayedColumns = logDataTableConst.Promos.map(
-              columnName => columnName.columnDef
-            );
-            this.tableHeader = tableName;
-          } else if (tableName === "POSA") {
-            this.tableName = "POSA";
-            this.tableHeader = "POSA";
-          } else if (tableName === "Order") {
-            this.advanceSearchOptions = ["Order Type", "Expiry Date", "Source"];
-            this.logTableGridColumns = logDataTableConst.Order;
-            this._logModalDataService.getTableNameForLogDetail("Order");
+          this.tableName = "Lowest_Price";
+          this.displayedColumns = logDataTableConst.lowest_Price.map(
+            columnName => columnName.columnDef
+          );
+          this.tableHeader = "Lowest Price";
+        } else if (this.tableNameFromBar === "Promos") {
+          this.advanceSearchOptions = ["Discount Type", "Store", "Promo Name"];
+          this.logTableGridColumns = logDataTableConst.Promos;
+          this._logModalDataService.getTableNameForLogDetail("Promos");
 
-            this.tableName = "Order";
-            this.displayedColumns = logDataTableConst.Order.map(
-              columnName => columnName.columnDef
-            );
-            this.tableHeader = "Order";
-            this.newOrderType = ["Kiosk", "Solution Builder"];
-          } else if (tableName === "Coupon") {
-            this.tableName = "Coupon";
-            this.tableHeader = "Coupon";
-          } else if (tableName === "Tax_Exempt") {
-            this.logTableGridColumns = logDataTableConst.Tax_Exempt;
-            this._logModalDataService.getTableNameForLogDetail("Tax_Exempt");
+          this.tableName = "Promos";
+          this.displayedColumns = logDataTableConst.Promos.map(
+            columnName => columnName.columnDef
+          );
+          this.tableHeader = "Promos";
+        } else if (this.tableNameFromBar === "POSA") {
+          this.tableName = "POSA";
+          this.tableHeader = "POSA";
+        } else if (this.tableNameFromBar === "Order") {
+          this.advanceSearchOptions = ["Order Type", "Expiry Date", "Source"];
+          this.logTableGridColumns = logDataTableConst.Order;
+          this._logModalDataService.getTableNameForLogDetail("Order");
 
-            this.tableName = "Tax_Exempt";
-            this.displayedColumns = logDataTableConst.Tax_Exempt.map(
-              columnName => columnName.columnDef
-            );
-            this.tableHeader = "Tax Exempt";
-          } else if (tableName === "Rewards") {
-            this.tableName = "Rewards";
-          } else if (tableName === "CBP") {
-            this.tableName = "CBP";
-          } else if (tableName === "CEP") {
-            this.tableName = "CEP";
-          }
+          this.tableName = "Order";
+          this.displayedColumns = logDataTableConst.Order.map(
+            columnName => columnName.columnDef
+          );
+          this.tableHeader = "Order";
+          this.newOrderType = ["Kiosk", "Solution Builder"];
+        } else if (this.tableNameFromBar === "Coupon") {
+          this.tableName = "Coupon";
+          this.tableHeader = "Coupon";
+        } else if (this.tableNameFromBar === "Tax_Exempt") {
+          this.logTableGridColumns = logDataTableConst.Tax_Exempt;
+          this._logModalDataService.getTableNameForLogDetail("Tax_Exempt");
 
-          this._navBarService
-            .getPageSize()
-            .pipe(takeUntil(this._onDestroy))
-            .subscribe(size => {
-              this.initialPageSize = size;
-            });
-
-          this._paginationForLongDataService
-            .setIndexPagination()
-            .pipe(debounceTime(100))
-            .subscribe(index => {
-              // this.isLoading = true;
-              this._loglistingService
-                .getLogListForEntity(this.tableName, index)
-                .pipe(takeUntil(this._onDestroy))
-                .subscribe(data => {
-                  this.isLoading = false;
-                  let storeData = ["Select a Store"];
-                  this.storeUniqueData = [];
-                  this.printedData = data;
-                  data.map((dataValue, i) => {
-                    dataValue["checked"] = false;
-                    dataValue["index"] = i;
-                    storeData.push(dataValue.store);
-                  });
-                  this.selectedOption = "Select a Store";
-
-                  this.storeUniqueData = UniqueStoreHelper.uniqueStore(
-                    storeData
-                  );
-                  this.dataByAPI = new MatTableDataSource(data);
-                  this.dataByAPI.sort = this.sort;
-                  this.dataByAPI.paginator = this.paginator;
-                  const advanceSearchDiv = this.advanceSearchForm.nativeElement;
-                  this._navBarService
-                    .setAdvanceSearchStatus()
-                    .subscribe(advanceStatus => {
-                      this.renderer.setAttribute(
-                        advanceSearchDiv,
-                        "class",
-                        advanceStatus === false
-                          ? "col-md-12 advanced-search collapse"
-                          : "col-md-12 advanced-search collapse show"
-                      );
-                    });
-                  this.paginator.pageSize = 5;
-                  this.dataByAPI.filterPredicate = this._logDescriptionDataOrderService.filterRestrictionOnlyForDisplayedRows(
-                    this.tableName
-                  );
-                });
-            });
+          this.tableName = "Tax_Exempt";
+          this.displayedColumns = logDataTableConst.Tax_Exempt.map(
+            columnName => columnName.columnDef
+          );
+          this.tableHeader = "Tax Exempt";
+        } else if (this.tableNameFromBar === "Rewards") {
+          this.tableName = "Rewards";
+        } else if (this.tableNameFromBar === "CBP") {
+          this.tableName = "CBP";
+        } else if (this.tableNameFromBar === "CEP") {
+          this.tableName = "CEP";
         }
+
+        console.log("table name is:", this.tableNameFromBar);
+        console.log("index from side nav: ", this.indexForLog);
+
+        this._loglistingService
+          .getLogListForEntity(this.tableNameFromBar, this.indexForLog)
+          .pipe(takeUntil(this._onDestroy))
+          .subscribe(data => {
+            this.isLoading = false;
+            let storeData = ["Select a Store"];
+            this.storeUniqueData = [];
+            this.printedData = data;
+            data.map((dataValue, i) => {
+              dataValue["checked"] = false;
+              dataValue["index"] = i;
+              storeData.push(dataValue.store);
+            });
+            this.selectedOption = "Select a Store";
+
+            this.storeUniqueData = UniqueStoreHelper.uniqueStore(storeData);
+            this.dataByAPI = new MatTableDataSource(data);
+            this.dataByAPI.sort = this.sort;
+            this.dataByAPI.paginator = this.paginator;
+            const advanceSearchDiv = this.advanceSearchForm.nativeElement;
+            this._navBarService
+              .setAdvanceSearchStatus()
+              .subscribe(advanceStatus => {
+                this.renderer.setAttribute(
+                  advanceSearchDiv,
+                  "class",
+                  advanceStatus === false
+                    ? "col-md-12 advanced-search collapse"
+                    : "col-md-12 advanced-search collapse show"
+                );
+              });
+            this.paginator.pageSize = 5;
+            this.dataByAPI.filterPredicate = this._logDescriptionDataOrderService.filterRestrictionOnlyForDisplayedRows(
+              this.tableName
+            );
+          });
       });
   }
 

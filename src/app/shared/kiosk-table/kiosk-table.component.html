@@ -48,6 +48,7 @@
             </div>
             <div class="col-12 classified-text">Customer Details</div>
             <div class="form-group col-6">
+              <label class="form-labels">Email</label>
               <input
                 type="text"
                 class="form-control"
@@ -56,6 +57,7 @@
               />
             </div>
             <div class="form-group col-6">
+                <label class="form-labels">First Name</label>
               <input
                 type="text"
                 class="form-control"
@@ -64,6 +66,7 @@
               />
             </div>
             <div class="form-group col-6">
+                <label class="form-labels">Last Name</label>
               <input
                 type="text"
                 class="form-control"
@@ -72,6 +75,7 @@
               />
             </div>
             <div class="form-group col-6">
+                <label class="form-labels">Phone Number</label>
               <input
                 type="text"
                 class="form-control"
@@ -80,6 +84,7 @@
               />
             </div>
             <div class="form-group col-6">
+                <label class="form-labels">Zip Code</label>
               <input
                 type="text"
                 class="form-control"
@@ -96,6 +101,7 @@
               "
               class="form-group col-6"
             >
+            <label class="form-labels">Item Description for digit1</label>
               <input
                 type="text"
                 class="form-control"
@@ -109,6 +115,7 @@
               "
               class="form-group col-6"
             >
+            <label class="form-labels">Item ID for digit1</label>
               <input
                 type="text"
                 class="form-control"
@@ -122,6 +129,21 @@
               "
               class="form-group col-6"
             >
+            <label class="form-labels">Unit price for digit1</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="enter the unit price for digit1"
+                formControlName="unitPrice5digit1"
+              />
+            </div>
+            <div
+              *ngIf="
+                selectedFileName === 'Prepaid Kiosk Order with 5 digit coupons'
+              "
+              class="form-group col-6"
+            >
+            <label class="form-labels">Item Description for digit2</label>
               <input
                 type="text"
                 class="form-control"
@@ -135,6 +157,7 @@
               "
               class="form-group col-6"
             >
+            <label class="form-labels">Item ID for digit2</label>
               <input
                 type="text"
                 class="form-control"
@@ -148,6 +171,21 @@
               "
               class="form-group col-6"
             >
+            <label class="form-labels">Unit price for digit2</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="enter the unit price for digit2"
+                formControlName="unitPrice5digit2"
+              />
+            </div>
+            <div
+              *ngIf="
+                selectedFileName === 'Prepaid Kiosk Order with 5 digit coupons'
+              "
+              class="form-group col-6"
+            >
+            <label class="form-labels">Item Description for digit3</label>
               <input
                 type="text"
                 class="form-control"
@@ -162,6 +200,7 @@
               "
               class="form-group col-6"
             >
+            <label class="form-labels">Item ID for digit3</label>
               <input
                 type="text"
                 class="form-control"
@@ -175,6 +214,21 @@
               "
               class="form-group col-6"
             >
+            <label class="form-labels">Unit price for digit3</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="enter the unit price for digit3"
+                formControlName="unitPrice5digit3"
+              />
+            </div>
+            <div
+              *ngIf="
+                selectedFileName === 'Prepaid Kiosk Order with 5 digit coupons'
+              "
+              class="form-group col-6"
+            >
+            <label class="form-labels">Item Description for digit4</label>
               <input
                 type="text"
                 class="form-control"
@@ -188,11 +242,26 @@
               "
               class="form-group col-6"
             >
+            <label class="form-labels">Item ID for digit4</label>
               <input
                 type="text"
                 class="form-control"
                 placeholder="enter the item ID for digit4"
                 formControlName="itemID5digit4"
+              />
+            </div>
+            <div
+              *ngIf="
+                selectedFileName === 'Prepaid Kiosk Order with 5 digit coupons'
+              "
+              class="form-group col-6"
+            >
+            <label class="form-labels">Unit price for digit4</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="enter the unit price for digit4"
+                formControlName="unitPrice5digit4"
               />
             </div>
 
@@ -202,6 +271,7 @@
               "
               class="form-group col-6"
             >
+            <label class="form-labels">Item Description for digit coupon1</label>
               <input
                 type="text"
                 class="form-control"
@@ -215,7 +285,8 @@
               "
               class="form-group col-6"
             >
-              <input
+            <label class="form-labels">Item ID for digit coupon1</label>
+            <input
                 type="text"
                 class="form-control"
                 placeholder="enter the item ID for digit coupon1"
@@ -228,6 +299,21 @@
               "
               class="form-group col-6"
             >
+            <label class="form-labels">Unit price for digit coupon1</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="enter the Unit price for digit coupon1"
+                formControlName="unitPrice16DigitCoupon1"
+              />
+            </div>
+            <div
+              *ngIf="
+                selectedFileName === 'Prepaid Kiosk Order with 16 digit coupons'
+              "
+              class="form-group col-6"
+            >
+            <label class="form-labels">Item Description for digit coupon2</label>
               <input
                 type="text"
                 class="form-control"
@@ -241,6 +327,7 @@
               "
               class="form-group col-6"
             >
+            <label class="form-labels">Item ID for digit coupon2</label>
               <input
                 type="text"
                 class="form-control"
@@ -248,6 +335,20 @@
                 formControlName="itemID16DigitCoupon2"
               />
             </div>
+            <div
+            *ngIf="
+              selectedFileName === 'Prepaid Kiosk Order with 16 digit coupons'
+            "
+            class="form-group col-6"
+          >
+          <label class="form-labels">Unit price for digit coupon2</label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="enter the Unit price for digit coupon2"
+              formControlName="unitPrice16DigitCoupon2"
+            />
+          </div>
 
             <div
               *ngIf="
@@ -256,6 +357,7 @@
               "
               class="form-group col-6"
             >
+            <label class="form-labels">Item Description for ARW Reward No1</label>
               <input
                 type="text"
                 class="form-control"
@@ -270,6 +372,7 @@
               "
               class="form-group col-6"
             >
+            <label class="form-labels">Item ID for ARW Reward No1</label>
               <input
                 type="text"
                 class="form-control"
@@ -284,6 +387,22 @@
               "
               class="form-group col-6"
             >
+            <label class="form-labels">Unit price for ARW Reward No1</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="enter the unit price for ARW Reward No1"
+                formControlName="unitPriceARWRN1"
+              />
+            </div>
+            <div
+              *ngIf="
+                selectedFileName ===
+                'Prepaid Kiosk Order with ARW rewards number'
+              "
+              class="form-group col-6"
+            >
+            <label class="form-labels">Item Description for ARW Reward No2</label>
               <input
                 type="text"
                 class="form-control"
@@ -298,6 +417,7 @@
               "
               class="form-group col-6"
             >
+            <label class="form-labels">Item ID for ARW Reward No2</label>
               <input
                 type="text"
                 class="form-control"
@@ -312,6 +432,22 @@
               "
               class="form-group col-6"
             >
+            <label class="form-labels">Unit price for ARW Reward No2</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="enter the unit price for ARW Reward No2"
+                formControlName="unitPriceARWRN2"
+              />
+            </div>
+            <div
+              *ngIf="
+                selectedFileName ===
+                'Prepaid Kiosk Order with ARW rewards number'
+              "
+              class="form-group col-6"
+            >
+            <label class="form-labels">Item Description for ARW Reward No3</label>
               <input
                 type="text"
                 class="form-control"
@@ -326,6 +462,7 @@
               "
               class="form-group col-6"
             >
+            <label class="form-labels">Item ID for ARW Reward No3</label>
               <input
                 type="text"
                 class="form-control"
@@ -340,6 +477,22 @@
               "
               class="form-group col-6"
             >
+            <label class="form-labels">Unit price for ARW Reward No3</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="enter the unit price for ARW Reward No3"
+                formControlName="unitPriceARWRN3"
+              />
+            </div>
+            <div
+              *ngIf="
+                selectedFileName ===
+                'Prepaid Kiosk Order with ARW rewards number'
+              "
+              class="form-group col-6"
+            >
+            <label class="form-labels">Item Description for ARW Reward No4</label>
               <input
                 type="text"
                 class="form-control"
@@ -354,6 +507,7 @@
               "
               class="form-group col-6"
             >
+            <label class="form-labels">Item ID for ARW Reward No4</label>
               <input
                 type="text"
                 class="form-control"
@@ -361,11 +515,27 @@
                 formControlName="itemIDARWRN4"
               />
             </div>
+            <div
+              *ngIf="
+                selectedFileName ===
+                'Prepaid Kiosk Order with ARW rewards number'
+              "
+              class="form-group col-6"
+            >
+            <label class="form-labels">Unit price for ARW Reward No4</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="enter the unit price for ARW Reward No4"
+                formControlName="unitPriceARWRN4"
+              />
+            </div>
 
             <div
               *ngIf="selectedFileName === 'Prepaid Kiosk Order with Ingram'"
               class="form-group col-6"
             >
+            <label class="form-labels">Item Description for Ingram</label>
               <input
                 type="text"
                 class="form-control"
@@ -377,6 +547,7 @@
               *ngIf="selectedFileName === 'Prepaid Kiosk Order with Ingram'"
               class="form-group col-6"
             >
+            <label class="form-labels">Item ID for Ingram</label>
               <input
                 type="text"
                 class="form-control"
@@ -385,11 +556,24 @@
               />
             </div>
             <div
+              *ngIf="selectedFileName === 'Prepaid Kiosk Order with Ingram'"
+              class="form-group col-6"
+            >
+            <label class="form-labels">Unit price for Ingram</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="enter the unit price for Ingram"
+                formControlName="unitPriceIngram"
+              />
+            </div>
+            <div
               *ngIf="
                 selectedFileName === 'Prepaid Kiosk Order with rewards number'
               "
               class="form-group col-6"
             >
+            <label class="form-labels">Item Description for Rewards No1</label>
               <input
                 type="text"
                 class="form-control"
@@ -403,6 +587,7 @@
               "
               class="form-group col-6"
             >
+            <label class="form-labels">Item ID for Rewards No1</label>
               <input
                 type="text"
                 class="form-control"
@@ -416,6 +601,21 @@
               "
               class="form-group col-6"
             >
+            <label class="form-labels">Unit price for Rewards No1</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="enter the item ID for Rewards No1"
+                formControlName="unitPriceRewardNo1"
+              />
+            </div>
+            <div
+              *ngIf="
+                selectedFileName === 'Prepaid Kiosk Order with rewards number'
+              "
+              class="form-group col-6"
+            >
+            <label class="form-labels">Item Description for Rewards No2</label>
               <input
                 type="text"
                 class="form-control"
@@ -429,6 +629,7 @@
               "
               class="form-group col-6"
             >
+            <label class="form-labels">Item ID for Rewards No2</label>
               <input
                 type="text"
                 class="form-control"
@@ -436,11 +637,26 @@
                 formControlName="itemIDRewardNo2"
               />
             </div>
+            <div
+              *ngIf="
+                selectedFileName === 'Prepaid Kiosk Order with rewards number'
+              "
+              class="form-group col-6"
+            >
+            <label class="form-labels">Unit price for Rewards No2</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="enter the unit price for Rewards No2"
+                formControlName="unitPriceRewardNo2"
+              />
+            </div>
 
             <div
               *ngIf="selectedFileName === 'Prepaid Kiosk Order with United SKU'"
               class="form-group col-6"
             >
+            <label class="form-labels">Item Description for SKU</label>
               <input
                 type="text"
                 class="form-control"
@@ -452,11 +668,24 @@
               *ngIf="selectedFileName === 'Prepaid Kiosk Order with United SKU'"
               class="form-group col-6"
             >
+            <label class="form-labels">Item ID for SKU</label>
               <input
                 type="text"
                 class="form-control"
                 placeholder="enter the item ID for SKU"
                 formControlName="itemIDSku"
+              />
+            </div>
+            <div
+              *ngIf="selectedFileName === 'Prepaid Kiosk Order with United SKU'"
+              class="form-group col-6"
+            >
+            <label class="form-labels">Unit price for SKU</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="enter the unit price for SKU"
+                formControlName="unitPriceSku"
               />
             </div>
           </div>
