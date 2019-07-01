@@ -143,7 +143,9 @@ export class LogDetailComponent implements OnInit, OnDestroy {
   backToDataManagement() {
     this._logModalDataService.getLogDetailFlag(false);
     this._navBarService.getAdvanceSearchStatus(false);
-    this._navBarService.setElementNameFromSideBar(this.tableNameLogDetails);
+    const tableNameFromBack = { tableName: "", intialIndex: 1 };
+    tableNameFromBack.tableName = this.tableNameLogDetails;
+    this._navBarService.setElementNameFromSideBar(tableNameFromBack);
     this.router.navigate(["/testDataManagement"]);
   }
 }
