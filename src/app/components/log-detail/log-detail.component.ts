@@ -62,9 +62,7 @@ export class LogDetailComponent implements OnInit, OnDestroy {
       .setLogDetailData()
       .pipe(takeUntil(this._onDestroy))
       .subscribe(rowData => {
-        let logDetailForSingleEntity = [];
         // console.log("row data in log detailcomponent", rowData);
-        logDetailForSingleEntity.push(rowData);
 
         this.classifiedDataLogDetail = this._logDiscriptionDataOrderService.modalDataOrder(
           rowData,

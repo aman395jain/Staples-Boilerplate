@@ -64,6 +64,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
   tableHeader: string;
   indexForLog: number;
   tableNameFromBar: string;
+  paginationBarDisplayFlag: boolean = true;
 
   constructor(
     private _loglistingService: LoglistingService,
@@ -116,8 +117,16 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
             .getLogList(index)
             .pipe(takeUntil(this._onDestroy))
             .subscribe(data => {
-              // console.log("data for fake", data)
-              // data = data.result;
+              if (data.pagiCount < 100) {
+                this.paginationBarDisplayFlag = false;
+              } else {
+                this.paginationBarDisplayFlag = true;
+                this._paginationForLongDataService.getNumberOfRowsForPagination(
+                  data.pagiCount
+                );
+              }
+
+              data = data.list;
 
               this.printedData = data;
 
@@ -319,6 +328,16 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
           .getLogListForEntity(this.tableNameFromBar, this.indexForLog)
           .pipe(takeUntil(this._onDestroy))
           .subscribe(data => {
+            console.log("data fake is:", data);
+            if (data.pagiCount < 100) {
+              this.paginationBarDisplayFlag = false;
+            } else {
+              this.paginationBarDisplayFlag = true;
+              this._paginationForLongDataService.getNumberOfRowsForPagination(
+                data.pagiCount
+              );
+            }
+            data = data.list;
             this.isLoading = false;
             let storeData = ["Select a Store"];
             this.storeUniqueData = [];

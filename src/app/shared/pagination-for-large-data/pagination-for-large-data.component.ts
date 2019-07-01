@@ -13,16 +13,27 @@ import { NavBarService } from "src/app/services/nav-bar/nav-bar.service";
   styleUrls: ["./pagination-for-large-data.component.scss"]
 })
 export class PaginationForLargeDataComponent implements OnInit {
+  @Input("tableName") tableName: string;
+
   indexForPagination: number[] = [1, 2, 3];
   prevIndexDisable: boolean = true;
-  @Input("tableName") tableName: string;
+  totalIndex: number;
+  numberOfIndex: number;
 
   constructor(
     private _paginationForLongDataService: PaginationForLongDataService,
     private _navBarService: NavBarService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this._paginationForLongDataService
+      .setNumberOfRowsForPagination()
+      .subscribe(index => {
+        this.totalIndex = index;
+        index = index / 100;
+        this.numberOfIndex = Math.ceil(index);
+      });
+  }
 
   getIndexForPagination(i: number) {
     if (typeof this.tableName === "undefined") {
@@ -36,10 +47,14 @@ export class PaginationForLargeDataComponent implements OnInit {
   }
 
   disabledStatus(moveFlag): boolean {
-    if (moveFlag === "prev" && this.indexForPagination[0] === 1) {
-      return true;
-    } else {
-      return false;
+    if (moveFlag === "prev") {
+      if (this.indexForPagination[0] === 1) {
+        return true;
+      } else {
+        return false;
+      }
+    } else if (moveFlag === "next" && typeof this.totalIndex === "number") {
+      return null;
     }
   }
 

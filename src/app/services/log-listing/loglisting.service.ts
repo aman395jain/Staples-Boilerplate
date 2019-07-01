@@ -27,7 +27,7 @@ export class LoglistingService {
     this._serviceUrl = logTableAPIUrls.getItemMaster;
     return this.http.post<any>(this._serviceUrl, { pageNumber: index }).pipe(
       map((response: Response) => {
-        console.log("in the service", response);
+        // console.log("in the service", response);
         return response;
       }),
       catchError((err: Response) => {

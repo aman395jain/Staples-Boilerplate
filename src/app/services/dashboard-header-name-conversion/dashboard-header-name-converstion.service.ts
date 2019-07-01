@@ -129,12 +129,12 @@ export class DashboardHeaderNameConverstionService {
     addOrAutoadd: "Add or Auto Add",
     buyOrGetFlag: "Buy or get Flag"
   };
-  printedDataNewHeader = {};
+  dataNewHeader = {};
 
   constructor() {}
 
   headerNameConvert = dataForConvertion => {
-    this.printedDataNewHeader = dataForConvertion.map(data => {
+    this.dataNewHeader = dataForConvertion.map(data => {
       return Object.keys(data).reduce((prev, next) => {
         if (next in this.keyMap) {
           prev[this.keyMap[next]] = data[next];
@@ -144,6 +144,6 @@ export class DashboardHeaderNameConverstionService {
         return prev;
       }, {});
     });
-    return this.printedDataNewHeader;
+    return this.dataNewHeader;
   };
 }
