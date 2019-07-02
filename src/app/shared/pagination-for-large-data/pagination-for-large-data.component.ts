@@ -39,7 +39,11 @@ export class PaginationForLargeDataComponent implements OnInit {
     if (typeof this.tableName === "undefined") {
       this._paginationForLongDataService.getIndexPagination(i);
     } else {
-      const tableNameFromSideNav = { tableName: "", intialIndex: 1 };
+      const tableNameFromSideNav = {
+        tableName: "",
+        intialIndex: 1,
+        spinnerFlag: false
+      };
       tableNameFromSideNav.intialIndex = i;
       tableNameFromSideNav.tableName = this.tableName;
       this._navBarService.setElementNameFromSideBar(tableNameFromSideNav);

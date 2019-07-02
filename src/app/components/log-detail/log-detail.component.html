@@ -83,10 +83,10 @@
               <thead>
                 <tr>
                   <th class="table-header">
-                    <span>Fee SKUs</span>
+                    <span>Recycle SKUs</span>
                   </th>
                   <th class="table-header">
-                    <span>Fee Description</span>
+                    <span>Recycle SKUs Description</span>
                   </th>
                   <th class="table-header">
                     <span>Retail Price</span>
@@ -177,13 +177,17 @@
                 <th class="table-header">
                   <span>Buy Type</span>
                 </th>
+                <th class="table-header">
+                  <span>Item Group Id</span>
+                </th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>{{ promosBuyData.promoGroup }}</td>
+                <td>{{ promosBuyData.sku }}</td>
                 <td>{{ promosBuyData.thresholdQty }}</td>
                 <td>{{ promosBuyData.itemReqType }}</td>
+                <td>{{ promosBuyData.promoGroup }}</td>
               </tr>
             </tbody>
           </table>
@@ -223,7 +227,7 @@
             </thead>
             <tbody>
               <tr>
-                <td>{{ promosGetData.promoGroup }}</td>
+                <td>{{ promosGetData.sku }}</td>
                 <td>{{ promosGetData.thresholdQty }}</td>
                 <td>{{ promosGetData.itemReqType }}</td>
                 <td>{{ promosGetData.discountQualifierType }}</td>

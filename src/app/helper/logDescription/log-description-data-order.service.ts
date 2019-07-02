@@ -82,33 +82,36 @@ export class LogDescriptionDataOrderService {
       this.mainDataToDisplay = {
         sku: row.sku,
         upcList: row.upcList,
-        warranty: row.warranty,
+        warranty: row.itemGroupDescription,
         retailPrice: row.retailPrice,
-        associateGrpId: row.associateGrpId
+        associateGrpId: row.associateGrpId,
+        addOrAutoadd: row.addOrAutoadd
       };
       this.rowDataWithLinkedSKUs = {
         linkedList: row.linkedList
       };
       delete rowDataWithRestData["sku"];
       delete rowDataWithRestData["upcList"];
-      delete rowDataWithRestData["warranty"];
+      delete rowDataWithRestData["itemGroupDescription"];
       delete rowDataWithRestData["retailPrice"];
       delete rowDataWithRestData["associateGrpId"];
       delete rowDataWithRestData["linkedList"];
+      delete rowDataWithRestData["addOrAutoadd"];
 
       this.dataToBeDisplayedOnModal[0] = this.mainDataToDisplay;
 
       this.dataToBeDisplayedOnModal[1] = rowDataWithRestData;
       this.dataToBeDisplayedOnModal[2] = this.rowDataWithLinkedSKUs;
       return this.dataToBeDisplayedOnModal;
-    } else if (tableName === "Bag_Fee_SKUs") {
+    } else if (tableName === "Recycle_Fee_SKUs") {
       this.mainDataToDisplay = {
         sku: row.sku,
         itemDesc: row.itemDesc,
         retailPrice: row.retailPrice,
         feeSku: row.feeSku,
         feeSkuPrice: row.feeSkuPrice,
-        itemGroupDescription: row.itemGroupDescription
+        itemGroupDescription: row.itemGroupDescription,
+        addOrAutoadd: row.addOrAutoadd
       };
       delete rowDataWithRestData["sku"];
       delete rowDataWithRestData["itemDesc"];
@@ -116,6 +119,38 @@ export class LogDescriptionDataOrderService {
       delete rowDataWithRestData["feeSku"];
       delete rowDataWithRestData["feeSkuPrice"];
       delete rowDataWithRestData["itemGroupDescription"];
+      delete rowDataWithRestData["linkedList"];
+      delete rowDataWithRestData["addOrAutoadd"];
+      this.rowDataWithLinkedSKUs = {
+        linkedList: row.linkedList
+      };
+
+      this.dataToBeDisplayedOnModal[0] = this.mainDataToDisplay;
+
+      this.dataToBeDisplayedOnModal[1] = rowDataWithRestData;
+      return this.dataToBeDisplayedOnModal;
+    } else if (tableName === "ESP_SKUs") {
+      this.mainDataToDisplay = {
+        sku: row.sku,
+        itemDesc: row.itemDesc,
+        retailPrice: row.retailPrice,
+        feeSku: row.feeSku,
+        feeSkuPrice: row.feeSkuPrice,
+        itemGroupDescription: row.itemGroupDescription,
+        addOrAutoadd: row.addOrAutoadd
+      };
+      delete rowDataWithRestData["sku"];
+      delete rowDataWithRestData["itemDesc"];
+      delete rowDataWithRestData["retailPrice"];
+      delete rowDataWithRestData["feeSku"];
+      delete rowDataWithRestData["feeSkuPrice"];
+      delete rowDataWithRestData["itemGroupDescription"];
+      delete rowDataWithRestData["addOrAutoadd"];
+      delete rowDataWithRestData["linkedList"];
+
+      this.rowDataWithLinkedSKUs = {
+        linkedList: row.linkedList
+      };
 
       this.dataToBeDisplayedOnModal[0] = this.mainDataToDisplay;
 
@@ -197,15 +232,90 @@ export class LogDescriptionDataOrderService {
         name: row.name,
         state: row.state,
         phoneNo: row.phoneNo,
-        companyName: row.companyName,
-        govtCertificate: row.govtCertificate
+        companyName: row.companyName
       };
       delete rowDataWithRestData["taxExemptNbr"];
       delete rowDataWithRestData["name"];
       delete rowDataWithRestData["state"];
       delete rowDataWithRestData["phoneNo"];
       delete rowDataWithRestData["companyName"];
-      delete rowDataWithRestData["govtCertificate"];
+      delete rowDataWithRestData["id"];
+
+      this.dataToBeDisplayedOnModal[0] = this.mainDataToDisplay;
+
+      this.dataToBeDisplayedOnModal[1] = rowDataWithRestData;
+      return this.dataToBeDisplayedOnModal;
+    } else if (tableName === "Tax_Exempt_Valid") {
+      this.mainDataToDisplay = {
+        taxExemptNbr: row.taxExemptNbr,
+        name: row.name,
+        state: row.state,
+        phoneNo: row.phoneNo,
+        companyName: row.companyName
+      };
+      delete rowDataWithRestData["taxExemptNbr"];
+      delete rowDataWithRestData["name"];
+      delete rowDataWithRestData["state"];
+      delete rowDataWithRestData["phoneNo"];
+      delete rowDataWithRestData["companyName"];
+      delete rowDataWithRestData["id"];
+
+      this.dataToBeDisplayedOnModal[0] = this.mainDataToDisplay;
+
+      this.dataToBeDisplayedOnModal[1] = rowDataWithRestData;
+      return this.dataToBeDisplayedOnModal;
+    } else if (tableName === "Tax_Exempt_Expired") {
+      this.mainDataToDisplay = {
+        taxExemptNbr: row.taxExemptNbr,
+        name: row.name,
+        state: row.state,
+        phoneNo: row.phoneNo,
+        companyName: row.companyName
+      };
+      delete rowDataWithRestData["taxExemptNbr"];
+      delete rowDataWithRestData["name"];
+      delete rowDataWithRestData["state"];
+      delete rowDataWithRestData["phoneNo"];
+      delete rowDataWithRestData["companyName"];
+      delete rowDataWithRestData["id"];
+
+      this.dataToBeDisplayedOnModal[0] = this.mainDataToDisplay;
+
+      this.dataToBeDisplayedOnModal[1] = rowDataWithRestData;
+      return this.dataToBeDisplayedOnModal;
+    } else if (tableName === "Tax_Exempt_About_To_Expired") {
+      this.mainDataToDisplay = {
+        taxExemptNbr: row.taxExemptNbr,
+        name: row.name,
+        state: row.state,
+        phoneNo: row.phoneNo,
+        companyName: row.companyName
+      };
+      delete rowDataWithRestData["taxExemptNbr"];
+      delete rowDataWithRestData["name"];
+      delete rowDataWithRestData["state"];
+      delete rowDataWithRestData["phoneNo"];
+      delete rowDataWithRestData["companyName"];
+      delete rowDataWithRestData["id"];
+
+      this.dataToBeDisplayedOnModal[0] = this.mainDataToDisplay;
+
+      this.dataToBeDisplayedOnModal[1] = rowDataWithRestData;
+      return this.dataToBeDisplayedOnModal;
+    } else if (tableName === "Tax_Exempt_Deactivated") {
+      this.mainDataToDisplay = {
+        taxExemptNbr: row.taxExemptNbr,
+        name: row.name,
+        state: row.state,
+        phoneNo: row.phoneNo,
+        companyName: row.companyName
+      };
+      delete rowDataWithRestData["taxExemptNbr"];
+      delete rowDataWithRestData["name"];
+      delete rowDataWithRestData["state"];
+      delete rowDataWithRestData["phoneNo"];
+      delete rowDataWithRestData["companyName"];
+      delete rowDataWithRestData["id"];
 
       this.dataToBeDisplayedOnModal[0] = this.mainDataToDisplay;
 
@@ -372,7 +482,15 @@ export class LogDescriptionDataOrderService {
             .includes(filter)
         );
       };
-    } else if (tableName === "Bag_Fee_SKUs") {
+    } else if (tableName === "Recycle_Fee_SKUs") {
+      return function(data, filter: string): boolean {
+        return (
+          data.sku.toLowerCase().includes(filter) ||
+          data.itemDesc.toLowerCase().includes(filter) ||
+          data.retailPrice.toLowerCase().includes(filter)
+        );
+      };
+    } else if (tableName === "ESP_SKUs") {
       return function(data, filter: string): boolean {
         return (
           data.sku.toLowerCase().includes(filter) ||

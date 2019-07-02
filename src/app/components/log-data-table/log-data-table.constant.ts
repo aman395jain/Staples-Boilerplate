@@ -52,7 +52,7 @@ export const logDataTableConst = {
       cell: (element: any) => `${element.posItemDesc}`
     },
     {
-      columnDef: "permPrice",
+      columnDef: "retailPrice",
       header: "Retail Price",
       cell: (element: any) => `${element.retailPrice}`
     },
@@ -84,9 +84,9 @@ export const logDataTableConst = {
       cell: (element: any) => `${element.posItemDesc}`
     },
     {
-      columnDef: "permPrice",
+      columnDef: "retailPrice",
       header: "Retail Price",
-      cell: (element: any) => `${element.permPrice}`
+      cell: (element: any) => `${element.retailPrice}`
     },
     {
       columnDef: "barCode",
@@ -138,6 +138,11 @@ export const logDataTableConst = {
       cell: (element: any) => `${element.sku}`
     },
     {
+      columnDef: "posItemDesc",
+      header: "Description",
+      cell: (element: any) => `${element.posItemDesc}`
+    },
+    {
       columnDef: "retailPrice",
       header: "Retail Price",
       cell: (element: any) => `${element.retailPrice}`
@@ -148,9 +153,51 @@ export const logDataTableConst = {
       cell: (element: any) => barCodeDisplay(element)
     },
     {
-      columnDef: "warranty",
-      header: "Warrenty",
-      cell: (element: any) => `${element.warranty}`
+      columnDef: "itemGroupDescription",
+      header: "Warranty /Protection Plan",
+      cell: (element: any) => `${element.itemGroupDescription}`
+    },
+    {
+      columnDef: "associateGrpId",
+      header: "Item Group ID",
+      cell: (element: any) => `${element.associateGrpId}`
+    },
+    {
+      columnDef: "action",
+      header: null,
+      cell: null
+    }
+  ],
+  ESP_SKUs: [
+    {
+      columnDef: "select",
+      header: null,
+      cell: null
+    },
+    {
+      columnDef: "sku",
+      header: "SKU",
+      cell: (element: any) => `${element.sku}`
+    },
+    {
+      columnDef: "posItemDesc",
+      header: "Description",
+      cell: (element: any) => `${element.posItemDesc}`
+    },
+    {
+      columnDef: "retailPrice",
+      header: "Retail Price",
+      cell: (element: any) => `${element.retailPrice}`
+    },
+    {
+      columnDef: "barCode",
+      header: "UPC",
+      cell: (element: any) => barCodeDisplay(element)
+    },
+    {
+      columnDef: "itemGroupDescription",
+      header: "ESP SKUs",
+      cell: (element: any) => `${element.itemGroupDescription}`
     },
     {
       columnDef: "associateGrpId",
@@ -232,7 +279,7 @@ export const logDataTableConst = {
       cell: null
     }
   ],
-  bag_Fee_SKUs: [
+  Recycle_Fee_SKUs: [
     {
       columnDef: "select",
       header: null,
@@ -244,9 +291,9 @@ export const logDataTableConst = {
       cell: (element: any) => `${element.sku}`
     },
     {
-      columnDef: "itemDesc",
+      columnDef: "posItemDesc",
       header: "Description",
-      cell: (element: any) => `${element.itemDesc}`
+      cell: (element: any) => `${element.posItemDesc}`
     },
     {
       columnDef: "retailPrice",
@@ -260,8 +307,13 @@ export const logDataTableConst = {
     },
     {
       columnDef: "itemGroupDescription",
-      header: "Item Group ID",
+      header: "Item Group Description",
       cell: (element: any) => `${element.itemGroupDescription}`
+    },
+    {
+      columnDef: "itemGroupId",
+      header: "Item Group ID",
+      cell: (element: any) => `${element.itemGroupId}`
     },
     {
       columnDef: "action",
@@ -466,9 +518,36 @@ export const logDataTableConst = {
       cell: (element: any) => `${element.name}`
     },
     {
-      columnDef: "state",
-      header: "Area Code",
-      cell: (element: any) => `${element.state}`
+      columnDef: "phoneNo",
+      header: "Phone No.",
+      cell: (element: any) => `${element.phoneNo}`
+    },
+    {
+      columnDef: "companyName",
+      header: "Company Name",
+      cell: (element: any) => `${element.companyName}`
+    },
+    {
+      columnDef: "action",
+      header: null,
+      cell: null
+    }
+  ],
+  Tax_Exempt_Valid: [
+    {
+      columnDef: "select",
+      header: null,
+      cell: null
+    },
+    {
+      columnDef: "taxExemptNbr",
+      header: "Tax Exempt",
+      cell: (element: any) => `${element.taxExemptNbr}`
+    },
+    {
+      columnDef: "name",
+      header: "Name",
+      cell: (element: any) => `${element.name}`
     },
     {
       columnDef: "phoneNo",
@@ -481,14 +560,100 @@ export const logDataTableConst = {
       cell: (element: any) => `${element.companyName}`
     },
     {
-      columnDef: "govtCertificate",
-      header: "Govt Certificate",
-      cell: (element: any) => `${element.govtCertificate}`
+      columnDef: "action",
+      header: null,
+      cell: null
+    }
+  ],
+  Tax_Exempt_Expired: [
+    {
+      columnDef: "select",
+      header: null,
+      cell: null
     },
     {
-      columnDef: "expirationDate",
-      header: "Test Scenario Type",
-      cell: (element: any) => `${element.expirationDate}`
+      columnDef: "taxExemptNbr",
+      header: "Tax Exempt",
+      cell: (element: any) => `${element.taxExemptNbr}`
+    },
+    {
+      columnDef: "name",
+      header: "Name",
+      cell: (element: any) => `${element.name}`
+    },
+    {
+      columnDef: "phoneNo",
+      header: "Phone No.",
+      cell: (element: any) => `${element.phoneNo}`
+    },
+    {
+      columnDef: "companyName",
+      header: "Company Name",
+      cell: (element: any) => `${element.companyName}`
+    },
+    {
+      columnDef: "action",
+      header: null,
+      cell: null
+    }
+  ],
+  Tax_Exempt_About_To_Expired: [
+    {
+      columnDef: "select",
+      header: null,
+      cell: null
+    },
+    {
+      columnDef: "taxExemptNbr",
+      header: "Tax Exempt",
+      cell: (element: any) => `${element.taxExemptNbr}`
+    },
+    {
+      columnDef: "name",
+      header: "Name",
+      cell: (element: any) => `${element.name}`
+    },
+    {
+      columnDef: "phoneNo",
+      header: "Phone No.",
+      cell: (element: any) => `${element.phoneNo}`
+    },
+    {
+      columnDef: "companyName",
+      header: "Company Name",
+      cell: (element: any) => `${element.companyName}`
+    },
+    {
+      columnDef: "action",
+      header: null,
+      cell: null
+    }
+  ],
+  Tax_Exempt_Deactivated: [
+    {
+      columnDef: "select",
+      header: null,
+      cell: null
+    },
+    {
+      columnDef: "taxExemptNbr",
+      header: "Tax Exempt",
+      cell: (element: any) => `${element.taxExemptNbr}`
+    },
+    {
+      columnDef: "name",
+      header: "Name",
+      cell: (element: any) => `${element.name}`
+    },
+    {
+      columnDef: "phoneNo",
+      header: "Phone No.",
+      cell: (element: any) => `${element.phoneNo}`
+    },
+    {
+      columnDef: "companyName",
+      header: "Company Name",
+      cell: (element: any) => `${element.companyName}`
     },
     {
       columnDef: "action",

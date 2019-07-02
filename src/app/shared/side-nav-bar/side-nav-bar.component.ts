@@ -107,7 +107,11 @@ export class SideNavBarComponent implements OnInit, OnDestroy {
       this._logModalDataService.getKioskOrderFlag(false);
       this.router.navigate(["/testDataManagement"]);
     }
-    const tableNameFromSideNav = { tableName: "", intialIndex: 1 };
+    const tableNameFromSideNav = {
+      tableName: "",
+      intialIndex: 1,
+      spinnerFlag: true
+    };
     tableNameFromSideNav.tableName = eleName;
     this._navBarService.setElementNameFromSideBar(tableNameFromSideNav);
     this.barHeight = 592;

@@ -57,7 +57,11 @@ export class LogDetailComponent implements OnInit, OnDestroy {
       if (location.pop && location.url === "/testDataManagement") {
         this._logModalDataService.getLogDetailFlag(false);
         this._navBarService.getAdvanceSearchStatus(false);
-        const tableNameFromBack = { tableName: "", intialIndex: 1 };
+        const tableNameFromBack = {
+          tableName: "",
+          intialIndex: 1,
+          spinnerFlag: true
+        };
         tableNameFromBack.tableName = this.tableNameLogDetails;
         this._navBarService.setElementNameFromSideBar(tableNameFromBack);
       }
@@ -73,8 +77,6 @@ export class LogDetailComponent implements OnInit, OnDestroy {
       .setLogDetailData()
       .pipe(takeUntil(this._onDestroy))
       .subscribe(rowData => {
-        console.log("row data in log detailcomponent", rowData);
-
         this.classifiedDataLogDetail = this._logDiscriptionDataOrderService.modalDataOrder(
           rowData,
           this.tableNameLogDetails
@@ -91,7 +93,11 @@ export class LogDetailComponent implements OnInit, OnDestroy {
           this.restDataDiscriptionKeysToDisplay
         );
 
-        if (this.tableNameLogDetails === "Linked_SKUs") {
+        if (
+          this.tableNameLogDetails === "Linked_SKUs" ||
+          this.tableNameLogDetails === "ESP_Skus" ||
+          this.tableNameLogDetails === "Recycle_Fee_SKUs"
+        ) {
           this._logModalDataService.setLinkedSKUsData().subscribe(data => {
             this.linkedSKUsData = data;
           });
@@ -117,20 +123,26 @@ export class LogDetailComponent implements OnInit, OnDestroy {
         }
 
         if (this.tableNameLogDetails === "Promos") {
-          this._loglistingService.getDataForPromos().subscribe(data => {
-            data.map(promoData => {
-              if (promoData.buyOrGetFlag && promoData.buyOrGetFlag === "buy") {
-                this.promoBuyDisplayStatus = true;
-                this.promosBuyData = promoData;
-              } else if (
-                promoData.buyOrGetFlag &&
-                promoData.buyOrGetFlag === "get"
-              ) {
-                this.promoGetDisplayStatus = true;
-                this.promosGetData = promoData;
-              }
+          // console.log("row data in log detailcomponent", rowData);
+          this._loglistingService
+            .getDataForPromos(rowData.promoNum)
+            .subscribe(data => {
+              data.map(promoData => {
+                if (
+                  promoData.buyOrGetFlag &&
+                  promoData.buyOrGetFlag === "buy"
+                ) {
+                  this.promoBuyDisplayStatus = true;
+                  this.promosBuyData = promoData;
+                } else if (
+                  promoData.buyOrGetFlag &&
+                  promoData.buyOrGetFlag === "get"
+                ) {
+                  this.promoGetDisplayStatus = true;
+                  this.promosGetData = promoData;
+                }
+              });
             });
-          });
         }
       });
   }
@@ -147,7 +159,11 @@ export class LogDetailComponent implements OnInit, OnDestroy {
   backToDataManagement() {
     this._logModalDataService.getLogDetailFlag(false);
     this._navBarService.getAdvanceSearchStatus(false);
-    const tableNameFromBack = { tableName: "", intialIndex: 1 };
+    const tableNameFromBack = {
+      tableName: "",
+      intialIndex: 1,
+      spinnerFlag: true
+    };
     tableNameFromBack.tableName = this.tableNameLogDetails;
     this._navBarService.setElementNameFromSideBar(tableNameFromBack);
     this.router.navigate(["/testDataManagement"]);

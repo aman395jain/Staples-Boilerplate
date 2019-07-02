@@ -54,7 +54,7 @@ export class LogDescriptionComponent implements OnInit {
       this.tableName === "Price_Prompt_SKUs" ||
       this.tableName === "Hardware_SKUs" ||
       this.tableName === "Linked_SKUs" ||
-      this.tableName === "Bag_Fee_SKUs" ||
+      this.tableName === "Recycle_Fee_SKUs" ||
       this.tableName === "Age_Restricted_Special_rest" ||
       this.tableName === "Promos"
     ) {

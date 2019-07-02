@@ -100,16 +100,24 @@
                       <a
                         (click)="getElementNameTest('Linked_SKUs')"
                         data-toggle="tooltip"
-                        title="Warrenty/Linked SKUs"
-                        >Warrenty/Linked SKUs</a
+                        title="Warranty/Linked SKUs"
+                        >Warranty/Linked SKUs</a
                       >
                     </mat-list-item>
                     <mat-list-item>
                       <a
-                        (click)="getElementNameTest('Bag_Fee_SKUs')"
+                        (click)="getElementNameTest('Recycle_Fee_SKUs')"
                         data-toggle="tooltip"
-                        title="Bag Fee SKUs"
-                        >Bag Fee SKUs</a
+                        title="Recycle Fee SKUs"
+                        >Recycle Fee SKUs</a
+                      >
+                    </mat-list-item>
+                    <mat-list-item>
+                      <a
+                        (click)="getElementNameTest('ESP_Skus')"
+                        data-toggle="tooltip"
+                        title="ESP SKUs"
+                        >ESP SKUs</a
                       >
                     </mat-list-item>
                     <mat-list-item>
@@ -273,61 +281,62 @@
               >money_off</mat-icon
             >
             <h4 mat-line *ngIf="_toggleIsExpend">
-          <mat-accordion multi="true" [displayMode]="displayMode">
-        <mat-expansion-panel class="no-shadow">
-          <mat-expansion-panel-header
-            class="mat-expansion-header-adjust nav-bar-accordian"
-            fxLayout="row"
-            [expandedHeight]="'36px'"
-            [collapsedHeight]="'32px'"
-          >
-            <mat-panel-title
-              (click)="getElementNameTest('Item_Master')"
-              data-toggle="tooltip"
-              title="Tax Exempt"
-            >
-              Tax Exempt
-            </mat-panel-title>
-          </mat-expansion-panel-header>
-          <mat-nav-list class="ml-0" dense>
-            <mat-list-item>
-              <a
-                (click)="getElementNameTest('Price_Prompt_SKUs')"
-                data-toggle="tooltip"
-                title="valid"
-                >Valid</a
-              >
-            </mat-list-item>
-            <mat-list-item>
-              <a
-                (click)="getElementNameTest('Hardware_SKUs')"
-                data-toggle="tooltip"
-                title="Expired"
-                >Expired</a
-              >
-            </mat-list-item>
-            <mat-list-item>
-              <a
-                (click)="getElementNameTest('Linked_SKUs')"
-                data-toggle="tooltip"
-                title="About To Expire"
-                >About To Expire</a
-              >
-            </mat-list-item>
-            <mat-list-item>
-              <a
-                (click)="getElementNameTest('Bag_Fee_SKUs')"
-                data-toggle="tooltip"
-                title="Deactivated/Incomplete"
-                >Deactivated/Incomplete</a
-              >
-      </mat-list-item>
-    </mat-nav-list>
-  </mat-expansion-panel>
-</mat-accordion>
-</h4>
-          </mat-list-item
-          ></mat-nav-list
+              <mat-accordion multi="true" [displayMode]="displayMode">
+                <mat-expansion-panel class="no-shadow">
+                  <mat-expansion-panel-header
+                    class="mat-expansion-header-adjust nav-bar-accordian"
+                    fxLayout="row"
+                    [expandedHeight]="'36px'"
+                    [collapsedHeight]="'32px'"
+                  >
+                    <mat-panel-title
+                      (click)="getElementNameTest('Tax_Exempt')"
+                      data-toggle="tooltip"
+                      title="Tax Exempt"
+                    >
+                      Tax Exempt
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <mat-nav-list class="ml-0" dense>
+                    <mat-list-item>
+                      <a
+                        (click)="getElementNameTest('Tax_Exempt_Valid')"
+                        data-toggle="tooltip"
+                        title="valid"
+                        >Valid</a
+                      >
+                    </mat-list-item>
+                    <mat-list-item>
+                      <a
+                        (click)="getElementNameTest('Tax_Exempt_Expired')"
+                        data-toggle="tooltip"
+                        title="Expired"
+                        >Expired</a
+                      >
+                    </mat-list-item>
+                    <mat-list-item>
+                      <a
+                        (click)="
+                          getElementNameTest('Tax_Exempt_About_To_Expired')
+                        "
+                        data-toggle="tooltip"
+                        title="About To Expire"
+                        >About To Expire</a
+                      >
+                    </mat-list-item>
+                    <mat-list-item>
+                      <a
+                        (click)="getElementNameTest('Tax_Exempt_Deactivated')"
+                        data-toggle="tooltip"
+                        title="Deactivated/Incomplete"
+                        >Deactivated/Incomplete</a
+                      >
+                    </mat-list-item>
+                  </mat-nav-list>
+                </mat-expansion-panel>
+              </mat-accordion>
+            </h4>
+          </mat-list-item></mat-nav-list
         >
         <mat-divider></mat-divider>
         <mat-nav-list>

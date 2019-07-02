@@ -478,7 +478,11 @@ export class KioskTableComponent implements OnInit {
     this._logModalDataService.getLogDetailFlag(false);
     this._logModalDataService.getKioskOrderFlag(false);
     this._navBarService.getAdvanceSearchStatus(false);
-    const backToTable = { tableName: "Order", intialIndex: 1 };
+    const backToTable = {
+      tableName: "Order",
+      intialIndex: 1,
+      spinnerFlag: true
+    };
     this._navBarService.setElementNameFromSideBar(backToTable);
     this.router.navigate(["/testDataManagement"]);
   }

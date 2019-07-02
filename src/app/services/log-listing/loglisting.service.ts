@@ -50,8 +50,6 @@ export class LoglistingService {
       this._serviceUrl = logTableAPIUrls.getHardwareSKUs;
     } else if (entity === "Linked_SKUs") {
       this._serviceUrl = logTableAPIUrls.getLinkedSKUs;
-    } else if (entity === "Free_SKUs") {
-      this._serviceUrl = logTableAPIUrls.getFreeSKUs;
     } else if (entity === "Age_Restricted_Special_rest") {
       this._serviceUrl = logTableAPIUrls.getAgeRestrictiedSpecialRest;
     } else if (entity === "Item_Group") {
@@ -62,10 +60,20 @@ export class LoglistingService {
       this._serviceUrl = logTableAPIUrls.getLowestPrice;
     } else if (entity === "Promos") {
       this._serviceUrl = logTableAPIUrls.getPromos;
-    } else if (entity === "bag_Fee_SKUs") {
-      this._serviceUrl = logTableAPIUrls.getBagFeeSKUs;
+    } else if (entity === "Recycle_Fee_SKUs") {
+      this._serviceUrl = logTableAPIUrls.getRecycleFeeSKUs;
+    } else if (entity === "ESP_Skus") {
+      this._serviceUrl = logTableAPIUrls.getEspSkus;
     } else if (entity === "Tax_Exempt") {
       this._serviceUrl = logTableAPIUrls.getTaxExempt;
+    } else if (entity === "Tax_Exempt_Valid") {
+      this._serviceUrl = logTableAPIUrls.getTaxExemptValid;
+    } else if (entity === "Tax_Exempt_Expired") {
+      this._serviceUrl = logTableAPIUrls.getTaxExemptExpired;
+    } else if (entity === "Tax_Exempt_About_To_Expired") {
+      this._serviceUrl = logTableAPIUrls.getTaxExemptAboutToExpired;
+    } else if (entity === "Tax_Exempt_Deactivated") {
+      this._serviceUrl = logTableAPIUrls.getTaxExemptDeactivate;
     } else if (entity === "POSA") {
       //changes reqired according to service
       this._serviceUrl = logTableAPIUrls.getPOSA;
@@ -111,9 +119,9 @@ export class LoglistingService {
       );
   }
 
-  getDataForPromos(): any {
+  getDataForPromos(id): any {
     return this.http
-      .get("http://www.mocky.io/v2/5cf905a23400008a2e01b322")
+      .get("http://lrtdqnasv104:8090/tdmapp/promoGroupList?promoId=" + id)
       .pipe(
         map((response: Response) => {
           return response;

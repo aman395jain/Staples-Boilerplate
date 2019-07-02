@@ -9,14 +9,18 @@ export enum logTableAPIUrls {
   getTaxRate = "http://lrtdqnasv104:8090/tdmapp/taxList",
   getHardwareSKUs = "http://lrtdqnasv104:8090/tdmapp/itmMstHdwSkuList",
   getLinkedSKUs = "http://lrtdqnasv104:8090/tdmapp/linkedSkuList",
-  getFreeSKUs = "http://www.mocky.io/v2/5cbeff80300000bb069ce463",
   getAgeRestrictiedSpecialRest = "http://lrtdqnasv104:8090/tdmapp/ageRestrictedList",
   getReturnDrivingLicence = "http://www.mocky.io/v2/5cbff4ce310000170e035f4e",
   getLowestPrice = "http://www.mocky.io/v2/5cbffef9310000580b035f87",
   getPOSA = "http://www.mocky.io/v2/5cb860794c0000c51ad3d50d",
-  getOrder = "http://www.mocky.io/v2/5d0393333200004b00d7474b",
+  getOrder = "http://www.mocky.io/v2/5d1b259f3400005400000564",
   getPromos = "http://lrtdqnasv104:8090/tdmapp/promoList",
   getItemGroup = "http://lrtdqnasv104:8090/tdmapp/itemGroupList",
-  getTaxExempt = "http://www.mocky.io/v2/5d14b3942f00007ca3c4f383",
-  getBagFeeSKUs = "http://www.mocky.io/v2/5d1a02662f00008400fd73ee"
+  getTaxExempt = "http://lrtdqnasv104:8090/tdmapp/taxExemptList",
+  getTaxExemptValid = "http://lrtdqnasv104:8090/tdmapp/validTaxExemptList",
+  getTaxExemptExpired = "http://lrtdqnasv104:8090/tdmapp/expiredTaxExemptList",
+  getTaxExemptAboutToExpired = "http://lrtdqnasv104:8090/tdmapp/aboutToExpiredTaxExemptList",
+  getTaxExemptDeactivate = "http://lrtdqnasv104:8090/tdmapp/deactivatedTaxExemptList",
+  getRecycleFeeSKUs = "http://lrtdqnasv104:8090/tdmapp/recyclingFeeSkuList",
+  getEspSkus = "http://lrtdqnasv104:8090/tdmapp/espList"
 }

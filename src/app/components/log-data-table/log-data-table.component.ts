@@ -172,9 +172,15 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
       .getElementName()
       .pipe(takeUntil(this._onDestroy))
       .subscribe(tableInfoFromSideNav => {
+        console.log("gdhxhcdhcdh", tableInfoFromSideNav);
         this.tableNameFromBar = tableInfoFromSideNav.tableName;
         this.indexForLog = tableInfoFromSideNav.intialIndex;
-        // this.isLoading = true;
+        if (tableInfoFromSideNav.spinnerFlag) {
+          this.isLoading = true;
+        } else {
+          this.isLoading = false;
+        }
+
         this.selectedDataForPrint = [];
 
         if (this.tableNameFromBar === "Item_Master") {
@@ -238,16 +244,18 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
             columnName => columnName.columnDef
           );
           this.tableHeader = "Tax Rates";
-        } else if (this.tableNameFromBar === "Bag_Fee_SKUs") {
+        } else if (this.tableNameFromBar === "Recycle_Fee_SKUs") {
           this.advanceSearchOptions = ["Description", "SKU", "Retail Price"];
-          this.logTableGridColumns = logDataTableConst.bag_Fee_SKUs;
-          this._logModalDataService.getTableNameForLogDetail("Bag_Fee_SKUs");
+          this.logTableGridColumns = logDataTableConst.Recycle_Fee_SKUs;
+          this._logModalDataService.getTableNameForLogDetail(
+            "Recycle_Fee_SKUs"
+          );
 
-          this.tableName = "Bag_Fee_SKUs";
-          this.displayedColumns = logDataTableConst.bag_Fee_SKUs.map(
+          this.tableName = "Recycle_Fee_SKUs";
+          this.displayedColumns = logDataTableConst.Recycle_Fee_SKUs.map(
             columnName => columnName.columnDef
           );
-          this.tableHeader = "Bag Fee SKUs";
+          this.tableHeader = "Recycle Fee SKUs";
         } else if (this.tableNameFromBar === "Age_Restricted_Special_rest") {
           this.advanceSearchOptions = ["Description", "SKU", "Retail Price"];
           this.logTableGridColumns =
@@ -261,6 +269,16 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
             columnName => columnName.columnDef
           );
           this.tableHeader = "Age Restricted Special Rest";
+        } else if (this.tableNameFromBar === "ESP_Skus") {
+          this.advanceSearchOptions = ["Description", "SKU", "Retail Price"];
+          this.logTableGridColumns = logDataTableConst.ESP_SKUs;
+          this._logModalDataService.getTableNameForLogDetail("ESP");
+
+          this.tableName = "ESP_Skus";
+          this.displayedColumns = logDataTableConst.ESP_SKUs.map(
+            columnName => columnName.columnDef
+          );
+          this.tableHeader = "ESP";
         } else if (this.tableNameFromBar === "Item_Group") {
           this.logTableGridColumns = logDataTableConst.Item_Group;
           this._logModalDataService.getTableNameForLogDetail("Item_Group");
@@ -326,6 +344,51 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
             columnName => columnName.columnDef
           );
           this.tableHeader = "Tax Exempt";
+        } else if (this.tableNameFromBar === "Tax_Exempt_Valid") {
+          this.logTableGridColumns = logDataTableConst.Tax_Exempt_Valid;
+          this._logModalDataService.getTableNameForLogDetail(
+            "Tax_Exempt_Valid"
+          );
+
+          this.tableName = "Tax_Exempt_Valid";
+          this.displayedColumns = logDataTableConst.Tax_Exempt_Valid.map(
+            columnName => columnName.columnDef
+          );
+          this.tableHeader = "Tax Exempt Valid";
+        } else if (this.tableNameFromBar === "Tax_Exempt_Expired") {
+          this.logTableGridColumns = logDataTableConst.Tax_Exempt_Expired;
+          this._logModalDataService.getTableNameForLogDetail(
+            "Tax_Exempt_Expired"
+          );
+
+          this.tableName = "Tax_Exempt_Expired";
+          this.displayedColumns = logDataTableConst.Tax_Exempt_Expired.map(
+            columnName => columnName.columnDef
+          );
+          this.tableHeader = "Tax Exempt Expired";
+        } else if (this.tableNameFromBar === "Tax_Exempt_About_To_Expired") {
+          this.logTableGridColumns =
+            logDataTableConst.Tax_Exempt_About_To_Expired;
+          this._logModalDataService.getTableNameForLogDetail(
+            "Tax_Exempt_About_To_Expired"
+          );
+
+          this.tableName = "Tax_Exempt_About_To_Expired";
+          this.displayedColumns = logDataTableConst.Tax_Exempt_About_To_Expired.map(
+            columnName => columnName.columnDef
+          );
+          this.tableHeader = "Tax Exempt About to Expire";
+        } else if (this.tableNameFromBar === "Tax_Exempt_Deactivated") {
+          this.logTableGridColumns = logDataTableConst.Tax_Exempt_Deactivated;
+          this._logModalDataService.getTableNameForLogDetail(
+            "Tax_Exempt_Deactivated"
+          );
+
+          this.tableName = "Tax_Exempt_Deactivated";
+          this.displayedColumns = logDataTableConst.Tax_Exempt_Deactivated.map(
+            columnName => columnName.columnDef
+          );
+          this.tableHeader = "Tax Exempt Deactivated";
         } else if (this.tableNameFromBar === "Rewards") {
           this.tableName = "Rewards";
         } else if (this.tableNameFromBar === "CBP") {
@@ -341,7 +404,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
           .getLogListForEntity(this.tableNameFromBar, this.indexForLog)
           .pipe(takeUntil(this._onDestroy))
           .subscribe(data => {
-            console.log("data fake is:", data);
+            // console.log("data fake is:", data);
             if (data.pagiCount < 100) {
               this.paginationBarDisplayFlag = false;
             } else {
