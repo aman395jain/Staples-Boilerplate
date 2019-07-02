@@ -17,6 +17,6 @@ export enum logTableAPIUrls {
   getOrder = "http://www.mocky.io/v2/5d0393333200004b00d7474b",
   getPromos = "http://lrtdqnasv104:8090/tdmapp/promoList",
   getItemGroup = "http://lrtdqnasv104:8090/tdmapp/itemGroupList",
-  getTaxExempt = "http://www.mocky.io/v2/5cffb39f3200005400eac913",
-  getBagFeeSKUs = "http://www.mocky.io/v2/5d11f56b310000938008cfda"
+  getTaxExempt = "http://www.mocky.io/v2/5d14b3942f00007ca3c4f383",
+  getBagFeeSKUs = "http://www.mocky.io/v2/5d1a02662f00008400fd73ee"
 }

@@ -62,6 +62,8 @@ export class LoglistingService {
       this._serviceUrl = logTableAPIUrls.getLowestPrice;
     } else if (entity === "Promos") {
       this._serviceUrl = logTableAPIUrls.getPromos;
+    } else if (entity === "bag_Fee_SKUs") {
+      this._serviceUrl = logTableAPIUrls.getBagFeeSKUs;
     } else if (entity === "Tax_Exempt") {
       this._serviceUrl = logTableAPIUrls.getTaxExempt;
     } else if (entity === "POSA") {
@@ -109,7 +111,7 @@ export class LoglistingService {
       );
   }
 
-  getDataForPromosJustForTest(): any {
+  getDataForPromos(): any {
     return this.http
       .get("http://www.mocky.io/v2/5cf905a23400008a2e01b322")
       .pipe(

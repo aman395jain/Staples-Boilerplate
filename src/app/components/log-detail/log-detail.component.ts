@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from "@angular/core";
 import { Router } from "@angular/router";
 import { Subject } from "rxjs";
 import { takeUntil } from "rxjs/operators";
+import { Location } from "@angular/common";
 
 import { LogModalDataService } from "src/app/services/log-modal-data/log-modal-data.service";
 import { NavBarService } from "src/app/services/nav-bar/nav-bar.service";
@@ -47,10 +48,20 @@ export class LogDetailComponent implements OnInit, OnDestroy {
     private _printDocumentService: PrintDocumentService,
     private _dashboardHeaderNameConverstionService: DashboardHeaderNameConverstionService,
     private _logDiscriptionDataOrderService: LogDescriptionDataOrderService,
-    private _loglistingService: LoglistingService
+    private _loglistingService: LoglistingService,
+    private _location: Location
   ) {}
 
   ngOnInit() {
+    this._location.subscribe(location => {
+      if (location.pop && location.url === "/testDataManagement") {
+        this._logModalDataService.getLogDetailFlag(false);
+        this._navBarService.getAdvanceSearchStatus(false);
+        const tableNameFromBack = { tableName: "", intialIndex: 1 };
+        tableNameFromBack.tableName = this.tableNameLogDetails;
+        this._navBarService.setElementNameFromSideBar(tableNameFromBack);
+      }
+    });
     this._logModalDataService
       .setTableNameForLogDetail()
       .pipe(takeUntil(this._onDestroy))
@@ -62,7 +73,7 @@ export class LogDetailComponent implements OnInit, OnDestroy {
       .setLogDetailData()
       .pipe(takeUntil(this._onDestroy))
       .subscribe(rowData => {
-        // console.log("row data in log detailcomponent", rowData);
+        console.log("row data in log detailcomponent", rowData);
 
         this.classifiedDataLogDetail = this._logDiscriptionDataOrderService.modalDataOrder(
           rowData,
@@ -106,25 +117,20 @@ export class LogDetailComponent implements OnInit, OnDestroy {
         }
 
         if (this.tableNameLogDetails === "Promos") {
-          this._loglistingService
-            .getDataForPromosJustForTest()
-            .subscribe(data => {
-              data.map(promoData => {
-                if (
-                  promoData.buyOrGetFlag &&
-                  promoData.buyOrGetFlag === "buy"
-                ) {
-                  this.promoBuyDisplayStatus = true;
-                  this.promosBuyData = promoData;
-                } else if (
-                  promoData.buyOrGetFlag &&
-                  promoData.buyOrGetFlag === "get"
-                ) {
-                  this.promoGetDisplayStatus = true;
-                  this.promosGetData = promoData;
-                }
-              });
+          this._loglistingService.getDataForPromos().subscribe(data => {
+            data.map(promoData => {
+              if (promoData.buyOrGetFlag && promoData.buyOrGetFlag === "buy") {
+                this.promoBuyDisplayStatus = true;
+                this.promosBuyData = promoData;
+              } else if (
+                promoData.buyOrGetFlag &&
+                promoData.buyOrGetFlag === "get"
+              ) {
+                this.promoGetDisplayStatus = true;
+                this.promosGetData = promoData;
+              }
             });
+          });
         }
       });
   }

@@ -66,7 +66,7 @@ export class DashboardHeaderNameConverstionService {
     ageRestrictedItem: "Age Restricted Item",
     allowQtyKeyFlg: "Allow Quantity Key Flag",
     allowRetFlg: "Allow Return Flag",
-    associateGrpId: "Accociate Group ID",
+    associateGrpId: "Associate Group ID",
     discountCode: "Discount Code",
     hardwareSku: "Hardware SKU",
     id: "ID",

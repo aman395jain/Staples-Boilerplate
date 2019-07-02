@@ -9,8 +9,9 @@ import {
 import { MatPaginator, MatTableDataSource, MatSort } from "@angular/material";
 import "rxjs/add/observable/of";
 import { Subject } from "rxjs";
-import { takeUntil, debounceTime } from "rxjs/operators";
+import { takeUntil } from "rxjs/operators";
 import { Router } from "@angular/router";
+import { Location } from "@angular/common";
 
 import { LoglistingService } from "src/app/services/log-listing/loglisting.service";
 import { NavBarService } from "src/app/services/nav-bar/nav-bar.service";
@@ -74,10 +75,22 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
     private _logModalDataService: LogModalDataService,
     private _logDescriptionDataOrderService: LogDescriptionDataOrderService,
     private renderer: Renderer2,
-    private router: Router
+    private router: Router,
+    private _location: Location
   ) {}
 
   ngOnInit() {
+    this._location.subscribe(location => {
+      if (location.pop && location.url === "/testDataManagement/logDetail") {
+        this.logDetailsFlag = true;
+        this.router.navigate(["/testDataManagement/logDetail"]);
+      } else if (
+        location.pop &&
+        location.url === "/testDataManagement(print:print/invoice)"
+      ) {
+        this._printDocumentService.printDocument("invoice");
+      }
+    });
     if (this.router.url === "/testDataManagement") {
       this._logModalDataService.getLogDetailFlag(false);
       this._logModalDataService.getKioskOrderFlag(false);
@@ -338,10 +351,10 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
               );
             }
             data = data.list;
+            this.printedData = data;
             this.isLoading = false;
             let storeData = ["Select a Store"];
             this.storeUniqueData = [];
-            this.printedData = data;
             data.map((dataValue, i) => {
               dataValue["checked"] = false;
               dataValue["index"] = i;

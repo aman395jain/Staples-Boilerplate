@@ -51,6 +51,9 @@ import { SolutionBuilderOrderComponent } from "./shared/solution-builder-order/s
         { path: "**", component: PageNotFoundComponent }
       ],
       {
+        scrollPositionRestoration: "enabled",
+        anchorScrolling: "enabled",
+        enableTracing: false,
         preloadingStrategy: PreloadAllModules
       }
     )

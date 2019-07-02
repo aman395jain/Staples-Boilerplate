@@ -259,16 +259,6 @@ export const logDataTableConst = {
       cell: (element: any) => `${element.posId}`
     },
     {
-      columnDef: "feeSku",
-      header: "Fee SKUs",
-      cell: (element: any) => `${element.feeSku}`
-    },
-    {
-      columnDef: "feeSkuPrice",
-      header: "Fee SKU Price",
-      cell: (element: any) => `${element.feeSkuPrice}`
-    },
-    {
       columnDef: "itemGroupDescription",
       header: "Item Group ID",
       cell: (element: any) => `${element.itemGroupDescription}`
