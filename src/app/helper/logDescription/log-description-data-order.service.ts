@@ -107,6 +107,7 @@ export class LogDescriptionDataOrderService {
       this.mainDataToDisplay = {
         sku: row.sku,
         itemDesc: row.itemDesc,
+        upcList: row.upcList,
         retailPrice: row.retailPrice,
         feeSku: row.feeSku,
         feeSkuPrice: row.feeSkuPrice,
@@ -121,6 +122,35 @@ export class LogDescriptionDataOrderService {
       delete rowDataWithRestData["itemGroupDescription"];
       delete rowDataWithRestData["linkedList"];
       delete rowDataWithRestData["addOrAutoadd"];
+      delete rowDataWithRestData["upcList"];
+      this.rowDataWithLinkedSKUs = {
+        linkedList: row.linkedList
+      };
+
+      this.dataToBeDisplayedOnModal[0] = this.mainDataToDisplay;
+
+      this.dataToBeDisplayedOnModal[1] = rowDataWithRestData;
+      return this.dataToBeDisplayedOnModal;
+    } else if (tableName === "Bag_Fee_SKUs") {
+      this.mainDataToDisplay = {
+        sku: row.sku,
+        itemDesc: row.itemDesc,
+        retailPrice: row.retailPrice,
+        upcList: row.upcList,
+        feeSku: row.feeSku,
+        feeSkuPrice: row.feeSkuPrice,
+        itemGroupDescription: row.itemGroupDescription,
+        addOrAutoadd: row.addOrAutoadd
+      };
+      delete rowDataWithRestData["sku"];
+      delete rowDataWithRestData["itemDesc"];
+      delete rowDataWithRestData["retailPrice"];
+      delete rowDataWithRestData["feeSku"];
+      delete rowDataWithRestData["feeSkuPrice"];
+      delete rowDataWithRestData["itemGroupDescription"];
+      delete rowDataWithRestData["linkedList"];
+      delete rowDataWithRestData["addOrAutoadd"];
+      delete rowDataWithRestData["upcList"];
       this.rowDataWithLinkedSKUs = {
         linkedList: row.linkedList
       };
@@ -483,6 +513,14 @@ export class LogDescriptionDataOrderService {
         );
       };
     } else if (tableName === "Recycle_Fee_SKUs") {
+      return function(data, filter: string): boolean {
+        return (
+          data.sku.toLowerCase().includes(filter) ||
+          data.itemDesc.toLowerCase().includes(filter) ||
+          data.retailPrice.toLowerCase().includes(filter)
+        );
+      };
+    } else if (tableName === "Bag_Fee_SKUs") {
       return function(data, filter: string): boolean {
         return (
           data.sku.toLowerCase().includes(filter) ||

@@ -96,7 +96,8 @@ export class LogDetailComponent implements OnInit, OnDestroy {
         if (
           this.tableNameLogDetails === "Linked_SKUs" ||
           this.tableNameLogDetails === "ESP_Skus" ||
-          this.tableNameLogDetails === "Recycle_Fee_SKUs"
+          this.tableNameLogDetails === "Recycle_Fee_SKUs" ||
+          this.tableNameLogDetails === "Bag_Fee_SKUs"
         ) {
           this._logModalDataService.setLinkedSKUsData().subscribe(data => {
             this.linkedSKUsData = data;

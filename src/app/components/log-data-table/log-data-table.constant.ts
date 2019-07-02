@@ -303,7 +303,49 @@ export const logDataTableConst = {
     {
       columnDef: "barCode",
       header: "UPC",
-      cell: (element: any) => `${element.posId}`
+      cell: (element: any) => `${element.upcList}`
+    },
+    {
+      columnDef: "itemGroupDescription",
+      header: "Item Group Description",
+      cell: (element: any) => `${element.itemGroupDescription}`
+    },
+    {
+      columnDef: "itemGroupId",
+      header: "Item Group ID",
+      cell: (element: any) => `${element.itemGroupId}`
+    },
+    {
+      columnDef: "action",
+      header: null,
+      cell: null
+    }
+  ],
+  Bag_Fee_SKUs: [
+    {
+      columnDef: "select",
+      header: null,
+      cell: null
+    },
+    {
+      columnDef: "sku",
+      header: "SKU",
+      cell: (element: any) => `${element.sku}`
+    },
+    {
+      columnDef: "posItemDesc",
+      header: "Description",
+      cell: (element: any) => `${element.posItemDesc}`
+    },
+    {
+      columnDef: "retailPrice",
+      header: "Retail Price",
+      cell: (element: any) => `${element.retailPrice}`
+    },
+    {
+      columnDef: "barCode",
+      header: "UPC",
+      cell: (element: any) => `${element.upcList}`
     },
     {
       columnDef: "itemGroupDescription",

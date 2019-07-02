@@ -128,7 +128,9 @@ export class DashboardHeaderNameConverstionService {
     itemGroupDescription: "Item Group Description",
     promoId: "Promo ID",
     addOrAutoadd: "Add or Auto Add",
-    buyOrGetFlag: "Buy or get Flag"
+    buyOrGetFlag: "Buy or get Flag",
+    feeSku: "Fee SKUs",
+    feeSkuPrice: "Fee SKUs Price"
   };
   dataNewHeader = {};
 

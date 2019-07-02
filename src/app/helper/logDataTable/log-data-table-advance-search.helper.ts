@@ -523,6 +523,59 @@ export default class LogDataTableHelper {
             data.retailPrice.toString().includes(filter["Retail Price"]);
         }
       };
+    } else if (table_name === "Bag_Fee_SKUs") {
+      return function(data, filter) {
+        if (
+          filter.hasOwnProperty("Description") &&
+          !filter.hasOwnProperty("SKU") &&
+          !filter.hasOwnProperty("Retail Price")
+        ) {
+          return data.itemDesc.includes(filter.Description);
+        } else if (
+          !filter.hasOwnProperty("Description") &&
+          filter.hasOwnProperty("SKU") &&
+          !filter.hasOwnProperty("Retail Price")
+        ) {
+          return data.sku.toString().includes(filter["SKU"]);
+        } else if (
+          !filter.hasOwnProperty("Description") &&
+          !filter.hasOwnProperty("SKU") &&
+          filter.hasOwnProperty("Retail Price")
+        ) {
+          return data.retailPrice.toString().includes(filter["Retail Price"]);
+        } else if (
+          filter.hasOwnProperty("Description") &&
+          filter.hasOwnProperty("SKU") &&
+          !filter.hasOwnProperty("Retail Price")
+        ) {
+          return (
+            data.itemDesc.includes(filter.Description) &&
+            data.sku.toString().includes(filter["SKU"])
+          );
+        } else if (
+          filter.hasOwnProperty("Description") &&
+          !filter.hasOwnProperty("SKU") &&
+          filter.hasOwnProperty("Retail Price")
+        ) {
+          return (
+            data.itemDesc.includes(filter.Description) &&
+            data.retailPrice.toString().includes(filter["Retail Price"])
+          );
+        } else if (
+          !filter.hasOwnProperty("Description") &&
+          filter.hasOwnProperty("SKU") &&
+          filter.hasOwnProperty("Retail Price")
+        ) {
+          return (
+            data.sku.toString().includes(filter["SKU"]) &&
+            data.retailPrice.toString().includes(filter["Retail Price"])
+          );
+        } else {
+          data.itemDesc.includes(filter.Description) &&
+            data.sku.toString().includes(filter["SKU"]) &&
+            data.retailPrice.toString().includes(filter["Retail Price"]);
+        }
+      };
     } else if (table_name === "Age_Restricted_Special_rest") {
       return function(data, filter) {
         if (

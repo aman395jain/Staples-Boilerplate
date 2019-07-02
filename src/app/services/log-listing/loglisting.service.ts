@@ -62,6 +62,8 @@ export class LoglistingService {
       this._serviceUrl = logTableAPIUrls.getPromos;
     } else if (entity === "Recycle_Fee_SKUs") {
       this._serviceUrl = logTableAPIUrls.getRecycleFeeSKUs;
+    } else if (entity === "Bag_Fee_SKUs") {
+      this._serviceUrl = logTableAPIUrls.getBagFeeSKUs;
     } else if (entity === "ESP_Skus") {
       this._serviceUrl = logTableAPIUrls.getEspSkus;
     } else if (entity === "Tax_Exempt") {

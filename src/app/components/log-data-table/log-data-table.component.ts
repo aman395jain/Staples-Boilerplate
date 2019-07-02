@@ -172,7 +172,6 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
       .getElementName()
       .pipe(takeUntil(this._onDestroy))
       .subscribe(tableInfoFromSideNav => {
-        console.log("gdhxhcdhcdh", tableInfoFromSideNav);
         this.tableNameFromBar = tableInfoFromSideNav.tableName;
         this.indexForLog = tableInfoFromSideNav.intialIndex;
         if (tableInfoFromSideNav.spinnerFlag) {
@@ -256,6 +255,16 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
             columnName => columnName.columnDef
           );
           this.tableHeader = "Recycle Fee SKUs";
+        } else if (this.tableNameFromBar === "Bag_Fee_SKUs") {
+          this.advanceSearchOptions = ["Description", "SKU", "Retail Price"];
+          this.logTableGridColumns = logDataTableConst.Bag_Fee_SKUs;
+          this._logModalDataService.getTableNameForLogDetail("Bag_Fee_SKUs");
+
+          this.tableName = "Bag_Fee_SKUs";
+          this.displayedColumns = logDataTableConst.Bag_Fee_SKUs.map(
+            columnName => columnName.columnDef
+          );
+          this.tableHeader = "Bag Fee SKUs";
         } else if (this.tableNameFromBar === "Age_Restricted_Special_rest") {
           this.advanceSearchOptions = ["Description", "SKU", "Retail Price"];
           this.logTableGridColumns =
