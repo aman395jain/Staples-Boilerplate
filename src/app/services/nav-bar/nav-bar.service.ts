@@ -15,6 +15,7 @@ export class NavBarService {
   private _pageSizeSubject = new Subject<any>();
   private _pageLengthSubject = new Subject<any>();
   private advanceSearchStatus = new BehaviorSubject<boolean>(null);
+  private indexPagination = new BehaviorSubject<number>(null);
   constructor() {}
 
   /**
@@ -30,6 +31,14 @@ export class NavBarService {
    */
   getElementName(): Observable<any> {
     return this._elementNameSubject;
+  }
+
+  getPageForIndexPagination(number) {
+    this.indexPagination.next(number);
+  }
+
+  setPageForIndexPagination() {
+    return this.indexPagination;
   }
 
   /**

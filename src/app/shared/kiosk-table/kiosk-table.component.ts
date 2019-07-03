@@ -345,7 +345,8 @@ export class KioskTableComponent implements OnInit {
     const backToTable = {
       tableName: "Order",
       initialIndex: 1,
-      spinnerFlag: true
+      spinnerFlag: true,
+      spinnerForPagination: false
     };
     this._navBarService.setElementNameFromSideBar(backToTable);
     this.router.navigate(["/testDataManagement"]);

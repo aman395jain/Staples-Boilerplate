@@ -60,7 +60,8 @@ export class LogDetailComponent implements OnInit, OnDestroy {
         const tableNameFromBack = {
           tableName: "",
           initialIndex: 1,
-          spinnerFlag: true
+          spinnerFlag: true,
+          spinnerForPagination: false
         };
         tableNameFromBack.tableName = this.tableNameLogDetails;
         this._navBarService.setElementNameFromSideBar(tableNameFromBack);
@@ -178,7 +179,8 @@ export class LogDetailComponent implements OnInit, OnDestroy {
     const tableNameFromBack = {
       tableName: "",
       initialIndex: 1,
-      spinnerFlag: true
+      spinnerFlag: true,
+      spinnerForPagination: false
     };
     tableNameFromBack.tableName = this.tableNameLogDetails;
     this._navBarService.setElementNameFromSideBar(tableNameFromBack);

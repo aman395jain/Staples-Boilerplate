@@ -110,10 +110,12 @@ export class SideNavBarComponent implements OnInit, OnDestroy {
     const tableNameFromSideNav = {
       tableName: "",
       initialIndex: 1,
-      spinnerFlag: true
+      spinnerFlag: true,
+      spinnerForPagination: false
     };
     tableNameFromSideNav.tableName = eleName;
     this._navBarService.setElementNameFromSideBar(tableNameFromSideNav);
+    this._navBarService.getPageForIndexPagination(1);
     this.barHeight = 592;
     this._navBarService.setPageSize(5);
     this._navBarService.getAdvanceSearchStatus(false);

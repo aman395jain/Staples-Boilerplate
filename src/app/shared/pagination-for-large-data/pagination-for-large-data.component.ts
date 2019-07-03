@@ -30,6 +30,9 @@ export class PaginationForLargeDataComponent implements OnInit {
         index = index / 100;
         this.numberOfIndex = Math.ceil(index);
       });
+    this._navBarService.setPageForIndexPagination().subscribe(pageNumber => {
+      this.page = pageNumber;
+    });
   }
 
   getIndexForPagination(i: any) {
@@ -39,7 +42,8 @@ export class PaginationForLargeDataComponent implements OnInit {
       const tableNameFromSideNav = {
         tableName: "",
         initialIndex: 1,
-        spinnerFlag: false
+        spinnerFlag: false,
+        spinnerForPagination: true
       };
       tableNameFromSideNav.initialIndex = i;
       tableNameFromSideNav.tableName = this.tableName;
