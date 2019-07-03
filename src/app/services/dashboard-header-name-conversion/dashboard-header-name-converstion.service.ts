@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 
 /**
- * @sevice DashboardHeaderNameConverstionService
+ * @service DashboardHeaderNameConverstionService
  * Convert the keys of API rest-full service's to header name, display on Log-Detail page.
  */
 @Injectable({
@@ -53,7 +53,7 @@ export class DashboardHeaderNameConverstionService {
     emplName: "Employee Name",
     emplRole: "Employee Role",
     emplId: "Employee ID",
-    libraryUserName: "Liberary User Name",
+    libraryUserName: "Library User Name",
     location: "Location",
     password: "Password",
     rowUpdtTms: "Row Update Time",
@@ -88,7 +88,7 @@ export class DashboardHeaderNameConverstionService {
     upcNumber: "UPC Number",
     userId: "User ID",
     vendorName: "Vendor Name",
-    vendorNumber: "Vender Number",
+    vendorNumber: "Vendor Number",
     promoNum: "Promo Num",
     promoName: "Promo Name",
     discountName: "Discount Name",
@@ -96,7 +96,7 @@ export class DashboardHeaderNameConverstionService {
     promoStartDate: "Promo Start Date",
     promoEndDate: "Promo End Date",
     thresholdType: "Threshold Type",
-    thresholdQty: "Threshold Qunatity",
+    thresholdQty: "Threshold Quantity",
     thresholdAmount: "Threshold Amount",
     discountQualifierType: "Discount Qualifier Type",
     discountQualifierValue: "Discount Qualifier Value",
@@ -130,7 +130,9 @@ export class DashboardHeaderNameConverstionService {
     addOrAutoadd: "Add or Auto Add",
     buyOrGetFlag: "Buy or get Flag",
     feeSku: "Fee SKUs",
-    feeSkuPrice: "Fee SKUs Price"
+    feeSkuPrice: "Fee SKUs Price",
+    fileType: "File Type",
+    lnNmb: "In Number"
   };
   dataNewHeader = {};
 

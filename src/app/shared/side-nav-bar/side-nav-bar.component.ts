@@ -109,7 +109,7 @@ export class SideNavBarComponent implements OnInit, OnDestroy {
     }
     const tableNameFromSideNav = {
       tableName: "",
-      intialIndex: 1,
+      initialIndex: 1,
       spinnerFlag: true
     };
     tableNameFromSideNav.tableName = eleName;

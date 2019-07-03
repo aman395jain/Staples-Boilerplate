@@ -45,7 +45,11 @@
                 <td
                   *ngIf="!(data.key === 'Bar Code' || data.key === 'UPC List')"
                 >
-                  <div class="description-blocks">{{ data.value }}</div>
+                  <div class="description-blocks">
+                    <perfect-scrollbar [scrollIndicators]="true">
+                      {{ data.value }}
+                    </perfect-scrollbar>
+                  </div>
                 </td>
                 <td *ngIf="data.key === 'UPC List'">
                   <div class="description-blocks">
@@ -77,7 +81,10 @@
     </div>
     <div>
       <perfect-scrollbar [scrollIndicators]="true">
-        <div class="row linked-sku-table-header" *ngIf="linkedSKUsDisplayStatus">
+        <div
+          class="row linked-sku-table-header"
+          *ngIf="linkedSKUsDisplayStatus"
+        >
           <div class="col-md-12 linked-sku-table">
             <table class="table table-bordered">
               <thead>
@@ -124,7 +131,11 @@
                 <td
                   *ngIf="!(data.key === 'Bar Code' || data.key === 'UPC List')"
                 >
-                  <div class="description-blocks">{{ data.value }}</div>
+                  <div class="description-blocks">
+                    <perfect-scrollbar [scrollIndicators]="true">
+                      {{ data.value }}
+                    </perfect-scrollbar>
+                  </div>
                 </td>
                 <td *ngIf="data.key === 'UPC List'">
                   <div class="description-blocks">

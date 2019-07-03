@@ -1,0 +1,14 @@
+@import "../../assets/styles/color-codes";
+
+.print-single-entity {
+  width: 20%;
+  .description-blocks {
+    height: 65px;
+  }
+}
+.classified-content {
+  margin: 15px 0px;
+  height: 32px;
+  color: $blue;
+  font-weight: bold;
+}

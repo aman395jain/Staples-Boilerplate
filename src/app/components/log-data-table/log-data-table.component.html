@@ -16,11 +16,15 @@
   <div class="row">
     <div class="col-md-12 table-header-name">
       <div class="row">
-          <div class="col-md-6 d-flex align-items-center justify-content-start">
-            <h4  style="
+        <div class="col-md-6 d-flex align-items-center justify-content-start">
+          <h4
+            style="
             color: #cb2026;
-            margin-right: 40%;">{{tableHeader}}</h4>
-          </div>
+            margin-right: 40%;"
+          >
+            {{ tableHeader }}
+          </h4>
+        </div>
       </div>
     </div>
     <div class="col-md-12 list-search">
@@ -60,14 +64,17 @@
               matInput
               (keyup)="applyFilter($event.target.value)"
               placeholder="Search"
+              data-toggle="tooltip"
+              title="Search the value in current page index"
             />
           </mat-form-field>
-          <div class="advance-search-link links">
+          <div class="advance-search-link links" data-toggle="tooltip"
+          title="Advanced Search">
             <a
               data-toggle="collapse"
               href="#collapseExample"
               (click)="advanceSearch()"
-              >Advance Search</a
+              >Advanced Search</a
             >
           </div>
         </div>
@@ -103,7 +110,7 @@
       <div class="card card-body">
         <div class="row">
           <div class="col-md-12 row-bottom-border inner-rows">
-            <span class="advance-search-text"> Advance Search </span>
+            <span class="advance-search-text"> Advanced Search </span>
           </div>
           <div class="col-md-12">
             <form #formRef="ngForm">
@@ -277,7 +284,10 @@
     <div class="col-md-12">
       <div class="row">
         <div class="col-6 main-pagination">
-          <staples-pagination-for-large-data *ngIf="paginationBarDisplayFlag" [tableName] = "tableNameFromBar"></staples-pagination-for-large-data>
+          <staples-pagination-for-large-data
+            *ngIf="paginationBarDisplayFlag"
+            [tableName]="tableNameFromBar"
+          ></staples-pagination-for-large-data>
         </div>
         <div class="col-6">
           <mat-paginator
@@ -291,7 +301,6 @@
       </div>
     </div>
   </div>
-  
 </div>
 <div
   [hidden]="isLoading"

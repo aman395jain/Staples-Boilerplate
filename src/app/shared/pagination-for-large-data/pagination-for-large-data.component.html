@@ -1,33 +1,8 @@
-<nav aria-label="Page navigation example">
-  <ul class="pagination">
-    <li class="page-item main-pagination-links">
-      <a
-        class="page-link"
-        (click)="updateIndex('prev')"
-        aria-label="Previous"
-        [class.disabled] = "disabledStatus('prev')"
-      >
-        <span aria-hidden="true">&laquo;</span>
-        <span class="sr-only">Previous</span>
-      </a>
-    </li>
-    <li
-      class="page-item main-pagination-links"
-      *ngFor="let index of indexForPagination"
-    >
-      <a class="page-link" (click)="getIndexForPagination(index)">{{
-        index
-      }}</a>
-    </li>
-    <li class="page-item main-pagination-links">
-      <a
-        class="page-link"
-        (click)="updateIndex('next')"
-        aria-label="Next"
-      >
-        <span aria-hidden="true">&raquo;</span>
-        <span class="sr-only">Next</span>
-      </a>
-    </li>
-  </ul>
-</nav>
+<ngb-pagination
+  [collectionSize]="numberOfIndex"
+  [(page)]="page"
+  [maxSize]="3"
+  [boundaryLinks]="true"
+  [pageSize]="1"
+  (pageChange)="getIndexForPagination($event)"
+></ngb-pagination>

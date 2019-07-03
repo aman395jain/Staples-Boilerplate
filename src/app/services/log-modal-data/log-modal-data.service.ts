@@ -8,6 +8,7 @@ export class LogModalDataService {
   private logDetailFlag = new Subject<Boolean>();
   private kioskOrderFlag = new Subject<Boolean>();
   private linkedSKUsData = new Subject<Boolean>();
+  private promoData = new BehaviorSubject<any>(null);
   private tableNameForLogDetail = new BehaviorSubject<any>(null);
 
   constructor() {}
@@ -58,5 +59,13 @@ export class LogModalDataService {
 
   setLinkedSKUsData() {
     return this.linkedSKUsData.asObservable();
+  }
+
+  getPrintDataForPromos(data) {
+    this.promoData.next(data);
+  }
+
+  setPrintDataForPromos() {
+    return this.promoData;
   }
 }

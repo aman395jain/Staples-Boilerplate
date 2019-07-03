@@ -13,6 +13,7 @@ import { StaplesRtdmRoutingModule } from "./staplesRTDM-routing.module";
 import { PerfectScrollbarModule } from "ngx-perfect-scrollbar";
 import { PERFECT_SCROLLBAR_CONFIG } from "ngx-perfect-scrollbar";
 import { PerfectScrollbarConfigInterface } from "ngx-perfect-scrollbar";
+import { NgbPaginationModule } from "@ng-bootstrap/ng-bootstrap";
 
 import { StaplesRtdmApplicationComponent } from "./staplesRTDM.component";
 import { HomeComponent } from "./components/home/home.component";
@@ -79,6 +80,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     FormsModule,
     ReactiveFormsModule,
     PerfectScrollbarModule,
+    NgbPaginationModule,
     AngularSplitModule.forRoot()
   ],
   entryComponents: [LogDescriptionComponent, PromoDetailComponent],

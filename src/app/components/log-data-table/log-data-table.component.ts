@@ -173,7 +173,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this._onDestroy))
       .subscribe(tableInfoFromSideNav => {
         this.tableNameFromBar = tableInfoFromSideNav.tableName;
-        this.indexForLog = tableInfoFromSideNav.intialIndex;
+        this.indexForLog = tableInfoFromSideNav.initialIndex;
         if (tableInfoFromSideNav.spinnerFlag) {
           this.isLoading = true;
         } else {
@@ -406,8 +406,8 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
           this.tableName = "CEP";
         }
 
-        console.log("table name is:", this.tableNameFromBar);
-        console.log("index from side nav: ", this.indexForLog);
+        // console.log("table name is:", this.tableNameFromBar);
+        // console.log("index from side nav: ", this.indexForLog);
 
         this._loglistingService
           .getLogListForEntity(this.tableNameFromBar, this.indexForLog)
@@ -502,7 +502,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
   }
 
   onSelectOrderType(event): void {
-    console.log("On selection of order type: ", event.value);
+    // console.log("On selection of order type: ", event.value);
     if (event.value === "Kiosk") {
       this.kioskOrderFormFlag = true;
       this.router.navigate(["/testDataManagement/new-kiosk-order"]);

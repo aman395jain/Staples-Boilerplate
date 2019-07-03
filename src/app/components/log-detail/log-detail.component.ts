@@ -59,11 +59,16 @@ export class LogDetailComponent implements OnInit, OnDestroy {
         this._navBarService.getAdvanceSearchStatus(false);
         const tableNameFromBack = {
           tableName: "",
-          intialIndex: 1,
+          initialIndex: 1,
           spinnerFlag: true
         };
         tableNameFromBack.tableName = this.tableNameLogDetails;
         this._navBarService.setElementNameFromSideBar(tableNameFromBack);
+      } else if (
+        location.pop &&
+        location.url === "/testDataManagement/logDetail(print:print/logInvoice)"
+      ) {
+        this._printDocumentService.printDocument("logInvoice");
       }
     });
     this._logModalDataService
@@ -124,18 +129,28 @@ export class LogDetailComponent implements OnInit, OnDestroy {
         }
 
         if (this.tableNameLogDetails === "Promos") {
-          // console.log("row data in log detailcomponent", rowData);
+          // // console.log("row data in log detailcomponent", rowData);
+
           this._loglistingService
             .getDataForPromos(rowData.promoNum)
             .subscribe(data => {
+              this._logModalDataService.getPrintDataForPromos(data);
               data.map(promoData => {
                 if (
+                  rowData.discountType &&
+                  (rowData.discountType === "SMPL" ||
+                    rowData.discountType === "CTHR") &&
                   promoData.buyOrGetFlag &&
                   promoData.buyOrGetFlag === "buy"
                 ) {
                   this.promoBuyDisplayStatus = true;
                   this.promosBuyData = promoData;
                 } else if (
+                  rowData.discountType &&
+                  (rowData.discountType === "SMPL" ||
+                    rowData.discountType === "CTHR" ||
+                    rowData.discountType === "BXGP" ||
+                    rowData.discountType === "GD") &&
                   promoData.buyOrGetFlag &&
                   promoData.buyOrGetFlag === "get"
                 ) {
@@ -162,7 +177,7 @@ export class LogDetailComponent implements OnInit, OnDestroy {
     this._navBarService.getAdvanceSearchStatus(false);
     const tableNameFromBack = {
       tableName: "",
-      intialIndex: 1,
+      initialIndex: 1,
       spinnerFlag: true
     };
     tableNameFromBack.tableName = this.tableNameLogDetails;

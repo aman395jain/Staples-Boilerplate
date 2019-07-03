@@ -1,6 +1,6 @@
 /**
  * @class LogDataTableHelper
- * Helper class for Advance search in log data table.
+ * Helper class for Advanced search in log data table.
  */
 // @dynamic
 export default class LogDataTableHelper {
@@ -95,8 +95,8 @@ export default class LogDataTableHelper {
       };
     } else if (table_name === "Employee") {
       return function(data, filter) {
-        console.log("in the employee filter the filter is", filter);
-        console.log("in the employee filter the data is", data);
+        // console.log("in the employee filter the filter is", filter);
+        // console.log("in the employee filter the data is", data);
 
         if (
           filter.hasOwnProperty("Location") &&
@@ -151,8 +151,8 @@ export default class LogDataTableHelper {
       };
     } else if (table_name === "Order") {
       return function(data, filter) {
-        console.log("in the order filter the filter is", filter);
-        console.log("in the order filter the data is", data);
+        // console.log("in the order filter the filter is", filter);
+        // console.log("in the order filter the data is", data);
 
         if (
           filter.hasOwnProperty("Order Type") &&
