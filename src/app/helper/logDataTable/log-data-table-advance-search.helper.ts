@@ -44,52 +44,53 @@ export default class LogDataTableHelper {
     if (table_name === "Item_Master") {
       return function(data, filter) {
         if (
-          filter.hasOwnProperty("store") &&
-          !filter.hasOwnProperty("sku") &&
+          filter.hasOwnProperty("Retail Price") &&
+          !filter.hasOwnProperty("SKU") &&
           !filter.hasOwnProperty("Description")
         ) {
-          return data.store.includes(filter.store);
+          return data.retailPrice.toString().includes(filter.retailPrice);
         } else if (
-          filter.hasOwnProperty("sku") &&
-          !filter.hasOwnProperty("store") &&
+          filter.hasOwnProperty("SKU") &&
+          !filter.hasOwnProperty("Retail Price") &&
           !filter.hasOwnProperty("Description")
         ) {
-          return data.sku.includes(filter.sku);
+          return data.sku.includes(filter.SKU);
         } else if (
-          !filter.hasOwnProperty("sku") &&
-          !filter.hasOwnProperty("store") &&
+          !filter.hasOwnProperty("SKU") &&
+          !filter.hasOwnProperty("Retail Price") &&
           filter.hasOwnProperty("Description")
         ) {
           return data.itemDesc.toLowerCase().includes(filter.Description);
         } else if (
-          filter.hasOwnProperty("sku") &&
-          filter.hasOwnProperty("store") &&
+          filter.hasOwnProperty("SKU") &&
+          filter.hasOwnProperty("Retail Price") &&
           !filter.hasOwnProperty("Description")
         ) {
           return (
-            data.store.includes(filter.store) && data.sku.includes(filter.sku)
+            data.retailPrice.toString().includes(filter.retailPrice) &&
+            data.sku.includes(filter.sku)
           );
         } else if (
-          !filter.hasOwnProperty("sku") &&
-          filter.hasOwnProperty("store") &&
+          !filter.hasOwnProperty("SKU") &&
+          filter.hasOwnProperty("Retail Price") &&
           filter.hasOwnProperty("Description")
         ) {
           return (
-            data.store.includes(filter.store) &&
+            data.retailPrice.toString().includes(filter.retailPrice) &&
             data.itemDesc.toLowerCase().includes(filter.Description)
           );
         } else if (
-          filter.hasOwnProperty("sku") &&
-          !filter.hasOwnProperty("store") &&
+          filter.hasOwnProperty("SKU") &&
+          !filter.hasOwnProperty("Retail Price") &&
           filter.hasOwnProperty("Description")
         ) {
           return (
-            data.sku.includes(filter.sku) &&
+            data.sku.includes(filter.SKU) &&
             data.itemDesc.toLowerCase().includes(filter.Description)
           );
         } else {
-          data.store.includes(filter.store) &&
-            data.sku.includes(filter.sku) &&
+          data.retailPrice.toString().includes(filter.retailPrice) &&
+            data.sku.includes(filter.SKU) &&
             data.itemDesc.toLowerCase().includes(filter.Description);
         }
       };

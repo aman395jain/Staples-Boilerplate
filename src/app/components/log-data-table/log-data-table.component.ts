@@ -190,6 +190,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
           this.isLoadingForSpinner = false;
         }
         if (this.tableNameFromBar === "Item_Master") {
+          this.advanceSearchOptions = ["Description", "SKU", "Retail Price"];
           this.logTableGridColumns = logDataTableConst.item_Master_Main;
           this.tableName = "Item_Master";
           this._logModalDataService.getTableNameForLogDetail("Item_Master");
@@ -288,7 +289,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
         } else if (this.tableNameFromBar === "ESP_Skus") {
           this.advanceSearchOptions = ["Description", "SKU", "Retail Price"];
           this.logTableGridColumns = logDataTableConst.ESP_SKUs;
-          this._logModalDataService.getTableNameForLogDetail("ESP");
+          this._logModalDataService.getTableNameForLogDetail("ESP_Skus");
 
           this.tableName = "ESP_Skus";
           this.displayedColumns = logDataTableConst.ESP_SKUs.map(

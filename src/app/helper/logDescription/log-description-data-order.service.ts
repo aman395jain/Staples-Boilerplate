@@ -159,7 +159,7 @@ export class LogDescriptionDataOrderService {
 
       this.dataToBeDisplayedOnModal[1] = rowDataWithRestData;
       return this.dataToBeDisplayedOnModal;
-    } else if (tableName === "ESP_SKUs") {
+    } else if (tableName === "ESP_Skus") {
       this.mainDataToDisplay = {
         sku: row.sku,
         itemDesc: row.itemDesc,
@@ -528,7 +528,7 @@ export class LogDescriptionDataOrderService {
           data.retailPrice.toLowerCase().includes(filter)
         );
       };
-    } else if (tableName === "ESP_SKUs") {
+    } else if (tableName === "ESP_Skus") {
       return function(data, filter: string): boolean {
         return (
           data.sku.toLowerCase().includes(filter) ||
