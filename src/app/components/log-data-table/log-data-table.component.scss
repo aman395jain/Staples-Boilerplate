@@ -101,6 +101,13 @@
       }
     }
 
+    .load-spinner-for-pagination {
+      height: 392px;
+      .pagination-spinner-loader {
+        margin: 15% 50%;
+      }
+    }
+
     .mat-cell {
       justify-content: center;
 
@@ -124,6 +131,10 @@
     .hide {
       display: none;
     }
+  }
+
+  .footer-pagination {
+    height: 56px;
   }
 
   .create-order {

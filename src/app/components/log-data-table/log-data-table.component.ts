@@ -55,6 +55,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
   tableName: String = "";
   advancedSearchStatus: boolean = false;
   isLoading: boolean = true;
+  isLoadingForSpinner: boolean = true;
   searchValues: any = {};
   advanceSearchFields = [{ name: "", fieldValue: "" }];
   rowLength: number = 0;
@@ -66,6 +67,8 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
   indexForLog: number;
   tableNameFromBar: string;
   paginationBarDisplayFlag: boolean = true;
+
+  pageIndex = 0;
 
   constructor(
     private _loglistingService: LoglistingService,
@@ -104,7 +107,6 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
     ) {
       this.router.navigate(["/testDataManagement"]);
     }
-    this.logTableGridColumns = logDataTableConst.item_Master;
 
     this._logModalDataService.setLogDetailFlag().subscribe(flag => {
       this.logDetailsFlag = flag;
@@ -113,14 +115,15 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
       this.kioskOrderFormFlag = flag;
     });
 
-    this._logModalDataService.getTableNameForLogDetail("Item_Master");
+    this._logModalDataService.getTableNameForLogDetail("Tax_Rates");
 
-    this.tableName = "Item_Master";
-    this.displayedColumns = logDataTableConst.item_Master.map(
+    this.tableName = "Tax_Rates";
+    this.logTableGridColumns = logDataTableConst.tax_Rate;
+    this.displayedColumns = logDataTableConst.tax_Rate.map(
       columnName => columnName.columnDef
     );
-    this.advanceSearchOptions = ["store", "sku", "Description"];
-    this.tableHeader = "Item Master";
+    this.advanceSearchOptions = ["Rate", "City", "State"];
+    this.tableHeader = "Tax Rates";
 
     try {
       this._paginationForLongDataService
@@ -138,12 +141,10 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
                   data.pagiCount
                 );
               }
-
               data = data.list;
-
               this.printedData = data;
-
               this.isLoading = false;
+              this.isLoadingForSpinner = false;
               let storeData = [];
               storeData.push("Select a Store");
               data.map((dataValue, i) => {
@@ -160,7 +161,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
                 this.paginator.pageSize = 5;
               }
               this.dataByAPI.filterPredicate = this._logDescriptionDataOrderService.filterRestrictionOnlyForDisplayedRows(
-                "Item_Master"
+                "Tax_Rates"
               );
             });
         });
@@ -174,14 +175,20 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
       .subscribe(tableInfoFromSideNav => {
         this.tableNameFromBar = tableInfoFromSideNav.tableName;
         this.indexForLog = tableInfoFromSideNav.initialIndex;
+        this.initialPageSize = 5;
+        this.pageIndex = 0;
+        this.selectedDataForPrint = [];
+
         if (tableInfoFromSideNav.spinnerFlag) {
           this.isLoading = true;
         } else {
           this.isLoading = false;
         }
-
-        this.selectedDataForPrint = [];
-
+        if (tableInfoFromSideNav.spinnerForPagination) {
+          this.isLoadingForSpinner = true;
+        } else {
+          this.isLoadingForSpinner = false;
+        }
         if (this.tableNameFromBar === "Item_Master") {
           this.logTableGridColumns = logDataTableConst.item_Master_Main;
           this.tableName = "Item_Master";
@@ -409,16 +416,12 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
         } else if (this.tableNameFromBar === "CEP") {
           this.tableName = "CEP";
         }
-
-        // console.log("table name is:", this.tableNameFromBar);
-        // console.log("index from side nav: ", this.indexForLog);
-
         this._loglistingService
           .getLogListForEntity(this.tableNameFromBar, this.indexForLog)
           .pipe(takeUntil(this._onDestroy))
           .subscribe(data => {
-            // console.log("data fake is:", data);
             if (data.pagiCount < 100) {
+              //to hide the pagination for less amount of data.
               this.paginationBarDisplayFlag = false;
             } else {
               this.paginationBarDisplayFlag = true;
@@ -429,6 +432,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
             data = data.list;
             this.printedData = data;
             this.isLoading = false;
+            this.isLoadingForSpinner = false;
             let storeData = ["Select a Store"];
             this.storeUniqueData = [];
             data.map((dataValue, i) => {
@@ -484,6 +488,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
   launchLogsForSingleEntity(row) {
     this._logModalDataService.getLogDetailData(row);
     this._logModalDataService.getLogModalData(row); //data for print
+    this._navBarService.setPageLength(5);
     if (this.tableName === "Linked_SKUs") {
       this._loglistingService.postLinkedListSKUs(row.sku).subscribe(data => {
         this._logModalDataService.getLinkedSKUsData(data);
@@ -601,6 +606,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
    * @param event
    */
   updatePageSize(event) {
+    console.log("event", event);
     this._navBarService.setPageSize(event.pageSize);
     this._navBarService.setPageLength(event.length);
   }

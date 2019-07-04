@@ -24,7 +24,7 @@ export class LoglistingService {
   constructor(private http: HttpClient) {}
 
   getLogList(index: number): Observable<any> {
-    this._serviceUrl = logTableAPIUrls.getItemMaster;
+    this._serviceUrl = logTableAPIUrls.getTaxRate;
     return this.http.post<any>(this._serviceUrl, { pageNumber: index }).pipe(
       map((response: Response) => {
         // console.log("in the service", response);

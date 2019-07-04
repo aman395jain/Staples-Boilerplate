@@ -46,9 +46,17 @@ body {
 
 .as-split-gutter {
   flex-basis: 4px !important;
-  height: initial !important;
+  height: 592px !important;
 }
 
 .cdk-overlay-pane {
   margin-top: 15px;
+}
+
+.mat-paginator-navigation-next {
+  display: none !important;
+}
+
+.mat-paginator-navigation-previous {
+  display: none !important;
 }
