@@ -122,7 +122,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
     this.displayedColumns = logDataTableConst.tax_Rate.map(
       columnName => columnName.columnDef
     );
-    this.advanceSearchOptions = ["Rate", "City", "State"];
+    this.advanceSearchOptions = ["Tax Rate", "State"];
     this.tableHeader = "Tax Rates";
 
     try {
@@ -242,7 +242,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
           );
           this.tableHeader = "Linked SKUs";
         } else if (this.tableNameFromBar === "Tax_Rates") {
-          this.advanceSearchOptions = ["Rate", "City", "State"];
+          this.advanceSearchOptions = ["Tax Rate", "State"];
           this.logTableGridColumns = logDataTableConst.tax_Rate;
           this._logModalDataService.getTableNameForLogDetail("Tax_Rates");
 

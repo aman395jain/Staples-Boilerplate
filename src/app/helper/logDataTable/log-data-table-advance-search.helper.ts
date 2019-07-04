@@ -210,34 +210,34 @@ export default class LogDataTableHelper {
       return function(data, filter) {
         if (
           filter.hasOwnProperty("State") &&
-          !filter.hasOwnProperty("Rate") &&
+          !filter.hasOwnProperty("Tax Rate") &&
           !filter.hasOwnProperty("Round Rule")
         ) {
           return data.state.includes(filter["State"]);
         } else if (
           !filter.hasOwnProperty("State") &&
-          filter.hasOwnProperty("Rate") &&
+          filter.hasOwnProperty("Tax Rate") &&
           !filter.hasOwnProperty("Round Rule")
         ) {
-          return data.rate.toString().includes(filter.Rate);
+          return data.rate.toString().includes(filter["Tax Rate"]);
         } else if (
           !filter.hasOwnProperty("State") &&
-          !filter.hasOwnProperty("Rate") &&
+          !filter.hasOwnProperty("Tax Rate") &&
           filter.hasOwnProperty("Round Rule")
         ) {
           return data.roundRule.includes(filter["Round Rule"]);
         } else if (
           filter.hasOwnProperty("State") &&
-          filter.hasOwnProperty("Rate") &&
+          filter.hasOwnProperty("Tax Rate") &&
           !filter.hasOwnProperty("Round Rule")
         ) {
           return (
             data.state.includes(filter.State) &&
-            data.rate.toString().includes(filter["Rate"])
+            data.rate.toString().includes(filter["Tax Rate"])
           );
         } else if (
           filter.hasOwnProperty("State") &&
-          !filter.hasOwnProperty("Rate") &&
+          !filter.hasOwnProperty("Tax Rate") &&
           filter.hasOwnProperty("Round Rule")
         ) {
           return (
@@ -246,16 +246,16 @@ export default class LogDataTableHelper {
           );
         } else if (
           !filter.hasOwnProperty("State") &&
-          filter.hasOwnProperty("Rate") &&
+          filter.hasOwnProperty("Tax Rate") &&
           filter.hasOwnProperty("Round Rule")
         ) {
           return (
-            data.rate.toString().includes(filter["Rate"]) &&
+            data.rate.toString().includes(filter["Tax Rate"]) &&
             data.roundRule.includes(filter["Round Rule"])
           );
         } else {
           data.state.includes(filter.State) &&
-            data.rate.toString().includes(filter["Rate"]) &&
+            data.rate.toString().includes(filter["Tax Rate"]) &&
             data.roundRule.includes(filter["Round Rule"]);
         }
       };
@@ -590,7 +590,7 @@ export default class LogDataTableHelper {
           filter.hasOwnProperty("SKU") &&
           !filter.hasOwnProperty("Retail Price")
         ) {
-          return data.sku.toString().includes(filter["SKU"]);
+          return data.sku.toString().includes(filter.SKU);
         } else if (
           !filter.hasOwnProperty("Description") &&
           !filter.hasOwnProperty("SKU") &&
