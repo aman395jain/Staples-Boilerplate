@@ -318,7 +318,11 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
           );
           this.tableHeader = "Lowest Price";
         } else if (this.tableNameFromBar === "Promos") {
-          this.advanceSearchOptions = ["Discount Type", "Store", "Promo Name"];
+          this.advanceSearchOptions = [
+            "Discount Type",
+            "Promo Num",
+            "Promo Name"
+          ];
           this.logTableGridColumns = logDataTableConst.Promos;
           this._logModalDataService.getTableNameForLogDetail("Promos");
 

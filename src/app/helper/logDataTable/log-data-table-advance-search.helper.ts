@@ -262,34 +262,34 @@ export default class LogDataTableHelper {
       return function(data, filter) {
         if (
           filter.hasOwnProperty("Discount Type") &&
-          !filter.hasOwnProperty("Store") &&
+          !filter.hasOwnProperty("Promo Num") &&
           !filter.hasOwnProperty("Promo Name")
         ) {
           return data.discountType.includes(filter["Discount Type"]);
         } else if (
           !filter.hasOwnProperty("Discount Type") &&
-          filter.hasOwnProperty("Store") &&
+          filter.hasOwnProperty("Promo Num") &&
           !filter.hasOwnProperty("Promo Name")
         ) {
-          return data.store.toString().includes(filter.Store);
+          return data.promoNum.toString().includes(filter.promoNum);
         } else if (
           !filter.hasOwnProperty("Discount Type") &&
-          !filter.hasOwnProperty("Store") &&
+          !filter.hasOwnProperty("Promo Num") &&
           filter.hasOwnProperty("Promo Name")
         ) {
           return data.promoName.includes(filter["Promo Name"]);
         } else if (
           filter.hasOwnProperty("Discount Type") &&
-          filter.hasOwnProperty("Store") &&
+          filter.hasOwnProperty("Promo Num") &&
           !filter.hasOwnProperty("Promo Name")
         ) {
           return (
             data.discountType.includes(filter["Discount Type"]) &&
-            data.store.toString().includes(filter["Store"])
+            data.promoNum.toString().includes(filter["Promo Num"])
           );
         } else if (
           filter.hasOwnProperty("Discount Type") &&
-          !filter.hasOwnProperty("Store") &&
+          !filter.hasOwnProperty("Promo Num") &&
           filter.hasOwnProperty("Promo Name")
         ) {
           return (
@@ -298,16 +298,16 @@ export default class LogDataTableHelper {
           );
         } else if (
           !filter.hasOwnProperty("Discount Type") &&
-          filter.hasOwnProperty("Store") &&
+          filter.hasOwnProperty("Promo Num") &&
           filter.hasOwnProperty("Promo Name")
         ) {
           return (
-            data.store.toString().includes(filter["Store"]) &&
+            data.promoNum.toString().includes(filter["Promo Num"]) &&
             data.promoName.includes(filter["Promo Name"])
           );
         } else {
           data.discountType.includes(filter["Discount Type"]) &&
-            data.store.toString().includes(filter["Store"]) &&
+            data.promoNum.toString().includes(filter["Promo Num"]) &&
             data.promoName.includes(filter["Promo Name"]);
         }
       };
