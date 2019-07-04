@@ -41,6 +41,11 @@ export class DisplayLogTableComponent implements OnInit, OnDestroy {
       });
 
     this._paginationForLongDataService.getIndexPagination(1);
+    const paginationStatus = { clicked: true, index: 1 };
+    paginationStatus.clicked = false;
+    this._paginationForLongDataService.getPaginationIndexForBar(
+      paginationStatus
+    );
   }
 
   ngOnDestroy(): void {

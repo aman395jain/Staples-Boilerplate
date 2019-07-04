@@ -33,9 +33,21 @@ export class PaginationForLargeDataComponent implements OnInit {
     this._navBarService.setPageForIndexPagination().subscribe(pageNumber => {
       this.page = pageNumber;
     });
+    this._paginationForLongDataService
+      .setPaginationIndexForBar()
+      .subscribe(paginationIndex => {
+        if (paginationIndex.clicked) {
+          this.page = paginationIndex.index;
+        }
+      });
   }
 
   getIndexForPagination(i: any) {
+    const paginationStatus = { clicked: true, index: 1 };
+    paginationStatus.index = i;
+    this._paginationForLongDataService.getPaginationIndexForBar(
+      paginationStatus
+    );
     if (typeof this.tableName === "undefined") {
       this._paginationForLongDataService.getIndexPagination(i);
     } else {

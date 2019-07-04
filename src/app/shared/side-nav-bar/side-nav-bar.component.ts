@@ -61,37 +61,37 @@ export class SideNavBarComponent implements OnInit, OnDestroy {
       .subscribe(length => {
         this.pagelength = length;
         console.log("in the side bar length", this.pagelength);
-        if (this.pageSize === 5) {
-          this.barHeight = 592;
-        } else if (this.pageSize === 10) {
-          if (this.pagelength <= 5) {
-            this.barHeight = 592;
-          } else if (this.pagelength > 5 && this.pagelength < 10) {
-            this.barHeight = 100 * this.pagelength;
-          } else {
-            this.barHeight = 952;
-          }
-        } else if (this.pageSize === 25) {
-          if (this.pagelength <= 5) {
-            this.barHeight = 592;
-          } else if (this.pagelength > 5 && this.pagelength <= 10) {
-            this.barHeight = 100 * this.pagelength;
-          } else if (this.pagelength > 10 && this.pagelength < 25) {
-            this.barHeight = 938 + 72 * (this.pagelength - 10);
-          } else {
-            this.barHeight = 2052;
-          }
-        } else if (this.pageSize === 50) {
-          if (this.pagelength <= 5) {
-            this.barHeight = 592;
-          } else if (this.pagelength > 5 && this.pagelength <= 10) {
-            this.barHeight = 100 * this.pagelength;
-          } else if (this.pagelength < 50) {
-            this.barHeight = 2019 + 80 * (this.pagelength - 25);
-          } else {
-            this.barHeight = 4038;
-          }
-        }
+        // if (this.pageSize === 5) {
+        //   this.barHeight = 592;
+        // } else if (this.pageSize === 10) {
+        //   if (this.pagelength <= 5) {
+        //     this.barHeight = 592;
+        //   } else if (this.pagelength > 5 && this.pagelength < 10) {
+        //     this.barHeight = 100 * this.pagelength;
+        //   } else {
+        //     this.barHeight = 952;
+        //   }
+        // } else if (this.pageSize === 25) {
+        //   if (this.pagelength <= 5) {
+        //     this.barHeight = 592;
+        //   } else if (this.pagelength > 5 && this.pagelength <= 10) {
+        //     this.barHeight = 100 * this.pagelength;
+        //   } else if (this.pagelength > 10 && this.pagelength < 25) {
+        //     this.barHeight = 938 + 72 * (this.pagelength - 10);
+        //   } else {
+        //     this.barHeight = 1992;
+        //   }
+        // } else if (this.pageSize === 50) {
+        //   if (this.pagelength <= 5) {
+        //     this.barHeight = 592;
+        //   } else if (this.pagelength > 5 && this.pagelength <= 10) {
+        //     this.barHeight = 100 * this.pagelength;
+        //   } else if (this.pagelength < 50) {
+        //     this.barHeight = 2019 + 72 * (this.pagelength - 25);
+        //   } else {
+        //     this.barHeight = 3892;
+        //   }
+        // }
       });
   }
   ngOnDestroy(): void {
@@ -119,5 +119,10 @@ export class SideNavBarComponent implements OnInit, OnDestroy {
     this.barHeight = 592;
     this._navBarService.setPageSize(5);
     this._navBarService.getAdvanceSearchStatus(false);
+    const paginationStatus = { clicked: true, index: 1 };
+    paginationStatus.clicked = false;
+    this._paginationForLongDataService.getPaginationIndexForBar(
+      paginationStatus
+    );
   }
 }

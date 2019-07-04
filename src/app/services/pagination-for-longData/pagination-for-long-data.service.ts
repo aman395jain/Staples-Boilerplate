@@ -6,6 +6,7 @@ import { BehaviorSubject, ReplaySubject } from "rxjs";
 })
 export class PaginationForLongDataService {
   private _indexPagination = new BehaviorSubject<any>(null);
+  private _indexPaginationForBar = new BehaviorSubject<any>(null);
   private _totalRows = new ReplaySubject<number>(1);
 
   constructor() {}
@@ -16,6 +17,14 @@ export class PaginationForLongDataService {
 
   setIndexPagination() {
     return this._indexPagination;
+  }
+
+  getPaginationIndexForBar(index) {
+    this._indexPaginationForBar.next(index);
+  }
+
+  setPaginationIndexForBar() {
+    return this._indexPaginationForBar;
   }
 
   getNumberOfRowsForPagination(totalIndex) {

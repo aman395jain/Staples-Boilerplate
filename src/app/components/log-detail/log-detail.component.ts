@@ -10,6 +10,7 @@ import { DashboardHeaderNameConverstionService } from "src/app/services/dashboar
 import { LogDescriptionDataOrderService } from "src/app/helper/logDescription/log-description-data-order.service";
 import { PrintDocumentService } from "src/app/services/print-document/print-document.service";
 import { LoglistingService } from "src/app/services/log-listing/loglisting.service";
+import { PaginationForLongDataService } from "src/app/services/pagination-for-longData/pagination-for-long-data.service";
 
 @Component({
   selector: "staples-log-detail",
@@ -35,6 +36,7 @@ export class LogDetailComponent implements OnInit, OnDestroy {
   promoGetDisplayStatus: boolean = false;
 
   tableNameLogDetails = "";
+  pageNumberIndex: number;
 
   private _onDestroy = new Subject<void>();
   linkedSKUsData: any;
@@ -49,6 +51,7 @@ export class LogDetailComponent implements OnInit, OnDestroy {
     private _dashboardHeaderNameConverstionService: DashboardHeaderNameConverstionService,
     private _logDiscriptionDataOrderService: LogDescriptionDataOrderService,
     private _loglistingService: LoglistingService,
+    private _paginationForLongDataService: PaginationForLongDataService,
     private _location: Location
   ) {}
 
@@ -72,6 +75,12 @@ export class LogDetailComponent implements OnInit, OnDestroy {
         this._printDocumentService.printDocument("logInvoice");
       }
     });
+
+    this._paginationForLongDataService
+      .setPaginationIndexForBar()
+      .subscribe(indexData => {
+        this.pageNumberIndex = indexData.index;
+      });
     this._logModalDataService
       .setTableNameForLogDetail()
       .pipe(takeUntil(this._onDestroy))
@@ -183,6 +192,7 @@ export class LogDetailComponent implements OnInit, OnDestroy {
       spinnerForPagination: false
     };
     tableNameFromBack.tableName = this.tableNameLogDetails;
+    tableNameFromBack.initialIndex = this.pageNumberIndex;
     this._navBarService.setElementNameFromSideBar(tableNameFromBack);
     this.router.navigate(["/testDataManagement"]);
   }

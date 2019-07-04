@@ -6,6 +6,12 @@
       margin: 10px;
       cursor: pointer;
     }
+
+    .icons-side-navbar {
+      &:active {
+        color: #ffbf00 !important;
+      }
+    }
   }
 }
 
