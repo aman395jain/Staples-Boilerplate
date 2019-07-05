@@ -221,7 +221,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
           );
           this.tableHeader = "Price Prompt SKUs";
         } else if (this.tableNameFromBar === "Employee") {
-          this.advanceSearchOptions = ["Location", "Employee ID", "Role"];
+          this.advanceSearchOptions = ["Employee Name", "Employee ID", "Role"];
           this.logTableGridColumns = logDataTableConst.employee;
 
           this.tableName = "Employee";
@@ -297,6 +297,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
           );
           this.tableHeader = "ESP";
         } else if (this.tableNameFromBar === "Item_Group") {
+          this.advanceSearchOptions = [];
           this.logTableGridColumns = logDataTableConst.Item_Group;
           this._logModalDataService.getTableNameForLogDetail("Item_Group");
 
@@ -359,7 +360,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
         } else if (this.tableNameFromBar === "Tax_Exempt") {
           this.logTableGridColumns = logDataTableConst.Tax_Exempt;
           this._logModalDataService.getTableNameForLogDetail("Tax_Exempt");
-
+          this.advanceSearchOptions = [];
           this.tableName = "Tax_Exempt";
           this.displayedColumns = logDataTableConst.Tax_Exempt.map(
             columnName => columnName.columnDef

@@ -48,7 +48,7 @@ export default class LogDataTableHelper {
           !filter.hasOwnProperty("SKU") &&
           !filter.hasOwnProperty("Description")
         ) {
-          return data.retailPrice.toString().includes(filter.retailPrice);
+          return data.retailPrice.toString().includes(filter["Retail Price"]);
         } else if (
           filter.hasOwnProperty("SKU") &&
           !filter.hasOwnProperty("Retail Price") &&
@@ -67,8 +67,8 @@ export default class LogDataTableHelper {
           !filter.hasOwnProperty("Description")
         ) {
           return (
-            data.retailPrice.toString().includes(filter.retailPrice) &&
-            data.sku.includes(filter.sku)
+            data.retailPrice.toString().includes(filter["Retail Price"]) &&
+            data.sku.includes(filter.SKU)
           );
         } else if (
           !filter.hasOwnProperty("SKU") &&
@@ -76,7 +76,7 @@ export default class LogDataTableHelper {
           filter.hasOwnProperty("Description")
         ) {
           return (
-            data.retailPrice.toString().includes(filter.retailPrice) &&
+            data.retailPrice.toString().includes(filter["Retail Price"]) &&
             data.itemDesc.toLowerCase().includes(filter.Description)
           );
         } else if (
@@ -100,43 +100,43 @@ export default class LogDataTableHelper {
         // console.log("in the employee filter the data is", data);
 
         if (
-          filter.hasOwnProperty("Location") &&
+          filter.hasOwnProperty("Employee Name") &&
           !filter.hasOwnProperty("Employee ID") &&
           !filter.hasOwnProperty("Role")
         ) {
-          return data.location.includes(filter.Location);
+          return data.emplName.includes(filter["Employee Name"]);
         } else if (
-          !filter.hasOwnProperty("Location") &&
+          !filter.hasOwnProperty("Employee Name") &&
           filter.hasOwnProperty("Employee ID") &&
           !filter.hasOwnProperty("Role")
         ) {
           return data.emplId.toString().includes(filter["Employee ID"]);
         } else if (
-          !filter.hasOwnProperty("Location") &&
+          !filter.hasOwnProperty("Employee Name") &&
           !filter.hasOwnProperty("Employee ID") &&
           filter.hasOwnProperty("Role")
         ) {
           return data.emplRole.includes(filter.Role);
         } else if (
-          filter.hasOwnProperty("Location") &&
+          filter.hasOwnProperty("Employee Name") &&
           filter.hasOwnProperty("Employee ID") &&
           !filter.hasOwnProperty("Role")
         ) {
           return (
-            data.location.includes(filter.Location) &&
+            data.emplName.includes(filter["Employee Name"]) &&
             data.emplId.toString().includes(filter["Employee ID"])
           );
         } else if (
-          filter.hasOwnProperty("Location") &&
+          filter.hasOwnProperty("Employee Name") &&
           !filter.hasOwnProperty("Employee ID") &&
           filter.hasOwnProperty("Role")
         ) {
           return (
-            data.store.includes(filter.store) &&
+            data.emplName.includes(filter["Employee Name"]) &&
             data.emplRole.includes(filter.Role)
           );
         } else if (
-          !filter.hasOwnProperty("Location") &&
+          !filter.hasOwnProperty("Employee Name") &&
           filter.hasOwnProperty("Employee ID") &&
           filter.hasOwnProperty("Role")
         ) {
@@ -145,7 +145,7 @@ export default class LogDataTableHelper {
             data.emplRole.includes(filter.Role)
           );
         } else {
-          data.location.includes(filter.Location) &&
+          data.emplName.includes(filter["Employee Name"]) &&
             data.emplId.toString().includes(filter["Employee ID"]) &&
             data.emplRole.includes(filter.Role);
         }
@@ -272,7 +272,7 @@ export default class LogDataTableHelper {
           filter.hasOwnProperty("Promo Num") &&
           !filter.hasOwnProperty("Promo Name")
         ) {
-          return data.promoNum.toString().includes(filter.promoNum);
+          return data.promoNum.toString().includes(filter["Promo Num"]);
         } else if (
           !filter.hasOwnProperty("Discount Type") &&
           !filter.hasOwnProperty("Promo Num") &&
