@@ -205,6 +205,57 @@
       </div>
     </perfect-scrollbar>
   </div>
+
+  <div class="classified-content align-items-center justify-content-end">
+    Other Attributes
+  </div>
+  <perfect-scrollbar [scrollIndicators]="true">
+    <div class="row other-attribute-table-content">
+      <div *ngFor="let data of dataDisplayOnModalRest | keyvalue">
+        <table class="table table-bordered">
+          <thead>
+            <tr *ngIf="!(data.key === 'checked' || data.key === 'index')">
+              <th class="table-header">
+                <span>{{ data.key }}</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngIf="!(data.key === 'checked' || data.key === 'index')">
+              <td *ngIf="!(data.key === 'Bar Code' || data.key === 'UPC List')">
+                <div class="description-blocks">
+                  <perfect-scrollbar [scrollIndicators]="true">
+                    {{ data.value }}
+                  </perfect-scrollbar>
+                </div>
+              </td>
+              <td *ngIf="data.key === 'UPC List'">
+                <div class="description-blocks">
+                  <perfect-scrollbar [scrollIndicators]="true">
+                    <div *ngFor="let barCode of dataBarCode">
+                      <div>
+                        <ngx-barcode
+                          [bc-value]="barCode"
+                          [bc-display-value]="true"
+                          [bc-height]="25"
+                          [bc-width]="1"
+                        ></ngx-barcode>
+                      </div>
+                    </div>
+                  </perfect-scrollbar>
+                </div>
+              </td>
+              <td *ngIf="data.key === 'UPC List'">
+                <div *ngFor="let barCode of dataBarCode">
+                  {{ barCode }}
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </perfect-scrollbar>
   <div
     class="classified-content align-items-center justify-content-end"
     *ngIf="promoBuyDisplayStatus"
@@ -250,11 +301,11 @@
                   <span>{{ promosBuyData.itemReqType }}</span>
                 </td>
                 <td>
-                  <span *ngIf="promosGroupStatus"
-                    ><a class="promo-group" (click)="redirectToSkuList()">{{
+                  <span
+                    >{{
                       promosBuyData.promoGroup
-                    }}</a></span
-                  >
+                    }}
+                    </span>
                 </td>
                 <td>
                   <span>{{ promosBuyData.discountQualifierType }}</span>
@@ -317,54 +368,4 @@
       </div>
     </perfect-scrollbar>
   </div>
-  <div class="classified-content align-items-center justify-content-end">
-    Other Attributes
-  </div>
-  <perfect-scrollbar [scrollIndicators]="true">
-    <div class="row other-attribute-table-content">
-      <div *ngFor="let data of dataDisplayOnModalRest | keyvalue">
-        <table class="table table-bordered">
-          <thead>
-            <tr *ngIf="!(data.key === 'checked' || data.key === 'index')">
-              <th class="table-header">
-                <span>{{ data.key }}</span>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngIf="!(data.key === 'checked' || data.key === 'index')">
-              <td *ngIf="!(data.key === 'Bar Code' || data.key === 'UPC List')">
-                <div class="description-blocks">
-                  <perfect-scrollbar [scrollIndicators]="true">
-                    {{ data.value }}
-                  </perfect-scrollbar>
-                </div>
-              </td>
-              <td *ngIf="data.key === 'UPC List'">
-                <div class="description-blocks">
-                  <perfect-scrollbar [scrollIndicators]="true">
-                    <div *ngFor="let barCode of dataBarCode">
-                      <div>
-                        <ngx-barcode
-                          [bc-value]="barCode"
-                          [bc-display-value]="true"
-                          [bc-height]="25"
-                          [bc-width]="1"
-                        ></ngx-barcode>
-                      </div>
-                    </div>
-                  </perfect-scrollbar>
-                </div>
-              </td>
-              <td *ngIf="data.key === 'UPC List'">
-                <div *ngFor="let barCode of dataBarCode">
-                  {{ barCode }}
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </perfect-scrollbar>
 </div>

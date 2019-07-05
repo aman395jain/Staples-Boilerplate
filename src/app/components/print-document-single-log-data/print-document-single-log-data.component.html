@@ -1,326 +1,327 @@
 <div>
-<div class="container">
-  <div class="classified-content align-items-center justify-content-end">
-    Main Attributes
-  </div>
-  <div class="row">
-    <div
-      class="print-single-entity"
-      *ngFor="let dataMainAttributes of printForMainAttributes | keyvalue"
-    >
-      <table class="table table-bordered">
-        <thead>
-          <tr
-            *ngIf="
-              !(
-                dataMainAttributes.key === 'checked' ||
-                dataMainAttributes.key === 'index'
-              )
-            "
-          >
-            <th class="table-header">
-              <span>{{ dataMainAttributes.key }}</span>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr
-            *ngIf="
-              !(
-                dataMainAttributes.key === 'checked' ||
-                dataMainAttributes.key === 'index'
-              )
-            "
-          >
-            <td
+  <div class="container">
+    <div class="classified-content align-items-center justify-content-end">
+      Main Attributes
+    </div>
+    <div class="row">
+      <div
+        class="print-single-entity"
+        *ngFor="let dataMainAttributes of printForMainAttributes | keyvalue"
+      >
+        <table class="table table-bordered">
+          <thead>
+            <tr
               *ngIf="
                 !(
-                  dataMainAttributes.key === 'Bar Code' ||
-                  dataMainAttributes.key === 'UPC List'
+                  dataMainAttributes.key === 'checked' ||
+                  dataMainAttributes.key === 'index'
                 )
               "
             >
-              <div class="description-blocks">
-                {{ dataMainAttributes.value }}
-              </div>
-            </td>
-            <td *ngIf="dataMainAttributes.key === 'UPC List'">
-              <div *ngFor="let barCode of dataBarCode">
-                <div>
-                  <ngx-barcode
-                    [bc-value]="barCode"
-                    [bc-display-value]="true"
-                    [bc-height]="25"
-                    [bc-width]="1"
-                  ></ngx-barcode>
+              <th class="table-header">
+                <span>{{ dataMainAttributes.key }}</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              *ngIf="
+                !(
+                  dataMainAttributes.key === 'checked' ||
+                  dataMainAttributes.key === 'index'
+                )
+              "
+            >
+              <td
+                *ngIf="
+                  !(
+                    dataMainAttributes.key === 'Bar Code' ||
+                    dataMainAttributes.key === 'UPC List'
+                  )
+                "
+              >
+                <div class="description-blocks">
+                  {{ dataMainAttributes.value }}
                 </div>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <div
-    class="classified-content align-items-center justify-content-end"
-    *ngIf="linkedSKUsDisplayStatusPrint"
-  >
-    Linked SKUs Attributes
-  </div>
-
-  <div>
-    <div
-      class="row linked-sku-table-header"
-      *ngIf="
-        linkedSKUsDisplayStatusPrint &&
-          (tableNameForPrint == 'Recycle_Fee_SKUs' ||
-        tableNameForPrint == 'Bag_Fee_SKUs')
-      "
-    >
-      <div class="col-md-12 linked-sku-table">
-        <table class="table table-bordered">
-          <thead>
-            <tr>
-              <th class="table-header">
-                <span>Recycle SKUs</span>
-              </th>
-              <th class="table-header">
-                <span>Recycle SKUs Description</span>
-              </th>
-              <th class="table-header">
-                <span>Retail Price</span>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let linkedSKUsData of linkedSKUsDataPrint">
-              <td>{{ linkedSKUsData.sku }}</td>
-              <td>{{ linkedSKUsData.itemDesc }}</td>
-              <td>{{ linkedSKUsData.retailPrice }}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-    <div
-      class="row linked-sku-table-header"
-      *ngIf="linkedSKUsDisplayStatusPrint && tableNameForPrint == 'Linked_SKUs'"
-    >
-      <div class="col-md-12 linked-sku-table">
-        <table class="table table-bordered">
-          <thead>
-            <tr>
-              <th class="table-header">
-                <span>Linked SKUs</span>
-              </th>
-              <th class="table-header">
-                <span>Linked SKUs Description</span>
-              </th>
-              <th class="table-header">
-                <span>Linked Price</span>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let linkedSKUsData of linkedSKUsDataPrint">
-              <td>{{ linkedSKUsData.sku }}</td>
-              <td>{{ linkedSKUsData.itemDesc }}</td>
-              <td>{{ linkedSKUsData.retailPrice }}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-    <div
-      class="row linked-sku-table-header"
-      *ngIf="linkedSKUsDisplayStatus && tableNameForPrint == 'ESP_Skus'"
-    >
-      <div class="col-md-12 linked-sku-table">
-        <table class="table table-bordered">
-          <thead>
-            <tr>
-              <th class="table-header">
-                <span>ESP SKUs</span>
-              </th>
-              <th class="table-header">
-                <span>ESP SKUs Description</span>
-              </th>
-              <th class="table-header">
-                <span>ESP Price</span>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let linkedSKUsData of linkedSKUsDataPrint">
-              <td>{{ linkedSKUsData.sku }}</td>
-              <td>{{ linkedSKUsData.itemDesc }}</td>
-              <td>{{ linkedSKUsData.retailPrice }}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-
-  <div class="classified-content align-items-center justify-content-end">
-    Other Attributes
-  </div>
-  <div class="row">
-    <div
-      class="print-single-entity"
-      *ngFor="let dataRestAttributes of printForRestAttributes | keyvalue"
-    >
-      <table class="table table-bordered">
-        <thead>
-          <tr
-            *ngIf="
-              !(
-                dataRestAttributes.key === 'checked' ||
-                dataRestAttributes.key === 'index'
-              )
-            "
-          >
-            <th class="table-header">
-              <span>{{ dataRestAttributes.key }}</span>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr
-            *ngIf="
-              !(
-                dataRestAttributes.key === 'checked' ||
-                dataRestAttributes.key === 'index'
-              )
-            "
-          >
-            <td
-              *ngIf="
-                !(
-                  dataRestAttributes.key === 'Bar Code' ||
-                  dataRestAttributes.key === 'UPC List'
-                )
-              "
-            >
-              <div class="description-blocks">
-                {{ dataRestAttributes.value }}
-              </div>
-            </td>
-            <td *ngIf="dataRestAttributes.key === 'UPC List'">
-              <div class="description-blocks">
+              </td>
+              <td *ngIf="dataMainAttributes.key === 'UPC List'">
                 <div *ngFor="let barCode of dataBarCode">
-                  <ngx-barcode
-                    [bc-value]="barCode"
-                    [bc-display-value]="true"
-                    [bc-height]="25"
-                    [bc-width]="1"
-                  ></ngx-barcode>
+                  <div>
+                    <ngx-barcode
+                      [bc-value]="barCode"
+                      [bc-display-value]="true"
+                      [bc-height]="25"
+                      [bc-width]="1"
+                    ></ngx-barcode>
+                  </div>
                 </div>
-              </div>
-            </td>
-            <td *ngIf="dataRestAttributes.key === 'UPC List'">
-              <div *ngFor="let barCode of dataBarCode">
-                {{ barCode }}
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-  </div>
 
-  <div
-    class="classified-content align-items-center justify-content-end"
-    *ngIf="promoBuyDisplayStatus"
-  >
-    Promos Buy Attributes
-  </div>
-  <div class="row" *ngIf="promoBuyDisplayStatus">
-    <div class="col-md-12 ">
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th class="table-header">
-              <span>Buy Item</span>
-            </th>
-            <th class="table-header">
-              <span>Buy Qty</span>
-            </th>
-            <th class="table-header">
-              <span>Buy Type</span>
-            </th>
-            <th class="table-header">
-              <span>Promo Group</span>
-            </th>
-            <th class="table-header">
-              <span>Price Modifier Type</span>
-            </th>
-            <th class="table-header">
-              <span>Discount</span>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{{ promosBuyData.sku }}</td>
-            <td>{{ promosBuyData.thresholdQty }}</td>
-            <td>{{ promosBuyData.itemReqType }}</td>
-            <td>{{ promosBuyData.promoGroup }}</td>
-            <td>{{ promosBuyData.discountQualifierType }}</td>
-            <td>
-              {{ promosBuyData.discountQualifierValue }}/{{
-                promosBuyData.discountAppliesTo
-              }}
-            </td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="classified-content align-items-center justify-content-end">
+      Other Attributes
     </div>
-  </div>
-
-  <div
-    class="classified-content align-items-center justify-content-end"
-    *ngIf="promoGetDisplayStatus"
-  >
-    Promos Get Attributes
-  </div>
-  <div class="row" *ngIf="promoGetDisplayStatus">
-    <div class="col-md-12">
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th class="table-header">
-              <span>Get Item</span>
-            </th>
-            <th class="table-header">
-              <span>Get Qty</span>
-            </th>
-            <th class="table-header">
-              <span>Get Type</span>
-            </th>
-            <th class="table-header">
-              <span>Modifier Type</span>
-            </th>
-            <th class="table-header">
-              <span>Discount value</span>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{{ promosGetData.sku }}</td>
-            <td>{{ promosGetData.thresholdQty }}</td>
-            <td>{{ promosGetData.itemReqType }}</td>
-            <td>{{ promosGetData.discountQualifierType }}</td>
-            <td>{{ promosGetData.discountQualifierValue }}</td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="row">
+      <div
+        class="print-single-entity"
+        *ngFor="let dataRestAttributes of printForRestAttributes | keyvalue"
+      >
+        <table class="table table-bordered">
+          <thead>
+            <tr
+              *ngIf="
+                !(
+                  dataRestAttributes.key === 'checked' ||
+                  dataRestAttributes.key === 'index'
+                )
+              "
+            >
+              <th class="table-header">
+                <span>{{ dataRestAttributes.key }}</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              *ngIf="
+                !(
+                  dataRestAttributes.key === 'checked' ||
+                  dataRestAttributes.key === 'index'
+                )
+              "
+            >
+              <td
+                *ngIf="
+                  !(
+                    dataRestAttributes.key === 'Bar Code' ||
+                    dataRestAttributes.key === 'UPC List'
+                  )
+                "
+              >
+                <div class="description-blocks">
+                  {{ dataRestAttributes.value }}
+                </div>
+              </td>
+              <td *ngIf="dataRestAttributes.key === 'UPC List'">
+                <div class="description-blocks">
+                  <div *ngFor="let barCode of dataBarCode">
+                    <ngx-barcode
+                      [bc-value]="barCode"
+                      [bc-display-value]="true"
+                      [bc-height]="25"
+                      [bc-width]="1"
+                    ></ngx-barcode>
+                  </div>
+                </div>
+              </td>
+              <td *ngIf="dataRestAttributes.key === 'UPC List'">
+                <div *ngFor="let barCode of dataBarCode">
+                  {{ barCode }}
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-  </div>
 
-  <!-- <div
+    <div
+      class="classified-content align-items-center justify-content-end"
+      *ngIf="linkedSKUsDisplayStatusPrint"
+    >
+      Linked SKUs Attributes
+    </div>
+
+    <div>
+      <div
+        class="row linked-sku-table-header"
+        *ngIf="
+          linkedSKUsDisplayStatusPrint &&
+          (tableNameForPrint == 'Recycle_Fee_SKUs' ||
+            tableNameForPrint == 'Bag_Fee_SKUs')
+        "
+      >
+        <div class="col-md-12 linked-sku-table">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th class="table-header">
+                  <span>Recycle SKUs</span>
+                </th>
+                <th class="table-header">
+                  <span>Recycle SKUs Description</span>
+                </th>
+                <th class="table-header">
+                  <span>Retail Price</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let linkedSKUsData of linkedSKUsDataPrint">
+                <td>{{ linkedSKUsData.sku }}</td>
+                <td>{{ linkedSKUsData.itemDesc }}</td>
+                <td>{{ linkedSKUsData.retailPrice }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div
+        class="row linked-sku-table-header"
+        *ngIf="
+          linkedSKUsDisplayStatusPrint && tableNameForPrint == 'Linked_SKUs'
+        "
+      >
+        <div class="col-md-12 linked-sku-table">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th class="table-header">
+                  <span>Linked SKUs</span>
+                </th>
+                <th class="table-header">
+                  <span>Linked SKUs Description</span>
+                </th>
+                <th class="table-header">
+                  <span>Linked Price</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let linkedSKUsData of linkedSKUsDataPrint">
+                <td>{{ linkedSKUsData.sku }}</td>
+                <td>{{ linkedSKUsData.itemDesc }}</td>
+                <td>{{ linkedSKUsData.retailPrice }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div
+        class="row linked-sku-table-header"
+        *ngIf="linkedSKUsDisplayStatus && tableNameForPrint == 'ESP_Skus'"
+      >
+        <div class="col-md-12 linked-sku-table">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th class="table-header">
+                  <span>ESP SKUs</span>
+                </th>
+                <th class="table-header">
+                  <span>ESP SKUs Description</span>
+                </th>
+                <th class="table-header">
+                  <span>ESP Price</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let linkedSKUsData of linkedSKUsDataPrint">
+                <td>{{ linkedSKUsData.sku }}</td>
+                <td>{{ linkedSKUsData.itemDesc }}</td>
+                <td>{{ linkedSKUsData.retailPrice }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div
+      class="classified-content align-items-center justify-content-end"
+      *ngIf="promoBuyDisplayStatus"
+    >
+      Promos Buy Attributes
+    </div>
+    <div class="row" *ngIf="promoBuyDisplayStatus">
+      <div class="col-md-12 ">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th class="table-header">
+                <span>Buy Item</span>
+              </th>
+              <th class="table-header">
+                <span>Buy Qty</span>
+              </th>
+              <th class="table-header">
+                <span>Buy Type</span>
+              </th>
+              <th class="table-header">
+                <span>Promo Group</span>
+              </th>
+              <th class="table-header">
+                <span>Price Modifier Type</span>
+              </th>
+              <th class="table-header">
+                <span>Discount</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{ promosBuyData.sku }}</td>
+              <td>{{ promosBuyData.thresholdQty }}</td>
+              <td>{{ promosBuyData.itemReqType }}</td>
+              <td>{{ promosBuyData.promoGroup }}</td>
+              <td>{{ promosBuyData.discountQualifierType }}</td>
+              <td>
+                {{ promosBuyData.discountQualifierValue }}/{{
+                  promosBuyData.discountAppliesTo
+                }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div
+      class="classified-content align-items-center justify-content-end"
+      *ngIf="promoGetDisplayStatus"
+    >
+      Promos Get Attributes
+    </div>
+    <div class="row" *ngIf="promoGetDisplayStatus">
+      <div class="col-md-12">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th class="table-header">
+                <span>Get Item</span>
+              </th>
+              <th class="table-header">
+                <span>Get Qty</span>
+              </th>
+              <th class="table-header">
+                <span>Get Type</span>
+              </th>
+              <th class="table-header">
+                <span>Modifier Type</span>
+              </th>
+              <th class="table-header">
+                <span>Discount value</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{ promosGetData.sku }}</td>
+              <td>{{ promosGetData.thresholdQty }}</td>
+              <td>{{ promosGetData.itemReqType }}</td>
+              <td>{{ promosGetData.discountQualifierType }}</td>
+              <td>{{ promosGetData.discountQualifierValue }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- <div
       class="classified-content align-items-center justify-content-end"
       *ngIf="itemGroupDataDisplayStatusPrint"
     >
@@ -353,5 +354,5 @@
         </table>
       </div>
     </div> -->
-</div>
+  </div>
 </div>

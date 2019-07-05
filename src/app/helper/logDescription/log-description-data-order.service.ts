@@ -87,7 +87,8 @@ export class LogDescriptionDataOrderService {
         warranty: row.itemGroupDescription,
         retailPrice: row.retailPrice,
         associateGrpId: row.associateGrpId,
-        addOrAutoadd: row.addOrAutoadd
+        addOrAutoadd: row.addOrAutoadd,
+        itemDesc: row.itemDesc
       };
       this.rowDataWithLinkedSKUs = {
         linkedList: row.linkedList
@@ -99,6 +100,7 @@ export class LogDescriptionDataOrderService {
       delete rowDataWithRestData["associateGrpId"];
       delete rowDataWithRestData["linkedList"];
       delete rowDataWithRestData["addOrAutoadd"];
+      delete rowDataWithRestData["itemDesc"];
 
       this.dataToBeDisplayedOnModal[0] = this.mainDataToDisplay;
 

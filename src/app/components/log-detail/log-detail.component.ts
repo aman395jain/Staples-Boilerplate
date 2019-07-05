@@ -146,6 +146,7 @@ export class LogDetailComponent implements OnInit, OnDestroy {
             .getDataForPromos(rowData.promoNum)
             .subscribe(data => {
               this._logModalDataService.getPrintDataForPromos(data);
+              console.log(data);
               data.map(promoData => {
                 if (
                   rowData.discountType &&
