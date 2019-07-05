@@ -103,7 +103,6 @@ export class PrintDocumentSingleLogDataComponent implements OnInit, OnDestroy {
           this.tableNameForPrint === "Bag_Fee_SKUs"
         ) {
           this._logModalDataService.setLinkedSKUsData().subscribe(data => {
-            debugger;
             this.linkedSKUsDataPrint = data;
           });
           // this.linkedSKUsData = this.classifiedDataLogDetail[2].linkedList;

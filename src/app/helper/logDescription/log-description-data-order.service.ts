@@ -31,13 +31,13 @@ export class LogDescriptionDataOrderService {
         sku: row.sku,
         upcList: row.upcList,
         itemDesc: row.itemDesc,
-        permPrice: row.permPrice,
+        retailPrice: row.retailPrice,
         store: row.store
       };
       delete rowDataWithRestData["sku"];
       delete rowDataWithRestData["upcList"];
       delete rowDataWithRestData["itemDesc"];
-      delete rowDataWithRestData["permPrice"];
+      delete rowDataWithRestData["retailPrice"];
       delete rowDataWithRestData["store"];
 
       this.dataToBeDisplayedOnModal[0] = this.mainDataToDisplay;
@@ -49,12 +49,14 @@ export class LogDescriptionDataOrderService {
         sku: row.sku,
         upcList: row.upcList,
         itemDesc: row.itemDesc,
-        permPrice: row.permPrice
+        retailPrice: row.retailPrice,
+        store: row.store
       };
       delete rowDataWithRestData["sku"];
       delete rowDataWithRestData["upcList"];
       delete rowDataWithRestData["itemDesc"];
-      delete rowDataWithRestData["permPrice"];
+      delete rowDataWithRestData["retailPrice"];
+      delete rowDataWithRestData["store"];
 
       this.dataToBeDisplayedOnModal[0] = this.mainDataToDisplay;
 
@@ -391,23 +393,12 @@ export class LogDescriptionDataOrderService {
   filterRestrictionOnlyForDisplayedRows(tableName) {
     if (tableName === "Item_Master") {
       return function(data, filter: string): boolean {
-        if (data.permPrice) {
-          return (
-            data.sku.toLowerCase().includes(filter) ||
-            data.itemDesc.toLowerCase().includes(filter) ||
-            data.permPrice.toString().includes(filter) ||
-            data.upcList[0].toString() === filter ||
-            data.store
-              .toString()
-              .toLowerCase()
-              .includes(filter)
-          );
-        } else {
+        if (data.retailPrice) {
           return (
             data.sku.toLowerCase().includes(filter) ||
             data.itemDesc.toLowerCase().includes(filter) ||
             data.retailPrice.toString().includes(filter) ||
-            data.upcList[0] === filter ||
+            data.upcList[0].toString() === filter ||
             data.store
               .toString()
               .toLowerCase()
@@ -417,23 +408,12 @@ export class LogDescriptionDataOrderService {
       };
     } else if (tableName === "Price_Prompt_SKUs") {
       return function(data, filter: string): boolean {
-        if (data.permPrice) {
-          return (
-            data.sku.toLowerCase().includes(filter) ||
-            data.itemDesc.toLowerCase().includes(filter) ||
-            data.permPrice.toString().includes(filter) ||
-            data.upcList[0].toString() === filter ||
-            data.store
-              .toString()
-              .toLowerCase()
-              .includes(filter)
-          );
-        } else {
+        if (data.retailPrice) {
           return (
             data.sku.toLowerCase().includes(filter) ||
             data.itemDesc.toLowerCase().includes(filter) ||
             data.retailPrice.toString().includes(filter) ||
-            data.upcList[0] === filter ||
+            data.upcList[0].toString() === filter ||
             data.store
               .toString()
               .toLowerCase()

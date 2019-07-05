@@ -61,7 +61,7 @@ export class SideNavBarComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this._onDestroy))
       .subscribe(length => {
         this.pagelength = length;
-        console.log("in the side bar length", this.pagelength);
+        // console.log("in the side bar length", this.pagelength);
         // if (this.pageSize === 5) {
         //   this.barHeight = 592;
         // } else if (this.pageSize === 10) {
