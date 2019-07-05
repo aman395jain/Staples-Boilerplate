@@ -344,7 +344,11 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
           this.tableName = "POSA";
           this.tableHeader = "POSA";
         } else if (this.tableNameFromBar === "Order") {
-          this.advanceSearchOptions = ["Order Type", "Expiry Date", "Source"];
+          this.advanceSearchOptions = [
+            "Order Line Details",
+            "Expiry Date",
+            "Source"
+          ];
           this.logTableGridColumns = logDataTableConst.Order;
           this._logModalDataService.getTableNameForLogDetail("Order");
 

@@ -156,43 +156,43 @@ export default class LogDataTableHelper {
         // console.log("in the order filter the data is", data);
 
         if (
-          filter.hasOwnProperty("Order Type") &&
+          filter.hasOwnProperty("Order Line Details") &&
           !filter.hasOwnProperty("Expiry Date") &&
           !filter.hasOwnProperty("Source")
         ) {
-          return data.orderType.includes(filter["Order Type"]);
+          return data.orderLineDetail.includes(filter["Order Line Details"]);
         } else if (
-          !filter.hasOwnProperty("Order Type") &&
+          !filter.hasOwnProperty("Order Line Details") &&
           filter.hasOwnProperty("Expiry Date") &&
           !filter.hasOwnProperty("Source")
         ) {
           return data.expiryDate.toString().includes(filter["Expiry Date"]);
         } else if (
-          !filter.hasOwnProperty("Order Type") &&
+          !filter.hasOwnProperty("Order Line Details") &&
           !filter.hasOwnProperty("Expiry Date") &&
           filter.hasOwnProperty("Source")
         ) {
           return data.source.includes(filter.Source);
         } else if (
-          filter.hasOwnProperty("Order Type") &&
+          filter.hasOwnProperty("Order Line Details") &&
           filter.hasOwnProperty("Expiry Date") &&
           !filter.hasOwnProperty("Source")
         ) {
           return (
-            data.orderType.includes(filter["Order Type"]) &&
+            data.orderLineDetail.includes(filter["Order Line Details"]) &&
             data.expiryDate.toString().includes(filter["Expiry Date"])
           );
         } else if (
-          filter.hasOwnProperty("Order Type") &&
+          filter.hasOwnProperty("Order Line Details") &&
           !filter.hasOwnProperty("Expiry Date") &&
           filter.hasOwnProperty("Source")
         ) {
           return (
-            data.orderType.includes(filter["Order Type"]) &&
+            data.orderLineDetail.includes(filter["Order Line Details"]) &&
             data.source.includes(filter.Source)
           );
         } else if (
-          !filter.hasOwnProperty("Order Type") &&
+          !filter.hasOwnProperty("Order Line Details") &&
           filter.hasOwnProperty("Expiry Date") &&
           filter.hasOwnProperty("Source")
         ) {
@@ -201,7 +201,7 @@ export default class LogDataTableHelper {
             data.source.includes(filter.Source)
           );
         } else {
-          data.orderType.includes(filter["Order Type"]) &&
+          data.orderLineDetail.includes(filter["Order Line Details"]) &&
             data.expiryDate.toString().includes(filter["Expiry Date"]) &&
             data.source.includes(filter.Source);
         }
