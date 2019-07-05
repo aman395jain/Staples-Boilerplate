@@ -121,6 +121,20 @@ export class LoglistingService {
       );
   }
 
+  getItemGroupData(groupId): any {
+    return this.http
+      .get(logTableAPIUrls.getItemGroupData + "?groupId=" + groupId)
+      .pipe(
+        map((response: Response) => {
+          return response;
+        }),
+        catchError((err: Response) => {
+          console.log("in the error", err.status);
+          return null;
+        })
+      );
+  }
+
   getDataForPromos(id): any {
     return this.http
       .get("http://lrtdqnasv104:8090/tdmapp/promoGroupList?promoId=" + id)

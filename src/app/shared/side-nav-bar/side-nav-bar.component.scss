@@ -7,10 +7,8 @@
       cursor: pointer;
     }
 
-    .icons-side-navbar {
-      &:active {
-        color: #ffbf00 !important;
-      }
+    .icons-side-navbar-active {
+      color: #ffbf00;
     }
   }
 }

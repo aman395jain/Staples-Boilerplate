@@ -31,6 +31,7 @@ export class SideNavBarComponent implements OnInit, OnDestroy {
   barHeight: number = 592;
   pageSize: number;
   pagelength: number;
+  currentChoice: string = "";
 
   constructor(
     private _navBarService: NavBarService,
@@ -99,7 +100,13 @@ export class SideNavBarComponent implements OnInit, OnDestroy {
     this._onDestroy.complete();
   }
 
+  getActive(choice: string) {
+    if (this.currentChoice == choice) return true;
+    else return false;
+  }
+
   getElementNameTest(eleName) {
+    this.currentChoice = eleName;
     if (this.router.url === "/testDataManagement/logDetail") {
       this._logModalDataService.getLogDetailFlag(false);
       this.router.navigate(["/testDataManagement"]);

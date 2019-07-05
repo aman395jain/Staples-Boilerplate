@@ -60,7 +60,10 @@ export default class LogDataTableHelper {
           !filter.hasOwnProperty("Retail Price") &&
           filter.hasOwnProperty("Description")
         ) {
-          return data.itemDesc.toLowerCase().includes(filter.Description);
+          return (
+            data.itemDesc.toLowerCase().includes(filter.Description) ||
+            data.itemDesc.includes(filter.Description)
+          );
         } else if (
           filter.hasOwnProperty("SKU") &&
           filter.hasOwnProperty("Retail Price") &&
@@ -77,7 +80,8 @@ export default class LogDataTableHelper {
         ) {
           return (
             data.retailPrice.toString().includes(filter["Retail Price"]) &&
-            data.itemDesc.toLowerCase().includes(filter.Description)
+            (data.itemDesc.toLowerCase().includes(filter.Description) ||
+              data.itemDesc.includes(filter.Description))
           );
         } else if (
           filter.hasOwnProperty("SKU") &&
@@ -86,25 +90,30 @@ export default class LogDataTableHelper {
         ) {
           return (
             data.sku.includes(filter.SKU) &&
-            data.itemDesc.toLowerCase().includes(filter.Description)
+            (data.itemDesc.toLowerCase().includes(filter.Description) ||
+              data.itemDesc.includes(filter.Description))
           );
         } else {
           data.retailPrice.toString().includes(filter.retailPrice) &&
             data.sku.includes(filter.SKU) &&
-            data.itemDesc.toLowerCase().includes(filter.Description);
+            (data.itemDesc.toLowerCase().includes(filter.Description) ||
+              data.itemDesc.includes(filter.Description));
         }
       };
     } else if (table_name === "Employee") {
       return function(data, filter) {
         // console.log("in the employee filter the filter is", filter);
         // console.log("in the employee filter the data is", data);
-
+        // done
         if (
           filter.hasOwnProperty("Employee Name") &&
           !filter.hasOwnProperty("Employee ID") &&
           !filter.hasOwnProperty("Role")
         ) {
-          return data.emplName.includes(filter["Employee Name"]);
+          return (
+            data.emplName.includes(filter["Employee Name"]) ||
+            data.emplName.toLowerCase().includes(filter["Employee Name"])
+          );
         } else if (
           !filter.hasOwnProperty("Employee Name") &&
           filter.hasOwnProperty("Employee ID") &&
@@ -116,14 +125,18 @@ export default class LogDataTableHelper {
           !filter.hasOwnProperty("Employee ID") &&
           filter.hasOwnProperty("Role")
         ) {
-          return data.emplRole.includes(filter.Role);
+          return (
+            data.emplRole.includes(filter.Role) ||
+            data.emplRole.toLowerCase().includes(filter.Role)
+          );
         } else if (
           filter.hasOwnProperty("Employee Name") &&
           filter.hasOwnProperty("Employee ID") &&
           !filter.hasOwnProperty("Role")
         ) {
           return (
-            data.emplName.includes(filter["Employee Name"]) &&
+            (data.emplName.includes(filter["Employee Name"]) ||
+              data.emplName.toLowerCase().includes(filter["Employee Name"])) &&
             data.emplId.toString().includes(filter["Employee ID"])
           );
         } else if (
@@ -132,8 +145,10 @@ export default class LogDataTableHelper {
           filter.hasOwnProperty("Role")
         ) {
           return (
-            data.emplName.includes(filter["Employee Name"]) &&
-            data.emplRole.includes(filter.Role)
+            (data.emplName.includes(filter["Employee Name"]) ||
+              data.emplName.toLowerCase().includes(filter["Employee Name"])) &&
+            (data.emplRole.includes(filter.Role) ||
+              data.emplRole.toLowerCase().includes(filter.Role))
           );
         } else if (
           !filter.hasOwnProperty("Employee Name") &&
@@ -142,12 +157,15 @@ export default class LogDataTableHelper {
         ) {
           return (
             data.emplId.toString().includes(filter["Employee ID"]) &&
-            data.emplRole.includes(filter.Role)
+            (data.emplRole.includes(filter.Role) ||
+              data.emplRole.toLowerCase().includes(filter.Role))
           );
         } else {
-          data.emplName.includes(filter["Employee Name"]) &&
+          (data.emplName.includes(filter["Employee Name"]) ||
+            data.emplName.toLowerCase().includes(filter["Employee Name"])) &&
             data.emplId.toString().includes(filter["Employee ID"]) &&
-            data.emplRole.includes(filter.Role);
+            (data.emplRole.includes(filter.Role) ||
+              data.emplRole.toLowerCase().includes(filter.Role));
         }
       };
     } else if (table_name === "Order") {
@@ -213,7 +231,10 @@ export default class LogDataTableHelper {
           !filter.hasOwnProperty("Tax Rate") &&
           !filter.hasOwnProperty("Round Rule")
         ) {
-          return data.state.includes(filter["State"]);
+          return (
+            data.state.includes(filter["State"]) ||
+            data.state.toLowerCase().includes(filter["State"])
+          );
         } else if (
           !filter.hasOwnProperty("State") &&
           filter.hasOwnProperty("Tax Rate") &&
@@ -319,60 +340,10 @@ export default class LogDataTableHelper {
           !filter.hasOwnProperty("SKU") &&
           !filter.hasOwnProperty("Retail Price")
         ) {
-          return data.itemDesc.includes(filter.Description);
-        } else if (
-          !filter.hasOwnProperty("Description") &&
-          filter.hasOwnProperty("SKU") &&
-          !filter.hasOwnProperty("Retail Price")
-        ) {
-          return data.sku.includes(filter.SKU);
-        } else if (
-          !filter.hasOwnProperty("Description") &&
-          !filter.hasOwnProperty("SKU") &&
-          filter.hasOwnProperty("Retail Price")
-        ) {
-          return data.permPrice.toString().includes(filter["Retail Price"]);
-        } else if (
-          filter.hasOwnProperty("Description") &&
-          filter.hasOwnProperty("SKU") &&
-          !filter.hasOwnProperty("Retail Price")
-        ) {
           return (
-            data.itemDesc.includes(filter.Description) &&
-            data.sku.includes(filter.SKU)
+            data.itemDesc.includes(filter.Description) ||
+            data.itemDesc.toLowerCase().includes(filter.Description)
           );
-        } else if (
-          filter.hasOwnProperty("Description") &&
-          !filter.hasOwnProperty("SKU") &&
-          filter.hasOwnProperty("Retail Price")
-        ) {
-          return (
-            data.itemDesc.includes(filter.Description) &&
-            data.permPrice.toString().includes(filter["Retail Price"])
-          );
-        } else if (
-          !filter.hasOwnProperty("Description") &&
-          filter.hasOwnProperty("SKU") &&
-          filter.hasOwnProperty("Retail Price")
-        ) {
-          return (
-            data.sku.includes(filter.SKU) &&
-            data.permPrice.toString().includes(filter["Retail Price"])
-          );
-        } else {
-          data.itemDesc.includes(filter.Description) &&
-            data.sku.includes(filter.SKU) &&
-            data.permPrice.toString().includes(filter["Retail Price"]);
-        }
-      };
-    } else if (table_name === "Hardware_SKUs") {
-      return function(data, filter) {
-        if (
-          filter.hasOwnProperty("Description") &&
-          !filter.hasOwnProperty("SKU") &&
-          !filter.hasOwnProperty("Retail Price")
-        ) {
-          return data.posItemDesc.includes(filter.Description);
         } else if (
           !filter.hasOwnProperty("Description") &&
           filter.hasOwnProperty("SKU") &&
@@ -391,7 +362,8 @@ export default class LogDataTableHelper {
           !filter.hasOwnProperty("Retail Price")
         ) {
           return (
-            data.posItemDesc.includes(filter.Description) &&
+            (data.itemDesc.includes(filter.Description) ||
+              data.itemDesc.toLowerCase().includes(filter.Description)) &&
             data.sku.includes(filter.SKU)
           );
         } else if (
@@ -400,7 +372,8 @@ export default class LogDataTableHelper {
           filter.hasOwnProperty("Retail Price")
         ) {
           return (
-            data.posItemDesc.includes(filter.Description) &&
+            (data.itemDesc.includes(filter.Description) ||
+              data.itemDesc.toLowerCase().includes(filter.Description)) &&
             data.retailPrice.toString().includes(filter["Retail Price"])
           );
         } else if (
@@ -413,7 +386,67 @@ export default class LogDataTableHelper {
             data.retailPrice.toString().includes(filter["Retail Price"])
           );
         } else {
-          data.posItemDesc.includes(filter.Description) &&
+          (data.itemDesc.includes(filter.Description) ||
+            data.itemDesc.toLowerCase().includes(filter.Description)) &&
+            data.sku.includes(filter.SKU) &&
+            data.retailPrice.toString().includes(filter["Retail Price"]);
+        }
+      };
+    } else if (table_name === "Hardware_SKUs") {
+      return function(data, filter) {
+        if (
+          filter.hasOwnProperty("Description") &&
+          !filter.hasOwnProperty("SKU") &&
+          !filter.hasOwnProperty("Retail Price")
+        ) {
+          return (
+            data.itemDesc.includes(filter.Description) ||
+            data.itemDesc.toLowerCase().includes(filter.Description)
+          );
+        } else if (
+          !filter.hasOwnProperty("Description") &&
+          filter.hasOwnProperty("SKU") &&
+          !filter.hasOwnProperty("Retail Price")
+        ) {
+          return data.sku.includes(filter.SKU);
+        } else if (
+          !filter.hasOwnProperty("Description") &&
+          !filter.hasOwnProperty("SKU") &&
+          filter.hasOwnProperty("Retail Price")
+        ) {
+          return data.retailPrice.toString().includes(filter["Retail Price"]);
+        } else if (
+          filter.hasOwnProperty("Description") &&
+          filter.hasOwnProperty("SKU") &&
+          !filter.hasOwnProperty("Retail Price")
+        ) {
+          return (
+            (data.itemDesc.includes(filter.Description) ||
+              data.itemDesc.toLowerCase().includes(filter.Description)) &&
+            data.sku.includes(filter.SKU)
+          );
+        } else if (
+          filter.hasOwnProperty("Description") &&
+          !filter.hasOwnProperty("SKU") &&
+          filter.hasOwnProperty("Retail Price")
+        ) {
+          return (
+            (data.itemDesc.includes(filter.Description) ||
+              data.itemDesc.toLowerCase().includes(filter.Description)) &&
+            data.retailPrice.toString().includes(filter["Retail Price"])
+          );
+        } else if (
+          !filter.hasOwnProperty("Description") &&
+          filter.hasOwnProperty("SKU") &&
+          filter.hasOwnProperty("Retail Price")
+        ) {
+          return (
+            data.sku.includes(filter.SKU) &&
+            data.retailPrice.toString().includes(filter["Retail Price"])
+          );
+        } else {
+          (data.itemDesc.includes(filter.Description) ||
+            data.itemDesc.toLowerCase().includes(filter.Description)) &&
             data.sku.includes(filter.SKU) &&
             data.retailPrice.toString().includes(filter["Retail Price"]);
         }
@@ -425,7 +458,10 @@ export default class LogDataTableHelper {
           !filter.hasOwnProperty("SKU") &&
           !filter.hasOwnProperty("Retail Price")
         ) {
-          return data.itemDesc.includes(filter.Description);
+          return (
+            data.itemDesc.includes(filter.Description) ||
+            data.itemDesc.toLowerCase().includes(filter.Description)
+          );
         } else if (
           !filter.hasOwnProperty("Description") &&
           filter.hasOwnProperty("SKU") &&
@@ -444,7 +480,8 @@ export default class LogDataTableHelper {
           !filter.hasOwnProperty("Retail Price")
         ) {
           return (
-            data.itemDesc.includes(filter.Description) &&
+            (data.itemDesc.includes(filter.Description) ||
+              data.itemDesc.toLowerCase().includes(filter.Description)) &&
             data.sku.includes(filter.SKU)
           );
         } else if (
@@ -453,7 +490,8 @@ export default class LogDataTableHelper {
           filter.hasOwnProperty("Retail Price")
         ) {
           return (
-            data.itemDesc.includes(filter.Description) &&
+            (data.itemDesc.includes(filter.Description) ||
+              data.itemDesc.toLowerCase().includes(filter.Description)) &&
             data.retailPrice.toString().includes(filter["Retail Price"])
           );
         } else if (
@@ -466,7 +504,8 @@ export default class LogDataTableHelper {
             data.retailPrice.toString().includes(filter["Retail Price"])
           );
         } else {
-          data.itemDesc.includes(filter.Description) &&
+          (data.itemDesc.includes(filter.Description) ||
+            data.itemDesc.toLowerCase().includes(filter.Description)) &&
             data.sku.includes(filter.SKU) &&
             data.retailPrice.toString().includes(filter["Retail Price"]);
         }
@@ -478,13 +517,16 @@ export default class LogDataTableHelper {
           !filter.hasOwnProperty("SKU") &&
           !filter.hasOwnProperty("Retail Price")
         ) {
-          return data.itemDesc.includes(filter.Description);
+          return (
+            data.itemDesc.includes(filter.Description) ||
+            data.itemDesc.toLowerCase().includes(filter.Description)
+          );
         } else if (
           !filter.hasOwnProperty("Description") &&
           filter.hasOwnProperty("SKU") &&
           !filter.hasOwnProperty("Retail Price")
         ) {
-          return data.sku.toString().includes(filter["SKU"]);
+          return data.sku.includes(filter.SKU);
         } else if (
           !filter.hasOwnProperty("Description") &&
           !filter.hasOwnProperty("SKU") &&
@@ -497,8 +539,9 @@ export default class LogDataTableHelper {
           !filter.hasOwnProperty("Retail Price")
         ) {
           return (
-            data.itemDesc.includes(filter.Description) &&
-            data.sku.toString().includes(filter["SKU"])
+            (data.itemDesc.includes(filter.Description) ||
+              data.itemDesc.toLowerCase().includes(filter.Description)) &&
+            data.sku.includes(filter.SKU)
           );
         } else if (
           filter.hasOwnProperty("Description") &&
@@ -506,7 +549,8 @@ export default class LogDataTableHelper {
           filter.hasOwnProperty("Retail Price")
         ) {
           return (
-            data.itemDesc.includes(filter.Description) &&
+            (data.itemDesc.includes(filter.Description) ||
+              data.itemDesc.toLowerCase().includes(filter.Description)) &&
             data.retailPrice.toString().includes(filter["Retail Price"])
           );
         } else if (
@@ -515,12 +559,13 @@ export default class LogDataTableHelper {
           filter.hasOwnProperty("Retail Price")
         ) {
           return (
-            data.sku.toString().includes(filter["SKU"]) &&
+            data.sku.includes(filter.SKU) &&
             data.retailPrice.toString().includes(filter["Retail Price"])
           );
         } else {
-          data.itemDesc.includes(filter.Description) &&
-            data.sku.toString().includes(filter["SKU"]) &&
+          (data.itemDesc.includes(filter.Description) ||
+            data.itemDesc.toLowerCase().includes(filter.Description)) &&
+            data.sku.includes(filter.SKU) &&
             data.retailPrice.toString().includes(filter["Retail Price"]);
         }
       };

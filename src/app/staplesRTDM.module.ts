@@ -42,6 +42,7 @@ import { KioskOrderService } from "./services/kiosk-order/kiosk-order.service";
 import { TableForStorePipe } from "./pipes/tableForStoreNumber/table-for-store.pipe";
 import { PaginationForLargeDataComponent } from "./shared/pagination-for-large-data/pagination-for-large-data.component";
 import { PaginationForLongDataService } from "./services/pagination-for-longData/pagination-for-long-data.service";
+import { SkuListComponent } from "./shared/sku-list/sku-list.component";
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -65,7 +66,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     LogDetailComponent,
     KioskTableComponent,
     SolutionBuilderOrderComponent,
-    PaginationForLargeDataComponent
+    PaginationForLargeDataComponent,
+    SkuListComponent
   ],
   imports: [
     BrowserModule,

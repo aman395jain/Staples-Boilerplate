@@ -43,6 +43,14 @@
   font-weight: bold;
 }
 
+.promo-group {
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline !important;
+    color: #007bff !important;
+  }
+}
+
 .attribute-table-content {
   @include padding;
   @include height-overflow("attribute-table-content");

@@ -1,163 +1,203 @@
-<div>
-  <div class="container">
-    <div
-      class="row d-flex align-items-center justify-content-end print-close-row"
-    >
-      <div class="print-close-icon">
-        <mat-icon
-          _ngcontent-c1=""
-          class="print-document mat-icon mat-list-icon material-icons"
-          mat-list-icon=""
-          role="img"
-          aria-hidden="true"
-          data-toggle="tooltip"
-          title="print"
-          (click)="printSingleEntityData()"
-          >print</mat-icon
-        >
-      </div>
-      <div class="print-close-icon">
-        <i
-          class="fa fa-undo print-document"
-          aria-hidden="true"
-          (click)="backToDataManagement()"
-          data-toggle="tooltip"
-          title="Back to table"
-        ></i>
+<div class="container">
+  <div
+    class="row d-flex align-items-center justify-content-end print-close-row"
+  >
+    <div class="print-close-icon">
+      <mat-icon
+        _ngcontent-c1=""
+        class="print-document mat-icon mat-list-icon material-icons"
+        mat-list-icon=""
+        role="img"
+        aria-hidden="true"
+        data-toggle="tooltip"
+        title="print"
+        (click)="printSingleEntityData()"
+        >print</mat-icon
+      >
+    </div>
+    <div class="print-close-icon">
+      <i
+        class="fa fa-undo print-document"
+        aria-hidden="true"
+        (click)="backToDataManagement()"
+        data-toggle="tooltip"
+        title="Back to table"
+      ></i>
+    </div>
+  </div>
+  <div class="classified-content align-items-center justify-content-end">
+    Main Attributes
+  </div>
+  <perfect-scrollbar [scrollIndicators]="true">
+    <div class="row attribute-table-content">
+      <div *ngFor="let data of dataDisplayOnModal | keyvalue">
+        <table class="table table-bordered">
+          <thead>
+            <tr *ngIf="!(data.key === 'checked' || data.key === 'index')">
+              <th class="table-header">
+                <span>{{ data.key }}</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngIf="!(data.key === 'checked' || data.key === 'index')">
+              <td *ngIf="!(data.key === 'Bar Code' || data.key === 'UPC List')">
+                <div class="description-blocks">
+                  <perfect-scrollbar [scrollIndicators]="true">
+                    {{ data.value }}
+                  </perfect-scrollbar>
+                </div>
+              </td>
+              <td *ngIf="data.key === 'UPC List'">
+                <div class="description-blocks">
+                  <perfect-scrollbar [scrollIndicators]="true">
+                    <div *ngFor="let barCode of dataBarCode">
+                      <div>
+                        <ngx-barcode
+                          [bc-value]="barCode"
+                          [bc-display-value]="true"
+                          [bc-height]="25"
+                          [bc-width]="1"
+                        ></ngx-barcode>
+                      </div>
+                    </div>
+                  </perfect-scrollbar>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
-    <div class="classified-content align-items-center justify-content-end">
-      Main Attributes
+  </perfect-scrollbar>
+
+  <div
+    class="classified-content align-items-center justify-content-end"
+    *ngIf="itemGroupDataDisplayStatus"
+  >
+    Item Group SKUs List
+  </div>
+  <div class="row linked-sku-table-header" *ngIf="itemGroupDataDisplayStatus">
+    <div class="col-md-12 linked-sku-table">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th class="table-header">
+              <span>SKU Number</span>
+            </th>
+            <th class="table-header">
+              <span>SKUs Description</span>
+            </th>
+            <th class="table-header">
+              <span>SKU Price</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let itemGroupData of itemGroupDataForID">
+            <td>{{ itemGroupData.sku }}</td>
+            <td>{{ itemGroupData.posItemDesc }}</td>
+            <td>{{ itemGroupData.retailPrice }}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
+  </div>
+
+  <div
+    class="classified-content align-items-center justify-content-end"
+    *ngIf="linkedSKUsDisplayStatus"
+  >
+    Linked SKUs Attributes
+  </div>
+  <div>
     <perfect-scrollbar [scrollIndicators]="true">
-      <div class="row attribute-table-content">
-        <div *ngFor="let data of dataDisplayOnModal | keyvalue">
+      <div
+        class="row linked-sku-table-header"
+        *ngIf="
+          linkedSKUsDisplayStatus &&
+          (tableNameLogDetails == 'Recycle_Fee_SKUs' ||
+            tableNameLogDetails == 'Bag_Fee_SKUs')
+        "
+      >
+        <div class="col-md-12 linked-sku-table">
           <table class="table table-bordered">
             <thead>
-              <tr *ngIf="!(data.key === 'checked' || data.key === 'index')">
+              <tr>
                 <th class="table-header">
-                  <span>{{ data.key }}</span>
+                  <span>Recycle SKUs</span>
+                </th>
+                <th class="table-header">
+                  <span>Recycle SKUs Description</span>
+                </th>
+                <th class="table-header">
+                  <span>Retail Price</span>
                 </th>
               </tr>
             </thead>
             <tbody>
-              <tr *ngIf="!(data.key === 'checked' || data.key === 'index')">
-                <td
-                  *ngIf="!(data.key === 'Bar Code' || data.key === 'UPC List')"
-                >
-                  <div class="description-blocks">
-                    <perfect-scrollbar [scrollIndicators]="true">
-                      {{ data.value }}
-                    </perfect-scrollbar>
-                  </div>
-                </td>
-                <td *ngIf="data.key === 'UPC List'">
-                  <div class="description-blocks">
-                    <perfect-scrollbar [scrollIndicators]="true">
-                      <div *ngFor="let barCode of dataBarCode">
-                        <div>
-                          <ngx-barcode
-                            [bc-value]="barCode"
-                            [bc-display-value]="true"
-                            [bc-height]="25"
-                            [bc-width]="1"
-                          ></ngx-barcode>
-                        </div>
-                      </div>
-                    </perfect-scrollbar>
-                  </div>
-                </td>
+              <tr *ngFor="let linkedData of linkedSKUsData">
+                <td>{{ linkedData.sku }}</td>
+                <td>{{ linkedData.itemDesc }}</td>
+                <td>{{ linkedData.retailPrice }}</td>
               </tr>
             </tbody>
           </table>
         </div>
       </div>
-    </perfect-scrollbar>
-    <div
-      class="classified-content align-items-center justify-content-end"
-      *ngIf="linkedSKUsDisplayStatus"
-    >
-      Linked SKUs Attributes
-    </div>
-    <div>
-      <perfect-scrollbar [scrollIndicators]="true">
-        <div
-          class="row linked-sku-table-header"
-          *ngIf="linkedSKUsDisplayStatus"
-        >
-          <div class="col-md-12 linked-sku-table">
-            <table class="table table-bordered">
-              <thead>
-                <tr>
-                  <th class="table-header">
-                    <span>Recycle SKUs</span>
-                  </th>
-                  <th class="table-header">
-                    <span>Recycle SKUs Description</span>
-                  </th>
-                  <th class="table-header">
-                    <span>Retail Price</span>
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let linkedData of linkedSKUsData">
-                  <td>{{ linkedData.sku }}</td>
-                  <td>{{ linkedData.itemDesc }}</td>
-                  <td>{{ linkedData.retailPrice }}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </perfect-scrollbar>
-    </div>
-    <div class="classified-content align-items-center justify-content-end">
-      Other Attributes
-    </div>
-    <perfect-scrollbar [scrollIndicators]="true">
-      <div class="row other-attribute-table-content">
-        <div *ngFor="let data of dataDisplayOnModalRest | keyvalue">
+      <div
+        class="row linked-sku-table-header"
+        *ngIf="linkedSKUsDisplayStatus && tableNameLogDetails == 'Linked_SKUs'"
+      >
+        <div class="col-md-12 linked-sku-table">
           <table class="table table-bordered">
             <thead>
-              <tr *ngIf="!(data.key === 'checked' || data.key === 'index')">
+              <tr>
                 <th class="table-header">
-                  <span>{{ data.key }}</span>
+                  <span>Linked SKUs</span>
+                </th>
+                <th class="table-header">
+                  <span>Linked SKUs Description</span>
+                </th>
+                <th class="table-header">
+                  <span>Linked Price</span>
                 </th>
               </tr>
             </thead>
             <tbody>
-              <tr *ngIf="!(data.key === 'checked' || data.key === 'index')">
-                <td
-                  *ngIf="!(data.key === 'Bar Code' || data.key === 'UPC List')"
-                >
-                  <div class="description-blocks">
-                    <perfect-scrollbar [scrollIndicators]="true">
-                      {{ data.value }}
-                    </perfect-scrollbar>
-                  </div>
-                </td>
-                <td *ngIf="data.key === 'UPC List'">
-                  <div class="description-blocks">
-                    <perfect-scrollbar [scrollIndicators]="true">
-                      <div *ngFor="let barCode of dataBarCode">
-                        <div>
-                          <ngx-barcode
-                            [bc-value]="barCode"
-                            [bc-display-value]="true"
-                            [bc-height]="25"
-                            [bc-width]="1"
-                          ></ngx-barcode>
-                        </div>
-                      </div>
-                    </perfect-scrollbar>
-                  </div>
-                </td>
-                <td *ngIf="data.key === 'UPC List'">
-                  <div *ngFor="let barCode of dataBarCode">
-                    {{ barCode }}
-                  </div>
-                </td>
+              <tr *ngFor="let linkedData of linkedSKUsData">
+                <td>{{ linkedData.sku }}</td>
+                <td>{{ linkedData.itemDesc }}</td>
+                <td>{{ linkedData.retailPrice }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div
+        class="row linked-sku-table-header"
+        *ngIf="linkedSKUsDisplayStatus && tableNameLogDetails == 'ESP_Skus'"
+      >
+        <div class="col-md-12 linked-sku-table">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th class="table-header">
+                  <span>ESP SKUs</span>
+                </th>
+                <th class="table-header">
+                  <span>ESP SKUs Description</span>
+                </th>
+                <th class="table-header">
+                  <span>ESP Price</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let linkedData of linkedSKUsData">
+                <td>{{ linkedData.sku }}</td>
+                <td>{{ linkedData.itemDesc }}</td>
+                <td>{{ linkedData.retailPrice }}</td>
               </tr>
             </tbody>
           </table>
@@ -165,7 +205,6 @@
       </div>
     </perfect-scrollbar>
   </div>
-
   <div
     class="classified-content align-items-center justify-content-end"
     *ngIf="promoBuyDisplayStatus"
@@ -189,16 +228,44 @@
                   <span>Buy Type</span>
                 </th>
                 <th class="table-header">
-                  <span>Item Group Id</span>
+                  <span>Promo Group</span>
+                </th>
+                <th class="table-header">
+                  <span>Price Modifier Type</span>
+                </th>
+                <th class="table-header">
+                  <span>Discount</span>
                 </th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>{{ promosBuyData.sku }}</td>
-                <td>{{ promosBuyData.thresholdQty }}</td>
-                <td>{{ promosBuyData.itemReqType }}</td>
-                <td>{{ promosBuyData.promoGroup }}</td>
+                <td>
+                  <span>{{ promosBuyData.sku }}</span>
+                </td>
+                <td>
+                  <span>{{ promosBuyData.thresholdQty }}</span>
+                </td>
+                <td>
+                  <span>{{ promosBuyData.itemReqType }}</span>
+                </td>
+                <td>
+                  <span *ngIf="promosGroupStatus"
+                    ><a class="promo-group" (click)="redirectToSkuList()">{{
+                      promosBuyData.promoGroup
+                    }}</a></span
+                  >
+                </td>
+                <td>
+                  <span>{{ promosBuyData.discountQualifierType }}</span>
+                </td>
+                <td>
+                  <span
+                    >{{ promosBuyData.discountQualifierValue }}/{{
+                      promosBuyData.discountAppliesTo
+                    }}</span
+                  >
+                </td>
               </tr>
             </tbody>
           </table>
@@ -250,4 +317,54 @@
       </div>
     </perfect-scrollbar>
   </div>
+  <div class="classified-content align-items-center justify-content-end">
+    Other Attributes
+  </div>
+  <perfect-scrollbar [scrollIndicators]="true">
+    <div class="row other-attribute-table-content">
+      <div *ngFor="let data of dataDisplayOnModalRest | keyvalue">
+        <table class="table table-bordered">
+          <thead>
+            <tr *ngIf="!(data.key === 'checked' || data.key === 'index')">
+              <th class="table-header">
+                <span>{{ data.key }}</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngIf="!(data.key === 'checked' || data.key === 'index')">
+              <td *ngIf="!(data.key === 'Bar Code' || data.key === 'UPC List')">
+                <div class="description-blocks">
+                  <perfect-scrollbar [scrollIndicators]="true">
+                    {{ data.value }}
+                  </perfect-scrollbar>
+                </div>
+              </td>
+              <td *ngIf="data.key === 'UPC List'">
+                <div class="description-blocks">
+                  <perfect-scrollbar [scrollIndicators]="true">
+                    <div *ngFor="let barCode of dataBarCode">
+                      <div>
+                        <ngx-barcode
+                          [bc-value]="barCode"
+                          [bc-display-value]="true"
+                          [bc-height]="25"
+                          [bc-width]="1"
+                        ></ngx-barcode>
+                      </div>
+                    </div>
+                  </perfect-scrollbar>
+                </div>
+              </td>
+              <td *ngIf="data.key === 'UPC List'">
+                <div *ngFor="let barCode of dataBarCode">
+                  {{ barCode }}
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </perfect-scrollbar>
 </div>

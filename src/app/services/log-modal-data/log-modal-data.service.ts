@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, Observable, Subject } from "rxjs";
+import { BehaviorSubject, Observable, Subject, ReplaySubject } from "rxjs";
 
 @Injectable()
 export class LogModalDataService {
@@ -7,8 +7,10 @@ export class LogModalDataService {
   private logDetailData = new BehaviorSubject<any>(null);
   private logDetailFlag = new Subject<Boolean>();
   private kioskOrderFlag = new Subject<Boolean>();
-  private linkedSKUsData = new Subject<Boolean>();
+  private linkedSKUsData = new BehaviorSubject<any>(null);
   private promoData = new BehaviorSubject<any>(null);
+  private itemGroupData = new BehaviorSubject<any>(null);
+  private itemGroupDataForSKU = new BehaviorSubject<any>(null);
   private tableNameForLogDetail = new BehaviorSubject<any>(null);
 
   constructor() {}
@@ -58,7 +60,7 @@ export class LogModalDataService {
   }
 
   setLinkedSKUsData() {
-    return this.linkedSKUsData.asObservable();
+    return this.linkedSKUsData;
   }
 
   getPrintDataForPromos(data) {
@@ -67,5 +69,21 @@ export class LogModalDataService {
 
   setPrintDataForPromos() {
     return this.promoData;
+  }
+
+  getPrintDataForItemGroup(data) {
+    this.itemGroupData.next(data);
+  }
+
+  setPrintDataForItemGroup() {
+    return this.itemGroupData;
+  }
+
+  getSkuDataForItemGroup(data) {
+    this.itemGroupDataForSKU.next(data);
+  }
+
+  setSkuDataForItemGroup() {
+    return this.itemGroupDataForSKU;
   }
 }

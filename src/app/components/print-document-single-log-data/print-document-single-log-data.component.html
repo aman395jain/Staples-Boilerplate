@@ -62,43 +62,105 @@
   </div>
 
   <div
-      class="classified-content align-items-center justify-content-end"
-      *ngIf="linkedSKUsDisplayStatusPrint"
-    >
-      Linked SKUs Attributes
-    </div>
+    class="classified-content align-items-center justify-content-end"
+    *ngIf="linkedSKUsDisplayStatusPrint"
+  >
+    Linked SKUs Attributes
+  </div>
 
-    <div>
-        <div
-        class="row"
-        *ngIf="linkedSKUsDisplayStatusPrint"
-      >
-        <div class="col-md-12 linked-sku-table">
-          <table class="table table-bordered">
-            <thead>
-              <tr>
-                <th class="table-header">
-                  <span>Recycle SKUs</span>
-                </th>
-                <th class="table-header">
-                  <span>Recycle SKUs Description</span>
-                </th>
-                <th class="table-header">
-                  <span>Retail Price</span>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let linkedDataPrint of linkedSKUsDataPrint">
-                <td>{{ linkedDataPrint.sku }}</td>
-                <td>{{ linkedDataPrint.itemDesc }}</td>
-                <td>{{ linkedDataPrint.retailPrice }}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+  <div>
+    <div
+      class="row linked-sku-table-header"
+      *ngIf="
+        linkedSKUsDisplayStatusPrint &&
+          (tableNameForPrint == 'Recycle_Fee_SKUs' ||
+        tableNameForPrint == 'Bag_Fee_SKUs')
+      "
+    >
+      <div class="col-md-12 linked-sku-table">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th class="table-header">
+                <span>Recycle SKUs</span>
+              </th>
+              <th class="table-header">
+                <span>Recycle SKUs Description</span>
+              </th>
+              <th class="table-header">
+                <span>Retail Price</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let linkedSKUsData of linkedSKUsDataPrint">
+              <td>{{ linkedSKUsData.sku }}</td>
+              <td>{{ linkedSKUsData.itemDesc }}</td>
+              <td>{{ linkedSKUsData.retailPrice }}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
+    <div
+      class="row linked-sku-table-header"
+      *ngIf="linkedSKUsDisplayStatusPrint && tableNameForPrint == 'Linked_SKUs'"
+    >
+      <div class="col-md-12 linked-sku-table">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th class="table-header">
+                <span>Linked SKUs</span>
+              </th>
+              <th class="table-header">
+                <span>Linked SKUs Description</span>
+              </th>
+              <th class="table-header">
+                <span>Linked Price</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let linkedSKUsData of linkedSKUsDataPrint">
+              <td>{{ linkedSKUsData.sku }}</td>
+              <td>{{ linkedSKUsData.itemDesc }}</td>
+              <td>{{ linkedSKUsData.retailPrice }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div
+      class="row linked-sku-table-header"
+      *ngIf="linkedSKUsDisplayStatus && tableNameForPrint == 'ESP_Skus'"
+    >
+      <div class="col-md-12 linked-sku-table">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th class="table-header">
+                <span>ESP SKUs</span>
+              </th>
+              <th class="table-header">
+                <span>ESP SKUs Description</span>
+              </th>
+              <th class="table-header">
+                <span>ESP Price</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let linkedSKUsData of linkedSKUsDataPrint">
+              <td>{{ linkedSKUsData.sku }}</td>
+              <td>{{ linkedSKUsData.itemDesc }}</td>
+              <td>{{ linkedSKUsData.retailPrice }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 
   <div class="classified-content align-items-center justify-content-end">
     Other Attributes
@@ -188,7 +250,13 @@
               <span>Buy Type</span>
             </th>
             <th class="table-header">
-              <span>Item Group Id</span>
+              <span>Promo Group</span>
+            </th>
+            <th class="table-header">
+              <span>Price Modifier Type</span>
+            </th>
+            <th class="table-header">
+              <span>Discount</span>
             </th>
           </tr>
         </thead>
@@ -198,6 +266,12 @@
             <td>{{ promosBuyData.thresholdQty }}</td>
             <td>{{ promosBuyData.itemReqType }}</td>
             <td>{{ promosBuyData.promoGroup }}</td>
+            <td>{{ promosBuyData.discountQualifierType }}</td>
+            <td>
+              {{ promosBuyData.discountQualifierValue }}/{{
+                promosBuyData.discountAppliesTo
+              }}
+            </td>
           </tr>
         </tbody>
       </table>
@@ -244,4 +318,38 @@
       </table>
     </div>
   </div>
+
+  <!-- <div
+      class="classified-content align-items-center justify-content-end"
+      *ngIf="itemGroupDataDisplayStatusPrint"
+    >
+      Item Group SKUs List
+    </div>
+
+    <div class="row linked-sku-table-header" *ngIf="itemGroupDataDisplayStatusPrint">
+      <div class="col-md-12 linked-sku-table">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th class="table-header">
+                <span>SKU Number</span>
+              </th>
+              <th class="table-header">
+                <span>SKUs Description</span>
+              </th>
+              <th class="table-header">
+                <span>SKU Price</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let itemGroupDataPrint of itemGroupDataForIDPrint">
+              <td>{{ itemGroupDataPrint.sku }}</td>
+              <td>{{ itemGroupDataPrint.posItemDesc }}</td>
+              <td>{{ itemGroupDataPrint.retailPrice }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div> -->
 </div>

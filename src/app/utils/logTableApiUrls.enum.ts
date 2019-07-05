@@ -23,5 +23,6 @@ export enum logTableAPIUrls {
   getTaxExemptDeactivate = "http://lrtdqnasv104:8090/tdmapp/deactivatedTaxExemptList",
   getRecycleFeeSKUs = "http://lrtdqnasv104:8090/tdmapp/recyclingFeeSkuList",
   getBagFeeSKUs = "http://lrtdqnasv104:8090/tdmapp/recyclingFeeSkuList",
-  getEspSkus = "http://lrtdqnasv104:8090/tdmapp/espList"
+  getEspSkus = "http://lrtdqnasv104:8090/tdmapp/espList",
+  getItemGroupData = "http://lrtdqnasv104:8090/tdmapp/itmMstListByAssoGrpId"
 }

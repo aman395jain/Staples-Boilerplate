@@ -1,7 +1,6 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { Subject } from "rxjs";
 import { takeUntil } from "rxjs/operators";
-import { Location } from "@angular/common";
 
 import { PrintDocumentService } from "src/app/services/print-document/print-document.service";
 import { LogModalDataService } from "src/app/services/log-modal-data/log-modal-data.service";
@@ -32,21 +31,19 @@ export class PrintDocumentSingleLogDataComponent implements OnInit, OnDestroy {
   promosGetData: any;
   linkedSKUsDisplayStatusPrint: boolean = false;
   linkedSKUsDataPrint: any;
+  itemGroupDataDisplayStatusPrint: boolean = false;
+  itemGroupDataForIDPrint: any[];
 
   constructor(
     private _printService: PrintDocumentService,
     private _logModalDataService: LogModalDataService,
     private _dashboardHeaderNameConverstionService: DashboardHeaderNameConverstionService,
-    private _logDiscriptionDataOrderService: LogDescriptionDataOrderService,
-    private _location: Location
+    private _logDiscriptionDataOrderService: LogDescriptionDataOrderService
   ) {}
 
   ngOnInit() {
     this._printService.onDataReady();
 
-    this._location.subscribe(location => {
-      console.log("dcsjkl", location);
-    });
     this._logModalDataService
       .setTableNameForLogDetail()
       .pipe(takeUntil(this._onDestroy))
@@ -106,6 +103,7 @@ export class PrintDocumentSingleLogDataComponent implements OnInit, OnDestroy {
           this.tableNameForPrint === "Bag_Fee_SKUs"
         ) {
           this._logModalDataService.setLinkedSKUsData().subscribe(data => {
+            debugger;
             this.linkedSKUsDataPrint = data;
           });
           // this.linkedSKUsData = this.classifiedDataLogDetail[2].linkedList;
@@ -119,7 +117,8 @@ export class PrintDocumentSingleLogDataComponent implements OnInit, OnDestroy {
               if (
                 printData.discountType &&
                 (printData.discountType === "SMPL" ||
-                  printData.discountType === "CTHR") &&
+                  printData.discountType === "CTHR" ||
+                  printData.discountType === "PQL") &&
                 promoData.buyOrGetFlag &&
                 promoData.buyOrGetFlag === "buy"
               ) {
@@ -127,10 +126,9 @@ export class PrintDocumentSingleLogDataComponent implements OnInit, OnDestroy {
                 this.promosBuyData = promoData;
               } else if (
                 printData.discountType &&
-                (printData.discountType === "SMPL" ||
-                  printData.discountType === "CTHR" ||
-                  printData.discountType === "BXGP" ||
-                  printData.discountType === "GD") &&
+                (printData.discountType === "BXGP" ||
+                  printData.discountType === "BXGD" ||
+                  printData.discountType === "PQLT") &&
                 promoData.buyOrGetFlag &&
                 promoData.buyOrGetFlag === "get"
               ) {
@@ -141,14 +139,14 @@ export class PrintDocumentSingleLogDataComponent implements OnInit, OnDestroy {
           });
         }
 
-        // console.log("the print data is array:", printedDataForSingleEntity);
-        // this.dataDisplay = this._dashboardHeaderNameConverstionService.headerNameConvert(
-        //   printedDataForMainAttributes
-        // );
-
-        // this.dataPrintedDataForModal = this.dataDisplay[0];
-        // this.dataBarCode = printedDataForMainAttributes[0].upcList;
-        // console.log("in the print log data", printedDataForSingleEntity[0].upcList);
+        if (this.tableNameForPrint === "Item_Group") {
+          this._logModalDataService
+            .setPrintDataForItemGroup()
+            .subscribe(data => {
+              this.itemGroupDataDisplayStatusPrint = true;
+              this.itemGroupDataForIDPrint = data;
+            });
+        }
       });
   }
   ngOnDestroy(): void {

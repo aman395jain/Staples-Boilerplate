@@ -34,6 +34,8 @@ export class LogDetailComponent implements OnInit, OnDestroy {
   linkedSKUsDisplayStatus: boolean = false;
   promoBuyDisplayStatus: boolean = false;
   promoGetDisplayStatus: boolean = false;
+  itemGroupDataDisplayStatus: boolean = false;
+  promosGroupStatus: boolean = false;
 
   tableNameLogDetails = "";
   pageNumberIndex: number;
@@ -42,6 +44,7 @@ export class LogDetailComponent implements OnInit, OnDestroy {
   linkedSKUsData: any;
   promosBuyData: any[];
   promosGetData: any[];
+  itemGroupDataForID: any[];
 
   constructor(
     private router: Router,
@@ -139,8 +142,6 @@ export class LogDetailComponent implements OnInit, OnDestroy {
         }
 
         if (this.tableNameLogDetails === "Promos") {
-          // // console.log("row data in log detailcomponent", rowData);
-
           this._loglistingService
             .getDataForPromos(rowData.promoNum)
             .subscribe(data => {
@@ -149,18 +150,23 @@ export class LogDetailComponent implements OnInit, OnDestroy {
                 if (
                   rowData.discountType &&
                   (rowData.discountType === "SMPL" ||
-                    rowData.discountType === "CTHR") &&
+                    rowData.discountType === "CTHR" ||
+                    rowData.discountType === "PQL") &&
                   promoData.buyOrGetFlag &&
                   promoData.buyOrGetFlag === "buy"
                 ) {
                   this.promoBuyDisplayStatus = true;
                   this.promosBuyData = promoData;
+                  if (promoData.promoGroup && promoData.promoGroup === "0") {
+                    this.promosGroupStatus = true;
+                  } else {
+                    this.promosGroupStatus = false;
+                  }
                 } else if (
                   rowData.discountType &&
-                  (rowData.discountType === "SMPL" ||
-                    rowData.discountType === "CTHR" ||
-                    rowData.discountType === "BXGP" ||
-                    rowData.discountType === "GD") &&
+                  (rowData.discountType === "BXGP" ||
+                    rowData.discountType === "BXGD" ||
+                    rowData.discountType === "PQLT") &&
                   promoData.buyOrGetFlag &&
                   promoData.buyOrGetFlag === "get"
                 ) {
@@ -168,6 +174,17 @@ export class LogDetailComponent implements OnInit, OnDestroy {
                   this.promosGetData = promoData;
                 }
               });
+            });
+        }
+
+        if (this.tableNameLogDetails === "Item_Group") {
+          this._loglistingService
+            .getItemGroupData(rowData.itemGroupId)
+            .subscribe(data => {
+              this._logModalDataService.getPrintDataForItemGroup(data);
+
+              this.itemGroupDataDisplayStatus = true;
+              this.itemGroupDataForID = data;
             });
         }
       });
@@ -195,5 +212,9 @@ export class LogDetailComponent implements OnInit, OnDestroy {
     tableNameFromBack.initialIndex = this.pageNumberIndex;
     this._navBarService.setElementNameFromSideBar(tableNameFromBack);
     this.router.navigate(["/testDataManagement"]);
+  }
+
+  redirectToSkuList() {
+    this.router.navigate(["/testDataManagement/logDetail/sku-List"]);
   }
 }
