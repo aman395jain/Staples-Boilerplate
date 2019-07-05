@@ -239,7 +239,14 @@
         <mat-divider></mat-divider>
         <mat-nav-list
           ><mat-list-item>
-            <img
+              <mat-icon
+              *ngIf="!_toggleIsExpend"
+              data-toggle="tooltip"
+              title="Promos"
+              (click)="getElementNameTest('Promos')"
+              mat-list-icon
+              >local_offer</mat-icon>
+            <!-- ><img
               src="./app/assets/images/side_navBar_icons/promo_Icon.png"
               alt="promos"
               height="30px"
@@ -247,7 +254,7 @@
               title="Promos"
               (click)="getElementNameTest('Promos')"
               *ngIf="!_toggleIsExpend"
-            />
+            /> -->
             <span
               *ngIf="_toggleIsExpend"
               data-toggle="tooltip"
@@ -260,7 +267,15 @@
         <mat-divider></mat-divider>
         <mat-nav-list
           ><mat-list-item>
-            <img
+              <mat-icon
+              *ngIf="!_toggleIsExpend"
+              data-toggle="tooltip"
+              title="Coupon"
+              (click)="getElementNameTest('Coupon')"
+              mat-list-icon
+              >local_atm</mat-icon
+            >
+            <!-- <img
               src="./app/assets/images/side_navBar_icons/coupon_Icon.png"
               alt="Coupon"
               height="30px"
@@ -268,7 +283,7 @@
               title="Coupon"
               (click)="getElementNameTest('Coupon')"
               *ngIf="!_toggleIsExpend"
-            />
+            /> -->
             <span
               *ngIf="_toggleIsExpend"
               data-toggle="tooltip"

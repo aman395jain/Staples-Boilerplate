@@ -114,7 +114,7 @@ export class DashboardHeaderNameConverstionService {
     name: "Name",
     phoneNo: "Phone Number",
     expirationDate: "Expiration Date",
-    taxExmInd: "Tax Exception Indicator",
+    taxExmInd: "Tax Exemption Indicator",
     taxExemptNbr: "Tax Exemption Number",
     itemGroupId: "Item Group ID",
     orderNo: "Order Number",
