@@ -10,7 +10,7 @@ export enum logTableAPIUrls {
   getHardwareSKUs = "http://lrtdqnasv104:8090/tdmapp/itmMstHdwSkuList",
   getLinkedSKUs = "http://lrtdqnasv104:8090/tdmapp/linkedSkuList",
   getAgeRestrictiedSpecialRest = "http://lrtdqnasv104:8090/tdmapp/ageRestrictedList",
-  getReturnDrivingLicence = "http://www.mocky.io/v2/5d1cfe7034000025b1b601a7",
+  getReturnDrivingLicense = "http://www.mocky.io/v2/5d1cfe7034000025b1b601a7",
   getLowestPrice = "http://www.mocky.io/v2/5d1cfeb5340000dcb0b601a8",
   getPOSA = "http://www.mocky.io/v2/5d1cfb9134000023b1b60198",
   getOrder = "http://www.mocky.io/v2/5d1b259f3400005400000564",

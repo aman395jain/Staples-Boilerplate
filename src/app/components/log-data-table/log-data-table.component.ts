@@ -307,6 +307,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
           );
           this.tableHeader = "Item Group";
         } else if (this.tableNameFromBar === "Return_Driver_License") {
+          this.advanceSearchOptions = [];
           this.logTableGridColumns = logDataTableConst.return_Driver_License;
           this._logModalDataService.getTableNameForLogDetail(
             "Return_Driver_License"
@@ -316,8 +317,9 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
           this.displayedColumns = logDataTableConst.return_Driver_License.map(
             columnName => columnName.columnDef
           );
-          this.tableHeader = "Return Driver Licence";
+          this.tableHeader = "Return Driver License";
         } else if (this.tableNameFromBar === "Lowest_Price") {
+          this.advanceSearchOptions = [];
           this.logTableGridColumns = logDataTableConst.lowest_Price;
           this._logModalDataService.getTableNameForLogDetail("Lowest_Price");
 
@@ -341,6 +343,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
           );
           this.tableHeader = "Promos";
         } else if (this.tableNameFromBar === "POSA") {
+          this.advanceSearchOptions = [];
           this.tableName = "POSA";
           this.tableHeader = "POSA";
         } else if (this.tableNameFromBar === "Order") {
@@ -359,9 +362,11 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
           this.tableHeader = "Order";
           this.newOrderType = ["Kiosk", "Solution Builder"];
         } else if (this.tableNameFromBar === "Coupon") {
+          this.advanceSearchOptions = [];
           this.tableName = "Coupon";
           this.tableHeader = "Coupon";
         } else if (this.tableNameFromBar === "Tax_Exempt") {
+          this.advanceSearchOptions = [];
           this.logTableGridColumns = logDataTableConst.Tax_Exempt;
           this._logModalDataService.getTableNameForLogDetail("Tax_Exempt");
           this.advanceSearchOptions = [];
@@ -371,6 +376,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
           );
           this.tableHeader = "Tax Exempt";
         } else if (this.tableNameFromBar === "Tax_Exempt_Valid") {
+          this.advanceSearchOptions = [];
           this.logTableGridColumns = logDataTableConst.Tax_Exempt_Valid;
           this._logModalDataService.getTableNameForLogDetail(
             "Tax_Exempt_Valid"
@@ -382,6 +388,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
           );
           this.tableHeader = "Tax Exempt Valid";
         } else if (this.tableNameFromBar === "Tax_Exempt_Expired") {
+          this.advanceSearchOptions = [];
           this.logTableGridColumns = logDataTableConst.Tax_Exempt_Expired;
           this._logModalDataService.getTableNameForLogDetail(
             "Tax_Exempt_Expired"
@@ -393,6 +400,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
           );
           this.tableHeader = "Tax Exempt Expired";
         } else if (this.tableNameFromBar === "Tax_Exempt_About_To_Expired") {
+          this.advanceSearchOptions = [];
           this.logTableGridColumns =
             logDataTableConst.Tax_Exempt_About_To_Expired;
           this._logModalDataService.getTableNameForLogDetail(
@@ -405,6 +413,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
           );
           this.tableHeader = "Tax Exempt About to Expire";
         } else if (this.tableNameFromBar === "Tax_Exempt_Deactivated") {
+          this.advanceSearchOptions = [];
           this.logTableGridColumns = logDataTableConst.Tax_Exempt_Deactivated;
           this._logModalDataService.getTableNameForLogDetail(
             "Tax_Exempt_Deactivated"

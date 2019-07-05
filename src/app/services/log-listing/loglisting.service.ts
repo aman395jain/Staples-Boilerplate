@@ -55,7 +55,7 @@ export class LoglistingService {
     } else if (entity === "Item_Group") {
       this._serviceUrl = logTableAPIUrls.getItemGroup;
     } else if (entity === "Return_Driver_License") {
-      this._serviceUrl = logTableAPIUrls.getReturnDrivingLicence;
+      this._serviceUrl = logTableAPIUrls.getReturnDrivingLicense;
     } else if (entity === "Lowest_Price") {
       this._serviceUrl = logTableAPIUrls.getLowestPrice;
     } else if (entity === "Promos") {
