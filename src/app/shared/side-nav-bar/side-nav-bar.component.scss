@@ -1,5 +1,12 @@
-.example-container {
+@import "../../assets/styles/color-codes";
+
+.side-bar-container {
   height: 100%;
+  .data-table-name-side-navbar {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
   .nav-bar-expandable {
     width: 100%;
     .toggle-icon {
@@ -8,7 +15,7 @@
     }
 
     .icons-side-navbar-active {
-      color: #ffbf00;
+      color: $amber;
     }
   }
 }
@@ -18,7 +25,7 @@
   .mat-list-item {
     height: 100% !important;
     margin: 10px 0;
-    color: #ffffff;
+    color: $white;
     font-family: sans-serif;
     font-size: 14px !important;
     font-weight: bold !important;
@@ -26,12 +33,6 @@
       padding: 0 6px;
     }
   }
-  // a {
-  //   white-space: nowrap;
-  //   width: 90px;
-  //   overflow: hidden;
-  //   text-overflow: ellipsis;
-  // }
 }
 
 .nav-bar-expandable.mat-drawer {
@@ -46,14 +47,14 @@
 }
 
 .mat-expansion-panel-header-title {
-  color: #ffffff;
+  color: $white;
   font-weight: bold;
   font-size: 14px;
   font-family: sans-serif;
 }
 
 .nav-bar-accordian > .mat-expansion-indicator:after {
-  color: #ffffff !important;
+  color: $white !important;
 }
 
 .mat-expansion-panel-header {

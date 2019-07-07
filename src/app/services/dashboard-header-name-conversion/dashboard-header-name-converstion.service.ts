@@ -20,7 +20,7 @@ export class DashboardHeaderNameConverstionService {
     store: "Store",
     empName: "Employee Name",
     empPass: "Password",
-    empRole: "EmployeeE Role",
+    empRole: "Employee Role",
     taxRate: "Tax Rate",
     taxState: "Tax State",
     freeSku: "Free SKUs",

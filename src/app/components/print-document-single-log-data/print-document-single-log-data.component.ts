@@ -62,7 +62,7 @@ export class PrintDocumentSingleLogDataComponent implements OnInit, OnDestroy {
         let mainAttributesForPrint = {};
         let restAttributesForPrint = {};
 
-        this.classifiedDataLogDetailForPrint = this._logDiscriptionDataOrderService.modalDataOrder(
+        this.classifiedDataLogDetailForPrint = this._logDiscriptionDataOrderService.dataOrderClassification(
           printData,
           this.tableNameForPrint
         );

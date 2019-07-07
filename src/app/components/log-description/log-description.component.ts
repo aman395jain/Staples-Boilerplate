@@ -60,7 +60,7 @@ export class LogDescriptionComponent implements OnInit {
     ) {
       // console.log("in the component table name", this.tableName);
       //If condition is Just for test
-      this.classifiedData = this._logDiscriptionDataOrderService.modalDataOrder(
+      this.classifiedData = this._logDiscriptionDataOrderService.dataOrderClassification(
         this.dataDiscription,
         this.tableName
       );

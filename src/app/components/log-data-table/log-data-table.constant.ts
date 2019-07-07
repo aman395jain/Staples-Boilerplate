@@ -217,7 +217,7 @@ export const logDataTableConst = {
       cell: null
     },
     {
-      columnDef: "store ",
+      columnDef: "store",
       header: "Store",
       cell: (element: any) => `${element.store}`
     },
@@ -227,7 +227,7 @@ export const logDataTableConst = {
       cell: (element: any) => `${element.rate}`
     },
     {
-      columnDef: "taxState",
+      columnDef: "state",
       header: "State/Jurisdiction",
       cell: (element: any) => `${element.state}`
     },
@@ -477,7 +477,7 @@ export const logDataTableConst = {
     },
     {
       columnDef: "lastTransation",
-      header: "Last Transation Date",
+      header: "Last Transaction Date",
       cell: (element: any) => `${element.lastTransation}`
     },
     {
@@ -504,7 +504,7 @@ export const logDataTableConst = {
     },
     {
       columnDef: "promoNum",
-      header: "Promo Num",
+      header: "Promotion No.",
       cell: (element: any) => `${element.promoNum}`
     },
     {

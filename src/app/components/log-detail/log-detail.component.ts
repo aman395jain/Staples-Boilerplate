@@ -95,7 +95,7 @@ export class LogDetailComponent implements OnInit, OnDestroy {
       .setLogDetailData()
       .pipe(takeUntil(this._onDestroy))
       .subscribe(rowData => {
-        this.classifiedDataLogDetail = this._logDiscriptionDataOrderService.modalDataOrder(
+        this.classifiedDataLogDetail = this._logDiscriptionDataOrderService.dataOrderClassification(
           rowData,
           this.tableNameLogDetails
         );

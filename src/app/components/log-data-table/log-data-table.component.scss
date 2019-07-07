@@ -1,10 +1,19 @@
+@import "../../assets/styles/color-codes";
+
+@mixin disclaimer {
+  padding-top: 10px;
+  font-size: 10px;
+  color: $gray;
+  font-style: italic;
+}
+
 .log-list {
   border-radius: 6px;
   .store-name {
     font-size: medium;
     margin-right: 10px;
     font-weight: bold;
-    color: #cc0000;
+    color: $red;
   }
   .store-dropdown {
     height: 25px;
@@ -29,13 +38,6 @@
       text-align: center;
       padding: 23px 0px;
       margin-left: 12px;
-      a {
-        color: #0056b3 !important;
-        cursor: pointer;
-        &:hover {
-          text-decoration: none !important;
-        }
-      }
     }
   }
 
@@ -58,25 +60,22 @@
     }
     .advance-search-addition {
       font-size: 1.5em;
-      color: green;
+      color: #109210;
       cursor: pointer;
     }
     .advance-search-minus {
       font-size: 1.5em;
-      color: #cc0000;
+      color: $red;
       cursor: pointer;
     }
     .advance-search-disclaimer {
-      padding-top: 10px;
-      font-size: 10px;
-      color: grey;
-      font-style: italic;
+      @include disclaimer;
     }
   }
 
   .log-list-table {
     .example-header {
-      background-color: white;
+      background-color: $white;
       max-height: 40px;
     }
 
@@ -86,7 +85,7 @@
           visibility: hidden;
         }
         .mat-header-cell {
-          color: #c00;
+          color: $red;
           font-weight: bold;
           font-size: 14px;
           justify-content: center;
@@ -109,6 +108,7 @@
     }
 
     .mat-cell {
+      text-align: center;
       justify-content: center;
 
       .bar-code-value {
@@ -135,6 +135,9 @@
 
   .footer-pagination {
     height: 56px;
+    .disclaimers-data {
+      @include disclaimer;
+    }
   }
 
   .create-order {

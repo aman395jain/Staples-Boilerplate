@@ -28,9 +28,9 @@ export class DisplayLogTableComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this._onDestroy))
       .subscribe(toggleStatus => {
         if (toggleStatus) {
-          this.splitLeftBarSize = "12";
-          this.rightPartSplitSize = "88";
-          this.minLeftBarSize = "12";
+          this.splitLeftBarSize = "13";
+          this.rightPartSplitSize = "87";
+          this.minLeftBarSize = "13";
           this.maxLeftBarSize = "20";
         } else {
           this.splitLeftBarSize = "5";

@@ -178,19 +178,20 @@
                 </div>
               </div>
               <div class="col-md-12 row align-items-center inner-rows">
-                <div class=" col-md-6 advance-search-disclaimer" >
-                  Disclaimer:
-              <ol>
-                <li>
-                  To collapse this window, please re-click on Advance Search.
-                </li>
-                <li>
-                  This advance search is applicable to entire data of {{tableName}}.
-                </li>
-              </ol>  
-            </div>
+                <div class=" col-md-6 advance-search-disclaimer">
+                  Disclaimers:
+                  <ol>
+                    <li>
+                      To collapse this window, please re-click on Advanced
+                      Search link.
+                    </li>
+                    <li>
+                      This advanced search is applicable to entire data of
+                      {{ tableHeader }}.
+                    </li>
+                  </ol>
+                </div>
                 <div class="col-md-6">
-                  
                   <button
                     class="btn btn-warning d-flex float-right form-apply-clear-buttons"
                     (click)="clearSearchFields()"
@@ -204,7 +205,7 @@
                     Apply
                   </button>
                 </div>
-            </div>
+              </div>
             </form>
           </div>
         </div>
@@ -239,7 +240,7 @@
           ></mat-header-cell>
 
           <mat-cell *cdkCellDef="let row"
-            ><span
+            ><div
               *ngIf="
                 !(
                   column.header === 'Bar Code' ||
@@ -250,8 +251,12 @@
                   column.columnDef === 'orderNo'
                 )
               "
-              >{{ column.cell(row) }}</span
             >
+              <span *ngIf="!(column.cell(row) === 'null')">{{
+                column.cell(row)
+              }}</span>
+              <span *ngIf="column.cell(row) === 'null'" style="font-style: italic">N.A</span>
+            </div>
             <span *ngIf="column.columnDef === 'select'">
               <mat-checkbox
                 (click)="$event.stopPropagation()"
@@ -301,22 +306,30 @@
         ></mat-row>
       </mat-table>
       <div class="load-spinner-for-pagination" *ngIf="isLoadingForSpinner">
-        <div class="spinner-border text-primary pagination-spinner-loader" role="status">
+        <div
+          class="spinner-border text-primary pagination-spinner-loader"
+          role="status"
+        >
           <span class="sr-only">Loading...</span>
         </div>
       </div>
     </div>
     <div class="col-md-12 footer-pagination">
       <div class="row">
-        <div class="col-4"></div>
+        <div class="col-4 disclaimers-data">
+          <span style="color: #cb2026">Disclaimers:</span>
+          <ol>
+            <li>
+              <span>N.A : No Data Available.</span>
+            </li>
+          </ol>
+        </div>
         <div
           class="col-8"
-          [ngClass]="{'d-flex float-right': paginationBarDisplayFlag }"
+          [ngClass]="{ 'd-flex float-right': paginationBarDisplayFlag }"
         >
           <mat-paginator
             [hidden]="isLoading"
-            [pageIndex]="pageIndex"
-            [pageSize]="initialPageSize"
             [pageSizeOptions]="[5, 10, 25, 100]"
             (page)="updatePageSize($event)"
           >

@@ -23,7 +23,7 @@ export class LogDescriptionDataOrderService {
    * For classification of data of Modal.
    * @param row
    */
-  modalDataOrder(row, tableName) {
+  dataOrderClassification(row, tableName) {
     let rowDataWithRestData = {};
     Object.assign(rowDataWithRestData, row);
     if (tableName === "Item_Master") {
@@ -393,45 +393,58 @@ export class LogDescriptionDataOrderService {
    * @param tableName
    */
   filterRestrictionOnlyForDisplayedRows(tableName) {
-    if (tableName === "Item_Master") {
-      return function(data, filter: string): boolean {
-        if (data.retailPrice) {
-          return (
-            data.sku.toLowerCase().includes(filter) ||
-            data.itemDesc.toLowerCase().includes(filter) ||
-            data.retailPrice.toString().includes(filter) ||
-            data.upcList[0].toString() === filter ||
-            data.store
-              .toString()
-              .toLowerCase()
-              .includes(filter)
-          );
-        }
-      };
-    } else if (tableName === "Price_Prompt_SKUs") {
-      return function(data, filter: string): boolean {
-        if (data.retailPrice) {
-          return (
-            data.sku.toLowerCase().includes(filter) ||
-            data.itemDesc.toLowerCase().includes(filter) ||
-            data.retailPrice.toString().includes(filter) ||
-            data.upcList[0].toString() === filter ||
-            data.store
-              .toString()
-              .toLowerCase()
-              .includes(filter)
-          );
-        }
-      };
-    } else if (tableName === "Employee") {
+    if (tableName === "Employee") {
       return function(data, filter: string): boolean {
         return (
           data.emplName.toLowerCase().includes(filter) ||
+          data.emplName.includes(filter) ||
           data.emplId
             .toString()
             .toLowerCase()
             .includes(filter) ||
+          data.emplId.toString().includes(filter) ||
           data.emplRole
+            .toString()
+            .toLowerCase()
+            .includes(filter) ||
+          data.emplRole.toString().includes(filter) ||
+          data.store.toString().includes(filter)
+        );
+      };
+    } else if (tableName === "Tax_Rates") {
+      return function(data, filter: string): boolean {
+        return (
+          data.store.toString().includes(filter) ||
+          data.rate.toString().includes(filter) ||
+          data.state
+            .toString()
+            .toLowerCase()
+            .includes(filter) ||
+          data.state.toString().includes(filter)
+        );
+      };
+    } else if (tableName === "Item_Master") {
+      return function(data, filter: string): boolean {
+        return (
+          data.sku.toLowerCase().includes(filter) ||
+          data.sku.includes(filter) ||
+          data.itemDesc.toLowerCase().includes(filter) ||
+          data.itemDesc.includes(filter) ||
+          data.retailPrice.toString().includes(filter) ||
+          data.store
+            .toString()
+            .toLowerCase()
+            .includes(filter)
+        );
+      };
+    } else if (tableName === "Price_Prompt_SKUs") {
+      return function(data, filter: string): boolean {
+        return (
+          data.sku.toLowerCase().includes(filter) ||
+          data.itemDesc.toLowerCase().includes(filter) ||
+          data.itemDesc.includes(filter) ||
+          data.retailPrice.toString().includes(filter) ||
+          data.store
             .toString()
             .toLowerCase()
             .includes(filter)
@@ -442,30 +455,18 @@ export class LogDescriptionDataOrderService {
         return (
           data.sku.toLowerCase().includes(filter) ||
           data.retailPrice.toString().includes(filter) ||
-          data.posId.toString().includes(filter) ||
-          data.warranty
+          data.itemDesc.toLowerCase().includes(filter) ||
+          data.itemDesc.includes(filter) ||
+          data.itemGroupDescription
+            .toLowerCase()
+            .toString()
+            .includes(filter) ||
+          data.itemGroupDescription.toString().includes(filter) ||
+          data.itemGroupId
             .toString()
             .toLowerCase()
             .includes(filter) ||
-          data.itemGroupID.toString() === filter ||
           data.store
-            .toString()
-            .toLowerCase()
-            .includes(filter)
-        );
-      };
-    } else if (tableName === "Tax_Rates") {
-      return function(data, filter: string): boolean {
-        return (
-          data.store
-            .toString()
-            .toLowerCase()
-            .includes(filter) ||
-          data.rate
-            .toString()
-            .toLowerCase()
-            .includes(filter) ||
-          data.state
             .toString()
             .toLowerCase()
             .includes(filter)
@@ -483,11 +484,8 @@ export class LogDescriptionDataOrderService {
             .toString()
             .toLowerCase()
             .includes(filter) ||
-          data.retailPrice
-            .toString()
-            .toLowerCase()
-            .includes(filter) ||
-          data.upcList[0].includes(filter) ||
+          data.itemDesc.toString().includes(filter) ||
+          data.retailPrice.toString().includes(filter) ||
           data.store
             .toString()
             .toLowerCase()
@@ -497,25 +495,61 @@ export class LogDescriptionDataOrderService {
     } else if (tableName === "Recycle_Fee_SKUs") {
       return function(data, filter: string): boolean {
         return (
-          data.sku.toLowerCase().includes(filter) ||
+          data.sku
+            .toString()
+            .toLowerCase()
+            .includes(filter) ||
           data.itemDesc.toLowerCase().includes(filter) ||
-          data.retailPrice.toLowerCase().includes(filter)
+          data.itemDesc.includes(filter) ||
+          data.retailPrice
+            .toString()
+            .toLowerCase()
+            .includes(filter) ||
+          data.store
+            .toString()
+            .toLowerCase()
+            .includes(filter)
         );
       };
     } else if (tableName === "Bag_Fee_SKUs") {
       return function(data, filter: string): boolean {
         return (
-          data.sku.toLowerCase().includes(filter) ||
+          data.sku
+            .toString()
+            .toLowerCase()
+            .includes(filter) ||
           data.itemDesc.toLowerCase().includes(filter) ||
-          data.retailPrice.toLowerCase().includes(filter)
+          data.itemDesc.includes(filter) ||
+          data.retailPrice
+            .toString()
+            .toLowerCase()
+            .includes(filter) ||
+          data.store
+            .toString()
+            .toLowerCase()
+            .includes(filter)
         );
       };
     } else if (tableName === "ESP_Skus") {
       return function(data, filter: string): boolean {
         return (
-          data.sku.toLowerCase().includes(filter) ||
+          data.sku
+            .toString()
+            .toLowerCase()
+            .includes(filter) ||
           data.itemDesc.toLowerCase().includes(filter) ||
-          data.retailPrice.toLowerCase().includes(filter)
+          data.itemDesc.includes(filter) ||
+          data.itemGroupDescription.includes(filter) ||
+          data.itemGroupDescription.toLowerCase().includes(filter) ||
+          data.retailPrice
+            .toString()
+            .toLowerCase()
+            .includes(filter) ||
+          data.itemGroupId.toLowerCase().includes(filter) ||
+          data.store
+            .toString()
+            .toLowerCase()
+            .includes(filter)
         );
       };
     } else if (tableName === "Age_Restricted_Special_rest") {
@@ -529,16 +563,29 @@ export class LogDescriptionDataOrderService {
             .toString()
             .toLowerCase()
             .includes(filter) ||
+          data.itemDesc.toLowerCase().includes(filter) ||
           data.retailPrice
             .toString()
             .toLowerCase()
             .includes(filter) ||
-          data.upcList[0] === filter ||
           data.alertCode === filter ||
           data.store
             .toString()
             .toLowerCase()
             .includes(filter)
+        );
+      };
+    } else if (tableName === "Item_Group") {
+      return function(data, filter: string): boolean {
+        return (
+          data.itemGroupId
+            .toString()
+            .toLowerCase()
+            .includes(filter) ||
+          data.itemGroupDescription.toLowerCase().includes(filter) ||
+          data.itemGroupDescription.includes(filter) ||
+          data.addOrAutoadd.includes(filter) ||
+          data.addOrAutoadd.toLowerCase().includes(filter)
         );
       };
     } else if (tableName === "Order") {
@@ -552,21 +599,14 @@ export class LogDescriptionDataOrderService {
             .toString()
             .toLowerCase()
             .includes(filter) ||
+          data.store
+            .toString()
+            .toLowerCase()
+            .includes(filter) ||
           data.sourceCreateOrderXml
             .toString()
             .toLowerCase()
             .includes(filter)
-        );
-      };
-    } else if (tableName === "Item_Group") {
-      return function(data, filter: string): boolean {
-        // debugger;
-        return (
-          data.itemGroupId
-            .toString()
-            .toLowerCase()
-            .includes(filter) ||
-          data.itemGroupDescription.toLowerCase().includes(filter)
         );
       };
     } else if (tableName === "Promos") {
@@ -576,9 +616,21 @@ export class LogDescriptionDataOrderService {
             .toString()
             .toLowerCase()
             .includes(filter) ||
-          data.discountDesc.toLowerCase().includes(filter) ||
+          data.promoName
+            .toString()
+            .toLowerCase()
+            .includes(filter) ||
+          data.promoName.toString().includes(filter) ||
           data.discountName.toLowerCase().includes(filter) ||
-          data.discountType.toLowerCase().includes(filter)
+          data.discountName.includes(filter) ||
+          data.discountDesc.toLowerCase().includes(filter) ||
+          data.discountDesc.includes(filter) ||
+          data.discountType.toLowerCase().includes(filter) ||
+          data.discountType.toLowerCase().includes(filter) ||
+          data.store
+            .toString()
+            .toLowerCase()
+            .includes(filter)
         );
       };
     } else if (tableName === "Tax_Exempt") {
@@ -586,8 +638,63 @@ export class LogDescriptionDataOrderService {
         return (
           data.taxExemptNbr.toLowerCase().includes(filter) ||
           data.name.toLowerCase().includes(filter) ||
+          data.name.includes(filter) ||
           data.govtCertificate.toLowerCase().includes(filter) ||
+          data.govtCertificate.includes(filter) ||
           data.companyName.toLowerCase().includes(filter) ||
+          data.companyName.includes(filter) ||
+          data.phoneNo.toLowerCase().includes(filter)
+        );
+      };
+    } else if (tableName === "Tax_Exempt_Valid") {
+      return function(data, filter: string): boolean {
+        return (
+          data.taxExemptNbr.toLowerCase().includes(filter) ||
+          data.name.toLowerCase().includes(filter) ||
+          data.name.includes(filter) ||
+          data.govtCertificate.toLowerCase().includes(filter) ||
+          data.govtCertificate.includes(filter) ||
+          data.companyName.toLowerCase().includes(filter) ||
+          data.companyName.includes(filter) ||
+          data.phoneNo.toLowerCase().includes(filter)
+        );
+      };
+    } else if (tableName === "Tax_Exempt_Expired") {
+      return function(data, filter: string): boolean {
+        return (
+          data.taxExemptNbr.toLowerCase().includes(filter) ||
+          data.name.toLowerCase().includes(filter) ||
+          data.name.includes(filter) ||
+          data.govtCertificate.toLowerCase().includes(filter) ||
+          data.govtCertificate.includes(filter) ||
+          data.companyName.toLowerCase().includes(filter) ||
+          data.companyName.includes(filter) ||
+          data.phoneNo.toLowerCase().includes(filter)
+        );
+      };
+    } else if (tableName === "Tax_Exempt_About_To_Expired") {
+      return function(data, filter: string): boolean {
+        return (
+          data.taxExemptNbr.toLowerCase().includes(filter) ||
+          data.name.toLowerCase().includes(filter) ||
+          data.name.includes(filter) ||
+          data.govtCertificate.toLowerCase().includes(filter) ||
+          data.govtCertificate.includes(filter) ||
+          data.companyName.toLowerCase().includes(filter) ||
+          data.companyName.includes(filter) ||
+          data.phoneNo.toLowerCase().includes(filter)
+        );
+      };
+    } else if (tableName === "Tax_Exempt_Deactivated") {
+      return function(data, filter: string): boolean {
+        return (
+          data.taxExemptNbr.toLowerCase().includes(filter) ||
+          data.name.toLowerCase().includes(filter) ||
+          data.name.includes(filter) ||
+          data.govtCertificate.toLowerCase().includes(filter) ||
+          data.govtCertificate.includes(filter) ||
+          data.companyName.toLowerCase().includes(filter) ||
+          data.companyName.includes(filter) ||
           data.phoneNo.toLowerCase().includes(filter)
         );
       };

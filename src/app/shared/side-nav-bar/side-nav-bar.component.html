@@ -1,5 +1,5 @@
 <mat-drawer-container
-  class="example-container mat-typography"
+  class="side-bar-container mat-typography"
   [style.min-height.px]="barHeight"
 >
   <mat-drawer
@@ -27,6 +27,7 @@
               *ngIf="_toggleIsExpend"
               data-toggle="tooltip"
               title="Employee"
+              class="data-table-name-side-navbar"
               [ngClass]="{ 'icons-side-navbar-active': getActive('Employee') }"
               (click)="getElementNameTest('Employee')"
               >Employee</span
@@ -49,6 +50,7 @@
               *ngIf="_toggleIsExpend"
               data-toggle="tooltip"
               title="Tax Rates"
+              class="data-table-name-side-navbar"
               [ngClass]="{ 'icons-side-navbar-active': getActive('Tax_Rates') }"
               (click)="getElementNameTest('Tax_Rates')"
               >Tax Rates</span
@@ -80,6 +82,7 @@
                     [collapsedHeight]="'32px'"
                   >
                     <mat-panel-title
+                      class="data-table-name-side-navbar"
                       [ngClass]="{
                         'icons-side-navbar-active': getActive('Item_Master')
                       }"
@@ -93,42 +96,45 @@
                   <mat-nav-list class="ml-0" dense>
                     <mat-list-item>
                       <a
-                        (click)="getElementNameTest('Price_Prompt_SKUs')"
-                        data-toggle="tooltip"
-                        title="Price Prompt SKUs"
+                        class="data-table-name-side-navbar"
                         [ngClass]="{
                           'icons-side-navbar-active': getActive(
                             'Price_Prompt_SKUs'
                           )
                         }"
+                        (click)="getElementNameTest('Price_Prompt_SKUs')"
+                        data-toggle="tooltip"
+                        title="Price Prompt SKUs"
                         >Price Prompt SKUs</a
                       >
                     </mat-list-item>
                     <mat-list-item>
                       <a
-                        (click)="getElementNameTest('Hardware_SKUs')"
-                        data-toggle="tooltip"
-                        title="Hardware SKUs"
+                        class="data-table-name-side-navbar"
                         [ngClass]="{
                           'icons-side-navbar-active': getActive('Hardware_SKUs')
                         }"
+                        data-toggle="tooltip"
+                        title="Hardware SKUs"
+                        (click)="getElementNameTest('Hardware_SKUs')"
                         >Hardware SKUs</a
                       >
                     </mat-list-item>
                     <mat-list-item>
                       <a
-                        (click)="getElementNameTest('Linked_SKUs')"
+                        class="data-table-name-side-navbar"
                         [ngClass]="{
                           'icons-side-navbar-active': getActive('Linked_SKUs')
                         }"
                         data-toggle="tooltip"
                         title="Warranty/Linked SKUs"
+                        (click)="getElementNameTest('Linked_SKUs')"
                         >Warranty/Linked SKUs</a
                       >
                     </mat-list-item>
                     <mat-list-item>
                       <a
-                        (click)="getElementNameTest('Recycle_Fee_SKUs')"
+                        class="data-table-name-side-navbar"
                         [ngClass]="{
                           'icons-side-navbar-active': getActive(
                             'Recycle_Fee_SKUs'
@@ -136,36 +142,37 @@
                         }"
                         data-toggle="tooltip"
                         title="Recycle Fee SKUs"
+                        (click)="getElementNameTest('Recycle_Fee_SKUs')"
                         >Recycle Fee SKUs</a
                       >
                     </mat-list-item>
                     <mat-list-item>
                       <a
-                        (click)="getElementNameTest('Bag_Fee_SKUs')"
+                        class="data-table-name-side-navbar"
                         [ngClass]="{
                           'icons-side-navbar-active': getActive('Bag_Fee_SKUs')
                         }"
                         data-toggle="tooltip"
                         title="Bag Fee SKUs"
+                        (click)="getElementNameTest('Bag_Fee_SKUs')"
                         >Bag Fee SKUs</a
                       >
                     </mat-list-item>
                     <mat-list-item>
                       <a
-                        (click)="getElementNameTest('ESP_Skus')"
+                        class="data-table-name-side-navbar"
                         [ngClass]="{
                           'icons-side-navbar-active': getActive('ESP_Skus')
                         }"
                         data-toggle="tooltip"
                         title="ESP SKUs"
+                        (click)="getElementNameTest('ESP_Skus')"
                         >ESP SKUs</a
                       >
                     </mat-list-item>
                     <mat-list-item>
                       <a
-                        (click)="
-                          getElementNameTest('Age_Restricted_Special_rest')
-                        "
+                        class="data-table-name-side-navbar"
                         [ngClass]="{
                           'icons-side-navbar-active': getActive(
                             'Age_Restricted_Special_rest'
@@ -173,6 +180,9 @@
                         }"
                         data-toggle="tooltip"
                         title="Age Restricted, Special rest"
+                        (click)="
+                          getElementNameTest('Age_Restricted_Special_rest')
+                        "
                         >Age Restricted, Special rest</a
                       >
                     </mat-list-item>
@@ -208,10 +218,11 @@
                     <mat-panel-title
                       data-toggle="tooltip"
                       title="Item Groups"
-                      (click)="getElementNameTest('Item_Group')"
+                      class="data-table-name-side-navbar"
                       [ngClass]="{
                         'icons-side-navbar-active': getActive('Item_Group')
                       }"
+                      (click)="getElementNameTest('Item_Group')"
                     >
                       Item - Item Groups
                     </mat-panel-title>
@@ -219,7 +230,7 @@
                   <mat-nav-list class="ml-0" dense>
                     <mat-list-item>
                       <a
-                        (click)="getElementNameTest('Return_Driver_License')"
+                        class="data-table-name-side-navbar"
                         data-toggle="tooltip"
                         title="Return- Driver's License"
                         [ngClass]="{
@@ -227,17 +238,19 @@
                             'Return_Driver_License'
                           )
                         }"
+                        (click)="getElementNameTest('Return_Driver_License')"
                         >Return- Driver's License</a
                       >
                     </mat-list-item>
                     <mat-list-item>
                       <a
-                        (click)="getElementNameTest('Lowest_Price')"
+                        class="data-table-name-side-navbar"
                         [ngClass]="{
                           'icons-side-navbar-active': getActive('Lowest_Price')
                         }"
                         data-toggle="tooltip"
                         title="Lowest Price"
+                        (click)="getElementNameTest('Lowest_Price')"
                         >Lowest Price</a
                       >
                     </mat-list-item>
@@ -265,6 +278,7 @@
               *ngIf="_toggleIsExpend"
               data-toggle="tooltip"
               title="POSA"
+              class="data-table-name-side-navbar"
               [ngClass]="{
                 'icons-side-navbar-active': getActive('POSA')
               }"
@@ -291,6 +305,7 @@
               *ngIf="_toggleIsExpend"
               data-toggle="tooltip"
               title="Order"
+              class="data-table-name-side-navbar"
               [ngClass]="{
                 'icons-side-navbar-active': getActive('Order')
               }"
@@ -302,7 +317,7 @@
         <mat-divider></mat-divider>
         <mat-nav-list
           ><mat-list-item>
-              <mat-icon
+            <mat-icon
               *ngIf="!_toggleIsExpend"
               data-toggle="tooltip"
               title="Promos"
@@ -311,7 +326,8 @@
               }"
               (click)="getElementNameTest('Promos')"
               mat-list-icon
-              >local_offer</mat-icon>
+              >local_offer</mat-icon
+            >
             <!-- ><img
               src="./app/assets/images/side_navBar_icons/promo_Icon.png"
               alt="promos"
@@ -328,6 +344,7 @@
               *ngIf="_toggleIsExpend"
               data-toggle="tooltip"
               title="Promos"
+              class="data-table-name-side-navbar"
               [ngClass]="{
                 'icons-side-navbar-active': getActive('Promos')
               }"
@@ -339,7 +356,7 @@
         <mat-divider></mat-divider>
         <mat-nav-list
           ><mat-list-item>
-              <mat-icon
+            <mat-icon
               *ngIf="!_toggleIsExpend"
               data-toggle="tooltip"
               title="Coupon"
@@ -366,6 +383,7 @@
               *ngIf="_toggleIsExpend"
               data-toggle="tooltip"
               title="Coupon"
+              class="data-table-name-side-navbar"
               [ngClass]="{
                 'icons-side-navbar-active': getActive('Coupon')
               }"
@@ -398,12 +416,13 @@
                     [collapsedHeight]="'32px'"
                   >
                     <mat-panel-title
-                      (click)="getElementNameTest('Tax_Exempt')"
                       data-toggle="tooltip"
+                      title="Tax Exempt"
+                      class="data-table-name-side-navbar"
                       [ngClass]="{
                         'icons-side-navbar-active': getActive('Tax_Exempt')
                       }"
-                      title="Tax Exempt"
+                      (click)="getElementNameTest('Tax_Exempt')"
                     >
                       Tax Exempt
                     </mat-panel-title>
@@ -411,39 +430,42 @@
                   <mat-nav-list class="ml-0" dense>
                     <mat-list-item>
                       <a
+                        data-toggle="tooltip"
+                        title="Tax Exempt valid"
+                        class="data-table-name-side-navbar"
                         [ngClass]="{
                           'icons-side-navbar-active': getActive(
                             'Tax_Exempt_Valid'
                           )
                         }"
-                        data-toggle="tooltip"
-                        title="Tax Exempt valid"
                         (click)="getElementNameTest('Tax_Exempt_Valid')"
                         >Valid</a
                       >
                     </mat-list-item>
                     <mat-list-item>
                       <a
+                        data-toggle="tooltip"
+                        title="Tax Exempt Expired"
+                        class="data-table-name-side-navbar"
                         [ngClass]="{
                           'icons-side-navbar-active': getActive(
                             'Tax_Exempt_Expired'
                           )
                         }"
-                        data-toggle="tooltip"
-                        title="Tax Exempt Expired"
                         (click)="getElementNameTest('Tax_Exempt_Expired')"
                         >Expired</a
                       >
                     </mat-list-item>
                     <mat-list-item>
                       <a
+                        data-toggle="tooltip"
+                        title="Tax Exempt About To Expire"
+                        class="data-table-name-side-navbar"
                         [ngClass]="{
                           'icons-side-navbar-active': getActive(
                             'Tax_Exempt_About_To_Expired'
                           )
                         }"
-                        data-toggle="tooltip"
-                        title="Tax Exempt About To Expire"
                         (click)="
                           getElementNameTest('Tax_Exempt_About_To_Expired')
                         "
@@ -452,13 +474,14 @@
                     </mat-list-item>
                     <mat-list-item>
                       <a
+                        data-toggle="tooltip"
+                        title="Tax Exempt Deactivated/Incomplete"
+                        class="data-table-name-side-navbar"
                         [ngClass]="{
                           'icons-side-navbar-active': getActive(
                             'Tax_Exempt_Deactivated'
                           )
                         }"
-                        data-toggle="tooltip"
-                        title="Tax Exempt Deactivated/Incomplete"
                         (click)="getElementNameTest('Tax_Exempt_Deactivated')"
                         >Deactivated/Incomplete</a
                       >
@@ -494,11 +517,12 @@
                     [collapsedHeight]="'32px'"
                   >
                     <mat-panel-title
+                      data-toggle="tooltip"
+                      title="Rewards"
+                      class="data-table-name-side-navbar"
                       [ngClass]="{
                         'icons-side-navbar-active': getActive('Rewards')
                       }"
-                      data-toggle="tooltip"
-                      title="Rewards"
                     >
                       Rewards
                     </mat-panel-title>
@@ -506,22 +530,24 @@
                   <mat-nav-list class="ml-0" dense>
                     <mat-list-item>
                       <a
+                        data-toggle="tooltip"
+                        title="CBP"
+                        class="data-table-name-side-navbar"
                         [ngClass]="{
                           'icons-side-navbar-active': getActive('CBP')
                         }"
-                        data-toggle="tooltip"
-                        title="CBP"
                         (click)="getElementNameTest('CBP')"
                         >CBP</a
                       >
                     </mat-list-item>
                     <mat-list-item>
                       <a
+                        data-toggle="tooltip"
+                        title="CEP"
+                        class="data-table-name-side-navbar"
                         [ngClass]="{
                           'icons-side-navbar-active': getActive('CEP')
                         }"
-                        data-toggle="tooltip"
-                        title="CEP"
                         (click)="getElementNameTest('CEP')"
                         >CEP</a
                       >

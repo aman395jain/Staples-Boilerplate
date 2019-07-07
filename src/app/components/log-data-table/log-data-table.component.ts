@@ -18,11 +18,11 @@ import { NavBarService } from "src/app/services/nav-bar/nav-bar.service";
 import { PrintDocumentService } from "src/app/services/print-document/print-document.service";
 import { LogModalDataService } from "src/app/services/log-modal-data/log-modal-data.service";
 import { LogDescriptionDataOrderService } from "src/app/helper/logDescription/log-description-data-order.service";
+import { PaginationForLongDataService } from "src/app/services/pagination-for-longData/pagination-for-long-data.service";
 
 import LogDataTableHelper from "../../helper/logDataTable/log-data-table-advance-search.helper";
 import UniqueStoreHelper from "../../helper/uniqueStore/unique-store.helper";
 import { logDataTableConst } from "./log-data-table.constant";
-import { PaginationForLongDataService } from "src/app/services/pagination-for-longData/pagination-for-long-data.service";
 
 /**
  * @class LogDataTableComponent
@@ -51,7 +51,6 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
   displayedColumns: object = {};
   storeUniqueData: any = [];
   newOrderType: any = [];
-  initialPageSize: number = 5;
   tableName: String = "";
   advancedSearchStatus: boolean = false;
   isLoading: boolean = true;
@@ -67,8 +66,6 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
   indexForLog: number;
   tableNameFromBar: string;
   paginationBarDisplayFlag: boolean = true;
-
-  pageIndex = 0;
 
   constructor(
     private _loglistingService: LoglistingService,
@@ -159,6 +156,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
               this.dataByAPI.paginator = this.paginator;
               if (this.paginator) {
                 this.paginator.pageSize = 5;
+                this.paginator._intl.itemsPerPageLabel = "Shown Entities:";
               }
               this.dataByAPI.filterPredicate = this._logDescriptionDataOrderService.filterRestrictionOnlyForDisplayedRows(
                 "Tax_Rates"
@@ -175,8 +173,9 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
       .subscribe(tableInfoFromSideNav => {
         this.tableNameFromBar = tableInfoFromSideNav.tableName;
         this.indexForLog = tableInfoFromSideNav.initialIndex;
-        this.initialPageSize = 5;
-        this.pageIndex = 0;
+        if (this.paginator) {
+          this.paginator.pageSize = 5;
+        }
         this.selectedDataForPrint = [];
 
         if (tableInfoFromSideNav.spinnerFlag) {
@@ -473,7 +472,6 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
                     : "col-md-12 advanced-search collapse show"
                 );
               });
-            this.paginator.pageSize = 5;
             this.dataByAPI.filterPredicate = this._logDescriptionDataOrderService.filterRestrictionOnlyForDisplayedRows(
               this.tableName
             );
@@ -526,7 +524,6 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
   }
 
   onSelectOrderType(event): void {
-    // console.log("On selection of order type: ", event.value);
     if (event.value === "Kiosk") {
       this.kioskOrderFormFlag = true;
       this.router.navigate(["/testDataManagement/new-kiosk-order"]);
@@ -621,7 +618,6 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
    * @param event
    */
   updatePageSize(event) {
-    console.log("event", event);
     this._navBarService.setPageSize(event.pageSize);
     this._navBarService.setPageLength(event.length);
   }
