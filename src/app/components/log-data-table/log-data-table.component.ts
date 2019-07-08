@@ -171,6 +171,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
       .getElementName()
       .pipe(takeUntil(this._onDestroy))
       .subscribe(tableInfoFromSideNav => {
+        // debugger;
         this.tableNameFromBar = tableInfoFromSideNav.tableName;
         this.indexForLog = tableInfoFromSideNav.initialIndex;
         if (this.paginator) {
@@ -426,8 +427,15 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
         } else if (this.tableNameFromBar === "Rewards") {
           this.tableName = "Rewards";
         } else if (this.tableNameFromBar === "CBP") {
+          this.advanceSearchOptions = [];
+          this.logTableGridColumns = logDataTableConst.CBP;
+          this._logModalDataService.getTableNameForLogDetail("CBP");
           this.tableName = "CBP";
-        } else if (this.tableNameFromBar === "CEP") {
+          this.displayedColumns = logDataTableConst.CBP.map(
+            columnName => columnName.columnDef
+          );
+          this.tableHeader = "CBP";
+        } else if (this.tableNameFromBar === "CBP") {
           this.tableName = "CEP";
         }
         this._loglistingService

@@ -744,6 +744,53 @@ export const logDataTableConst = {
       header: null,
       cell: null
     }
+  ],
+  CBP: [
+    {
+      columnDef: "select",
+      header: null,
+      cell: null
+    },
+    {
+      columnDef: "sku",
+      header: "SKU",
+      cell: (element: any) => `${element.sku}`
+    },
+    {
+      columnDef: "upc",
+      header: "UPC",
+      cell: (element: any) => `${element.upc}`
+    },
+    {
+      columnDef: "promo",
+      header: "Promo",
+      cell: (element: any) => `${element.promo}`
+    },
+    {
+      columnDef: "basePrice",
+      header: "POS Price",
+      cell: (element: any) => `${element.basePrice}`
+    },
+    {
+      columnDef: "listPrice",
+      header: "List Price",
+      cell: (element: any) => `${element.listPrice}`
+    },
+    {
+      columnDef: "cbpOfferType",
+      header: "CBP Offer Type",
+      cell: (element: any) => `${element.cbpOfferType}`
+    },
+    {
+      columnDef: "store",
+      header: "Store",
+      cell: (element: any) => `${element.store}`
+    },
+    {
+      columnDef: "action",
+      header: null,
+      cell: null
+    }
   ]
 };
 

@@ -258,7 +258,7 @@
   </perfect-scrollbar>
   <div
     class="classified-content align-items-center justify-content-end"
-    *ngIf="promoBuyDisplayStatus"
+    *ngIf="promoBuyDisplayStatus || promoBuyDisplayStatusForBXGP"
   >
     Promos Buy Attributes
   </div>
@@ -301,11 +301,7 @@
                   <span>{{ promosBuyData.itemReqType }}</span>
                 </td>
                 <td>
-                  <span
-                    >{{
-                      promosBuyData.promoGroup
-                    }}
-                    </span>
+                  <span>{{ promosBuyData.promoGroup }} </span>
                 </td>
                 <td>
                   <span>{{ promosBuyData.discountQualifierType }}</span>
@@ -322,6 +318,60 @@
           </table>
         </div>
       </div>
+      <div class="row" *ngIf="promoBuyDisplayStatusForBXGP">
+        <div class="col-md-12 ">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th class="table-header">
+                  <span>Buy Item</span>
+                </th>
+                <th class="table-header">
+                  <span>Buy Qty</span>
+                </th>
+                <th class="table-header">
+                  <span>Buy Type</span>
+                </th>
+                <th class="table-header">
+                  <span>Promo Group</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <span>{{ promosBuyData.sku }}</span>
+                </td>
+                <td>
+                  <span>{{ promosBuyData.thresholdQty }}</span>
+                </td>
+                <td>
+                  <span>{{ promosBuyData.itemReqType }}</span>
+                </td>
+                <td>
+                  <span
+                    ><a class="promo-group" (click)="displaySkuListBuy()">{{
+                      promosBuyData.promoGroup
+                    }}</a></span
+                  >
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div
+        class="classified-content align-items-center justify-content-end"
+        *ngIf="displaySKUBuyFlag === 'buy'"
+      >
+      SKUs List For Buy
+      </div>
+      <div class="row" *ngIf="displaySKUBuyFlag === 'buy' && noDataFlagBuy">
+        <div class="col-md-12 ">
+          No SKU List Data Available
+          </div>
+      </div>
+
     </perfect-scrollbar>
   </div>
   <div
@@ -352,6 +402,9 @@
                 <th class="table-header">
                   <span>Discount value</span>
                 </th>
+                <th class="table-header">
+                  <span>Promo Group</span>
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -361,11 +414,27 @@
                 <td>{{ promosGetData.itemReqType }}</td>
                 <td>{{ promosGetData.discountQualifierType }}</td>
                 <td>{{ promosGetData.discountQualifierValue }}</td>
+                <td>
+                  <a class="promo-group" (click)="displaySkuListGet()">{{
+                    promosGetData.promoGroup
+                  }}</a>
+                </td>
               </tr>
             </tbody>
           </table>
         </div>
       </div>
+      <div
+        class="classified-content align-items-center justify-content-end"
+        *ngIf="displaySKUGetFlag === 'get'"
+      >
+        Item Group SKUs List get
+      </div>
+      <div class="row" *ngIf="displaySKUGetFlag === 'get' && noDataFlagGet">
+          <div class="col-md-12 ">
+            No SKU List Data Available
+            </div>
+        </div>
     </perfect-scrollbar>
   </div>
 </div>

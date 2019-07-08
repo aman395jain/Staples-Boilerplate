@@ -33,18 +33,27 @@ export class LogDetailComponent implements OnInit, OnDestroy {
 
   linkedSKUsDisplayStatus: boolean = false;
   promoBuyDisplayStatus: boolean = false;
+  promoBuyDisplayStatusForBXGP: boolean = false;
   promoGetDisplayStatus: boolean = false;
   itemGroupDataDisplayStatus: boolean = false;
   promosGroupStatus: boolean = false;
+  displaySKUListStatus: boolean = false;
+  displaySKUBuyFlag: string = "";
+  displaySKUGetFlag: string = "";
 
   tableNameLogDetails = "";
   pageNumberIndex: number;
+
+  promoIdBuy: number;
+  promoIdGet: number;
 
   private _onDestroy = new Subject<void>();
   linkedSKUsData: any;
   promosBuyData: any[];
   promosGetData: any[];
   itemGroupDataForID: any[];
+  noDataFlagBuy: boolean = false;
+  noDataFlagGet: boolean = false;
 
   constructor(
     private router: Router,
@@ -120,7 +129,6 @@ export class LogDetailComponent implements OnInit, OnDestroy {
           this._logModalDataService.setLinkedSKUsData().subscribe(data => {
             this.linkedSKUsData = data;
           });
-          // this.linkedSKUsData = this.classifiedDataLogDetail[2].linkedList;
           this.linkedSKUsDisplayStatus = true;
         }
 
@@ -146,7 +154,6 @@ export class LogDetailComponent implements OnInit, OnDestroy {
             .getDataForPromos(rowData.promoNum)
             .subscribe(data => {
               this._logModalDataService.getPrintDataForPromos(data);
-              console.log(data);
               data.map(promoData => {
                 if (
                   rowData.discountType &&
@@ -167,12 +174,24 @@ export class LogDetailComponent implements OnInit, OnDestroy {
                   rowData.discountType &&
                   (rowData.discountType === "BXGP" ||
                     rowData.discountType === "BXGD" ||
-                    rowData.discountType === "PQLT") &&
-                  promoData.buyOrGetFlag &&
-                  promoData.buyOrGetFlag === "get"
+                    rowData.discountType === "PQLT")
                 ) {
-                  this.promoGetDisplayStatus = true;
-                  this.promosGetData = promoData;
+                  if (
+                    promoData.buyOrGetFlag &&
+                    promoData.buyOrGetFlag === "buy"
+                  ) {
+                    this.promoBuyDisplayStatusForBXGP = true;
+                    this.promosBuyData = promoData;
+                    this.promoIdBuy = promoData.promoGroup;
+                  }
+                  if (
+                    promoData.buyOrGetFlag &&
+                    promoData.buyOrGetFlag === "get"
+                  ) {
+                    this.promoGetDisplayStatus = true;
+                    this.promosGetData = promoData;
+                    this.promoIdGet = promoData.promoGroup;
+                  }
                 }
               });
             });
@@ -183,7 +202,6 @@ export class LogDetailComponent implements OnInit, OnDestroy {
             .getItemGroupData(rowData.itemGroupId)
             .subscribe(data => {
               this._logModalDataService.getPrintDataForItemGroup(data);
-
               this.itemGroupDataDisplayStatus = true;
               this.itemGroupDataForID = data;
             });
@@ -215,7 +233,31 @@ export class LogDetailComponent implements OnInit, OnDestroy {
     this.router.navigate(["/testDataManagement"]);
   }
 
-  redirectToSkuList() {
-    this.router.navigate(["/testDataManagement/logDetail/sku-List"]);
+  displaySkuListBuy() {
+    this.displaySKUListStatus = true;
+    this.displaySKUBuyFlag = "buy";
+    this._loglistingService
+      .getItemGroupData(this.promoIdBuy)
+      .subscribe(promoSKUList => {
+        if (promoSKUList.length === 0) {
+          this.noDataFlagBuy = true;
+        } else {
+          this.noDataFlagBuy = false;
+        }
+      });
+  }
+
+  displaySkuListGet() {
+    this.displaySKUListStatus = true;
+    this.displaySKUGetFlag = "get";
+    this._loglistingService
+      .getItemGroupData(this.promoIdGet)
+      .subscribe(promoSKUList => {
+        if (promoSKUList.length === 0) {
+          this.noDataFlagGet = true;
+        } else {
+          this.noDataFlagGet = false;
+        }
+      });
   }
 }

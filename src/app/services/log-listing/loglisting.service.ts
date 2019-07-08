@@ -74,6 +74,8 @@ export class LoglistingService {
       this._serviceUrl = logTableAPIUrls.getTaxExemptExpired;
     } else if (entity === "Tax_Exempt_About_To_Expired") {
       this._serviceUrl = logTableAPIUrls.getTaxExemptAboutToExpired;
+    } else if (entity === "CBP") {
+      this._serviceUrl = logTableAPIUrls.getCBP;
     } else if (entity === "Tax_Exempt_Deactivated") {
       this._serviceUrl = logTableAPIUrls.getTaxExemptDeactivate;
     } else if (entity === "POSA") {
@@ -88,7 +90,7 @@ export class LoglistingService {
     return this.http.post<any>(this._serviceUrl, { pageNumber: index }).pipe(
       debounceTime(1000),
       map((response: Response) => {
-        // console.log("in the service", response[0]);
+        console.log("in the service", response);
         return response;
       }),
       catchError((err: Response) => {

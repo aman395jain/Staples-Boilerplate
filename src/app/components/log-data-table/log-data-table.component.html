@@ -6,7 +6,6 @@
       tableName === 'POSA' ||
       tableName === 'Coupon' ||
       tableName === 'Rewards' ||
-      tableName === 'CBP' ||
       tableName === 'CEP'
     ) &&
     !logDetailsFlag &&
@@ -92,7 +91,7 @@
                   (selectionChange)="onSelectOrderType($event)"
                   [(value)]="newOrder"
                 >
-                  <mat-option
+                <mat-option
                     *ngFor="let orderType of newOrderType"
                     [value]="orderType"
                     >{{ orderType }}</mat-option
@@ -349,7 +348,6 @@
     (tableName === 'POSA' ||
       tableName === 'Coupon' ||
       tableName === 'Rewards' ||
-      tableName === 'CBP' ||
       tableName === 'CEP') &&
     !logDetailsFlag
   "

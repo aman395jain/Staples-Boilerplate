@@ -233,7 +233,7 @@
     </div>
     <div
       class="classified-content align-items-center justify-content-end"
-      *ngIf="promoBuyDisplayStatus"
+      *ngIf="promoBuyDisplayStatus || promoBuyDisplayStatusForBXGP"
     >
       Promos Buy Attributes
     </div>
@@ -273,6 +273,38 @@
                 {{ promosBuyData.discountQualifierValue }}/{{
                   promosBuyData.discountAppliesTo
                 }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="row" *ngIf="promoBuyDisplayStatusForBXGP">
+      <div class="col-md-12 ">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th class="table-header">
+                <span>Buy Item</span>
+              </th>
+              <th class="table-header">
+                <span>Buy Qty</span>
+              </th>
+              <th class="table-header">
+                <span>Buy Type</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <span>{{ promosBuyData.sku }}</span>
+              </td>
+              <td>
+                <span>{{ promosBuyData.thresholdQty }}</span>
+              </td>
+              <td>
+                <span>{{ promosBuyData.itemReqType }}</span>
               </td>
             </tr>
           </tbody>

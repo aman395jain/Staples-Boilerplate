@@ -28,6 +28,7 @@ export class PrintDocumentSingleLogDataComponent implements OnInit, OnDestroy {
   promoBuyDisplayStatus: boolean = false;
   promosBuyData: any;
   promoGetDisplayStatus: boolean = false;
+  promoBuyDisplayStatusForBXGP: boolean = false;
   promosGetData: any;
   linkedSKUsDisplayStatusPrint: boolean = false;
   linkedSKUsDataPrint: any;
@@ -127,12 +128,22 @@ export class PrintDocumentSingleLogDataComponent implements OnInit, OnDestroy {
                 printData.discountType &&
                 (printData.discountType === "BXGP" ||
                   printData.discountType === "BXGD" ||
-                  printData.discountType === "PQLT") &&
-                promoData.buyOrGetFlag &&
-                promoData.buyOrGetFlag === "get"
+                  printData.discountType === "PQLT")
               ) {
-                this.promoGetDisplayStatus = true;
-                this.promosGetData = promoData;
+                if (
+                  promoData.buyOrGetFlag &&
+                  promoData.buyOrGetFlag === "buy"
+                ) {
+                  this.promoBuyDisplayStatusForBXGP = true;
+                  this.promosBuyData = promoData;
+                }
+                if (
+                  promoData.buyOrGetFlag &&
+                  promoData.buyOrGetFlag === "get"
+                ) {
+                  this.promoGetDisplayStatus = true;
+                  this.promosGetData = promoData;
+                }
               }
             });
           });
