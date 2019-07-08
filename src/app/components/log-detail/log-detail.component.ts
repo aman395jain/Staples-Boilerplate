@@ -68,8 +68,16 @@ export class LogDetailComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+    this._logModalDataService
+      .setTableNameForLogDetail()
+      .pipe(takeUntil(this._onDestroy))
+      .subscribe(tableName => {
+        this.tableNameLogDetails = tableName;
+      });
+
     this._location.subscribe(location => {
       if (location.pop && location.url === "/testDataManagement") {
+        // debugger;
         this._logModalDataService.getLogDetailFlag(false);
         this._navBarService.getAdvanceSearchStatus(false);
         const tableNameFromBack = {
@@ -92,12 +100,6 @@ export class LogDetailComponent implements OnInit, OnDestroy {
       .setPaginationIndexForBar()
       .subscribe(indexData => {
         this.pageNumberIndex = indexData.index;
-      });
-    this._logModalDataService
-      .setTableNameForLogDetail()
-      .pipe(takeUntil(this._onDestroy))
-      .subscribe(tableName => {
-        this.tableNameLogDetails = tableName;
       });
 
     this._logModalDataService
