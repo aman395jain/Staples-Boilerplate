@@ -77,9 +77,14 @@ export class LogDetailComponent implements OnInit, OnDestroy {
         this.tableNameLogDetails = tableName;
       });
 
+    this._paginationForLongDataService
+      .setPaginationIndexForBar()
+      .subscribe(indexData => {
+        this.pageNumberIndex = indexData.index;
+      });
+
     this._location.subscribe(location => {
       if (location.pop && location.url === "/testDataManagement") {
-        // debugger;
         this._logModalDataService.getLogDetailFlag(false);
         this._navBarService.getAdvanceSearchStatus(false);
         const tableNameFromBack = {
@@ -89,6 +94,7 @@ export class LogDetailComponent implements OnInit, OnDestroy {
           spinnerForPagination: false
         };
         tableNameFromBack.tableName = this.tableNameLogDetails;
+        tableNameFromBack.initialIndex = this.pageNumberIndex;
         this._navBarService.setElementNameFromSideBar(tableNameFromBack);
       } else if (
         location.pop &&
@@ -97,16 +103,6 @@ export class LogDetailComponent implements OnInit, OnDestroy {
         this._printDocumentService.printDocument("logInvoice");
       }
     });
-
-    this._paginationForLongDataService
-      .setPaginationIndexForBar()
-      .subscribe(indexData => {
-        this.pageNumberIndex = indexData.index;
-      });
-
-    // this._logModalDataService.setTableNameForLogDetail().subscribe(tableName => {
-    //   console.log("table name in log detail component:", tableName)
-    // })
 
     this._logModalDataService
       .setLogDetailData()

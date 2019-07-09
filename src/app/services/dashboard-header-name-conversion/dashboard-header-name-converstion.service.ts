@@ -132,7 +132,14 @@ export class DashboardHeaderNameConverstionService {
     feeSku: "Fee SKUs",
     feeSkuPrice: "Fee SKUs Price",
     fileType: "File Type",
-    lnNmb: "In Number"
+    lnNmb: "In Number",
+    basePrice: "Base Price",
+    listPrice: "List Price",
+    promo: "Promo",
+    upc: "UPC",
+    cbpOfferType: "CBP Offer Type",
+    comments: "Comments",
+    rewards: "Rewards"
   };
   dataNewHeader = {};
 

@@ -385,6 +385,26 @@ export class LogDescriptionDataOrderService {
 
       this.dataToBeDisplayedOnModal[1] = rowDataWithRestData;
       return this.dataToBeDisplayedOnModal;
+    } else if (tableName === "CBP") {
+      this.mainDataToDisplay = {
+        sku: row.sku,
+        store: row.store,
+        upc: row.upc,
+        promo: row.promo,
+        basePrice: row.basePrice,
+        listPrice: row.listPrice
+      };
+      delete rowDataWithRestData["sku"];
+      delete rowDataWithRestData["store"];
+      delete rowDataWithRestData["upc"];
+      delete rowDataWithRestData["promo"];
+      delete rowDataWithRestData["basePrice"];
+      delete rowDataWithRestData["listPrice"];
+
+      this.dataToBeDisplayedOnModal[0] = this.mainDataToDisplay;
+
+      this.dataToBeDisplayedOnModal[1] = rowDataWithRestData;
+      return this.dataToBeDisplayedOnModal;
     }
   }
 
@@ -696,6 +716,19 @@ export class LogDescriptionDataOrderService {
           data.companyName.toLowerCase().includes(filter) ||
           data.companyName.includes(filter) ||
           data.phoneNo.toLowerCase().includes(filter)
+        );
+      };
+    } else if (tableName === "CBP") {
+      return function(data, filter: string): boolean {
+        return (
+          data.comments.toLowerCase().includes(filter) ||
+          data.comments.includes(filter) ||
+          data.promo.toLowerCase().includes(filter) ||
+          data.promo.includes(filter) ||
+          data.basePrice.toString().includes(filter) ||
+          data.listPrice.toString().includes(filter) ||
+          data.sku.toString().includes(filter) ||
+          data.store.toString().includes(filter)
         );
       };
     }

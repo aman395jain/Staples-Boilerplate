@@ -167,6 +167,17 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
       console.log("in the test error", e);
     }
 
+    this.tableWithData();
+  }
+
+  ngOnDestroy(): void {
+    this._onDestroy.next();
+    this._onDestroy.complete();
+  }
+
+  initialTableLoad() {}
+
+  tableWithData() {
     this._navBarService
       .getElementName()
       .pipe(takeUntil(this._onDestroy))
@@ -485,11 +496,6 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
             );
           });
       });
-  }
-
-  ngOnDestroy(): void {
-    this._onDestroy.next();
-    this._onDestroy.complete();
   }
 
   /*
