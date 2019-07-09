@@ -507,7 +507,9 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
    * @param row
    */
   launchLogsForSingleEntity(row) {
-    this._logModalDataService.getLogDetailData(row);
+    let rowData = { row: row, tableName: "" };
+    rowData.tableName = this.tableHeader;
+    this._logModalDataService.getLogDetailData(rowData);
     this._logModalDataService.getLogModalData(row); //data for print
     this._navBarService.setPageLength(5);
     if (this.tableName === "Linked_SKUs") {
@@ -517,6 +519,8 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
     }
     this.logDetailsFlag = true;
     this.router.navigate(["/testDataManagement/logDetail"]);
+
+    // this._logModalDataService.getTableNameForLogDetail(this.tableHeader) //Table Name
   }
 
   /**
@@ -671,7 +675,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Advance search form Submittion.
+   * Advance search form Submition.
    */
   advanceSearchOnSubmit() {
     let advanceSearchObject = [];

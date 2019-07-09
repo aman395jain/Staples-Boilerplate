@@ -55,6 +55,8 @@ export class LogDetailComponent implements OnInit, OnDestroy {
   noDataFlagBuy: boolean = false;
   noDataFlagGet: boolean = false;
 
+  tableHeader = "";
+
   constructor(
     private router: Router,
     private _logModalDataService: LogModalDataService,
@@ -102,10 +104,17 @@ export class LogDetailComponent implements OnInit, OnDestroy {
         this.pageNumberIndex = indexData.index;
       });
 
+    // this._logModalDataService.setTableNameForLogDetail().subscribe(tableName => {
+    //   console.log("table name in log detail component:", tableName)
+    // })
+
     this._logModalDataService
       .setLogDetailData()
       .pipe(takeUntil(this._onDestroy))
-      .subscribe(rowData => {
+      .subscribe(rowDataFromLaunch => {
+        let rowData = rowDataFromLaunch.row;
+        this.tableHeader = rowDataFromLaunch.tableName;
+
         this.classifiedDataLogDetail = this._logDiscriptionDataOrderService.dataOrderClassification(
           rowData,
           this.tableNameLogDetails

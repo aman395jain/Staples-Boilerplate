@@ -22,12 +22,11 @@ import { LogDataTableComponent } from "./components/log-data-table/log-data-tabl
 import { SideNavBarComponent } from "./shared/side-nav-bar/side-nav-bar.component";
 import { HeaderComponent } from "./shared/header/header.component";
 import { FooterComponent } from "./shared/footer/footer.component";
-import { PromoDetailComponent } from "./components/promo-detail/promo-detail.component";
 import { LogDetailComponent } from "./components/log-detail/log-detail.component";
 import { KioskTableComponent } from "./shared/kiosk-table/kiosk-table.component";
 import { PrintDocumentComponent } from "./components/print-document/print-document.component";
 import { SolutionBuilderOrderComponent } from "./shared/solution-builder-order/solution-builder-order.component";
-import { LogDescriptionComponent } from "./components/log-description/log-description.component";
+
 import { DisplayLogTableComponent } from "./components/dashboard-log-table/dashboard-log-table.component";
 import { PrintDocumentSingleLogDataComponent } from "./components/print-document-single-log-data/print-document-single-log-data.component";
 import { PrintDocumentLayoutComponent } from "./shared/print-document-layout/print-document-layout.component";
@@ -54,7 +53,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     PageNotFoundComponent,
     HeaderComponent,
     FooterComponent,
-    LogDescriptionComponent,
+
     DisplayLogTableComponent,
     LogDataTableComponent,
     SideNavBarComponent,
@@ -62,7 +61,6 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     PrintDocumentComponent,
     TableForStorePipe,
     PrintDocumentSingleLogDataComponent,
-    PromoDetailComponent,
     LogDetailComponent,
     KioskTableComponent,
     SolutionBuilderOrderComponent,
@@ -85,7 +83,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     NgbPaginationModule,
     AngularSplitModule.forRoot()
   ],
-  entryComponents: [LogDescriptionComponent, PromoDetailComponent],
+  entryComponents: [],
   providers: [
     LoglistingService,
     CdkColumnDef,
