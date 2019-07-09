@@ -59,7 +59,6 @@ export class PrintDocumentSingleLogDataComponent implements OnInit, OnDestroy {
         // console.log("the print data is:", printData);
         let printedDataForMainAttributes = [];
         let printedDataForRestAttributes = [];
-        let dataDescriptionKeysToDisplayForPrint = [];
         let mainAttributesForPrint = {};
         let restAttributesForPrint = {};
 

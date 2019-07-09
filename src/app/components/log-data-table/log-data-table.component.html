@@ -91,7 +91,7 @@
                   (selectionChange)="onSelectOrderType($event)"
                   [(value)]="newOrder"
                 >
-                <mat-option
+                  <mat-option
                     *ngFor="let orderType of newOrderType"
                     [value]="orderType"
                     >{{ orderType }}</mat-option
@@ -178,15 +178,17 @@
               </div>
               <div class="col-md-12 row align-items-center inner-rows">
                 <div class=" col-md-6 advance-search-disclaimer">
-                  Disclaimers:
+                  <span>Disclaimers:</span>
                   <ol>
                     <li>
                       To collapse this window, please re-click on Advanced
                       Search link.
                     </li>
                     <li>
-                      This advanced search is applicable to entire data of
-                      {{ tableHeader }}.
+                      Currently advanced search functionality is applicable for
+                      current index data of
+                      {{ tableHeader }}. Later it would be applicable on entire
+                      data for {{ tableHeader }}.
                     </li>
                   </ol>
                 </div>
@@ -254,7 +256,11 @@
               <span *ngIf="!(column.cell(row) === 'null')">{{
                 column.cell(row)
               }}</span>
-              <span *ngIf="column.cell(row) === 'null'" style="font-style: italic">N.A</span>
+              <span
+                *ngIf="column.cell(row) === 'null'"
+                style="font-style: italic"
+                >N.A</span
+              >
             </div>
             <span *ngIf="column.columnDef === 'select'">
               <mat-checkbox
