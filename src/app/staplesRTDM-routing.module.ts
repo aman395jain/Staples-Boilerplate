@@ -11,7 +11,6 @@ import { LogDetailComponent } from "./components/log-detail/log-detail.component
 import { LogDetailGuard } from "./guards/log-detail/log-detail-guard.guard";
 import { KioskTableComponent } from "./shared/kiosk-table/kiosk-table.component";
 import { SolutionBuilderOrderComponent } from "./shared/solution-builder-order/solution-builder-order.component";
-import { SkuListComponent } from "./shared/sku-list/sku-list.component";
 
 @NgModule({
   imports: [
@@ -26,10 +25,6 @@ import { SkuListComponent } from "./shared/sku-list/sku-list.component";
               path: "logDetail",
               component: LogDetailComponent,
               canActivate: [LogDetailGuard]
-            },
-            {
-              path: "logDetail/sku-List",
-              component: SkuListComponent
             },
             {
               path: "new-kiosk-order",

@@ -10,8 +10,8 @@
     class="nav-bar-expandable"
   >
     <perfect-scrollbar [config]="config" [scrollIndicators]="true">
-      <div style="margin-top: 20px;">
-        <mat-nav-list
+      <div>
+        <mat-nav-list [ngClass]="{'mat-nav-list-collapsed': !_toggleIsExpend}"
           ><mat-list-item>
             <mat-icon
               *ngIf="!_toggleIsExpend"
@@ -35,7 +35,7 @@
           ></mat-nav-list
         >
         <mat-divider></mat-divider>
-        <mat-nav-list
+        <mat-nav-list [ngClass]="{'mat-nav-list-collapsed': !_toggleIsExpend}"
           ><mat-list-item>
             <mat-icon
               *ngIf="!_toggleIsExpend"
@@ -58,7 +58,7 @@
           ></mat-nav-list
         >
         <mat-divider></mat-divider>
-        <mat-nav-list>
+        <mat-nav-list  [ngClass]="{'mat-nav-list-collapsed': !_toggleIsExpend}">
           <mat-list-item>
             <mat-icon
               *ngIf="!_toggleIsExpend"
@@ -193,7 +193,7 @@
           </mat-list-item>
         </mat-nav-list>
         <mat-divider></mat-divider>
-        <mat-nav-list>
+        <mat-nav-list  [ngClass]="{'mat-nav-list-collapsed': !_toggleIsExpend}">
           <mat-list-item>
             <mat-icon
               *ngIf="!_toggleIsExpend"
@@ -206,16 +206,7 @@
               }"
               >device_hub</mat-icon
             >
-            <h4 mat-line *ngIf="_toggleIsExpend">
-              <mat-accordion multi="true" [displayMode]="displayMode">
-                <mat-expansion-panel class="no-shadow">
-                  <mat-expansion-panel-header
-                    class="mat-expansion-header-adjust nav-bar-accordian"
-                    fxLayout="row"
-                    [expandedHeight]="'36px'"
-                    [collapsedHeight]="'32px'"
-                  >
-                    <mat-panel-title
+            <span *ngIf="_toggleIsExpend"
                       data-toggle="tooltip"
                       title="Item Groups"
                       class="data-table-name-side-navbar"
@@ -225,44 +216,60 @@
                       (click)="getElementNameTest('Item_Group')"
                     >
                       Item - Item Groups
-                    </mat-panel-title>
-                  </mat-expansion-panel-header>
-                  <mat-nav-list class="ml-0" dense>
-                    <mat-list-item>
-                      <a
-                        class="data-table-name-side-navbar"
-                        data-toggle="tooltip"
+                      </span>
+                    </mat-list-item>
+        </mat-nav-list>  
+        <mat-divider></mat-divider>
+        <mat-nav-list  [ngClass]="{'mat-nav-list-collapsed': !_toggleIsExpend}">
+          <mat-list-item>
+            <mat-icon *ngIf="!_toggleIsExpend"
+                      data-toggle="tooltip"
+                      title="Return- Driver's License"
+                      (click)="getElementNameTest('Return_Driver_License')"
+                      [ngClass]="{'icons-side-navbar-active': getActive('Return_Driver_License')}"
+                      mat-list-icon >
+              find_replace
+            </mat-icon>
+            <span *ngIf="_toggleIsExpend"
+              data-toggle="tooltip"
                         title="Return- Driver's License"
+                        class="data-table-name-side-navbar"
                         [ngClass]="{
                           'icons-side-navbar-active': getActive(
                             'Return_Driver_License'
                           )
                         }"
                         (click)="getElementNameTest('Return_Driver_License')"
-                        >Return- Driver's License</a
-                      >
-                    </mat-list-item>
-                    <mat-list-item>
-                      <a
-                        class="data-table-name-side-navbar"
-                        [ngClass]="{
-                          'icons-side-navbar-active': getActive('Lowest_Price')
-                        }"
-                        data-toggle="tooltip"
-                        title="Lowest Price"
-                        (click)="getElementNameTest('Lowest_Price')"
-                        >Lowest Price</a
-                      >
-                    </mat-list-item>
-                  </mat-nav-list>
-                </mat-expansion-panel>
-              </mat-accordion>
-            </h4>
+                        >Return- Driver's License
+            </span>
           </mat-list-item>
         </mat-nav-list>
         <mat-divider></mat-divider>
-        <mat-nav-list
-          ><mat-list-item>
+        <mat-nav-list [ngClass]="{'mat-nav-list-collapsed': !_toggleIsExpend}">
+          <mat-list-item>
+            <mat-icon *ngIf="!_toggleIsExpend"
+            class="data-table-name-side-navbar"
+            [ngClass]="{'icons-side-navbar-active': getActive('Lowest_Price')}"
+            data-toggle="tooltip"
+            title="Lowest Price"
+            (click)="getElementNameTest('Lowest_Price')">
+              low_priority
+            </mat-icon>
+            <span *ngIf="_toggleIsExpend"
+            class="data-table-name-side-navbar"
+            [ngClass]="{
+              'icons-side-navbar-active': getActive('Lowest_Price')
+            }"
+            data-toggle="tooltip"
+            title="Lowest Price"
+            (click)="getElementNameTest('Lowest_Price')">
+              Lowest Price
+            </span>
+          </mat-list-item>
+        </mat-nav-list>
+        <mat-divider></mat-divider>
+        <mat-nav-list [ngClass]="{'mat-nav-list-collapsed': !_toggleIsExpend}">
+          <mat-list-item>
             <mat-icon
               *ngIf="!_toggleIsExpend"
               data-toggle="tooltip"
@@ -272,8 +279,8 @@
                 'icons-side-navbar-active': getActive('POSA')
               }"
               mat-list-icon
-              >note_add</mat-icon
-            >
+              >note_add
+            </mat-icon>
             <span
               *ngIf="_toggleIsExpend"
               data-toggle="tooltip"
@@ -288,7 +295,7 @@
           ></mat-nav-list
         >
         <mat-divider></mat-divider>
-        <mat-nav-list
+        <mat-nav-list [ngClass]="{'mat-nav-list-collapsed': !_toggleIsExpend}"
           ><mat-list-item>
             <mat-icon
               *ngIf="!_toggleIsExpend"
@@ -315,7 +322,7 @@
           ></mat-nav-list
         >
         <mat-divider></mat-divider>
-        <mat-nav-list
+        <mat-nav-list [ngClass]="{'mat-nav-list-collapsed': !_toggleIsExpend}"
           ><mat-list-item>
             <mat-icon
               *ngIf="!_toggleIsExpend"
@@ -328,18 +335,6 @@
               mat-list-icon
               >local_offer</mat-icon
             >
-            <!-- ><img
-              src="./app/assets/images/side_navBar_icons/promo_Icon.png"
-              alt="promos"
-              height="30px"
-              data-toggle="tooltip"
-              title="Promos"
-              [ngClass]="{
-                'icons-side-navbar-active': getActive('Promos')
-              }"
-              (click)="getElementNameTest('Promos')"
-              *ngIf="!_toggleIsExpend"
-            /> -->
             <span
               *ngIf="_toggleIsExpend"
               data-toggle="tooltip"
@@ -354,7 +349,7 @@
           ></mat-nav-list
         >
         <mat-divider></mat-divider>
-        <mat-nav-list
+        <mat-nav-list [ngClass]="{'mat-nav-list-collapsed': !_toggleIsExpend}"
           ><mat-list-item>
             <mat-icon
               *ngIf="!_toggleIsExpend"
@@ -367,18 +362,6 @@
               mat-list-icon
               >local_atm</mat-icon
             >
-            <!-- <img
-              src="./app/assets/images/side_navBar_icons/coupon_Icon.png"
-              alt="Coupon"
-              height="30px"
-              data-toggle="tooltip"
-              title="Coupon"
-              [ngClass]="{
-                'icons-side-navbar-active': getActive('Coupon')
-              }"
-              (click)="getElementNameTest('Coupon')"
-              *ngIf="!_toggleIsExpend"
-            /> -->
             <span
               *ngIf="_toggleIsExpend"
               data-toggle="tooltip"
@@ -393,7 +376,7 @@
           ></mat-nav-list
         >
         <mat-divider></mat-divider>
-        <mat-nav-list
+        <mat-nav-list [ngClass]="{'mat-nav-list-collapsed': !_toggleIsExpend}"
           ><mat-list-item>
             <mat-icon
               *ngIf="!_toggleIsExpend"
@@ -493,7 +476,7 @@
           </mat-list-item></mat-nav-list
         >
         <mat-divider></mat-divider>
-        <mat-nav-list>
+        <mat-nav-list [ngClass]="{'mat-nav-list-collapsed': !_toggleIsExpend}">
           <mat-list-item>
             <mat-icon
               *ngIf="!_toggleIsExpend"
