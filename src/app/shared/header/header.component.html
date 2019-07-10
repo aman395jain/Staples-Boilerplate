@@ -1,24 +1,34 @@
 <header class="row align-items-center main-header">
   <div class="col-sm-1 toggle-icon-main">
-    <a
-      mat-mini-fab
-      color="warn"
-      style="margin: 10px;"
-      (click)="onToolbarMenuToggle()"
+    <div
+      class="toggle-icon-inner"
+      [ngClass]="{ 'toggle-icon-inner-expended': isMenuOpen }"
     >
-      <mat-icon
-        *ngIf="!isMenuOpen"
-        aria-label="Menu"
-        class="toggle-icon toggle-icon-cursor"
-        >menu</mat-icon
+      <a
+        mat-mini-fab
+        color="warn"
+        style="margin: 10px;"
+        (click)="onToolbarMenuToggle()"
       >
-      <mat-icon
-        *ngIf="isMenuOpen"
-        aria-label="Close"
-        class="toggle-icon toggle-icon-cursor"
-        >close</mat-icon
-      >
-    </a>
+        <mat-icon
+          *ngIf="!isMenuOpen"
+          aria-label="Menu"
+          class="toggle-icon toggle-icon-cursor"
+          data-toggle="tooltip"
+          title="Expend"
+          >menu</mat-icon
+        >
+        <mat-icon
+          *ngIf="isMenuOpen"
+          aria-label="Close"
+          class="toggle-icon toggle-icon-cursor"
+          data-toggle="tooltip"
+          title="Collapse"
+          [ngClass]="{ 'toggle-icon-cursor-expended': isMenuOpen }"
+          >menu</mat-icon
+        >
+      </a>
+    </div>
   </div>
   <div class="col-sm-2">
     <img

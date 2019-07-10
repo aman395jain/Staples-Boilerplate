@@ -8,8 +8,19 @@
   .toggle-icon-main {
     max-width: 5.333333% !important;
     color: #cc0000;
-    .toggle-icon-cursor {
-      cursor: pointer;
+    .toggle-icon-inner-expended {
+      background: #dfe0e2 !important;
+      border-radius: 60%;
+    }
+    .toggle-icon-inner {
+      .toggle-icon-cursor {
+        cursor: pointer;
+      }
+    }
+
+    .toggle-icon-cursor-expended {
+      color: #0070e8 !important;
+      margin-top: 5px;
     }
   }
   .header-logo {

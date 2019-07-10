@@ -296,7 +296,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
           this.displayedColumns = logDataTableConst.age_Restricted_Special_rest.map(
             columnName => columnName.columnDef
           );
-          this.tableHeader = "Age Restricted Special Rest";
+          this.tableHeader = "Age or Special Restricted SKUs";
         } else if (this.tableNameFromBar === "ESP_Skus") {
           this.advanceSearchOptions = ["Description", "SKU", "Retail Price"];
           this.logTableGridColumns = logDataTableConst.ESP_SKUs;
