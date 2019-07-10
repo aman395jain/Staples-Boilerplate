@@ -56,9 +56,15 @@
             title="print"
             (click)="onPrintInvoice()"
             [hidden]="isLoading"
+            [ngClass]="{
+              'advance-print-notDisplay': advanceSearchOptions?.length == 0
+            }"
             >print</mat-icon
           >
-          <mat-form-field *ngIf="!isLoading" class="search-field">
+          <mat-form-field
+            *ngIf="!isLoading"
+            [ngClass]="{ 'search-field': advanceSearchOptions?.length > 0 }"
+          >
             <input
               matInput
               (keyup)="applyFilter($event.target.value)"
@@ -71,6 +77,7 @@
             class="advance-search-link links"
             data-toggle="tooltip"
             title="Advanced Search"
+            *ngIf="advanceSearchOptions?.length > 0"
           >
             <a
               data-toggle="collapse"

@@ -518,7 +518,12 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
     this._logModalDataService.getLogDetailData(rowData);
     this._logModalDataService.getLogModalData(row); //data for print
     this._navBarService.setPageLength(5);
-    if (this.tableName === "Linked_SKUs") {
+    if (
+      this.tableName === "Linked_SKUs" ||
+      this.tableName === "ESP_Skus" ||
+      this.tableName === "Recycle_Fee_SKUs" ||
+      this.tableName === "Bag_Fee_SKUs"
+    ) {
       this._loglistingService.postLinkedListSKUs(row.sku).subscribe(data => {
         this._logModalDataService.getLinkedSKUsData(data);
       });

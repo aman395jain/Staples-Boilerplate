@@ -117,7 +117,7 @@ export class PrintDocumentSingleLogDataComponent implements OnInit, OnDestroy {
                 printData.discountType &&
                 (printData.discountType === "SMPL" ||
                   printData.discountType === "CTHR" ||
-                  printData.discountType === "PQL") &&
+                  printData.discountType === "PQL_") &&
                 promoData.buyOrGetFlag &&
                 promoData.buyOrGetFlag === "buy"
               ) {
@@ -126,8 +126,7 @@ export class PrintDocumentSingleLogDataComponent implements OnInit, OnDestroy {
               } else if (
                 printData.discountType &&
                 (printData.discountType === "BXGP" ||
-                  printData.discountType === "BXGD" ||
-                  printData.discountType === "PQLT")
+                  printData.discountType === "BXGD")
               ) {
                 if (
                   promoData.buyOrGetFlag &&

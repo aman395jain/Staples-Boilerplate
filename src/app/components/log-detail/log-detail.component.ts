@@ -166,7 +166,7 @@ export class LogDetailComponent implements OnInit, OnDestroy {
                   rowData.discountType &&
                   (rowData.discountType === "SMPL" ||
                     rowData.discountType === "CTHR" ||
-                    rowData.discountType === "PQL") &&
+                    rowData.discountType === "PQL_") &&
                   promoData.buyOrGetFlag &&
                   promoData.buyOrGetFlag === "buy"
                 ) {
@@ -180,8 +180,7 @@ export class LogDetailComponent implements OnInit, OnDestroy {
                 } else if (
                   rowData.discountType &&
                   (rowData.discountType === "BXGP" ||
-                    rowData.discountType === "BXGD" ||
-                    rowData.discountType === "PQLT")
+                    rowData.discountType === "BXGD")
                 ) {
                   if (
                     promoData.buyOrGetFlag &&

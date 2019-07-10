@@ -141,8 +141,10 @@
         class="row linked-sku-table-header"
         *ngIf="
           linkedSKUsDisplayStatusPrint &&
-          (tableNameForPrint == 'Recycle_Fee_SKUs' ||
-            tableNameForPrint == 'Bag_Fee_SKUs')
+          (tableNameForPrint == 'Linked_SKUs' ||
+            tableNameForPrint == 'Bag_Fee_SKUs' ||
+            tableNameForPrint == 'ESP_Skus' ||
+            tableNameForPrint == 'Recycle_Fee_SKUs')
         "
       >
         <div class="col-md-12 linked-sku-table">
@@ -176,7 +178,7 @@
           linkedSKUsDisplayStatusPrint && tableNameForPrint == 'Linked_SKUs'
         "
       >
-        <div class="col-md-12 linked-sku-table">
+        <!-- <div class="col-md-12 linked-sku-table">
           <table class="table table-bordered">
             <thead>
               <tr>
@@ -199,7 +201,7 @@
               </tr>
             </tbody>
           </table>
-        </div>
+        </div> -->
       </div>
       <div
         class="row linked-sku-table-header"
