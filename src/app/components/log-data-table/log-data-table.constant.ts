@@ -703,6 +703,70 @@ export const logDataTableConst = {
       cell: null
     }
   ],
+  Tax_Exempt_Incomplete: [
+    {
+      columnDef: "select",
+      header: null,
+      cell: null
+    },
+    {
+      columnDef: "taxExemptNbr",
+      header: "Tax Exempt",
+      cell: (element: any) => `${element.taxExemptNbr}`
+    },
+    {
+      columnDef: "name",
+      header: "Name",
+      cell: (element: any) => `${element.name}`
+    },
+    {
+      columnDef: "phoneNo",
+      header: "Phone No.",
+      cell: (element: any) => `${element.phoneNo}`
+    },
+    {
+      columnDef: "companyName",
+      header: "Company Name",
+      cell: (element: any) => `${element.companyName}`
+    },
+    {
+      columnDef: "action",
+      header: null,
+      cell: null
+    }
+  ],
+  Tax_Exempt_Not_Validated: [
+    {
+      columnDef: "select",
+      header: null,
+      cell: null
+    },
+    {
+      columnDef: "taxExemptNbr",
+      header: "Tax Exempt",
+      cell: (element: any) => `${element.taxExemptNbr}`
+    },
+    {
+      columnDef: "name",
+      header: "Name",
+      cell: (element: any) => `${element.name}`
+    },
+    {
+      columnDef: "phoneNo",
+      header: "Phone No.",
+      cell: (element: any) => `${element.phoneNo}`
+    },
+    {
+      columnDef: "companyName",
+      header: "Company Name",
+      cell: (element: any) => `${element.companyName}`
+    },
+    {
+      columnDef: "action",
+      header: null,
+      cell: null
+    }
+  ],
   Order: [
     {
       columnDef: "select",

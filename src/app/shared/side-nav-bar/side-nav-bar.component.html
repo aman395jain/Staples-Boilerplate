@@ -167,12 +167,28 @@
                         ">About To Expire</a>
                     </mat-list-item>
                     <mat-list-item>
-                      <a data-toggle="tooltip" title="Tax Exempt Deactivated/Incomplete"
+                      <a data-toggle="tooltip" title="Tax Exempt Deactivated"
                         class="data-table-name-side-navbar" [ngClass]="{
                           'icons-side-navbar-active': getActive(
                             'Tax_Exempt_Deactivated'
                           )
-                        }" (click)="getElementNameTest('Tax_Exempt_Deactivated')">Deactivated/Incomplete</a>
+                        }" (click)="getElementNameTest('Tax_Exempt_Deactivated')">Deactivated</a>
+                    </mat-list-item>
+                    <mat-list-item>
+                      <a data-toggle="tooltip" title="Tax Exempt Incomplete"
+                        class="data-table-name-side-navbar" [ngClass]="{
+                          'icons-side-navbar-active': getActive(
+                            'Tax_Exempt_Incomplete'
+                          )
+                        }" (click)="getElementNameTest('Tax_Exempt_Incomplete')">Incomplete</a>
+                    </mat-list-item>
+                    <mat-list-item>
+                      <a data-toggle="tooltip" title="Tax Exempt Not Validated"
+                        class="data-table-name-side-navbar" [ngClass]="{
+                          'icons-side-navbar-active': getActive(
+                            'Tax_Exempt_Mot_Validated'
+                          )
+                        }" (click)="getElementNameTest('Tax_Exempt_Not_Validated')">Not Validated</a>
                     </mat-list-item>
                   </mat-nav-list>
                 </mat-expansion-panel>

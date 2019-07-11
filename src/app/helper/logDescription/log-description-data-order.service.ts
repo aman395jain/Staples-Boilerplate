@@ -355,6 +355,44 @@ export class LogDescriptionDataOrderService {
 
       this.dataToBeDisplayedOnModal[1] = rowDataWithRestData;
       return this.dataToBeDisplayedOnModal;
+    } else if (tableName === "Tax_Exempt_Not_Validated") {
+      this.mainDataToDisplay = {
+        taxExemptNbr: row.taxExemptNbr,
+        name: row.name,
+        state: row.state,
+        phoneNo: row.phoneNo,
+        companyName: row.companyName
+      };
+      delete rowDataWithRestData["taxExemptNbr"];
+      delete rowDataWithRestData["name"];
+      delete rowDataWithRestData["state"];
+      delete rowDataWithRestData["phoneNo"];
+      delete rowDataWithRestData["companyName"];
+      delete rowDataWithRestData["id"];
+
+      this.dataToBeDisplayedOnModal[0] = this.mainDataToDisplay;
+
+      this.dataToBeDisplayedOnModal[1] = rowDataWithRestData;
+      return this.dataToBeDisplayedOnModal;
+    } else if (tableName === "Tax_Exempt_Incomplete") {
+      this.mainDataToDisplay = {
+        taxExemptNbr: row.taxExemptNbr,
+        name: row.name,
+        state: row.state,
+        phoneNo: row.phoneNo,
+        companyName: row.companyName
+      };
+      delete rowDataWithRestData["taxExemptNbr"];
+      delete rowDataWithRestData["name"];
+      delete rowDataWithRestData["state"];
+      delete rowDataWithRestData["phoneNo"];
+      delete rowDataWithRestData["companyName"];
+      delete rowDataWithRestData["id"];
+
+      this.dataToBeDisplayedOnModal[0] = this.mainDataToDisplay;
+
+      this.dataToBeDisplayedOnModal[1] = rowDataWithRestData;
+      return this.dataToBeDisplayedOnModal;
     } else if (tableName === "Order") {
       this.mainDataToDisplay = {
         orderNo: row.orderNo,

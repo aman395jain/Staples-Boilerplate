@@ -93,6 +93,18 @@ export class LoglistingService {
         pageNumber: index,
         _tax_exempt_status: "Deactivated"
       };
+    } else if (entity === "Tax_Exempt_Not_Validated") {
+      this._serviceUrl = logTableAPIUrls.getTaxExemptNotValidated;
+      this._serviceUrlparams = {
+        pageNumber: index,
+        _tax_exempt_status: "Not Validated"
+      };
+    } else if (entity === "Tax_Exempt_Incomplete") {
+      this._serviceUrl = logTableAPIUrls.getTaxExemptIncomplete;
+      this._serviceUrlparams = {
+        pageNumber: index,
+        _tax_exempt_status: "Incomplete"
+      };
     } else if (entity === "POSA") {
       //changes reqired according to service
       this._serviceUrl = logTableAPIUrls.getPOSA;
