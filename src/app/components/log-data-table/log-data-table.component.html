@@ -359,8 +359,7 @@
     (tableName === 'POSA' ||
       tableName === 'Coupon' ||
       tableName === 'Rewards' ||
-      tableName === 'CEP') &&
-    !logDetailsFlag
+      tableName === 'CEP')
   "
   class="under-construction"
 >
@@ -371,7 +370,7 @@
     width="300px"
   />
 </div>
-<div class="load-spinner" *ngIf="!logDetailsFlag && !kioskOrderFormFlag">
+<div class="load-spinner">
   <mat-progress-spinner
     *ngIf="isLoading"
     style="display: flex; justify-content: center; align-items: center"
@@ -380,9 +379,3 @@
   >
   </mat-progress-spinner>
 </div>
-<!-- <div *ngIf="logDetailsFlag && !kioskOrderFormFlag">
-  <router-outlet></router-outlet>
-</div> -->
-<!-- <div *ngIf="kioskOrderFormFlag">
-  <router-outlet></router-outlet>
-</div> -->

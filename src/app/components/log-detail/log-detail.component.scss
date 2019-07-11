@@ -29,6 +29,10 @@
   }
 }
 
+.detail-header {
+  border-bottom: solid 1px #b3b3b3;
+}
+
 .print-close-row {
   @include margin("print-close-row");
   .print-close-icon {

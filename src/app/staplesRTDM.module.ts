@@ -23,7 +23,7 @@ import { SideNavBarComponent } from "./shared/side-nav-bar/side-nav-bar.componen
 import { HeaderComponent } from "./shared/header/header.component";
 import { FooterComponent } from "./shared/footer/footer.component";
 import { LogDetailComponent } from "./components/log-detail/log-detail.component";
-import { KioskTableComponent } from "./shared/kiosk-table/kiosk-table.component";
+import { KioskTableComponent } from "./shared/kiosk-order/kiosk-table.component";
 import { PrintDocumentComponent } from "./components/print-document/print-document.component";
 import { SolutionBuilderOrderComponent } from "./shared/solution-builder-order/solution-builder-order.component";
 

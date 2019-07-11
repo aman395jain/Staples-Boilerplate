@@ -8,10 +8,11 @@ import { PrintDocumentLayoutComponent } from "./shared/print-document-layout/pri
 import { PrintDocumentSingleLogDataComponent } from "./components/print-document-single-log-data/print-document-single-log-data.component";
 import { PrintDocumentComponent } from "./components/print-document/print-document.component";
 import { LogDetailComponent } from "./components/log-detail/log-detail.component";
-import { LogDetailGuard } from "./guards/log-detail/log-detail-guard.guard";
-import { KioskTableComponent } from "./shared/kiosk-table/kiosk-table.component";
+import { KioskTableComponent } from "./shared/kiosk-order/kiosk-table.component";
 import { SolutionBuilderOrderComponent } from "./shared/solution-builder-order/solution-builder-order.component";
 import { LogDataTableComponent } from "./components/log-data-table/log-data-table.component";
+
+import { LogDetailGuard } from "./guards/log-detail/log-detail-guard.guard";
 
 @NgModule({
   imports: [

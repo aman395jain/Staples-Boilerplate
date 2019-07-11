@@ -6,9 +6,9 @@ import {
 } from "ngx-perfect-scrollbar";
 import { Subject } from "rxjs";
 import { takeUntil } from "rxjs/operators";
+import { Router } from "@angular/router";
 
 import { NavBarService } from "src/app/services/nav-bar/nav-bar.service";
-import { Router } from "@angular/router";
 import { LogModalDataService } from "src/app/services/log-modal-data/log-modal-data.service";
 import { PaginationForLongDataService } from "src/app/services/pagination-for-longData/pagination-for-long-data.service";
 
@@ -18,16 +18,15 @@ import { PaginationForLongDataService } from "src/app/services/pagination-for-lo
   styleUrls: ["./side-nav-bar.component.scss"]
 })
 export class SideNavBarComponent implements OnInit, OnDestroy {
-  _toggleIsExpend: boolean = false;
-
   public config: PerfectScrollbarConfigInterface = {};
+  private _onDestroy = new Subject<void>();
 
   @ViewChild(PerfectScrollbarComponent)
   componentRef?: PerfectScrollbarComponent;
   @ViewChild(PerfectScrollbarDirective)
   directiveRef?: PerfectScrollbarDirective;
-  private _onDestroy = new Subject<void>();
 
+  _toggleIsExpend: boolean = false;
   barHeight: number = 592;
   pageSize: number;
   pagelength: number;
@@ -45,7 +44,6 @@ export class SideNavBarComponent implements OnInit, OnDestroy {
       .getToggleStatus()
       .pipe(takeUntil(this._onDestroy))
       .subscribe(toggleStatus => {
-        // console.log("in the test nav bar component", toggleStatus);
         this._toggleIsExpend = toggleStatus;
       });
 
@@ -61,40 +59,9 @@ export class SideNavBarComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this._onDestroy))
       .subscribe(length => {
         this.pagelength = length;
-        // console.log("in the side bar length", this.pagelength);
-        // if (this.pageSize === 5) {
-        //   this.barHeight = 592;
-        // } else if (this.pageSize === 10) {
-        //   if (this.pagelength <= 5) {
-        //     this.barHeight = 592;
-        //   } else if (this.pagelength > 5 && this.pagelength < 10) {
-        //     this.barHeight = 100 * this.pagelength;
-        //   } else {
-        //     this.barHeight = 952;
-        //   }
-        // } else if (this.pageSize === 25) {
-        //   if (this.pagelength <= 5) {
-        //     this.barHeight = 592;
-        //   } else if (this.pagelength > 5 && this.pagelength <= 10) {
-        //     this.barHeight = 100 * this.pagelength;
-        //   } else if (this.pagelength > 10 && this.pagelength < 25) {
-        //     this.barHeight = 938 + 72 * (this.pagelength - 10);
-        //   } else {
-        //     this.barHeight = 1992;
-        //   }
-        // } else if (this.pageSize === 50) {
-        //   if (this.pagelength <= 5) {
-        //     this.barHeight = 592;
-        //   } else if (this.pagelength > 5 && this.pagelength <= 10) {
-        //     this.barHeight = 100 * this.pagelength;
-        //   } else if (this.pagelength < 50) {
-        //     this.barHeight = 2019 + 72 * (this.pagelength - 25);
-        //   } else {
-        //     this.barHeight = 3892;
-        //   }
-        // }
       });
   }
+
   ngOnDestroy(): void {
     this._onDestroy.next();
     this._onDestroy.complete();
@@ -108,7 +75,6 @@ export class SideNavBarComponent implements OnInit, OnDestroy {
   getElementNameTest(eleName) {
     this.currentChoice = eleName;
     if (this.router.url === "/testDataManagement/logDetail") {
-      this._logModalDataService.getLogDetailFlag(false);
       this.router.navigate(["/testDataManagement"]);
     } else if (this.router.url === "/testDataManagement/new-kiosk-order") {
       this._logModalDataService.getKioskOrderFlag(false);

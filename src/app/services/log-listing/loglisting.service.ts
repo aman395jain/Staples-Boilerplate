@@ -23,20 +23,6 @@ export class LoglistingService {
 
   constructor(private http: HttpClient) {}
 
-  getLogList(index: number): Observable<any> {
-    this._serviceUrl = logTableAPIUrls.getTaxRate;
-    return this.http.post<any>(this._serviceUrl, { pageNumber: index }).pipe(
-      map((response: Response) => {
-        // console.log("in the service", response);
-        return response;
-      }),
-      catchError((err: Response) => {
-        console.log("in the error", err.status);
-        return null;
-      })
-    );
-  }
-
   getLogListForEntity(entity, index): Observable<any> {
     if (entity === "Price_Prompt_SKUs") {
       this._serviceUrl = logTableAPIUrls.getPricePromptSKUs;
@@ -90,18 +76,9 @@ export class LoglistingService {
     return this.http.post<any>(this._serviceUrl, { pageNumber: index }).pipe(
       debounceTime(1000),
       map((response: Response) => {
-        console.log("in the service", response);
+        // console.log("in the service", response);
         return response;
       }),
-      catchError((err: Response) => {
-        console.log("in the error", err.status);
-        return null;
-      })
-    );
-  }
-
-  postDataForPromos(promoId) {
-    return this.http.post("", promoId).pipe(
       catchError((err: Response) => {
         console.log("in the error", err.status);
         return null;

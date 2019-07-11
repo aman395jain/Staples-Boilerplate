@@ -37,9 +37,9 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild("advanceSearchForm") advanceSearchForm: ElementRef;
-  dataByAPI: MatTableDataSource<any>;
 
   private _onDestroy = new Subject<void>();
+  dataByAPI: MatTableDataSource<any>;
 
   logTableGridColumns: any[] = [];
   printedData: any[] = [];
@@ -55,13 +55,10 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
   advancedSearchStatus: boolean = false;
   isLoading: boolean = true;
   isLoadingForSpinner: boolean = true;
-  searchValues: any = {};
   advanceSearchFields = [{ name: "", fieldValue: "" }];
   rowLength: number = 0;
   advanceSearchOptions: string[] = [];
   advanceSearchCollapseStatus: boolean = true;
-  logDetailsFlag: any = false;
-  kioskOrderFormFlag: any = false;
   tableHeader: string;
   indexForLog: number;
   tableNameFromBar: string;
@@ -81,36 +78,19 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this._location.subscribe(location => {
-      if (location.pop && location.url === "/testDataManagement/logDetail") {
-        this.logDetailsFlag = true;
-        this.router.navigate(["/testDataManagement/logDetail"]);
-      } else if (
+      if (
         location.pop &&
         location.url === "/testDataManagement(print:print/invoice)"
       ) {
         this._printDocumentService.printDocument("invoice");
       }
     });
-    if (this.router.url === "/testDataManagement") {
-      this._logModalDataService.getLogDetailFlag(false);
-      this._logModalDataService.getKioskOrderFlag(false);
-    } else {
-      this._logModalDataService.getLogDetailFlag(true);
-      this._logModalDataService.getKioskOrderFlag(true);
-    }
     if (
       this.router.url === "/testDataManagement/new-kiosk-order" ||
       "/testDataManagement/new-solution-builder-order"
     ) {
       this.router.navigate(["/testDataManagement"]);
     }
-
-    this._logModalDataService.setLogDetailFlag().subscribe(flag => {
-      this.logDetailsFlag = flag;
-    });
-    this._logModalDataService.setKioskOrderFlag().subscribe(flag => {
-      this.kioskOrderFormFlag = flag;
-    });
     this.tableWithData();
   }
 
@@ -419,9 +399,6 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
    * @param row
    */
   launchLogsForSingleEntity(row) {
-    // this._logModalDataService.getTableNameForLogDetail(
-    //   this.tableName
-    // );
     let rowData = { row: row, tableName: "", table: "" };
     rowData.tableName = this.tableHeader;
     rowData.table = this.tableName;
@@ -438,7 +415,6 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
         this._logModalDataService.getLinkedSKUsData(data);
       });
     }
-    this.logDetailsFlag = true;
     this.router.navigate(["/testDataManagement/logDetail"]);
   }
 
@@ -456,16 +432,13 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
 
   onSelectOrderType(event): void {
     if (event.value === "Kiosk") {
-      this.kioskOrderFormFlag = true;
       this.router.navigate(["/testDataManagement/new-kiosk-order"]);
     } else if (event.value === "Solution Builder") {
-      this.kioskOrderFormFlag = true;
       this.router.navigate(["/testDataManagement/new-solution-builder-order"]);
     }
   }
 
   createKioskOrder() {
-    this.kioskOrderFormFlag = true;
     this.router.navigate(["/testDataManagement/new-kiosk-order"]);
   }
 

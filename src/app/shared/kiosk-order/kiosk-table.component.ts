@@ -57,8 +57,6 @@ export class KioskTableComponent implements OnInit {
     this.selectedFileName = fileValue;
     if (fileValue === "Prepaid Kiosk Order with 5 digit coupons") {
       this._kioskOrderService.getDataForKioskForm(fileValue).subscribe(data => {
-        // console.log("kiosk data is", data);
-
         this.kioskForm.controls["customerEMailID"].setValue(
           data["customerEMailID"]
         );
@@ -132,8 +130,6 @@ export class KioskTableComponent implements OnInit {
       this.kioskForm.addControl("unitPrice16DigitCoupon2", new FormControl(""));
 
       this._kioskOrderService.getDataForKioskForm(fileValue).subscribe(data => {
-        //console.log("kiosk data is", data);
-
         this.kioskForm.controls["customerEMailID"].setValue(
           data["customerEMailID"]
         );
@@ -182,8 +178,6 @@ export class KioskTableComponent implements OnInit {
       this.kioskForm.addControl("unitPriceARWRN3", new FormControl(""));
       this.kioskForm.addControl("unitPriceARWRN4", new FormControl(""));
       this._kioskOrderService.getDataForKioskForm(fileValue).subscribe(data => {
-        //console.log("kiosk data is", data);
-
         this.kioskForm.controls["customerEMailID"].setValue(
           data["customerEMailID"]
         );
@@ -233,8 +227,6 @@ export class KioskTableComponent implements OnInit {
       this.kioskForm.addControl("itemIDIngram", new FormControl(""));
       this.kioskForm.addControl("unitPriceIngram", new FormControl(""));
       this._kioskOrderService.getDataForKioskForm(fileValue).subscribe(data => {
-        //console.log("kiosk data is", data);
-
         this.kioskForm.controls["customerEMailID"].setValue(
           data["customerEMailID"]
         );
@@ -266,8 +258,6 @@ export class KioskTableComponent implements OnInit {
       this.kioskForm.addControl("unitPriceRewardNo1", new FormControl(""));
       this.kioskForm.addControl("unitPriceRewardNo2", new FormControl(""));
       this._kioskOrderService.getDataForKioskForm(fileValue).subscribe(data => {
-        //console.log("kiosk data is", data);
-
         this.kioskForm.controls["customerEMailID"].setValue(
           data["customerEMailID"]
         );
@@ -330,7 +320,6 @@ export class KioskTableComponent implements OnInit {
   }
 
   onSubmit() {
-    //console.log(JSON.stringify(this.kioskForm.value));
     this._kioskOrderService
       .postDataForKioskOrder(JSON.stringify(this.kioskForm.value))
       .subscribe(() => {
@@ -339,7 +328,6 @@ export class KioskTableComponent implements OnInit {
   }
 
   backToOrderDataTable() {
-    this._logModalDataService.getLogDetailFlag(false);
     this._logModalDataService.getKioskOrderFlag(false);
     this._navBarService.getAdvanceSearchStatus(false);
     const backToTable = {

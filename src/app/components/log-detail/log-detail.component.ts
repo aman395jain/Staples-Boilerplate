@@ -18,10 +18,8 @@ import { PaginationForLongDataService } from "src/app/services/pagination-for-lo
   styleUrls: ["./log-detail.component.scss"]
 })
 export class LogDetailComponent implements OnInit, OnDestroy {
-  logDataForSingleEntity = [];
-  logDataBarCode = [];
+  private _onDestroy = new Subject<void>();
 
-  logDataDisplay = {};
   classifiedDataLogDetail: any[];
   dataDiscriptionKeysToDisplay: any = [];
   restDataDiscriptionKeysToDisplay: any = [];
@@ -41,13 +39,11 @@ export class LogDetailComponent implements OnInit, OnDestroy {
   displaySKUBuyFlag: string = "";
   displaySKUGetFlag: string = "";
 
-  tableNameLogDetails = "";
   pageNumberIndex: number;
 
   promoIdBuy: number;
   promoIdGet: number;
 
-  private _onDestroy = new Subject<void>();
   linkedSKUsData: any;
   promosBuyData: any[];
   promosGetData: any[];
@@ -214,7 +210,6 @@ export class LogDetailComponent implements OnInit, OnDestroy {
   }
 
   backToDataManagement() {
-    this._logModalDataService.getLogDetailFlag(false);
     this._navBarService.getAdvanceSearchStatus(false);
     const tableNameFromBack = {
       tableName: "",

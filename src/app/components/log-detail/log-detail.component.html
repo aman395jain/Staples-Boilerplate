@@ -1,39 +1,44 @@
-<div class="container">
-  <div
-    class="row d-flex align-items-center justify-content-end print-close-row"
-  >
-    <div class="print-close-icon">
-      <mat-icon
-        _ngcontent-c1=""
-        class="print-document mat-icon mat-list-icon material-icons"
-        mat-list-icon=""
-        role="img"
-        aria-hidden="true"
-        data-toggle="tooltip"
-        title="print"
-        (click)="printSingleEntityData()"
-        >print</mat-icon
-      >
-    </div>
-    <div class="print-close-icon">
-      <i
-        class="fa fa-undo print-document"
-        aria-hidden="true"
-        (click)="backToDataManagement()"
-        data-toggle="tooltip"
-        title="Back to table"
-      ></i>
-    </div>
-  </div>
-  
-      <h4
+<div class="row detail-header">
+  <div class="col-6">
+    <h4
       style="
-      color: #cb2026;
-      margin-right: 40%;"
+        color: #cb2026;
+        margin-right: 40%;"
     >
       {{ tableHeader }}
     </h4>
-  
+  </div>
+  <div class="col-6">
+    <div
+      class="row d-flex align-items-center justify-content-end print-close-row"
+    >
+      <div class="print-close-icon">
+        <mat-icon
+          _ngcontent-c1=""
+          class="print-document mat-icon mat-list-icon material-icons"
+          mat-list-icon=""
+          role="img"
+          aria-hidden="true"
+          data-toggle="tooltip"
+          title="print"
+          (click)="printSingleEntityData()"
+          >print</mat-icon
+        >
+      </div>
+      <div class="print-close-icon">
+        <i
+          class="fa fa-undo print-document"
+          aria-hidden="true"
+          (click)="backToDataManagement()"
+          data-toggle="tooltip"
+          title="Back to table"
+        ></i>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
   <div class="classified-content align-items-center justify-content-end">
     Main Attributes
   </div>
@@ -373,14 +378,13 @@
         class="classified-content align-items-center justify-content-end"
         *ngIf="displaySKUBuyFlag === 'buy'"
       >
-      SKUs List For Buy
+        SKUs List For Buy
       </div>
       <div class="row" *ngIf="displaySKUBuyFlag === 'buy' && noDataFlagBuy">
         <div class="col-md-12 ">
           No SKU List Data Available
-          </div>
+        </div>
       </div>
-
     </perfect-scrollbar>
   </div>
   <div
@@ -440,10 +444,10 @@
         Item Group SKUs List get
       </div>
       <div class="row" *ngIf="displaySKUGetFlag === 'get' && noDataFlagGet">
-          <div class="col-md-12 ">
-            No SKU List Data Available
-            </div>
+        <div class="col-md-12 ">
+          No SKU List Data Available
         </div>
+      </div>
     </perfect-scrollbar>
   </div>
 </div>
