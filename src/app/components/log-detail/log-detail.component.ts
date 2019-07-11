@@ -56,6 +56,7 @@ export class LogDetailComponent implements OnInit, OnDestroy {
   noDataFlagGet: boolean = false;
 
   tableHeader = "";
+  rowData = {};
 
   constructor(
     private router: Router,
@@ -67,16 +68,16 @@ export class LogDetailComponent implements OnInit, OnDestroy {
     private _loglistingService: LoglistingService,
     private _paginationForLongDataService: PaginationForLongDataService,
     private _location: Location
-  ) {}
+  ) {
+    _logModalDataService
+      .setLogDetailData()
+      .pipe(takeUntil(this._onDestroy))
+      .subscribe(rowDataFromLaunch => {
+        this.rowData = Object.create(rowDataFromLaunch);
+      });
+  }
 
   ngOnInit() {
-    this._logModalDataService
-      .setTableNameForLogDetail()
-      .pipe(takeUntil(this._onDestroy))
-      .subscribe(tableName => {
-        this.tableNameLogDetails = tableName;
-      });
-
     this._paginationForLongDataService
       .setPaginationIndexForBar()
       .subscribe(indexData => {
@@ -84,19 +85,7 @@ export class LogDetailComponent implements OnInit, OnDestroy {
       });
 
     this._location.subscribe(location => {
-      if (location.pop && location.url === "/testDataManagement") {
-        this._logModalDataService.getLogDetailFlag(false);
-        this._navBarService.getAdvanceSearchStatus(false);
-        const tableNameFromBack = {
-          tableName: "",
-          initialIndex: 1,
-          spinnerFlag: true,
-          spinnerForPagination: false
-        };
-        tableNameFromBack.tableName = this.tableNameLogDetails;
-        tableNameFromBack.initialIndex = this.pageNumberIndex;
-        this._navBarService.setElementNameFromSideBar(tableNameFromBack);
-      } else if (
+      if (
         location.pop &&
         location.url === "/testDataManagement/logDetail(print:print/logInvoice)"
       ) {
@@ -110,10 +99,9 @@ export class LogDetailComponent implements OnInit, OnDestroy {
       .subscribe(rowDataFromLaunch => {
         let rowData = rowDataFromLaunch.row;
         this.tableHeader = rowDataFromLaunch.tableName;
-
         this.classifiedDataLogDetail = this._logDiscriptionDataOrderService.dataOrderClassification(
           rowData,
-          this.tableNameLogDetails
+          this.rowData["table"]
         );
         this.dataDiscriptionKeysToDisplay.push(this.classifiedDataLogDetail[0]);
         this.restDataDiscriptionKeysToDisplay.push(
@@ -128,10 +116,10 @@ export class LogDetailComponent implements OnInit, OnDestroy {
         );
 
         if (
-          this.tableNameLogDetails === "Linked_SKUs" ||
-          this.tableNameLogDetails === "ESP_Skus" ||
-          this.tableNameLogDetails === "Recycle_Fee_SKUs" ||
-          this.tableNameLogDetails === "Bag_Fee_SKUs"
+          this.rowData["table"] === "Linked_SKUs" ||
+          this.rowData["table"] === "ESP_Skus" ||
+          this.rowData["table"] === "Recycle_Fee_SKUs" ||
+          this.rowData["table"] === "Bag_Fee_SKUs"
         ) {
           this._logModalDataService.setLinkedSKUsData().subscribe(data => {
             this.linkedSKUsData = data;
@@ -156,7 +144,7 @@ export class LogDetailComponent implements OnInit, OnDestroy {
           this.dataBarCode.push(this.dataDiscriptionKeysToDisplay[0].barCode);
         }
 
-        if (this.tableNameLogDetails === "Promos") {
+        if (this.rowData["table"] === "Promos") {
           this._loglistingService
             .getDataForPromos(rowData.promoNum)
             .subscribe(data => {
@@ -203,7 +191,7 @@ export class LogDetailComponent implements OnInit, OnDestroy {
             });
         }
 
-        if (this.tableNameLogDetails === "Item_Group") {
+        if (this.rowData["table"] === "Item_Group") {
           this._loglistingService
             .getItemGroupData(rowData.itemGroupId)
             .subscribe(data => {
@@ -221,6 +209,7 @@ export class LogDetailComponent implements OnInit, OnDestroy {
   }
 
   printSingleEntityData(): void {
+    this._logModalDataService.getTableNameForLogDetail(this.rowData["table"]);
     this._printDocumentService.printDocument("logInvoice");
   }
 
@@ -233,7 +222,7 @@ export class LogDetailComponent implements OnInit, OnDestroy {
       spinnerFlag: true,
       spinnerForPagination: false
     };
-    tableNameFromBack.tableName = this.tableNameLogDetails;
+    tableNameFromBack.tableName = this.rowData["table"];
     tableNameFromBack.initialIndex = this.pageNumberIndex;
     this._navBarService.setElementNameFromSideBar(tableNameFromBack);
     this.router.navigate(["/testDataManagement"]);

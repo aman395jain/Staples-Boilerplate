@@ -7,9 +7,7 @@
       tableName === 'Coupon' ||
       tableName === 'Rewards' ||
       tableName === 'CEP'
-    ) &&
-    !logDetailsFlag &&
-    !kioskOrderFormFlag
+    )
   "
 >
   <div class="row">
@@ -382,9 +380,9 @@
   >
   </mat-progress-spinner>
 </div>
-<div *ngIf="logDetailsFlag && !kioskOrderFormFlag">
+<!-- <div *ngIf="logDetailsFlag && !kioskOrderFormFlag">
   <router-outlet></router-outlet>
-</div>
-<div *ngIf="kioskOrderFormFlag">
+</div> -->
+<!-- <div *ngIf="kioskOrderFormFlag">
   <router-outlet></router-outlet>
-</div>
+</div> -->

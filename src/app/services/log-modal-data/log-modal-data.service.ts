@@ -10,7 +10,6 @@ export class LogModalDataService {
   private linkedSKUsData = new BehaviorSubject<any>(null);
   private promoData = new BehaviorSubject<any>(null);
   private itemGroupData = new BehaviorSubject<any>(null);
-  private itemGroupDataForSKU = new BehaviorSubject<any>(null);
   private tableNameForLogDetail = new BehaviorSubject<any>(null);
 
   constructor() {}
@@ -77,13 +76,5 @@ export class LogModalDataService {
 
   setPrintDataForItemGroup() {
     return this.itemGroupData;
-  }
-
-  getSkuDataForItemGroup(data) {
-    this.itemGroupDataForSKU.next(data);
-  }
-
-  setSkuDataForItemGroup() {
-    return this.itemGroupDataForSKU;
   }
 }

@@ -46,6 +46,15 @@ export class DisplayLogTableComponent implements OnInit, OnDestroy {
     this._paginationForLongDataService.getPaginationIndexForBar(
       paginationStatus
     );
+
+    const tableNameFromSideNav = {
+      tableName: "Tax_Rates",
+      initialIndex: 1,
+      spinnerFlag: true,
+      spinnerForPagination: false
+    };
+    this._navBarService.setElementNameFromSideBar(tableNameFromSideNav);
+    this._navBarService.getAdvanceSearchStatus(false);
   }
 
   ngOnDestroy(): void {

@@ -11,6 +11,7 @@ import { LogDetailComponent } from "./components/log-detail/log-detail.component
 import { LogDetailGuard } from "./guards/log-detail/log-detail-guard.guard";
 import { KioskTableComponent } from "./shared/kiosk-table/kiosk-table.component";
 import { SolutionBuilderOrderComponent } from "./shared/solution-builder-order/solution-builder-order.component";
+import { LogDataTableComponent } from "./components/log-data-table/log-data-table.component";
 
 @NgModule({
   imports: [
@@ -21,6 +22,10 @@ import { SolutionBuilderOrderComponent } from "./shared/solution-builder-order/s
           path: "testDataManagement",
           component: DisplayLogTableComponent,
           children: [
+            {
+              path: "",
+              component: LogDataTableComponent
+            },
             {
               path: "logDetail",
               component: LogDetailComponent,

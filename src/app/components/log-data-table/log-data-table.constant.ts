@@ -303,7 +303,7 @@ export const logDataTableConst = {
     {
       columnDef: "barCode",
       header: "UPC",
-      cell: (element: any) => `${element.upcList}`
+      cell: (element: any) => barCodeDisplay(element)
     },
     {
       columnDef: "itemGroupDescription",
@@ -345,7 +345,7 @@ export const logDataTableConst = {
     {
       columnDef: "barCode",
       header: "UPC",
-      cell: (element: any) => `${element.upcList}`
+      cell: (element: any) => barCodeDisplay(element)
     },
     {
       columnDef: "itemGroupDescription",
