@@ -18,62 +18,94 @@ import { logTableAPIUrls } from "../../utils/logTableApiUrls.enum";
 
 @Injectable()
 export class LoglistingService {
-  private _serviceUrl = "";
   private _dataToBePrinted = new BehaviorSubject<any>(null);
+  private _serviceUrl = "";
+  private _serviceUrlparams = {};
+  private _tax_exempt_status = "";
 
   constructor(private http: HttpClient) {}
 
   getLogListForEntity(entity, index): Observable<any> {
     if (entity === "Price_Prompt_SKUs") {
       this._serviceUrl = logTableAPIUrls.getPricePromptSKUs;
+      this._serviceUrlparams = { pageNumber: index };
     } else if (entity === "Item_Master") {
       this._serviceUrl = logTableAPIUrls.getItemMasterMain;
+      this._serviceUrlparams = { pageNumber: index };
     } else if (entity === "Employee") {
       this._serviceUrl = logTableAPIUrls.getEmployee;
+      this._serviceUrlparams = { pageNumber: index };
     } else if (entity === "Tax_Rates") {
       this._serviceUrl = logTableAPIUrls.getTaxRate;
+      this._serviceUrlparams = { pageNumber: index };
     } else if (entity === "Hardware_SKUs") {
       this._serviceUrl = logTableAPIUrls.getHardwareSKUs;
+      this._serviceUrlparams = { pageNumber: index };
     } else if (entity === "Linked_SKUs") {
       this._serviceUrl = logTableAPIUrls.getLinkedSKUs;
+      this._serviceUrlparams = { pageNumber: index };
     } else if (entity === "Age_Restricted_Special_rest") {
       this._serviceUrl = logTableAPIUrls.getAgeRestrictiedSpecialRest;
+      this._serviceUrlparams = { pageNumber: index };
     } else if (entity === "Item_Group") {
       this._serviceUrl = logTableAPIUrls.getItemGroup;
+      this._serviceUrlparams = { pageNumber: index };
     } else if (entity === "Return_Driver_License") {
       this._serviceUrl = logTableAPIUrls.getReturnDrivingLicense;
+      this._serviceUrlparams = { pageNumber: index };
     } else if (entity === "Lowest_Price") {
       this._serviceUrl = logTableAPIUrls.getLowestPrice;
+      this._serviceUrlparams = { pageNumber: index };
     } else if (entity === "Promos") {
       this._serviceUrl = logTableAPIUrls.getPromos;
+      this._serviceUrlparams = { pageNumber: index };
     } else if (entity === "Recycle_Fee_SKUs") {
       this._serviceUrl = logTableAPIUrls.getRecycleFeeSKUs;
+      this._serviceUrlparams = { pageNumber: index };
     } else if (entity === "Bag_Fee_SKUs") {
       this._serviceUrl = logTableAPIUrls.getBagFeeSKUs;
+      this._serviceUrlparams = { pageNumber: index };
     } else if (entity === "ESP_Skus") {
       this._serviceUrl = logTableAPIUrls.getEspSkus;
+      this._serviceUrlparams = { pageNumber: index };
     } else if (entity === "Tax_Exempt") {
       this._serviceUrl = logTableAPIUrls.getTaxExempt;
+      this._serviceUrlparams = { pageNumber: index };
     } else if (entity === "Tax_Exempt_Valid") {
       this._serviceUrl = logTableAPIUrls.getTaxExemptValid;
+      this._serviceUrlparams = {
+        pageNumber: index,
+        _tax_exempt_status: "Valid"
+      };
+      console.log(this, "this._serviceUrlparams");
     } else if (entity === "Tax_Exempt_Expired") {
       this._serviceUrl = logTableAPIUrls.getTaxExemptExpired;
+      this._serviceUrlparams = {
+        pageNumber: index,
+        _tax_exempt_status: "Expired"
+      };
     } else if (entity === "Tax_Exempt_About_To_Expired") {
       this._serviceUrl = logTableAPIUrls.getTaxExemptAboutToExpired;
-    } else if (entity === "CBP") {
-      this._serviceUrl = logTableAPIUrls.getCBP;
+      this._serviceUrlparams = { pageNumber: index };
     } else if (entity === "Tax_Exempt_Deactivated") {
       this._serviceUrl = logTableAPIUrls.getTaxExemptDeactivate;
+      this._serviceUrlparams = {
+        pageNumber: index,
+        _tax_exempt_status: "Deactivated"
+      };
     } else if (entity === "POSA") {
       //changes reqired according to service
       this._serviceUrl = logTableAPIUrls.getPOSA;
+      this._serviceUrlparams = { pageNumber: index };
     } else if (entity === "Order") {
       //changes reqired according to service
       this._serviceUrl = logTableAPIUrls.getOrder;
+      this._serviceUrlparams = { pageNumber: index };
     } else {
       this._serviceUrl = logTableAPIUrls.getOrder;
+      this._serviceUrlparams = { pageNumber: index };
     }
-    return this.http.post<any>(this._serviceUrl, { pageNumber: index }).pipe(
+    return this.http.post<any>(this._serviceUrl, this._serviceUrlparams).pipe(
       debounceTime(1000),
       map((response: Response) => {
         // console.log("in the service", response);
