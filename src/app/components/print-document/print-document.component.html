@@ -24,20 +24,14 @@
           >
             {{ printedData[key] }}
           </div>
-          <div *ngIf="key === 'barCode'">
+          <div *ngIf="key === 'upcList'">
             <div *ngFor="let barCode of printedData['upcList']">
               <ngx-barcode
                 [bc-value]="barCode"
-                [bc-display-value]="false"
-                [bc-height]="30"
+                [bc-display-value]="true"
+                [bc-height]="25"
                 [bc-width]="1"
               ></ngx-barcode>
-              <div class="text-center barCode-value">{{ barCode }}</div>
-            </div>
-          </div>
-          <div *ngIf="key === 'upcList'">
-            <div *ngFor="let upcList of printedData['upcList']">
-              {{ upcList }}
             </div>
           </div>
         </td>
