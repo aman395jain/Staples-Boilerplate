@@ -925,6 +925,58 @@ export const logDataTableConst = {
       header: null,
       cell: null
     }
+  ],
+  CEP: [
+    {
+      columnDef: "select",
+      header: null,
+      cell: null
+    },
+    {
+      columnDef: "adcostEventId",
+      header: "Adcost Event ID",
+      cell: (element: any) => `${element.adcostEventId}`
+    },
+    {
+      columnDef: "offerDescription",
+      header: "Offer Description",
+      cell: (element: any) => `${element.offerDescription}`
+    },
+    {
+      columnDef: "offerType",
+      header: "Offer Type",
+      cell: (element: any) => `${element.offerType}`
+    },
+    {
+      columnDef: "reIssueFlag",
+      header: "Re Issue Flag",
+      cell: (element: any) => `${element.reIssueFlag}`
+    },
+    {
+      columnDef: "skuNumber",
+      header: "SKU",
+      cell: (element: any) => `${element.skuNumber}`
+    },
+    {
+      columnDef: "upcList",
+      header: "UPC",
+      cell: (element: any) => barCodeDisplay(element)
+    },
+    {
+      columnDef: "customers",
+      header: "Customer",
+      cell: (element: any) => `${element.customers}`
+    },
+    {
+      columnDef: "store",
+      header: "Store",
+      cell: (element: any) => `${element.store}`
+    },
+    {
+      columnDef: "action",
+      header: null,
+      cell: null
+    }
   ]
 };
 

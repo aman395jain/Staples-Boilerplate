@@ -105,15 +105,18 @@ export class LoglistingService {
         status: "Incomplete"
       };
     } else if (entity === "POSA") {
-      //changes reqired according to service
+      //changes required according to service
       this._serviceUrl = logTableAPIUrls.getPOSA;
       this._serviceUrlparams = { pageNumber: index };
     } else if (entity === "Order") {
-      //changes reqired according to service
+      //changes required according to service
       this._serviceUrl = logTableAPIUrls.getOrder;
       this._serviceUrlparams = { pageNumber: index };
-    } else {
-      this._serviceUrl = logTableAPIUrls.getOrder;
+    } else if (entity === "CBP") {
+      this._serviceUrl = logTableAPIUrls.getCBP;
+      this._serviceUrlparams = { pageNumber: index };
+    } else if (entity === "CEP") {
+      this._serviceUrl = logTableAPIUrls.getCEP;
       this._serviceUrlparams = { pageNumber: index };
     }
     return this.http.post<any>(this._serviceUrl, this._serviceUrlparams).pipe(

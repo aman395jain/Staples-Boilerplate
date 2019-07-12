@@ -140,8 +140,13 @@ export class DashboardHeaderNameConverstionService {
     cbpOfferType: "CBP Offer Type",
     comments: "Comments",
     rewards: "Rewards",
-    slsSlipMsgCd: "SLS_SLIP_MSG_CD",
-    vrtlRcptMsgCd: "VRTL_RCPT_MSG_CD"
+    slsSlipMsgCd: "SLS Slip Massage CD",
+    vrtlRcptMsgCd: "VRTL RCPT Massage CD",
+    adcostEventId: "Ad Cost Event Id",
+    offerDescription: "Offer Description",
+    offerType: "Offer Type",
+    reIssueFlag: "Re Issue Flag",
+    customers: "Customer"
   };
   dataNewHeader = {};
 

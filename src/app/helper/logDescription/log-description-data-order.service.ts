@@ -437,6 +437,26 @@ export class LogDescriptionDataOrderService {
 
       this.dataToBeDisplayedOnModal[1] = rowDataWithRestData;
       return this.dataToBeDisplayedOnModal;
+    } else if (tableName === "CEP") {
+      this.mainDataToDisplay = {
+        adcostEventId: row.adcostEventId,
+        offerDescription: row.offerDescription,
+        offerType: row.offerType,
+        skuNumber: row.skuNumber,
+        reIssueFlag: row.reIssueFlag,
+        upcList: row.upcList
+      };
+      delete rowDataWithRestData["adcostEventId"];
+      delete rowDataWithRestData["offerDescription"];
+      delete rowDataWithRestData["offerType"];
+      delete rowDataWithRestData["skuNumber"];
+      delete rowDataWithRestData["reIssueFlag"];
+      delete rowDataWithRestData["upcList"];
+
+      this.dataToBeDisplayedOnModal[0] = this.mainDataToDisplay;
+
+      this.dataToBeDisplayedOnModal[1] = rowDataWithRestData;
+      return this.dataToBeDisplayedOnModal;
     } else if (tableName === "CBP") {
       this.mainDataToDisplay = {
         sku: row.sku,
@@ -781,6 +801,20 @@ export class LogDescriptionDataOrderService {
           data.listPrice.toString().includes(filter) ||
           data.sku.toString().includes(filter) ||
           data.store.toString().includes(filter)
+        );
+      };
+    } else if (tableName === "CEP") {
+      return function(data, filter: string): boolean {
+        return (
+          data.adcostEventId.toLowerCase().includes(filter) ||
+          data.adcostEventId.includes(filter) ||
+          data.offerDescription.toLowerCase().includes(filter) ||
+          data.offerDescription.includes(filter) ||
+          data.store.toString().includes(filter) ||
+          data.reIssueFlag.toString().includes(filter) ||
+          data.skuNumber.toString().includes(filter) ||
+          data.customers.toString().includes(filter) ||
+          data.upcList.toString().includes(filter)
         );
       };
     }

@@ -350,8 +350,14 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
             columnName => columnName.columnDef
           );
           this.tableHeader = "CBP";
-        } else if (this.tableNameFromBar === "CBP") {
+        } else if (this.tableNameFromBar === "CEP") {
+          this.advanceSearchOptions = [];
+          this.logTableGridColumns = logDataTableConst.CEP;
           this.tableName = "CEP";
+          this.displayedColumns = logDataTableConst.CEP.map(
+            columnName => columnName.columnDef
+          );
+          this.tableHeader = "CEP";
         }
         this._loglistingService
           .getLogListForEntity(this.tableNameFromBar, this.indexForLog)

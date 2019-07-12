@@ -90,7 +90,15 @@ export class LogDetailComponent implements OnInit, OnDestroy {
         this._printDocumentService.printDocument("logInvoice");
       }
     });
+    this.classifiedDataDisplay();
+  }
 
+  ngOnDestroy(): void {
+    this._onDestroy.next();
+    this._onDestroy.complete();
+  }
+
+  classifiedDataDisplay() {
     this._logModalDataService
       .setLogDetailData()
       .pipe(takeUntil(this._onDestroy))
@@ -206,11 +214,6 @@ export class LogDetailComponent implements OnInit, OnDestroy {
             });
         }
       });
-  }
-
-  ngOnDestroy(): void {
-    this._onDestroy.next();
-    this._onDestroy.complete();
   }
 
   printSingleEntityData(): void {
