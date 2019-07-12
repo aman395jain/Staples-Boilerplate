@@ -8,6 +8,7 @@ export class LogModalDataService {
   private logDetailFlag = new Subject<Boolean>();
   private kioskOrderFlag = new Subject<Boolean>();
   private linkedSKUsData = new BehaviorSubject<any>(null);
+  private orderItemData = new BehaviorSubject<any>(null);
   private promoData = new BehaviorSubject<any>(null);
   private itemGroupData = new BehaviorSubject<any>(null);
   private tableNameForLogDetail = new BehaviorSubject<any>(null);
@@ -60,6 +61,14 @@ export class LogModalDataService {
 
   setLinkedSKUsData() {
     return this.linkedSKUsData;
+  }
+
+  getOrderListData(data) {
+    this.orderItemData.next(data);
+  }
+
+  setOrderListData() {
+    return this.orderItemData;
   }
 
   getPrintDataForPromos(data) {

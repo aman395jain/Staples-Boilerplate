@@ -49,10 +49,8 @@
 
 .promo-group {
   cursor: pointer;
-  &:hover {
-    text-decoration: underline !important;
-    color: #007bff !important;
-  }
+  text-decoration: underline !important;
+  color: #007bff !important;
 }
 
 .attribute-table-content {

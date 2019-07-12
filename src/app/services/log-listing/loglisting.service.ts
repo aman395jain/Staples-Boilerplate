@@ -21,7 +21,6 @@ export class LoglistingService {
   private _dataToBePrinted = new BehaviorSubject<any>(null);
   private _serviceUrl = "";
   private _serviceUrlparams = {};
-  private _tax_exempt_status = "";
 
   constructor(private http: HttpClient) {}
 
@@ -130,7 +129,7 @@ export class LoglistingService {
     );
   }
 
-  postLinkedListSKUs(linkedSku) {
+  postLinkedListSKUs(linkedSku): Observable<any> {
     return this.http
       .get("http://lrtdqnasv104:8090/tdmapp/linkedSkus?sku=" + linkedSku)
       .pipe(
@@ -144,7 +143,7 @@ export class LoglistingService {
       );
   }
 
-  getItemGroupData(groupId): any {
+  getItemGroupData(groupId): Observable<any> {
     return this.http
       .get(logTableAPIUrls.getItemGroupData + "?groupId=" + groupId)
       .pipe(
@@ -158,9 +157,26 @@ export class LoglistingService {
       );
   }
 
-  getDataForPromos(id): any {
+  getDataForPromos(id): Observable<any> {
     return this.http
       .get("http://lrtdqnasv104:8090/tdmapp/promoGroupList?promoId=" + id)
+      .pipe(
+        map((response: Response) => {
+          return response;
+        }),
+        catchError((err: Response) => {
+          console.log("in the error", err.status);
+          return null;
+        })
+      );
+  }
+
+  getDataForOrder(orderId): Observable<any> {
+    return this.http
+      .post(
+        "http://lrtdqnasv104:8090/tdmapp/getOrderItemList?orderNo=" + orderId,
+        {}
+      )
       .pipe(
         map((response: Response) => {
           return response;

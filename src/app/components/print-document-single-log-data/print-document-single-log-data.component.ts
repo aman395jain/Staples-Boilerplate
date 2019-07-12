@@ -35,6 +35,9 @@ export class PrintDocumentSingleLogDataComponent implements OnInit, OnDestroy {
   itemGroupDataDisplayStatusPrint: boolean = false;
   itemGroupDataForIDPrint: any[];
 
+  orderListDataPrintStatus: boolean = false;
+  orderListDataPrint: any;
+
   constructor(
     private _printService: PrintDocumentService,
     private _logModalDataService: LogModalDataService,
@@ -105,10 +108,19 @@ export class PrintDocumentSingleLogDataComponent implements OnInit, OnDestroy {
           this._logModalDataService.setLinkedSKUsData().subscribe(data => {
             this.linkedSKUsDataPrint = data;
           });
-          // this.linkedSKUsData = this.classifiedDataLogDetail[2].linkedList;
           this.linkedSKUsDisplayStatusPrint = true;
         }
 
+        // order data
+        if (this.tableNameForPrint === "Order") {
+          this._logModalDataService.setOrderListData().subscribe(data => {
+            console.log("in print order list data", data);
+            this.orderListDataPrint = data;
+          });
+          this.orderListDataPrintStatus = true;
+        }
+
+        // promo data
         if (this.tableNameForPrint === "Promos") {
           this._logModalDataService.setPrintDataForPromos().subscribe(data => {
             console.log("print promo data", data);

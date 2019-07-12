@@ -30,6 +30,7 @@ export class LogDetailComponent implements OnInit, OnDestroy {
   dataBarCode: any = [];
 
   linkedSKUsDisplayStatus: boolean = false;
+  orderListDisplayStatus: boolean = false;
   promoBuyDisplayStatus: boolean = false;
   promoBuyDisplayStatusForBXGP: boolean = false;
   promoGetDisplayStatus: boolean = false;
@@ -45,6 +46,7 @@ export class LogDetailComponent implements OnInit, OnDestroy {
   promoIdGet: number;
 
   linkedSKUsData: any;
+  orderListData: any;
   promosBuyData: any[];
   promosGetData: any[];
   itemGroupDataForID: any[];
@@ -121,6 +123,13 @@ export class LogDetailComponent implements OnInit, OnDestroy {
             this.linkedSKUsData = data;
           });
           this.linkedSKUsDisplayStatus = true;
+        }
+
+        if (this.rowData["table"] === "Order") {
+          this._logModalDataService.setOrderListData().subscribe(res => {
+            this.orderListData = res;
+          });
+          this.orderListDisplayStatus = true;
         }
 
         this.dataDisplayOnModal = this.mainDataDisplay[0];

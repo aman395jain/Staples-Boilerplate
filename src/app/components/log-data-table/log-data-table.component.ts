@@ -213,7 +213,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
           this.displayedColumns = logDataTableConst.ESP_SKUs.map(
             columnName => columnName.columnDef
           );
-          this.tableHeader = "ESP";
+          this.tableHeader = "ESP SKUs";
         } else if (this.tableNameFromBar === "Item_Group") {
           this.advanceSearchOptions = [];
           this.logTableGridColumns = logDataTableConst.Item_Group;
@@ -431,6 +431,12 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
     ) {
       this._loglistingService.postLinkedListSKUs(row.sku).subscribe(data => {
         this._logModalDataService.getLinkedSKUsData(data);
+      });
+    }
+    if (this.tableName === "Order") {
+      // later place the value of order number of row.
+      this._loglistingService.getDataForOrder(9760060027).subscribe(data => {
+        this._logModalDataService.getOrderListData(data);
       });
     }
     this.router.navigate(["/testDataManagement/logDetail"]);
