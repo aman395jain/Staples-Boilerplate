@@ -322,6 +322,24 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
             columnName => columnName.columnDef
           );
           this.tableHeader = "Tax Exempt Deactivated";
+        } else if (this.tableNameFromBar === "Tax_Exempt_Incomplete") {
+          this.advanceSearchOptions = [];
+          this.logTableGridColumns = logDataTableConst.Tax_Exempt_Incomplete;
+
+          this.tableName = "Tax_Exempt_Deactivated";
+          this.displayedColumns = logDataTableConst.Tax_Exempt_Incomplete.map(
+            columnName => columnName.columnDef
+          );
+          this.tableHeader = "Tax Exempt Incomplete";
+        } else if (this.tableNameFromBar === "Tax_Exempt_Not_Validated") {
+          this.advanceSearchOptions = [];
+          this.logTableGridColumns = logDataTableConst.Tax_Exempt_Not_Validated;
+
+          this.tableName = "Tax_Exempt_Not_Validated";
+          this.displayedColumns = logDataTableConst.Tax_Exempt_Not_Validated.map(
+            columnName => columnName.columnDef
+          );
+          this.tableHeader = "Tax Exempt Not Validated";
         } else if (this.tableNameFromBar === "Rewards") {
           this.tableName = "Rewards";
         } else if (this.tableNameFromBar === "CBP") {

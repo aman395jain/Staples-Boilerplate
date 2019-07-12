@@ -264,15 +264,17 @@ export class LogDescriptionDataOrderService {
       this.mainDataToDisplay = {
         taxExemptNbr: row.taxExemptNbr,
         name: row.name,
-        state: row.state,
         phoneNo: row.phoneNo,
-        companyName: row.companyName
+        companyName: row.companyName,
+        state: row.state,
+        status: row.status
       };
       delete rowDataWithRestData["taxExemptNbr"];
       delete rowDataWithRestData["name"];
-      delete rowDataWithRestData["state"];
       delete rowDataWithRestData["phoneNo"];
       delete rowDataWithRestData["companyName"];
+      delete rowDataWithRestData["state"];
+      delete rowDataWithRestData["status"];
       delete rowDataWithRestData["id"];
 
       this.dataToBeDisplayedOnModal[0] = this.mainDataToDisplay;
@@ -283,15 +285,17 @@ export class LogDescriptionDataOrderService {
       this.mainDataToDisplay = {
         taxExemptNbr: row.taxExemptNbr,
         name: row.name,
-        state: row.state,
         phoneNo: row.phoneNo,
-        companyName: row.companyName
+        companyName: row.companyName,
+        state: row.state,
+        status: row.status
       };
       delete rowDataWithRestData["taxExemptNbr"];
       delete rowDataWithRestData["name"];
-      delete rowDataWithRestData["state"];
       delete rowDataWithRestData["phoneNo"];
       delete rowDataWithRestData["companyName"];
+      delete rowDataWithRestData["state"];
+      delete rowDataWithRestData["status"];
       delete rowDataWithRestData["id"];
 
       this.dataToBeDisplayedOnModal[0] = this.mainDataToDisplay;
@@ -302,15 +306,17 @@ export class LogDescriptionDataOrderService {
       this.mainDataToDisplay = {
         taxExemptNbr: row.taxExemptNbr,
         name: row.name,
-        state: row.state,
         phoneNo: row.phoneNo,
-        companyName: row.companyName
+        companyName: row.companyName,
+        state: row.state,
+        status: row.status
       };
       delete rowDataWithRestData["taxExemptNbr"];
       delete rowDataWithRestData["name"];
-      delete rowDataWithRestData["state"];
       delete rowDataWithRestData["phoneNo"];
       delete rowDataWithRestData["companyName"];
+      delete rowDataWithRestData["state"];
+      delete rowDataWithRestData["status"];
       delete rowDataWithRestData["id"];
 
       this.dataToBeDisplayedOnModal[0] = this.mainDataToDisplay;
@@ -321,15 +327,17 @@ export class LogDescriptionDataOrderService {
       this.mainDataToDisplay = {
         taxExemptNbr: row.taxExemptNbr,
         name: row.name,
-        state: row.state,
         phoneNo: row.phoneNo,
-        companyName: row.companyName
+        companyName: row.companyName,
+        state: row.state,
+        status: row.status
       };
       delete rowDataWithRestData["taxExemptNbr"];
       delete rowDataWithRestData["name"];
-      delete rowDataWithRestData["state"];
       delete rowDataWithRestData["phoneNo"];
       delete rowDataWithRestData["companyName"];
+      delete rowDataWithRestData["state"];
+      delete rowDataWithRestData["status"];
       delete rowDataWithRestData["id"];
 
       this.dataToBeDisplayedOnModal[0] = this.mainDataToDisplay;
@@ -340,15 +348,17 @@ export class LogDescriptionDataOrderService {
       this.mainDataToDisplay = {
         taxExemptNbr: row.taxExemptNbr,
         name: row.name,
-        state: row.state,
         phoneNo: row.phoneNo,
-        companyName: row.companyName
+        companyName: row.companyName,
+        state: row.state,
+        status: row.status
       };
       delete rowDataWithRestData["taxExemptNbr"];
       delete rowDataWithRestData["name"];
-      delete rowDataWithRestData["state"];
       delete rowDataWithRestData["phoneNo"];
       delete rowDataWithRestData["companyName"];
+      delete rowDataWithRestData["state"];
+      delete rowDataWithRestData["status"];
       delete rowDataWithRestData["id"];
 
       this.dataToBeDisplayedOnModal[0] = this.mainDataToDisplay;
@@ -359,15 +369,17 @@ export class LogDescriptionDataOrderService {
       this.mainDataToDisplay = {
         taxExemptNbr: row.taxExemptNbr,
         name: row.name,
-        state: row.state,
         phoneNo: row.phoneNo,
-        companyName: row.companyName
+        companyName: row.companyName,
+        state: row.state,
+        status: row.status
       };
       delete rowDataWithRestData["taxExemptNbr"];
       delete rowDataWithRestData["name"];
-      delete rowDataWithRestData["state"];
       delete rowDataWithRestData["phoneNo"];
       delete rowDataWithRestData["companyName"];
+      delete rowDataWithRestData["state"];
+      delete rowDataWithRestData["status"];
       delete rowDataWithRestData["id"];
 
       this.dataToBeDisplayedOnModal[0] = this.mainDataToDisplay;
@@ -378,15 +390,17 @@ export class LogDescriptionDataOrderService {
       this.mainDataToDisplay = {
         taxExemptNbr: row.taxExemptNbr,
         name: row.name,
-        state: row.state,
         phoneNo: row.phoneNo,
-        companyName: row.companyName
+        companyName: row.companyName,
+        state: row.state,
+        status: row.status
       };
       delete rowDataWithRestData["taxExemptNbr"];
       delete rowDataWithRestData["name"];
-      delete rowDataWithRestData["state"];
       delete rowDataWithRestData["phoneNo"];
       delete rowDataWithRestData["companyName"];
+      delete rowDataWithRestData["state"];
+      delete rowDataWithRestData["status"];
       delete rowDataWithRestData["id"];
 
       this.dataToBeDisplayedOnModal[0] = this.mainDataToDisplay;

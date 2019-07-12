@@ -570,6 +570,16 @@ export const logDataTableConst = {
       cell: (element: any) => `${element.companyName}`
     },
     {
+      columnDef: "state",
+      header: "State",
+      cell: (element: any) => `${element.state}`
+    },
+    {
+      columnDef: "status",
+      header: "Status",
+      cell: (element: any) => `${element.status}`
+    },
+    {
       columnDef: "action",
       header: null,
       cell: null
@@ -600,6 +610,16 @@ export const logDataTableConst = {
       columnDef: "companyName",
       header: "Company Name",
       cell: (element: any) => `${element.companyName}`
+    },
+    {
+      columnDef: "state",
+      header: "State",
+      cell: (element: any) => `${element.state}`
+    },
+    {
+      columnDef: "status",
+      header: "Status",
+      cell: (element: any) => `${element.status}`
     },
     {
       columnDef: "action",
@@ -634,6 +654,16 @@ export const logDataTableConst = {
       cell: (element: any) => `${element.companyName}`
     },
     {
+      columnDef: "state",
+      header: "State",
+      cell: (element: any) => `${element.state}`
+    },
+    {
+      columnDef: "status",
+      header: "Status",
+      cell: (element: any) => `${element.status}`
+    },
+    {
       columnDef: "action",
       header: null,
       cell: null
@@ -664,6 +694,16 @@ export const logDataTableConst = {
       columnDef: "companyName",
       header: "Company Name",
       cell: (element: any) => `${element.companyName}`
+    },
+    {
+      columnDef: "state",
+      header: "State",
+      cell: (element: any) => `${element.state}`
+    },
+    {
+      columnDef: "status",
+      header: "Status",
+      cell: (element: any) => `${element.status}`
     },
     {
       columnDef: "action",
@@ -698,6 +738,16 @@ export const logDataTableConst = {
       cell: (element: any) => `${element.companyName}`
     },
     {
+      columnDef: "state",
+      header: "State",
+      cell: (element: any) => `${element.state}`
+    },
+    {
+      columnDef: "status",
+      header: "Status",
+      cell: (element: any) => `${element.status}`
+    },
+    {
       columnDef: "action",
       header: null,
       cell: null
@@ -730,6 +780,16 @@ export const logDataTableConst = {
       cell: (element: any) => `${element.companyName}`
     },
     {
+      columnDef: "state",
+      header: "State",
+      cell: (element: any) => `${element.state}`
+    },
+    {
+      columnDef: "status",
+      header: "Status",
+      cell: (element: any) => `${element.status}`
+    },
+    {
       columnDef: "action",
       header: null,
       cell: null
@@ -760,6 +820,16 @@ export const logDataTableConst = {
       columnDef: "companyName",
       header: "Company Name",
       cell: (element: any) => `${element.companyName}`
+    },
+    {
+      columnDef: "state",
+      header: "State",
+      cell: (element: any) => `${element.state}`
+    },
+    {
+      columnDef: "status",
+      header: "Status",
+      cell: (element: any) => `${element.status}`
     },
     {
       columnDef: "action",
@@ -802,6 +872,16 @@ export const logDataTableConst = {
       columnDef: "sourceCreateOrderXml",
       header: "Source Create Order XML",
       cell: (element: any) => `${element.sourceCreateOrderXml}`
+    },
+    {
+      columnDef: "state",
+      header: "State",
+      cell: (element: any) => `${element.state}`
+    },
+    {
+      columnDef: "status",
+      header: "Status",
+      cell: (element: any) => `${element.status}`
     },
     {
       columnDef: "action",
@@ -849,6 +929,16 @@ export const logDataTableConst = {
       columnDef: "store",
       header: "Store",
       cell: (element: any) => `${element.store}`
+    },
+    {
+      columnDef: "state",
+      header: "State",
+      cell: (element: any) => `${element.state}`
+    },
+    {
+      columnDef: "status",
+      header: "Status",
+      cell: (element: any) => `${element.status}`
     },
     {
       columnDef: "action",

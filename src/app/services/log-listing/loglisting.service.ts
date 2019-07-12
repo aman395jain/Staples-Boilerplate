@@ -75,14 +75,14 @@ export class LoglistingService {
       this._serviceUrl = logTableAPIUrls.getTaxExemptValid;
       this._serviceUrlparams = {
         pageNumber: index,
-        _tax_exempt_status: "Valid"
+        status: "Valid"
       };
       console.log(this, "this._serviceUrlparams");
     } else if (entity === "Tax_Exempt_Expired") {
       this._serviceUrl = logTableAPIUrls.getTaxExemptExpired;
       this._serviceUrlparams = {
         pageNumber: index,
-        _tax_exempt_status: "Expired"
+        status: "Expired"
       };
     } else if (entity === "Tax_Exempt_About_To_Expired") {
       this._serviceUrl = logTableAPIUrls.getTaxExemptAboutToExpired;
@@ -91,19 +91,19 @@ export class LoglistingService {
       this._serviceUrl = logTableAPIUrls.getTaxExemptDeactivate;
       this._serviceUrlparams = {
         pageNumber: index,
-        _tax_exempt_status: "Deactivated"
+        status: "Deactivated"
       };
     } else if (entity === "Tax_Exempt_Not_Validated") {
       this._serviceUrl = logTableAPIUrls.getTaxExemptNotValidated;
       this._serviceUrlparams = {
         pageNumber: index,
-        _tax_exempt_status: "Not Validated"
+        status: "Not Validated"
       };
     } else if (entity === "Tax_Exempt_Incomplete") {
       this._serviceUrl = logTableAPIUrls.getTaxExemptIncomplete;
       this._serviceUrlparams = {
         pageNumber: index,
-        _tax_exempt_status: "Incomplete"
+        status: "Incomplete"
       };
     } else if (entity === "POSA") {
       //changes reqired according to service

@@ -139,7 +139,9 @@ export class DashboardHeaderNameConverstionService {
     upc: "UPC",
     cbpOfferType: "CBP Offer Type",
     comments: "Comments",
-    rewards: "Rewards"
+    rewards: "Rewards",
+    slsSlipMsgCd: "SLS_SLIP_MSG_CD",
+    vrtlRcptMsgCd: "VRTL_RCPT_MSG_CD"
   };
   dataNewHeader = {};
 
