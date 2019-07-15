@@ -146,7 +146,16 @@ export class DashboardHeaderNameConverstionService {
     offerDescription: "Offer Description",
     offerType: "Offer Type",
     reIssueFlag: "Re Issue Flag",
-    customers: "Customer"
+    customers: "Customer",
+    address: "Address",
+    emailAddress: "Email Address",
+    firstName: "First Name",
+    lastName: "Last Name",
+    phoneNum: "Phone Number",
+    enrollmentdate: "Enrollment Date",
+    recieptSelection: "Receipt Selection",
+    rewardsNumber: "Rewards Number",
+    rewardsTier: "Tier"
   };
   dataNewHeader = {};
 

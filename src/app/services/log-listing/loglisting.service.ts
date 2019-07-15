@@ -61,7 +61,7 @@ export class LoglistingService {
     } else if (entity === "Recycle_Fee_SKUs") {
       this._serviceUrl = logTableAPIUrls.getRecycleFeeSKUs;
       this._serviceUrlparams = { pageNumber: index };
-    } else if (entity === "Bag_Fee_SKUs") {
+    } else if (entity === "Bottle_Deposit_SKUs") {
       this._serviceUrl = logTableAPIUrls.getBagFeeSKUs;
       this._serviceUrlparams = { pageNumber: index };
     } else if (entity === "ESP_Skus") {
@@ -111,6 +111,9 @@ export class LoglistingService {
     } else if (entity === "Order") {
       //changes required according to service
       this._serviceUrl = logTableAPIUrls.getOrder;
+      this._serviceUrlparams = { pageNumber: index };
+    } else if (entity === "Rewards") {
+      this._serviceUrl = logTableAPIUrls.getRewards;
       this._serviceUrlparams = { pageNumber: index };
     } else if (entity === "CBP") {
       this._serviceUrl = logTableAPIUrls.getCBP;

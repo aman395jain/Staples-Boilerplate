@@ -113,16 +113,12 @@ export class LogDescriptionDataOrderService {
         itemDesc: row.itemDesc,
         upcList: row.upcList,
         retailPrice: row.retailPrice,
-        feeSku: row.feeSku,
-        feeSkuPrice: row.feeSkuPrice,
         itemGroupDescription: row.itemGroupDescription,
         addOrAutoadd: row.addOrAutoadd
       };
       delete rowDataWithRestData["sku"];
       delete rowDataWithRestData["itemDesc"];
       delete rowDataWithRestData["retailPrice"];
-      delete rowDataWithRestData["feeSku"];
-      delete rowDataWithRestData["feeSkuPrice"];
       delete rowDataWithRestData["itemGroupDescription"];
       delete rowDataWithRestData["linkedList"];
       delete rowDataWithRestData["addOrAutoadd"];
@@ -135,22 +131,18 @@ export class LogDescriptionDataOrderService {
 
       this.dataToBeDisplayedOnModal[1] = rowDataWithRestData;
       return this.dataToBeDisplayedOnModal;
-    } else if (tableName === "Bag_Fee_SKUs") {
+    } else if (tableName === "Bottle_Deposit_SKUs") {
       this.mainDataToDisplay = {
         sku: row.sku,
         itemDesc: row.itemDesc,
         retailPrice: row.retailPrice,
         upcList: row.upcList,
-        feeSku: row.feeSku,
-        feeSkuPrice: row.feeSkuPrice,
         itemGroupDescription: row.itemGroupDescription,
         addOrAutoadd: row.addOrAutoadd
       };
       delete rowDataWithRestData["sku"];
       delete rowDataWithRestData["itemDesc"];
       delete rowDataWithRestData["retailPrice"];
-      delete rowDataWithRestData["feeSku"];
-      delete rowDataWithRestData["feeSkuPrice"];
       delete rowDataWithRestData["itemGroupDescription"];
       delete rowDataWithRestData["linkedList"];
       delete rowDataWithRestData["addOrAutoadd"];
@@ -168,16 +160,12 @@ export class LogDescriptionDataOrderService {
         sku: row.sku,
         itemDesc: row.itemDesc,
         retailPrice: row.retailPrice,
-        feeSku: row.feeSku,
-        feeSkuPrice: row.feeSkuPrice,
         itemGroupDescription: row.itemGroupDescription,
         addOrAutoadd: row.addOrAutoadd
       };
       delete rowDataWithRestData["sku"];
       delete rowDataWithRestData["itemDesc"];
       delete rowDataWithRestData["retailPrice"];
-      delete rowDataWithRestData["feeSku"];
-      delete rowDataWithRestData["feeSkuPrice"];
       delete rowDataWithRestData["itemGroupDescription"];
       delete rowDataWithRestData["addOrAutoadd"];
       delete rowDataWithRestData["linkedList"];
@@ -437,6 +425,30 @@ export class LogDescriptionDataOrderService {
 
       this.dataToBeDisplayedOnModal[1] = rowDataWithRestData;
       return this.dataToBeDisplayedOnModal;
+    } else if (tableName === "Rewards") {
+      this.mainDataToDisplay = {
+        rewardsNumber: row.rewardsNumber,
+        firstName: row.firstName,
+        lastName: row.lastName,
+        phoneNum: row.phoneNum,
+        address: row.address,
+        rewardsTier: row.rewardsTier,
+        recieptSelection: row.recieptSelection,
+        emailAddress: row.emailAddress
+      };
+      delete rowDataWithRestData["rewardsNumber"];
+      delete rowDataWithRestData["firstName"];
+      delete rowDataWithRestData["lastName"];
+      delete rowDataWithRestData["phoneNum"];
+      delete rowDataWithRestData["address"];
+      delete rowDataWithRestData["rewardsTier"];
+      delete rowDataWithRestData["recieptSelection"];
+      delete rowDataWithRestData["emailAddress"];
+
+      this.dataToBeDisplayedOnModal[0] = this.mainDataToDisplay;
+
+      this.dataToBeDisplayedOnModal[1] = rowDataWithRestData;
+      return this.dataToBeDisplayedOnModal;
     } else if (tableName === "CEP") {
       this.mainDataToDisplay = {
         adcostEventId: row.adcostEventId,
@@ -603,7 +615,7 @@ export class LogDescriptionDataOrderService {
             .includes(filter)
         );
       };
-    } else if (tableName === "Bag_Fee_SKUs") {
+    } else if (tableName === "Bottle_Deposit_SKUs") {
       return function(data, filter: string): boolean {
         return (
           data.sku
@@ -788,6 +800,19 @@ export class LogDescriptionDataOrderService {
           data.companyName.toLowerCase().includes(filter) ||
           data.companyName.includes(filter) ||
           data.phoneNo.toLowerCase().includes(filter)
+        );
+      };
+    } else if (tableName === "Rewards") {
+      return function(data, filter: string): boolean {
+        return (
+          data.firstName.toLowerCase().includes(filter) ||
+          data.firstName.includes(filter) ||
+          data.address.toLowerCase().includes(filter) ||
+          data.address.includes(filter) ||
+          data.rewardsTier.toString().includes(filter) ||
+          data.recieptSelection.toString().includes(filter) ||
+          data.phoneNum.toString().includes(filter) ||
+          data.rewardsNumber.toString().includes(filter)
         );
       };
     } else if (tableName === "CBP") {

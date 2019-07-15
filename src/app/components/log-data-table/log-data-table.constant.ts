@@ -321,7 +321,7 @@ export const logDataTableConst = {
       cell: null
     }
   ],
-  Bag_Fee_SKUs: [
+  Bottle_Deposit_SKUs: [
     {
       columnDef: "select",
       header: null,
@@ -872,6 +872,58 @@ export const logDataTableConst = {
       columnDef: "sourceCreateOrderXml",
       header: "Source Create Order XML",
       cell: (element: any) => `${element.sourceCreateOrderXml}`
+    },
+    {
+      columnDef: "action",
+      header: null,
+      cell: null
+    }
+  ],
+  Rewards: [
+    {
+      columnDef: "select",
+      header: null,
+      cell: null
+    },
+    {
+      columnDef: "rewardsNumber",
+      header: "Rewards Number",
+      cell: (element: any) => `${element.rewardsNumber}`
+    },
+    {
+      columnDef: "firstName",
+      header: "First Name",
+      cell: (element: any) => `${element.firstName}`
+    },
+    {
+      columnDef: "lastName",
+      header: "Last Name",
+      cell: (element: any) => `${element.lastName}`
+    },
+    {
+      columnDef: "phoneNum",
+      header: "Phone Number",
+      cell: (element: any) => `${element.phoneNum}`
+    },
+    {
+      columnDef: "address",
+      header: "Address",
+      cell: (element: any) => `${element.address}`
+    },
+    {
+      columnDef: "rewardsTier",
+      header: "Tier",
+      cell: (element: any) => `${element.rewardsTier}`
+    },
+    {
+      columnDef: "recieptSelection",
+      header: "Receipt Selection Option",
+      cell: (element: any) => `${element.recieptSelection}`
+    },
+    {
+      columnDef: "emailAddress",
+      header: "Email Address",
+      cell: (element: any) => `${element.emailAddress}`
     },
     {
       columnDef: "action",

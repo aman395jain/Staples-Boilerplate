@@ -153,6 +153,15 @@
   }
 }
 
+.back-order-table {
+  color: #0056b3 !important;
+  cursor: pointer;
+  &:hover {
+    color: red !important;
+    text-decoration: underline !important;
+  }
+}
+
 .under-construction {
   margin: 10% 33%;
 }

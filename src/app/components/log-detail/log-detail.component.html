@@ -55,14 +55,29 @@
           </thead>
           <tbody>
             <tr *ngIf="!(data.key === 'checked' || data.key === 'index')">
-              <td *ngIf="!(data.key === 'Bar Code' || data.key === 'UPC List')">
+              <td
+                *ngIf="
+                  !(
+                    data.key === 'Bar Code' ||
+                    data.key === 'UPC List' ||
+                    data.key === 'Order Number' ||
+                    data.key === 'Rewards Number'
+                  )
+                "
+              >
                 <div class="description-blocks">
                   <perfect-scrollbar [scrollIndicators]="true">
                     {{ data.value }}
                   </perfect-scrollbar>
                 </div>
               </td>
-              <td *ngIf="data.key === 'UPC List'">
+              <td
+                *ngIf="
+                  data.key === 'UPC List' ||
+                  data.key === 'Order Number' ||
+                  data.key === 'Rewards Number'
+                "
+              >
                 <div class="description-blocks">
                   <perfect-scrollbar [scrollIndicators]="true">
                     <div *ngFor="let barCode of dataBarCode">
@@ -211,7 +226,14 @@
             <tbody>
               <tr *ngIf="!(data.key === 'checked' || data.key === 'index')">
                 <td
-                  *ngIf="!(data.key === 'Bar Code' || data.key === 'UPC List')"
+                  *ngIf="
+                    !(
+                      data.key === 'Bar Code' ||
+                      data.key === 'UPC List' ||
+                      data.key === 'Order Number' ||
+                      data.key === 'Rewards Number'
+                    )
+                  "
                 >
                   <div class="description-blocks">
                     <perfect-scrollbar [scrollIndicators]="true">
@@ -219,7 +241,13 @@
                     </perfect-scrollbar>
                   </div>
                 </td>
-                <td *ngIf="data.key === 'UPC List'">
+                <td
+                  *ngIf="
+                    data.key === 'UPC List' ||
+                    data.key === 'Order Number' ||
+                    data.key === 'Rewards Number'
+                  "
+                >
                   <div class="description-blocks">
                     <perfect-scrollbar [scrollIndicators]="true">
                       <div *ngFor="let barCode of dataBarCode">
@@ -235,7 +263,13 @@
                     </perfect-scrollbar>
                   </div>
                 </td>
-                <td *ngIf="data.key === 'UPC List'">
+                <td
+                  *ngIf="
+                    data.key === 'UPC List' ||
+                    data.key === 'Order Number' ||
+                    data.key === 'Rewards Number'
+                  "
+                >
                   <div *ngFor="let barCode of dataBarCode">
                     {{ barCode }}
                   </div>
@@ -361,6 +395,38 @@
             No SKU List Data Available
           </div>
         </div>
+        <div class="row" *ngIf="displaySKUBuyFlag === 'buy' && !noDataFlagBuy">
+          <div class="col-md-12 ">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th class="table-header">
+                    <span>Pos Item Description</span>
+                  </th>
+                  <th class="table-header">
+                    <span>Retail Price</span>
+                  </th>
+                  <th class="table-header">
+                    <span>SKU</span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <span>{{ buyPromoDataAgainstId.posItemDesc }}</span>
+                  </td>
+                  <td>
+                    <span>{{ buyPromoDataAgainstId.retailPrice }}</span>
+                  </td>
+                  <td>
+                    <span>{{ buyPromoDataAgainstId.sku }}</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </perfect-scrollbar>
     </div>
     <div
@@ -422,6 +488,38 @@
         <div class="row" *ngIf="displaySKUGetFlag === 'get' && noDataFlagGet">
           <div class="col-md-12 ">
             No SKU List Data Available
+          </div>
+        </div>
+        <div class="row" *ngIf="displaySKUGetFlag === 'get' && !noDataFlagGet">
+          <div class="col-md-12 ">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th class="table-header">
+                    <span>Pos Item Description</span>
+                  </th>
+                  <th class="table-header">
+                    <span>Retail Price</span>
+                  </th>
+                  <th class="table-header">
+                    <span>SKU</span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <span>{{ getPromoDataAgainstId.posItemDesc }}</span>
+                  </td>
+                  <td>
+                    <span>{{ getPromoDataAgainstId.retailPrice }}</span>
+                  </td>
+                  <td>
+                    <span>{{ getPromoDataAgainstId.sku }}</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </perfect-scrollbar>

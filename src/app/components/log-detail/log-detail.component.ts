@@ -53,6 +53,9 @@ export class LogDetailComponent implements OnInit, OnDestroy {
   noDataFlagBuy: boolean = false;
   noDataFlagGet: boolean = false;
 
+  buyPromoDataAgainstId: any = [];
+  getPromoDataAgainstId: any = [];
+
   tableHeader = "";
   rowData = {};
 
@@ -125,7 +128,7 @@ export class LogDetailComponent implements OnInit, OnDestroy {
           this.rowData["table"] === "Linked_SKUs" ||
           this.rowData["table"] === "ESP_Skus" ||
           this.rowData["table"] === "Recycle_Fee_SKUs" ||
-          this.rowData["table"] === "Bag_Fee_SKUs"
+          this.rowData["table"] === "Bottle_Deposit_SKUs"
         ) {
           this._logModalDataService.setLinkedSKUsData().subscribe(data => {
             this.linkedSKUsData = data;
@@ -156,7 +159,14 @@ export class LogDetailComponent implements OnInit, OnDestroy {
         } else {
           this.dataBarCode.push(this.dataDiscriptionKeysToDisplay[0].barCode);
         }
-
+        if (this.dataDiscriptionKeysToDisplay[0].orderNo) {
+          this.dataBarCode.push(this.dataDiscriptionKeysToDisplay[0].orderNo);
+        }
+        if (this.dataDiscriptionKeysToDisplay[0].rewardsNumber) {
+          this.dataBarCode.push(
+            this.dataDiscriptionKeysToDisplay[0].rewardsNumber
+          );
+        }
         if (this.rowData["table"] === "Promos") {
           this._loglistingService
             .getDataForPromos(rowData.promoNum)
@@ -245,6 +255,7 @@ export class LogDetailComponent implements OnInit, OnDestroy {
           this.noDataFlagBuy = true;
         } else {
           this.noDataFlagBuy = false;
+          this.buyPromoDataAgainstId = promoSKUList[0];
         }
       });
   }
@@ -259,6 +270,7 @@ export class LogDetailComponent implements OnInit, OnDestroy {
           this.noDataFlagGet = true;
         } else {
           this.noDataFlagGet = false;
+          this.getPromoDataAgainstId = promoSKUList[0];
         }
       });
   }

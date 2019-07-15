@@ -99,11 +99,19 @@ export class PrintDocumentSingleLogDataComponent implements OnInit, OnDestroy {
           this.dataBarCode.push(printedDataForMainAttributes[0].barCode);
         }
 
+        if (printedDataForMainAttributes[0].orderNo) {
+          this.dataBarCode.push(printedDataForMainAttributes[0].orderNo);
+        }
+
+        if (printedDataForMainAttributes[0].rewardsNumber) {
+          this.dataBarCode.push(printedDataForMainAttributes[0].rewardsNumber);
+        }
+
         if (
           this.tableNameForPrint === "Linked_SKUs" ||
           this.tableNameForPrint === "ESP_Skus" ||
           this.tableNameForPrint === "Recycle_Fee_SKUs" ||
-          this.tableNameForPrint === "Bag_Fee_SKUs"
+          this.tableNameForPrint === "Bottle_Deposit_SKUs"
         ) {
           this._logModalDataService.setLinkedSKUsData().subscribe(data => {
             this.linkedSKUsDataPrint = data;

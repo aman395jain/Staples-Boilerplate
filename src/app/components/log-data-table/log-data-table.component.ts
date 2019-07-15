@@ -186,15 +186,15 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
             columnName => columnName.columnDef
           );
           this.tableHeader = "Recycle Fee SKUs";
-        } else if (this.tableNameFromBar === "Bag_Fee_SKUs") {
+        } else if (this.tableNameFromBar === "Bottle_Deposit_SKUs") {
           this.advanceSearchOptions = ["Description", "SKU", "Retail Price"];
-          this.logTableGridColumns = logDataTableConst.Bag_Fee_SKUs;
+          this.logTableGridColumns = logDataTableConst.Bottle_Deposit_SKUs;
 
-          this.tableName = "Bag_Fee_SKUs";
-          this.displayedColumns = logDataTableConst.Bag_Fee_SKUs.map(
+          this.tableName = "Bottle_Deposit_SKUs";
+          this.displayedColumns = logDataTableConst.Bottle_Deposit_SKUs.map(
             columnName => columnName.columnDef
           );
-          this.tableHeader = "Bag Fee SKUs";
+          this.tableHeader = "Bottle Deposit SKUs";
         } else if (this.tableNameFromBar === "Age_Restricted_Special_rest") {
           this.advanceSearchOptions = ["Description", "SKU", "Retail Price"];
           this.logTableGridColumns =
@@ -341,7 +341,13 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
           );
           this.tableHeader = "Tax Exempt Not Validated";
         } else if (this.tableNameFromBar === "Rewards") {
+          this.advanceSearchOptions = [];
+          this.logTableGridColumns = logDataTableConst.Rewards;
           this.tableName = "Rewards";
+          this.displayedColumns = logDataTableConst.Rewards.map(
+            columnName => columnName.columnDef
+          );
+          this.tableHeader = "Rewards";
         } else if (this.tableNameFromBar === "CBP") {
           this.advanceSearchOptions = [];
           this.logTableGridColumns = logDataTableConst.CBP;
@@ -433,7 +439,7 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
       this.tableName === "Linked_SKUs" ||
       this.tableName === "ESP_Skus" ||
       this.tableName === "Recycle_Fee_SKUs" ||
-      this.tableName === "Bag_Fee_SKUs"
+      this.tableName === "Bottle_Deposit_SKUs"
     ) {
       this._loglistingService.postLinkedListSKUs(row.sku).subscribe(data => {
         this._logModalDataService.getLinkedSKUsData(data);
@@ -575,6 +581,19 @@ export class LogDataTableComponent implements OnInit, OnDestroy {
         "Item_Master"
       );
     }
+  }
+
+  backToOrderDataTable() {
+    // this._logModalDataService.getKioskOrderFlag(false);
+    this._navBarService.getAdvanceSearchStatus(false);
+    const backToTable = {
+      tableName: "Tax_Rates",
+      initialIndex: 1,
+      spinnerFlag: true,
+      spinnerForPagination: false
+    };
+    this._navBarService.setElementNameFromSideBar(backToTable);
+    this.router.navigate(["/testDataManagement"]);
   }
 
   /**

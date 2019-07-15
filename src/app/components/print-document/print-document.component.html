@@ -18,7 +18,9 @@
                 key === 'checked' ||
                 key === 'barCode' ||
                 key === 'index' ||
-                key === 'upcList'
+                key === 'upcList' ||
+                key === 'orderNo' ||
+                key === 'rewardsNumber'
               )
             "
           >
@@ -34,6 +36,22 @@
               ></ngx-barcode>
             </div>
           </div>
+          <div *ngIf="key === 'orderNo'">
+            <ngx-barcode
+              [bc-value]="printedData['orderNo']"
+              [bc-display-value]="true"
+              [bc-height]="25"
+              [bc-width]="1"
+            ></ngx-barcode>
+          </div>
+          <div *ngIf="key === 'rewardsNumber'">
+              <ngx-barcode
+                [bc-value]="printedData['rewardsNumber']"
+                [bc-display-value]="true"
+                [bc-height]="25"
+                [bc-width]="1"
+              ></ngx-barcode>
+            </div>
         </td>
       </tr>
     </tbody>

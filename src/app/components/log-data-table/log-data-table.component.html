@@ -1,13 +1,7 @@
 <div
   class="container mat-elevation-z8 log-list"
   [hidden]="isLoading"
-  *ngIf="
-    !(
-      tableName === 'POSA' ||
-      tableName === 'Coupon' ||
-      tableName === 'Rewards' 
-    )
-  "
+  *ngIf="!(tableName === 'POSA' || tableName === 'Coupon')"
 >
   <div class="row">
     <div class="col-md-12 table-header-name">
@@ -253,7 +247,8 @@
                   column.columnDef === 'action' ||
                   column.columnDef === 'select' ||
                   column.columnDef === 'serialNumber' ||
-                  column.columnDef === 'orderNo'
+                  column.columnDef === 'orderNo' ||
+                  column.columnDef === 'rewardsNumber'
                 )
               "
             >
@@ -278,7 +273,8 @@
                 column.header === 'Bar Code' ||
                 column.header === 'UPC' ||
                 column.columnDef === 'serialNumber' ||
-                column.columnDef === 'orderNo'
+                column.columnDef === 'orderNo' ||
+                column.columnDef === 'rewardsNumber'
               "
             >
               <ngx-barcode
@@ -353,20 +349,24 @@
   </div>
 </div>
 <div
+  class="col-4 d-flex justify-content-center align-self-center"
+  *ngIf="tableName === 'POSA' || tableName === 'Coupon'"
+>
+  <a class="back-order-table" (click)="backToOrderDataTable()">Back</a>
+</div>
+<div
   [hidden]="isLoading"
-  *ngIf="
-    (tableName === 'POSA' ||
-      tableName === 'Coupon' ||
-      tableName === 'Rewards')
-  "
+  *ngIf="tableName === 'POSA' || tableName === 'Coupon'"
   class="under-construction"
 >
-  <img
-    src="./app/assets/images/under_Process.jfif"
-    alt="Staples under process"
-    height="300px"
-    width="300px"
-  />
+  <div>
+    <img
+      src="./app/assets/images/under_Process.jfif"
+      alt="Staples under process"
+      height="300px"
+      width="300px"
+    />
+  </div>
 </div>
 <div class="load-spinner">
   <mat-progress-spinner

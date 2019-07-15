@@ -13,7 +13,7 @@ export enum logTableAPIUrls {
   getReturnDrivingLicense = "http://www.mocky.io/v2/5d1cfe7034000025b1b601a7",
   getLowestPrice = "http://www.mocky.io/v2/5d1cfeb5340000dcb0b601a8",
   getPOSA = "http://www.mocky.io/v2/5d1cfb9134000023b1b60198",
-  getOrder = "http://www.mocky.io/v2/5d1b259f3400005400000564",
+  getOrder = "http://www.mocky.io/v2/5d2c71853100007000f5a8fa",
   getPromos = "http://lrtdqnasv104:8090/tdmapp/promoList",
   getItemGroup = "http://lrtdqnasv104:8090/tdmapp/itemGroupList",
   getTaxExempt = "http://lrtdqnasv104:8090/tdmapp/taxExemptList",
@@ -24,10 +24,11 @@ export enum logTableAPIUrls {
   getTaxExemptNotValidated = "http://lrtdqnasv104:8090/tdmapp/taxEmpList",
   getTaxExemptIncomplete = "http://lrtdqnasv104:8090/tdmapp/taxEmpList",
   getRecycleFeeSKUs = "http://lrtdqnasv104:8090/tdmapp/recyclingFeeSkuList",
-  getBagFeeSKUs = "http://lrtdqnasv104:8090/tdmapp/recyclingFeeSkuList",
+  getBagFeeSKUs = "http://lrtdqnasv104:8090/tdmapp/bagFeeSkuList",
   getEspSkus = "http://lrtdqnasv104:8090/tdmapp/espList",
   getItemGroupData = "http://lrtdqnasv104:8090/tdmapp/itmMstListByAssoGrpId",
   getCBP = "http://lrtdqnasv104:8090/tdmapp/cbpList",
   getCEP = "http://lrtdqnasv104:8090/tdmapp/cepList",
-  getRewardsSearch = "http://lrtdqnasv104:8090/tdmapp/rewardsSearch"
+  getRewardsSearch = "http://lrtdqnasv104:8090/tdmapp/rewardsSearch",
+  getRewards = "http://lrtdqnasv104:8090/tdmapp/rewardList"
 }

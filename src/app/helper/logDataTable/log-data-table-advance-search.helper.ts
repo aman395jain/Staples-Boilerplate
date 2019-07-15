@@ -569,7 +569,7 @@ export default class LogDataTableHelper {
             data.retailPrice.toString().includes(filter["Retail Price"]);
         }
       };
-    } else if (table_name === "Bag_Fee_SKUs") {
+    } else if (table_name === "Bottle_Deposit_SKUs") {
       return function(data, filter) {
         if (
           filter.hasOwnProperty("Description") &&
